@@ -66,13 +66,10 @@ public class UserEditController implements Dialog {
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
 
-        if(userExitstInTable()){
-            ListUtil.getListByName(currentTable).remove(editedUser);
+        if(!userExitstInTable()){
             ListUtil.getListByName(currentTable).add(editedUser);
         }
-        else {
-            ListUtil.getListByName(currentTable).add(editedUser);
-        }
+
         this.dialog.close();
     }
 
