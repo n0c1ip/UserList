@@ -10,14 +10,14 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer userId;
-    private String firstName;
-    private String lastName;
+    private String firstName ="";
+    private String lastName ="";
     private String middleName = "1";
     private Department department = new Department("");
-    private String position;
-    private String login;
-    private String password;
-    private String mail;
+    private String position ="";
+    private String login = "";
+    private String password = "";
+    private String mail = "";
 
     public User() {
     }

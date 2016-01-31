@@ -40,7 +40,7 @@ public class UserEditController implements Dialog {
 
     private Stage dialog;
     private String currentTable;
-
+    private User editedUser;
 
     @FXML
     private void initialize() {
@@ -51,21 +51,28 @@ public class UserEditController implements Dialog {
     @Override
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
+
     }
 
     @FXML
     private void handleOkButton(ActionEvent actionEvent) {
-        User user = new User();
-        user.setFirstName(firstNameField.getText());
-        user.setLastName(lastNameField.getText());
-        user.setMiddleName(middleNameFiel.getText());
-        user.setDepartment(ListUtil.getDepartmentByName(departmentField.getValue().toString()));
-        user.setPosition(positionField.getText());
-        user.setLogin(loginField.getText());
-        user.setPassword(passwordField.getText());
-        user.setMail(mailField.getText());
 
-        ListUtil.getListByName(currentTable).add(user);
+        editedUser.setFirstName(firstNameField.getText());
+        editedUser.setLastName(lastNameField.getText());
+        editedUser.setMiddleName(middleNameFiel.getText());
+        editedUser.setDepartment(ListUtil.getDepartmentByName(departmentField.getValue().toString()));
+        editedUser.setPosition(positionField.getText());
+        editedUser.setLogin(loginField.getText());
+        editedUser.setPassword(passwordField.getText());
+        editedUser.setMail(mailField.getText());
+
+        if(userExitstInTable()){
+            ListUtil.getListByName(currentTable).remove(editedUser);
+            ListUtil.getListByName(currentTable).add(editedUser);
+        }
+        else {
+            ListUtil.getListByName(currentTable).add(editedUser);
+        }
         this.dialog.close();
     }
 
@@ -78,4 +85,19 @@ public class UserEditController implements Dialog {
         this.currentTable = currentTable;
     }
 
+    public void setEditedUser(User editedUser) {
+        this.editedUser = editedUser;
+        firstNameField.setText(editedUser.getFirstName());
+        lastNameField.setText(editedUser.getLastName());
+        middleNameFiel.setText(editedUser.getMiddleName());
+        departmentField.getSelectionModel().select(editedUser.getDepartment());
+        positionField.setText(editedUser.getPosition());
+        loginField.setText(editedUser.getLogin());
+        passwordField.setText(editedUser.getPassword());
+        mailField.setText(editedUser.getMail());
+    }
+
+    private boolean userExitstInTable(){
+        return ListUtil.getListByName(currentTable).contains(editedUser);
+    }
 }

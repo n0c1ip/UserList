@@ -1,6 +1,9 @@
 package start;
 
-import controllers.*;
+import controllers.RootController;
+import controllers.TabController;
+import controllers.TableController;
+import controllers.UserEditController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,12 +42,15 @@ public class EnterPoint extends Application {
 
     public EnterPoint(){
 
-          ListUtil.createUserList("Центральный офис");
-          ListUtil.createUserList("Логистика");
-          ListUtil.getListByName("Центральный офис").add(new User("Ivan", "Petrov"));
-          ListUtil.createDepartment("Бухгалтерия");
-          ListUtil.createDepartment("ИТ");
-          ListUtil.createDepartment("ЦТО");
+        ListUtil.createUserList("Центральный офис");
+        ListUtil.createUserList("Логистика");
+        ListUtil.createDepartment("Бухгалтерия");
+        ListUtil.createDepartment("ИТ");
+        ListUtil.createDepartment("ЦТО");
+        User testuser = new User("Ivan", "Petrov");
+        testuser.setDepartment(ListUtil.getDepartmentByName("Бухгалтерия"));
+        ListUtil.getListByName("Центральный офис").add(testuser);
+
 
 
 
@@ -113,10 +119,10 @@ public class EnterPoint extends Application {
         return primaryStage;
     }
 
-    public void showUserEditDialog(String currentTable) {
+    public void showUserEditDialog(String currentTable, String title, User user) {
         try{
             final Stage dialog = new Stage();
-            dialog.setTitle("Cоздание пользователя");
+            dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(getPrimaryStage());
             dialog.setResizable(false);
@@ -124,6 +130,7 @@ public class EnterPoint extends Application {
             AnchorPane useredit = (AnchorPane) loader.load();
             UserEditController controller = loader.getController();
             controller.setDialog(dialog);
+            controller.setEditedUser(user);
             controller.setCurrentTable(currentTable);
             dialog.setScene(new Scene(useredit));
             dialog.showAndWait();

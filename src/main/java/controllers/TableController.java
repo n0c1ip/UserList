@@ -14,6 +14,17 @@ import util.ListUtil;
 public class TableController {
 
     private String currentTablename;
+    private static final String CREATE_TITLE = "Создание пользователя";
+
+    public static String getCreateTitle() {
+        return CREATE_TITLE;
+    }
+
+    public static String getEditTitle() {
+        return EDIT_TITLE;
+    }
+
+    private static final String EDIT_TITLE = "Редактирование пользователя";
 
     @FXML
     private TableView<User> userTable;
@@ -115,7 +126,8 @@ public class TableController {
 
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
-        enterPoint.showUserEditDialog(currentTablename);
+        User user = new User();
+        enterPoint.showUserEditDialog(currentTablename,CREATE_TITLE,user);
     }
 
     @FXML
@@ -136,7 +148,10 @@ public class TableController {
 
     @FXML
     private void handleEditPerson() {
-
+        User selecteduser = userTable.getSelectionModel().getSelectedItem();
+         if (selecteduser != null){
+             enterPoint.showUserEditDialog(currentTablename,EDIT_TITLE,selecteduser);
+         }
 
     }
 
