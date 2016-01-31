@@ -26,9 +26,9 @@
                   <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#addTabTable" text="Открыть таблицу" />
               </items>
             </Menu>
-                <Menu mnemonicParsing="false" text="Помощь">
+                <Menu mnemonicParsing="false" text="Пользователи ">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" text="Импорт из csv" />
                     </items>
                 </Menu>
             </menus>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -107,8 +108,8 @@
       </GridPane>
       <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="43.0" prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="ОК" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="58.0" text="Отмена" />
+            <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="ОК" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="58.0" text="Отмена" />
          </children>
       </HBox>
    </children>

@@ -2,14 +2,13 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import util.ListUtil;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User extends Model{
 
     private static final long serialVersionUID = 1L;
 
-    private Integer userId;
+
     private String firstName ="";
     private String lastName ="";
     private String middleName = "1";
@@ -21,18 +20,20 @@ public class User implements Serializable {
 
     public User() {
     }
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String middleName, String departmentname,
+                String position, String login, String password, String mail) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.middleName = middleName;
+        this.department = ListUtil.getDepartmentByName(departmentname);
+        this.position = position;
+        this.login = login;
+        this.password = password;
+        this.mail = mail;
     }
 
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-    public Integer getUserId() {
-        return userId;
-    }
+
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -68,8 +69,8 @@ public class User implements Serializable {
         return mNameProperty = new SimpleStringProperty(this.middleName);
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartment(String  departmentName) {
+        this.department = ListUtil.getDepartmentByName(departmentName);
     }
     public Department getDepartment() {
         return department;

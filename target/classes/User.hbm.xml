@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
     <class name="objects.User" table="user" catalog="testdb">
-        <id name="userId" type="java.lang.Integer">
+        <id name="id" type="java.lang.Integer">
             <column name="USER_ID" />
             <generator class="identity" />
         </id>

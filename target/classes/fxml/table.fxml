@@ -68,8 +68,8 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label id="firstNameLabel" fx:id="firstNameLabel" prefHeight="33.0" prefWidth="158.0" text="имя" GridPane.columnIndex="1" />
-                  <Label id="lastNameLabel" fx:id="lastNameLabel" prefHeight="33.0" prefWidth="156.0" text="фамилия" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label id="firstNameLabel" fx:id="firstNameLabel" prefHeight="33.0" prefWidth="200.0" text="имя" GridPane.columnIndex="1" />
+                  <Label id="lastNameLabel" fx:id="lastNameLabel" prefHeight="33.0" prefWidth="200.0" text="фамилия" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Отчество" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -78,7 +78,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="middleNameLabel" fx:id="middleNameLabel" prefHeight="33.0" prefWidth="99.0" text="отчество" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label id="middleNameLabel" fx:id="middleNameLabel" prefHeight="33.0" prefWidth="200.0" text="отчество" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Отдел" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -87,7 +87,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="departmentLabel" fx:id="departmentLabel" prefHeight="33.0" prefWidth="99.0" text="отдел" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label id="departmentLabel" fx:id="departmentLabel" prefHeight="33.0" prefWidth="200.0" text="отдел" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Должность" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -96,7 +96,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="positionLabel" fx:id="positionLabel" prefHeight="33.0" prefWidth="99.0" text="должность" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label id="positionLabel" fx:id="positionLabel" prefHeight="33.0" prefWidth="200.0" text="должность" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Логин" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -105,7 +105,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="loginLabel" fx:id="loginLabel" prefHeight="33.0" prefWidth="99.0" text="логин" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label id="loginLabel" fx:id="loginLabel" prefHeight="33.0" prefWidth="200.0" text="логин" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Пароль" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -114,7 +114,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="passwordLabel" fx:id="passwordLabel" prefHeight="33.0" prefWidth="99.0" text="пароль" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label id="passwordLabel" fx:id="passwordLabel" prefHeight="33.0" prefWidth="200.0" text="пароль" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label prefHeight="33.0" prefWidth="99.0" text="Эл. почта" GridPane.rowIndex="7">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -123,7 +123,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label id="mailLabel" fx:id="mailLabel" prefHeight="33.0" prefWidth="99.0" text="почта" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label id="mailLabel" fx:id="mailLabel" prefHeight="33.0" prefWidth="200.0" text="почта" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <HBox alignment="CENTER_RIGHT" layoutY="554.0" prefHeight="33.0" prefWidth="444.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">

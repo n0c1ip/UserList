@@ -87,7 +87,11 @@ public class TableController {
 
         userTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserDetails(newValue));
+
+        //TODO Editable Cells
     }
+
+
 
     public void setMainApp(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;

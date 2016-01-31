@@ -60,7 +60,7 @@ public class UserEditController implements Dialog {
         editedUser.setFirstName(firstNameField.getText());
         editedUser.setLastName(lastNameField.getText());
         editedUser.setMiddleName(middleNameFiel.getText());
-        editedUser.setDepartment(ListUtil.getDepartmentByName(departmentField.getValue().toString()));
+        editedUser.setDepartment(departmentField.getValue().toString());
         editedUser.setPosition(positionField.getText());
         editedUser.setLogin(loginField.getText());
         editedUser.setPassword(passwordField.getText());
