@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd//hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objects.User" table="user" catalog="testdb">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="20" not-null="true" unique="true" />
+        </property>
+
+        <property name="middleName" type="string">
+            <column name="OUTER_NAME" length="20" not-null="true" unique="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

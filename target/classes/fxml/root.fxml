@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Выход" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Правка">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Добавить" />
+                  <MenuItem mnemonicParsing="false" text="Изменить" />
+                  <MenuItem mnemonicParsing="false" text="Удалить" />
+                    </items>
+                </Menu>
+            <Menu mnemonicParsing="false" text="Таблицы">
+              <items>
+                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#addTabTable" text="Открыть таблицу" />
+                <MenuItem fx:id="tableViewItem" mnemonicParsing="false" onAction="#setTable" text="Table+View" />
+                <MenuItem fx:id="tableItem" mnemonicParsing="false" onAction="#setTable" text="Table" />
+              </items>
+            </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+   <center>
+      <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.11" prefHeight="96.0" prefWidth="227.0" text="User List" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Serif Regular" size="61.0" />
+         </font>
+      </Label>
+   </center>
+</BorderPane>

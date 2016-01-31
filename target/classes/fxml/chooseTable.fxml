@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseTabController">
+   <children>
+      <ChoiceBox fx:id="choiceBox" layoutX="13.0" layoutY="21.0" prefHeight="25.0" prefWidth="245.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ChoiceBox>
+      <Button fx:id="chiceOpen" layoutX="97.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleOpenButton" prefHeight="25.0" prefWidth="78.0" text="Открыть">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="choiceCancel" layoutX="180.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="25.0" prefWidth="78.0" text="Отмена">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+   <styleClass>
+      <String fx:value="root" />
+      <String fx:value="button" />
+      <String fx:value="modal-dialog" />
+   </styleClass>
+</AnchorPane>
