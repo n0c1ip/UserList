@@ -24,8 +24,6 @@
             <Menu mnemonicParsing="false" text="Таблицы">
               <items>
                   <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#addTabTable" text="Открыть таблицу" />
-                <MenuItem fx:id="tableViewItem" mnemonicParsing="false" onAction="#setTable" text="Table+View" />
-                <MenuItem fx:id="tableItem" mnemonicParsing="false" onAction="#setTable" text="Table" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Помощь">
@@ -37,7 +35,7 @@
         </MenuBar>
     </top>
    <center>
-      <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.11" prefHeight="96.0" prefWidth="227.0" text="User List" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.35" prefHeight="96.0" prefWidth="227.0" text="User List" BorderPane.alignment="CENTER">
          <font>
             <Font name="Serif Regular" size="61.0" />
          </font>

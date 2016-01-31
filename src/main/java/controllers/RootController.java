@@ -2,10 +2,8 @@ package controllers;
 //Created by mva on 29.01.2016.
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,11 +12,6 @@ import start.EnterPoint;
 import java.io.IOException;
 
 public class RootController {
-
-    @FXML
-    private MenuItem tableViewItem;
-    @FXML
-    private MenuItem tableItem;
 
 
     public RootController() {
@@ -34,16 +27,6 @@ public class RootController {
 
     public void setTabController(TabController tabcontroller){
         this.tabcontroller = tabcontroller;
-    }
-
-    public void setTable(ActionEvent actionEvent) {
-        if(actionEvent.getSource() == tableItem){
-
-        }
-        if (actionEvent.getSource() == tableViewItem){
-
-        }
-
     }
 
     public void addTabTable(ActionEvent actionEvent) {
