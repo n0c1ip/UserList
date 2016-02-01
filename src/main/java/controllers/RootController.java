@@ -5,10 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import start.EnterPoint;
 
+import java.io.File;
 import java.io.IOException;
 
 public class RootController {
@@ -53,4 +55,24 @@ public class RootController {
 
     }
 
+    public void showImportFormCSV(ActionEvent actionEvent) {
+
+        try {
+            final Stage dialog = new Stage();
+            dialog.setTitle("Импорт пользователей из CSV");
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(enterPoint.getPrimaryStage());
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/importCSV.fxml"));
+            AnchorPane importcsv = (AnchorPane) loader.load();
+            ImportCSVController controller = loader.getController();
+            controller.setEnterPoint(enterPoint);
+            controller.setDialog(dialog);
+            dialog.setScene(new Scene(importcsv));
+            dialog.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

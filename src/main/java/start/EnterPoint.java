@@ -47,8 +47,6 @@ public class EnterPoint extends Application {
         ListUtil.createDepartment("Бухгалтерия");
         ListUtil.createDepartment("ИТ отдел");
         ListUtil.createDepartment("ЦТО");
-        ListUtil.loadUsersFromCSV("Центральный офис","E:/1.csv",';');
-
 
     }
 
