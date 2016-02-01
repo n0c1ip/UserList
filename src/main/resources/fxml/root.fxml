@@ -31,9 +31,9 @@
                         <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Отделы">
+            <Menu mnemonicParsing="false" text="Подразделения">
               <items>
-                <MenuItem mnemonicParsing="false" text="Таблица отделов" onAction="#showDepartmentTable"/>
+                <MenuItem mnemonicParsing="false" text="Таблица подразделений" onAction="#showDepartmentTable"/>
               </items>
             </Menu>
             </menus>

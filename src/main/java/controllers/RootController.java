@@ -65,7 +65,7 @@ public class RootController {
             SplitPane table = (SplitPane) loader.load();
             DepartmentTableController controller = loader.getController();
             tabLayout = (TabPane) enterPoint.getRootLayout().getCenter();
-            Tab tab = new Tab("Departments");
+            Tab tab = new Tab("Подразделения");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
