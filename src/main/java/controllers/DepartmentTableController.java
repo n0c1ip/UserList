@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import objects.User;
-import org.hibernate.annotations.SourceType;
 import start.EnterPoint;
 import util.ListUtil;
+
+import java.util.Optional;
 
 public class DepartmentTableController {
 
@@ -58,7 +60,6 @@ public class DepartmentTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-
     }
 
     private void showUserByDepartments(String newValue) {
@@ -73,4 +74,17 @@ public class DepartmentTableController {
     public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
+
+    public void handleAddDepartment() {
+
+        TextInputDialog dialog = new TextInputDialog("Название подразделения");
+        dialog.setTitle("Создание подразделения");
+        dialog.setHeaderText("Новое подразделение");
+        dialog.setContentText("Введите название подразделения:");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(name -> ListUtil.createDepartment(name));
+    }
+
+
+
 }

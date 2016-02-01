@@ -8,12 +8,10 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import start.EnterPoint;
 
-import java.io.File;
 import java.io.IOException;
 
 public class RootController {
@@ -64,6 +62,7 @@ public class RootController {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/departmentTable.fxml"));
             SplitPane table = (SplitPane) loader.load();
             DepartmentTableController controller = loader.getController();
+            controller.setEnterPoint(this.enterPoint);
             tabLayout = (TabPane) enterPoint.getRootLayout().getCenter();
             Tab tab = new Tab("Подразделения");
             tab.setContent(table);

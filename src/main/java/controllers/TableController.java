@@ -1,11 +1,13 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import objects.User;
 import start.EnterPoint;
 import util.ListUtil;
@@ -85,53 +87,68 @@ public class TableController {
 
         showUserDetails(null);
 
+
+        //change user listener
         userTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserDetails(newValue));
+
+        //Double click edit user
+        userTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditPerson();
+                }
+            }
+        });
 
         //TODO Editable Cells
     }
 
 
-
     public void setMainApp(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
-    public void setUserTable(String tableName){
+
+    public void setUserTable(String tableName) {
         userTable.setItems(ListUtil.getListByName(tableName));
     }
+
     public void setCurrentTablename(String currentTablename) {
         this.currentTablename = currentTablename;
     }
-    public String getCurrentTablename() {
-            return currentTablename;
-        }
-    private void showUserDetails(User user) {
-            if (user != null) {
-                firstNameLabel.setText(user.getFirstName());
-                lastNameLabel.setText(user.getLastName());
-                middleNameLabel.setText(user.getMiddleName());
-                departmentLabel.setText(user.getDepartment().getName());
-                positionLabel.setText(user.getPosition());
-                loginLabel.setText(user.getLogin());
-                passwordLabel.setText(user.getPassword());
-                mailLabel.setText(user.getMail());
-            } else {
 
-                firstNameLabel.setText("");
-                lastNameLabel.setText("");
-                middleNameLabel.setText("");
-                departmentLabel.setText("");
-                positionLabel.setText("");
-                loginLabel.setText("");
-                passwordLabel.setText("");
-                mailLabel.setText("");
-            }
+    public String getCurrentTablename() {
+        return currentTablename;
+    }
+
+    private void showUserDetails(User user) {
+        if (user != null) {
+            firstNameLabel.setText(user.getFirstName());
+            lastNameLabel.setText(user.getLastName());
+            middleNameLabel.setText(user.getMiddleName());
+            departmentLabel.setText(user.getDepartment().getName());
+            positionLabel.setText(user.getPosition());
+            loginLabel.setText(user.getLogin());
+            passwordLabel.setText(user.getPassword());
+            mailLabel.setText(user.getMail());
+        } else {
+
+            firstNameLabel.setText("");
+            lastNameLabel.setText("");
+            middleNameLabel.setText("");
+            departmentLabel.setText("");
+            positionLabel.setText("");
+            loginLabel.setText("");
+            passwordLabel.setText("");
+            mailLabel.setText("");
         }
+    }
 
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
         User user = new User();
-        enterPoint.showUserEditDialog(currentTablename,CREATE_TITLE,user);
+        enterPoint.showUserEditDialog(currentTablename, CREATE_TITLE, user);
     }
 
     @FXML
@@ -153,40 +170,11 @@ public class TableController {
     @FXML
     private void handleEditPerson() {
         User selecteduser = userTable.getSelectionModel().getSelectedItem();
-         if (selecteduser != null){
-             enterPoint.showUserEditDialog(currentTablename,EDIT_TITLE,selecteduser);
-         }
+        if (selecteduser != null) {
+            enterPoint.showUserEditDialog(currentTablename, EDIT_TITLE, selecteduser);
+        }
 
     }
 
-
 }
-/*
-        @FXML
-        private void handleEditPerson() {
-            Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
-            if (selectedPerson != null) {
-                boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
-                if (okClicked) {
-                    showPersonDetails(selectedPerson);
-                }
-
-            } else {
-                // Nothing selected.
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(mainApp.getPrimaryStage());
-                alert.setTitle("No Selection");
-                alert.setHeaderText("No Person Selected");
-                alert.setContentText("Please select a person in the table.");
-
-                alert.showAndWait();
-            }
-        }
-
-
-
-
-
-*/
-
 

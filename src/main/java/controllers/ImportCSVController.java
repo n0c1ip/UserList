@@ -1,6 +1,7 @@
 package controllers;
 //Created by mva on 01.02.2016.
 
+import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import util.ListUtil;
 
 import java.io.File;
 
-public class ImportCSVController {
+public class ImportCSVController implements Dialog{
 
     private EnterPoint enterPoint;
     private Stage dialog;
@@ -48,6 +49,7 @@ public class ImportCSVController {
     public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
+
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
     }
