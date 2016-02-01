@@ -90,7 +90,7 @@ public class EnterPoint extends Application {
 
     public  void loadNewTab(String currentTable){
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/table.fxml"));
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
             SplitPane table = (SplitPane) loader.load();
             TableController controller = loader.getController();
             controller.setMainApp(this);

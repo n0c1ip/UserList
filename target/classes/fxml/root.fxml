@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -23,14 +23,19 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Таблицы">
               <items>
-                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#addTabTable" text="Открыть таблицу" />
+                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialg" text="Открыть таблицу" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Пользователи ">
                     <items>
-                        <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" text="Импорт из csv" onAction="#showImportFormCSV" />
+                        <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="Отделы">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Таблица отделов" onAction="#showDepartmentTable"/>
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>

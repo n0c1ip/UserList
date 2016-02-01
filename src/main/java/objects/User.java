@@ -26,6 +26,7 @@ public class User extends Model{
         this.lastName = lastName;
         this.middleName = middleName;
         this.department = ListUtil.getDepartmentByName(departmentname);
+        ListUtil.getDepartmentByName(departmentname).addUserToDepartment(this);
         this.position = position;
         this.login = login;
         this.password = password;

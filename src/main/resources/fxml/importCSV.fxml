@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ImportCSVController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ImportCSVController">
     <children>
         <ChoiceBox fx:id="choiceBox" layoutX="18.0" layoutY="48.0" prefHeight="25.0" prefWidth="245.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <cursor>
@@ -21,7 +21,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="25.0" prefWidth="136.0" text="Таблица для импорта:" AnchorPane.leftAnchor="10.0" />
-      <TextField fx:id="filePathField" layoutX="26.0" layoutY="110.0" prefHeight="25.0" prefWidth="194.0" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="filePathField" layoutX="26.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" AnchorPane.leftAnchor="18.0" />
       <Label layoutX="19.0" layoutY="87.0" prefHeight="17.0" prefWidth="78.0" text="Файл CSV:" AnchorPane.leftAnchor="10.0" />
       <Button layoutX="231.0" layoutY="110.0" mnemonicParsing="false" onAction="#chooseCsvFile" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.rightAnchor="10.0" />
     </children>

@@ -4,6 +4,9 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -22,16 +25,17 @@ public class RootController {
     // References
     private EnterPoint enterPoint;
     private TabController tabcontroller;
-
+    private TabPane tabLayout;
     public void setMainApp(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
-
     public void setTabController(TabController tabcontroller){
         this.tabcontroller = tabcontroller;
     }
 
-    public void addTabTable(ActionEvent actionEvent) {
+
+
+    public void showAddTabTableDialg(ActionEvent actionEvent) {
 
         try {
             final Stage dialog = new Stage();
@@ -55,11 +59,25 @@ public class RootController {
 
     }
 
+    public void showDepartmentTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/departmentTable.fxml"));
+            SplitPane table = (SplitPane) loader.load();
+            DepartmentTableController controller = loader.getController();
+            tabLayout = (TabPane) enterPoint.getRootLayout().getCenter();
+            Tab tab = new Tab("Departments");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void showImportFormCSV(ActionEvent actionEvent) {
 
         try {
             final Stage dialog = new Stage();
-            dialog.setTitle("Импорт пользователей из CSV");
+            dialog.setTitle("Импорт из CSV");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(enterPoint.getPrimaryStage());
             dialog.setResizable(false);
