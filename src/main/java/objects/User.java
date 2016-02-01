@@ -17,6 +17,7 @@ public class User extends Model{
     private String login = "";
     private String password = "";
     private String mail = "";
+    private boolean isFired = false;
 
     public User() {
     }
@@ -125,12 +126,10 @@ public class User extends Model{
         return mailProperty = new SimpleStringProperty(this.mail);
     }
 
-
-
-
-
-
-
-
-
+    public boolean isFired() {
+        return isFired;
+    }
+    public void setIsFired(boolean isFired) {
+        this.isFired = isFired;
+    }
 }

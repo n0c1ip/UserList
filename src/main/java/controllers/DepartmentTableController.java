@@ -85,6 +85,4 @@ public class DepartmentTableController {
         result.ifPresent(name -> ListUtil.createDepartment(name));
     }
 
-
-
 }

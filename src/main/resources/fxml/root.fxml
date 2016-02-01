@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -23,6 +23,7 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Таблицы">
               <items>
+                  <MenuItem mnemonicParsing="false" text="Создать таблицу" />
                   <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialg" text="Открыть таблицу" />
               </items>
             </Menu>
@@ -33,7 +34,7 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Подразделения">
               <items>
-                <MenuItem mnemonicParsing="false" text="Таблица подразделений" onAction="#showDepartmentTable"/>
+                <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица подразделений" />
               </items>
             </Menu>
             </menus>

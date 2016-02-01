@@ -43,6 +43,7 @@ public class EnterPoint extends Application {
     public EnterPoint(){
 
         ListUtil.createUserList("Центральный офис");
+        ListUtil.createUserList("Уволенные");
         ListUtil.createUserList("Логистика");
         ListUtil.createDepartment("Бухгалтерия");
         ListUtil.createDepartment("ИТ отдел");
