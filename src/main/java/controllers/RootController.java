@@ -24,7 +24,7 @@ public class RootController {
     private EnterPoint enterPoint;
     private TabController tabcontroller;
     private TabPane tabLayout;
-    public void setMainApp(EnterPoint enterPoint) {
+    public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
     public void setTabController(TabController tabcontroller){

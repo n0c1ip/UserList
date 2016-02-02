@@ -18,7 +18,7 @@ public class TabController {
 
         private EnterPoint enterPoint;
 
-    public void setMainApp(EnterPoint enterPoint) {
+    public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
 

@@ -26,22 +26,12 @@ public class EnterPoint extends Application {
     private TabPane tabLayout;
 
     public static void main(String[] args) {
-
-    /*        Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            User user = new User("Alexander","Vasilev");
-            user.setMiddleName("Petrovich");
-
-            session.save(user);
-            session.getTransaction().commit();
-   */
-
-
         launch(args);
     }
 
     public EnterPoint(){
 
+//        UserService userService = new UserService();
         ListUtil.createUserList("Центральный офис");
         ListUtil.createUserList("Уволенные");
         ListUtil.createUserList("Логистика");
@@ -49,8 +39,12 @@ public class EnterPoint extends Application {
         ListUtil.createDepartment("ИТ отдел");
         ListUtil.createDepartment("ЦТО");
 
+        User user = new User("Vasiliy", "Pupkin", "","ИТ отдел","","","","");
+//      userService.persist(user);
+
     }
 
+    //starts here
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -66,7 +60,7 @@ public class EnterPoint extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
             rootLayout = loader.load();
             RootController rootController = loader.getController();
-            rootController.setMainApp(this);
+            rootController.setEnterPoint(this);
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
             rootController.setTabController(initTabLayout());
@@ -81,7 +75,7 @@ public class EnterPoint extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabpane.fxml"));
             TabPane tabPane = (TabPane) loader.load();
             tabController = loader.getController();
-            tabController.setMainApp(this);
+            tabController.setEnterPoint(this);
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,7 +88,7 @@ public class EnterPoint extends Application {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
             SplitPane table = (SplitPane) loader.load();
             TableController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setEnterPoint(this);
             controller.setCurrentTablename(currentTable);
             controller.setUserTable(currentTable);
             tabLayout = (TabPane) rootLayout.getCenter();

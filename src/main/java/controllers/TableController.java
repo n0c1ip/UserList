@@ -106,7 +106,7 @@ public class TableController {
     }
 
 
-    public void setMainApp(EnterPoint enterPoint) {
+    public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
 

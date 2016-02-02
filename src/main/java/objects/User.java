@@ -2,25 +2,43 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.annotations.CollectionId;
 import util.ListUtil;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="users")
 public class User extends Model{
 
     private static final long serialVersionUID = 1L;
 
 
+    @Column(name = "firstname")
     private String firstName ="";
+    @Column(name = "lastname")
     private String lastName ="";
+    @Column(name = "middlename")
     private String middleName = "1";
+
     private Department department = new Department("");
+//    @Column(name = "position")
     private String position ="";
+//    @Column(name = "login")
     private String login = "";
+//    @Column(name ="password")
     private String password = "";
+//    @Column(name = "mail")
     private String mail = "";
+//    @Column(name = "isFired")
     private boolean isFired = false;
+
 
     public User() {
     }
+
     public User(String firstName, String lastName, String middleName, String departmentname,
                 String position, String login, String password, String mail) {
         this.firstName = firstName;
