@@ -2,13 +2,10 @@ package start;
 
 import controllers.RootController;
 import controllers.TabController;
-import controllers.TableController;
 import controllers.UserEditController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +20,6 @@ public class EnterPoint extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private TabPane tabLayout;
 
     public static void main(String[] args) {
         launch(args);
@@ -40,7 +36,7 @@ public class EnterPoint extends Application {
         ListUtil.createDepartment("ЦТО");
 
         User user = new User("Vasiliy", "Pupkin", "","ИТ отдел","","","","");
-//      userService.persist(user);
+//        userService.persist(user);
 
     }
 
@@ -81,23 +77,6 @@ public class EnterPoint extends Application {
             e.printStackTrace();
         }
         return tabController;
-    }
-
-    public  void loadNewTab(String currentTable){
-        try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
-            SplitPane table = (SplitPane) loader.load();
-            TableController controller = loader.getController();
-            controller.setEnterPoint(this);
-            controller.setCurrentTablename(currentTable);
-            controller.setUserTable(currentTable);
-            tabLayout = (TabPane) rootLayout.getCenter();
-            Tab tab = new Tab(currentTable);
-            tab.setContent(table);
-            tabLayout.getTabs().add(tab);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public BorderPane getRootLayout(){

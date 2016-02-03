@@ -5,16 +5,23 @@ import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import start.EnterPoint;
 import util.ListUtil;
+
+import java.io.IOException;
 
 public class ChooseTabController implements Dialog {
 
     private EnterPoint enterPoint;
     private TabController tabController;
     private Stage dialog;
+    private TabPane tabLayout;
 
     @FXML
     private ChoiceBox<String> choiceBox;
@@ -27,8 +34,6 @@ public class ChooseTabController implements Dialog {
         choiceBox.getSelectionModel().selectFirst();
     }
 
-
-
     public void setTabController(TabController tabController){
         this.tabController = tabController;
     }
@@ -39,13 +44,29 @@ public class ChooseTabController implements Dialog {
         this.dialog = dialog;
     }
 
-
     public void handleCancelButton() {
 
         this.dialog.close();
     }
     public void handleOpenButton(){
-        enterPoint.loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
+        loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
         dialog.close();
+    }
+
+    public  void loadNewTab(String currentTable){
+        try {
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
+            SplitPane table = (SplitPane) loader.load();
+            TableController controller = loader.getController();
+            controller.setEnterPoint(enterPoint);
+            controller.setCurrentTablename(currentTable);
+            controller.setUserTable(currentTable);
+            tabLayout = (TabPane) enterPoint.getRootLayout().getCenter();
+            Tab tab = new Tab(currentTable);
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
