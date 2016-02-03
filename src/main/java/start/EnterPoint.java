@@ -18,7 +18,7 @@ import objects.User;
 import util.ListUtil;
 
 import java.io.IOException;
-//test commit
+
 public class EnterPoint extends Application {
 
     private Stage primaryStage;
