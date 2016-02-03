@@ -12,7 +12,6 @@ public abstract class Model implements Serializable{
     @Column(name="id")
     private long id;
 
-
     public Model() {
     }
     public Model(long id) {

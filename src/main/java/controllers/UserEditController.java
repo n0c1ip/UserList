@@ -14,8 +14,13 @@ import javafx.stage.Stage;
 import objects.User;
 import util.ListUtil;
 
-public class UserEditController implements Dialog {
+/**
+ * <p>UserEditController uses for dialog of editing and adding Users.
+ * uses userEdit.fxml for UI.
+ * Before initialize need to set up current table, edited user and stage.
+ */
 
+public class UserEditController implements Dialog {
 
     @FXML
     private Button okButton;
@@ -46,6 +51,9 @@ public class UserEditController implements Dialog {
     private User editedUser;
 
 
+    /**
+     * Loading in ComboBox deprtments list.
+     */
     @FXML
     private void initialize() {
         ObservableList<String> departmentsList = FXCollections.observableList(ListUtil.getDepartmentsStrings());
@@ -69,8 +77,11 @@ public class UserEditController implements Dialog {
 
     }
 
+    /**
+     * Handles OK Button, in add or edit dialog
+     */
     @FXML
-    private void handleOkButton(ActionEvent actionEvent) {
+    private void handleOkButton() {
 
         editedUser.setFirstName(firstNameField.getText());
         editedUser.setLastName(lastNameField.getText());
@@ -81,23 +92,32 @@ public class UserEditController implements Dialog {
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
 
-        if(!userExitstInTable()){
+        if(!IsUserExitstInTable()){
             ListUtil.getListByName(currentTable).add(editedUser);
-
         }
 
         this.dialog.close();
     }
+
 
     @FXML
     private void handleCancelButton(ActionEvent actionEvent) {
         this.dialog.close();
     }
 
+    /**
+     * Set reference to current table which form called this controller
+     * @param currentTable
+     */
     public void setCurrentTable(String currentTable) {
         this.currentTable = currentTable;
     }
 
+
+    /**
+     * Set edited User
+     * @param editedUser
+     */
     public void setEditedUser(User editedUser) {
         this.editedUser = editedUser;
         firstNameField.setText(editedUser.getFirstName());
@@ -112,7 +132,12 @@ public class UserEditController implements Dialog {
 
     }
 
-    private boolean userExitstInTable(){
+    /**
+     * Test for existing user in table
+     * @return
+     */
+
+    private boolean IsUserExitstInTable(){
         return ListUtil.getListByName(currentTable).contains(editedUser);
     }
 }
