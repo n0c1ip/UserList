@@ -4,7 +4,6 @@ package controllers;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -53,6 +52,7 @@ public class UserEditController implements Dialog {
 
     /**
      * Loading in ComboBox deprtments list.
+     * It's load when dialog shows, not when creates instance.
      */
     @FXML
     private void initialize() {
@@ -71,10 +71,13 @@ public class UserEditController implements Dialog {
 
     }
 
+    /**
+     * Set reference to Stage. Uses when dialog closes.
+     * @param dialog
+     */
     @Override
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
-
     }
 
     /**
@@ -92,7 +95,7 @@ public class UserEditController implements Dialog {
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
 
-        if(!IsUserExitstInTable()){
+        if(!IsUserExistInTable()){
             ListUtil.getListByName(currentTable).add(editedUser);
         }
 
@@ -100,19 +103,21 @@ public class UserEditController implements Dialog {
     }
 
 
+    /**
+     * Handle cancel Button pressed. Closes dialog.
+     */
     @FXML
-    private void handleCancelButton(ActionEvent actionEvent) {
+    private void handleCancelButton() {
         this.dialog.close();
     }
 
     /**
-     * Set reference to current table which form called this controller
+     * Set reference to current table which from called this controller
      * @param currentTable
      */
     public void setCurrentTable(String currentTable) {
         this.currentTable = currentTable;
     }
-
 
     /**
      * Set edited User
@@ -137,7 +142,7 @@ public class UserEditController implements Dialog {
      * @return
      */
 
-    private boolean IsUserExitstInTable(){
+    private boolean IsUserExistInTable(){
         return ListUtil.getListByName(currentTable).contains(editedUser);
     }
 }
