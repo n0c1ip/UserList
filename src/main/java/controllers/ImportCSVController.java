@@ -15,6 +15,7 @@ import start.EnterPoint;
 import util.ListUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ImportCSVController implements Dialog{
@@ -65,6 +66,9 @@ public class ImportCSVController implements Dialog{
                alert.setContentText("Импорт завершен");
                alert.showAndWait();
            } catch (IOException e) {
+               if(e instanceof FileNotFoundException){
+                   System.out.println("FileNotFoundException");
+               }
                e.printStackTrace();
                //TODO allert warning file not
            } finally {

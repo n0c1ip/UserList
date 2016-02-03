@@ -10,4 +10,5 @@ public class ImportCsvTest {
     public void shouldThrowFileNotFoundException() throws IOException {
         ListUtil.loadUsersFromCSV("TableName","C:/thereisnocsvfile.csv",';');
     }
+
 }
