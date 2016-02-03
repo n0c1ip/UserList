@@ -24,7 +24,7 @@
             <Menu mnemonicParsing="false" text="Таблицы">
               <items>
                   <MenuItem mnemonicParsing="false" text="Создать таблицу" />
-                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialg" text="Открыть таблицу" />
+                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Открыть таблицу" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Пользователи ">

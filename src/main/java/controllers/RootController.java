@@ -1,7 +1,5 @@
 package controllers;
-//Created by mva on 29.01.2016.
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -14,6 +12,9 @@ import start.EnterPoint;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class RootController {
 
 
@@ -24,16 +25,17 @@ public class RootController {
     private EnterPoint enterPoint;
     private TabController tabcontroller;
     private TabPane tabLayout;
+
     public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
+
     public void setTabController(TabController tabcontroller){
         this.tabcontroller = tabcontroller;
     }
 
 
-
-    public void showAddTabTableDialg(ActionEvent actionEvent) {
+    public void showAddTabTableDialog() {
 
         try {
             final Stage dialog = new Stage();
@@ -72,7 +74,7 @@ public class RootController {
         }
     }
 
-    public void showImportFormCSV(ActionEvent actionEvent) {
+    public void showImportFormCSV() {
 
         try {
             final Stage dialog = new Stage();
