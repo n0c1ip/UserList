@@ -15,6 +15,7 @@ import start.EnterPoint;
 import util.ListUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ImportCSVController implements Dialog{
 
@@ -56,13 +57,21 @@ public class ImportCSVController implements Dialog{
 
     public void handleOpenButton(ActionEvent actionEvent) {
        if (filePathField != null && choiceBox.getSelectionModel().getSelectedItem() != null){
-            ListUtil.loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
-           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-           alert.setTitle("Import CSV");
-           alert.setHeaderText(null);
-           alert.setContentText("Импорт завершен");
-           alert.showAndWait();
-           dialog.close();
+           try {
+               ListUtil.loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               alert.setTitle("Import CSV");
+               alert.setHeaderText(null);
+               alert.setContentText("Импорт завершен");
+               alert.showAndWait();
+           } catch (IOException e) {
+               e.printStackTrace();
+               //TODO allert warning file not
+           } finally {
+               dialog.close();
+           }
+
+
        }
 
     }
