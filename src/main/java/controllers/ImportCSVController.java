@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import objects.User;
-import start.EnterPoint;
 import util.ListUtil;
 
 import java.io.*;
@@ -25,7 +24,7 @@ import java.io.*;
 
 public class ImportCSVController implements Dialog{
 
-    private EnterPoint enterPoint;
+    private MainController enterPoint;
     private Stage dialog;
     private String filePath;
     @FXML
@@ -61,8 +60,8 @@ public class ImportCSVController implements Dialog{
         }
     }
 
-    public void setEnterPoint(EnterPoint enterPoint) {
-        this.enterPoint = enterPoint;
+    public void setMainController(MainController mainController) {
+        this.enterPoint = mainController;
     }
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
