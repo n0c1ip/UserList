@@ -82,13 +82,12 @@ public class ImportCSVController implements Dialog{
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
-            if (nextLine.length == 8){
+            if (nextLine.length == 8 && ListUtil.getDepartmentsStrings().contains(nextLine[3])){
                 ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
                         nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
             }
         }
         reader.close();
-
     }
 
     public void handleLoadButton() {
