@@ -1,15 +1,12 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 import objects.User;
-import start.EnterPoint;
 import util.ListUtil;
 
 
@@ -66,7 +63,7 @@ public class TableController {
     private Label mailLabel;
 
 
-    private EnterPoint enterPoint;
+    private MainController enterPoint;
 
 
     public TableController() {
@@ -93,12 +90,9 @@ public class TableController {
                 (observable, oldValue, newValue) -> showUserDetails(newValue));
 
         //Double click edit user
-        userTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    handleEditPerson();
-                }
+        userTable.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                handleEditPerson();
             }
         });
 
@@ -106,7 +100,7 @@ public class TableController {
     }
 
 
-    public void setEnterPoint(EnterPoint enterPoint) {
+    public void setEnterPoint(MainController enterPoint) {
         this.enterPoint = enterPoint;
     }
 

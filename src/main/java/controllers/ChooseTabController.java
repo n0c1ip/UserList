@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class ChooseTabController implements Dialog {
 
-    private EnterPoint enterPoint;
+    private MainController mainController;
     private TabController tabController;
     private Stage dialog;
     private TabPane tabLayout;
@@ -37,8 +37,8 @@ public class ChooseTabController implements Dialog {
     public void setTabController(TabController tabController){
         this.tabController = tabController;
     }
-    public void setEnterPoint(EnterPoint enterPoint) {
-        this.enterPoint = enterPoint;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
@@ -52,16 +52,15 @@ public class ChooseTabController implements Dialog {
         loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
         dialog.close();
     }
-
-    public  void loadNewTab(String currentTable){
+    public void loadNewTab(String currentTable){
         try {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
-            SplitPane table = (SplitPane) loader.load();
+            SplitPane table = loader.load();
             TableController controller = loader.getController();
-            controller.setEnterPoint(enterPoint);
+            controller.setEnterPoint(mainController);
             controller.setCurrentTablename(currentTable);
             controller.setUserTable(currentTable);
-            tabLayout = (TabPane) enterPoint.getRootLayout().getCenter();
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab(currentTable);
             tab.setContent(table);
             tabLayout.getTabs().add(tab);

@@ -8,14 +8,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import objects.User;
-import start.EnterPoint;
 import util.ListUtil;
 
 import java.util.Optional;
 
 public class DepartmentTableController {
 
-    private EnterPoint enterPoint;
+    private MainController enterPoint;
     @FXML
     private ListView<String> departmentListView;
 
@@ -71,8 +70,8 @@ public class DepartmentTableController {
     }
 
 
-    public void setEnterPoint(EnterPoint enterPoint) {
-        this.enterPoint = enterPoint;
+    public void setMainController(MainController mainController) {
+        this.enterPoint = mainController;
     }
 
     public void handleAddDepartment() {
@@ -82,7 +81,7 @@ public class DepartmentTableController {
         dialog.setHeaderText("Новое подразделение");
         dialog.setContentText("Введите название подразделения:");
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> ListUtil.createDepartment(name));
+        result.ifPresent(ListUtil::createDepartment);
     }
 
 }
