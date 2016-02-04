@@ -16,10 +16,12 @@ import util.ListUtil;
 
 import java.io.IOException;
 
+/**
+ * Controller of Dialog for openning new tab with selected table
+ */
 public class ChooseTabController implements Dialog {
 
     private MainController mainController;
-    private TabController tabController;
     private Stage dialog;
     private TabPane tabLayout;
 
@@ -34,9 +36,6 @@ public class ChooseTabController implements Dialog {
         choiceBox.getSelectionModel().selectFirst();
     }
 
-    public void setTabController(TabController tabController){
-        this.tabController = tabController;
-    }
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
