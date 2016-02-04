@@ -23,15 +23,10 @@ public class RootController {
 
     // References
     private MainController mainController;
-    private TabController tabcontroller;
     private TabPane tabLayout;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
-    }
-
-    public void setTabController(TabController tabcontroller){
-        this.tabcontroller = tabcontroller;
     }
 
     public void showAddTabTableDialog() {
@@ -45,7 +40,6 @@ public class RootController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseTable.fxml"));
             AnchorPane choosepane = loader.load();
             ChooseTabController controller = loader.getController();
-            controller.setTabController(tabcontroller);
             controller.setMainController(mainController);
             controller.setDialog(dialog);
             dialog.setScene(new Scene(choosepane));
@@ -54,7 +48,6 @@ public class RootController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 

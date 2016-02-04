@@ -22,7 +22,6 @@ import java.io.IOException;
 public class ChooseTabController implements Dialog {
 
     private MainController mainController;
-    private TabController tabController;
     private Stage dialog;
     private TabPane tabLayout;
 
@@ -37,9 +36,6 @@ public class ChooseTabController implements Dialog {
         choiceBox.getSelectionModel().selectFirst();
     }
 
-    public void setTabController(TabController tabController){
-        this.tabController = tabController;
-    }
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }

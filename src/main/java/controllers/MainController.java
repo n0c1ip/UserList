@@ -24,6 +24,7 @@ public class MainController {
     public void show() {
         addData();
         initRootLayout();
+        initTabLayout();
         initDialogController();
     }
 
@@ -50,7 +51,6 @@ public class MainController {
             rootController.setMainController(this);
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
-            rootController.setTabController(initTabLayout());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,7 +60,7 @@ public class MainController {
      * Initialization Tab Layout
      * @return Tab Controller in RootLayout
      */
-    private TabController initTabLayout() {
+    private void initTabLayout() {
         TabController tabController = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabpane.fxml"));
@@ -70,7 +70,6 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return tabController;
     }
 
     private void initDialogController(){
