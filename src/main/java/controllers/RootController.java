@@ -12,6 +12,9 @@ import start.EnterPoint;
 
 import java.io.IOException;
 
+/**
+ * Controller contains menu bar, handles menu bar items actions.
+ */
 public class RootController {
 
 
@@ -89,5 +92,9 @@ public class RootController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void closeMainWindow(){
+        mainController.getPrimaryStage().close();
     }
 }

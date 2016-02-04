@@ -63,7 +63,7 @@ public class TableController {
     private Label mailLabel;
 
 
-    private MainController enterPoint;
+    private MainController mainController;
 
 
     public TableController() {
@@ -100,8 +100,8 @@ public class TableController {
     }
 
 
-    public void setEnterPoint(MainController enterPoint) {
-        this.enterPoint = enterPoint;
+    public void setEnterPoint(MainController mainController) {
+        this.mainController = mainController;
     }
 
     public void setUserTable(String tableName) {
@@ -142,7 +142,7 @@ public class TableController {
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
         User user = new User();
-        enterPoint.showUserEditDialog(currentTablename, CREATE_TITLE, user);
+        mainController.getDialogController().showUserEditDialog(currentTablename, CREATE_TITLE, user);
     }
 
     @FXML
@@ -153,7 +153,7 @@ public class TableController {
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(enterPoint.getPrimaryStage());
+            alert.initOwner(mainController.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Person Selected");
             alert.setContentText("Please select a person in the table.");
@@ -165,7 +165,7 @@ public class TableController {
     private void handleEditPerson() {
         User selecteduser = userTable.getSelectionModel().getSelectedItem();
         if (selecteduser != null) {
-            enterPoint.showUserEditDialog(currentTablename, EDIT_TITLE, selecteduser);
+            mainController.getDialogController().showUserEditDialog(currentTablename, EDIT_TITLE, selecteduser);
         }
 
     }

@@ -24,7 +24,7 @@ import java.io.*;
 
 public class ImportCSVController implements Dialog{
 
-    private MainController enterPoint;
+    private MainController mainController;
     private Stage dialog;
     private String filePath;
     @FXML
@@ -53,7 +53,7 @@ public class ImportCSVController implements Dialog{
     private void chooseCsvFile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-        File selectedFile = fileChooser.showOpenDialog(enterPoint.getPrimaryStage());
+        File selectedFile = fileChooser.showOpenDialog(mainController.getPrimaryStage());
         if(selectedFile != null){
             filePath = selectedFile.getAbsolutePath();
             filePathField.setText(filePath);
@@ -61,7 +61,7 @@ public class ImportCSVController implements Dialog{
     }
 
     public void setMainController(MainController mainController) {
-        this.enterPoint = mainController;
+        this.mainController = mainController;
     }
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
@@ -91,35 +91,24 @@ public class ImportCSVController implements Dialog{
     }
 
     public void handleLoadButton() {
-       if (!filePathField.getText().isEmpty() && choiceBox.getSelectionModel().getSelectedItem() != null){
-           try {
-               loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
-               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-               alert.setTitle("Импорт из CSV");
-               alert.setHeaderText(null);
-               alert.setContentText("Импорт завершен");
-               alert.showAndWait();
-           } catch (IOException e) {
-               if(e instanceof FileNotFoundException){
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                   alert.setTitle("Ошибка импорта");
-                   alert.setHeaderText(null);
-                   alert.setContentText("Файл не найден");
-                   alert.showAndWait();
-               }
-               e.printStackTrace();
-           } finally {
-               dialog.close();
-           }
+        if (!filePathField.getText().isEmpty() && choiceBox.getSelectionModel().getSelectedItem() != null){
+            try {
+                loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
+                mainController.getDialogController().showAlertDialog(Alert.AlertType.INFORMATION,"Импорт из CSV","Импорт завершен");
+            } catch (FileNotFoundException e) {
+                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Файл не найден");
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Неверная кодировка файла");
+            } catch (IOException e){
+                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Ошибка");
+            } finally {
+                dialog.close();
+            }
 
-
-       } else {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setTitle("Ошибка файла");
-           alert.setHeaderText(null);
-           alert.setContentText("Выбирите файл");
-           alert.showAndWait();
-       }
+        } else {
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка файла","Выбирите файл");
+        }
 
 
     }

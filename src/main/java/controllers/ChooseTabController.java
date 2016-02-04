@@ -16,6 +16,9 @@ import util.ListUtil;
 
 import java.io.IOException;
 
+/**
+ * Controller of Dialog for openning new tab with selected table
+ */
 public class ChooseTabController implements Dialog {
 
     private MainController mainController;
