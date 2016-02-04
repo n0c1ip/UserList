@@ -69,7 +69,6 @@ public class DepartmentTableController {
         }
     }
 
-
     public void setMainController(MainController mainController) {
         this.enterPoint = mainController;
     }
