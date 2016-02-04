@@ -12,7 +12,7 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></ChoiceBox>
-        <Button fx:id="chiceOpen" defaultButton="true" layoutX="97.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleOpenButton" prefHeight="25.0" prefWidth="78.0" text="Открыть">
+        <Button fx:id="choiceLoad" defaultButton="true" layoutX="97.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleLoadButton" prefHeight="25.0" prefWidth="78.0" text="Загрузить">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>

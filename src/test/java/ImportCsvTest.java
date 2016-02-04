@@ -9,9 +9,7 @@ public class ImportCsvTest {
     @Test(expected = FileNotFoundException.class)
     public void shouldThrowFileNotFoundException() throws IOException {
         ImportCSVController controller = new ImportCSVController();
-        controller.loadUsersFromCSV("TableName","C:/thereisnocsvfile.csv",';');
+        controller.loadUsersFromCSV("TableName","thereisnocsvfile",';');
     }
-
-
 
 }

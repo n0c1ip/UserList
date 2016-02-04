@@ -27,7 +27,6 @@ public class EnterPoint extends Application {
 
     public EnterPoint(){
 
-//        UserService userService = new UserService();
         ListUtil.createUserList("Центральный офис");
         ListUtil.createUserList("Уволенные");
         ListUtil.createUserList("Логистика");
@@ -36,7 +35,6 @@ public class EnterPoint extends Application {
         ListUtil.createDepartment("ЦТО");
 
         User user = new User("Vasiliy", "Pupkin", "","ИТ отдел","","","","");
-//        userService.persist(user);
 
     }
 

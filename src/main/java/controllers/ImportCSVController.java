@@ -1,5 +1,4 @@
 package controllers;
-//Created by mva on 01.02.2016.
 
 import com.opencsv.CSVReader;
 import interfaces.Dialog;
@@ -18,6 +17,12 @@ import util.ListUtil;
 
 import java.io.*;
 
+/**
+ * <p>
+ * Class controller for import Users from CSV file.</p>
+ *
+ */
+
 public class ImportCSVController implements Dialog{
 
     private EnterPoint enterPoint;
@@ -29,6 +34,10 @@ public class ImportCSVController implements Dialog{
     TextField filePathField;
 
 
+    /**
+     * Loading list of tables in ChoiceBox,
+     * Set TextField not editable
+     */
     @FXML
     private void initialize(){
         ObservableList<String> stringBox = FXCollections.observableArrayList();
@@ -38,6 +47,9 @@ public class ImportCSVController implements Dialog{
         filePathField.setEditable(false);
     }
 
+    /**
+     * Dialog to choose file
+     */
     @FXML
     private void chooseCsvFile(){
         FileChooser fileChooser = new FileChooser();
@@ -48,14 +60,25 @@ public class ImportCSVController implements Dialog{
             filePathField.setText(filePath);
         }
     }
+
     public void setEnterPoint(EnterPoint enterPoint) {
         this.enterPoint = enterPoint;
     }
-
     public void setDialog(Stage dialog) {
         this.dialog = dialog;
     }
 
+    /**
+     * Loading Users from csv file to selected table
+     * <p>
+     * CSV file format:
+     * First Name; Last Name; Middle Name; Department Name; Position; Login; Password; E-Mail
+     * @param tablename table to load Users
+     * @param csvfilename - path to csv file
+     * @param delimiter - delimeter used in csv file
+     * @throws IOException
+     * @throws FileNotFoundException
+     */
     public void loadUsersFromCSV(String tablename, String csvfilename, char delimiter) throws IOException {
 
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
@@ -68,29 +91,40 @@ public class ImportCSVController implements Dialog{
 
     }
 
-    public void handleOpenButton(ActionEvent actionEvent) {
-       if (filePathField != null && choiceBox.getSelectionModel().getSelectedItem() != null){
+    public void handleLoadButton() {
+       if (!filePathField.getText().isEmpty() && choiceBox.getSelectionModel().getSelectedItem() != null){
            try {
                loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-               alert.setTitle("Import CSV");
+               alert.setTitle("Импорт из CSV");
                alert.setHeaderText(null);
                alert.setContentText("Импорт завершен");
                alert.showAndWait();
            } catch (IOException e) {
                if(e instanceof FileNotFoundException){
-                   System.out.println("FileNotFoundException");
+                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert.setTitle("Ошибка импорта");
+                   alert.setHeaderText(null);
+                   alert.setContentText("Файл не найден");
+                   alert.showAndWait();
                }
                e.printStackTrace();
-               //TODO allert warning file not
            } finally {
                dialog.close();
            }
 
 
+       } else {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Ошибка файла");
+           alert.setHeaderText(null);
+           alert.setContentText("Выбирите файл");
+           alert.showAndWait();
        }
 
+
     }
+
 
     public void handleCancelButton(ActionEvent actionEvent) {
         this.dialog.close();
