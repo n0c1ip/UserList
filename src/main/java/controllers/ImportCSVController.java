@@ -1,6 +1,7 @@
 package controllers;
 //Created by mva on 01.02.2016.
 
+import com.opencsv.CSVReader;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,12 +12,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import objects.User;
 import start.EnterPoint;
 import util.ListUtil;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class ImportCSVController implements Dialog{
 
@@ -56,10 +56,22 @@ public class ImportCSVController implements Dialog{
         this.dialog = dialog;
     }
 
+    public void loadUsersFromCSV(String tablename, String csvfilename, char delimiter) throws IOException {
+
+        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
+        String[] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
+            ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
+                    nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
+        }
+        reader.close();
+
+    }
+
     public void handleOpenButton(ActionEvent actionEvent) {
        if (filePathField != null && choiceBox.getSelectionModel().getSelectedItem() != null){
            try {
-               ListUtil.loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
+               loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                alert.setTitle("Import CSV");
                alert.setHeaderText(null);

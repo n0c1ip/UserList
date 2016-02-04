@@ -57,17 +57,6 @@ public class ListUtil {
        return departments.get(name);
     }
 
-    public static void loadUsersFromCSV(String tablename, String csvfilename, char delimiter) throws IOException {
 
-        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
-        String[] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
-            getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
-                    nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
-
-        }
-        reader.close();
-
-    }
 
 }
