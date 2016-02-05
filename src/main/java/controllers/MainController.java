@@ -23,9 +23,11 @@ public class MainController {
 
     public void show() {
         addData();
+        initDialogController();
+        dialogController.showLoginDialog();
         initRootLayout();
         initTabLayout();
-        initDialogController();
+
     }
 
     //Some dummy data
