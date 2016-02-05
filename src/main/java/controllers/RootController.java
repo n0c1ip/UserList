@@ -90,11 +90,15 @@ public class RootController {
 
     @FXML
     private void handleAddDepartmentMenuItem() {
-        mainController.getDialogController().showTextInputDialog();
+        mainController.getDialogController().showAddDepartmentDialog();
     }
 
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
     }
 
+
+    public void handleCreateTableMenuItem() {
+
+    }
 }

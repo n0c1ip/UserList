@@ -1,13 +1,11 @@
 package util;
 
 
-import com.opencsv.CSVReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import objects.Department;
 import objects.User;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +35,8 @@ public class ListUtil {
         for (String s : maplist.keySet()) {
                 stringList.add(s);
         }
+        stringList.sort(String::compareTo);
         return stringList;
-
     }
 
     public static ArrayList<String> getDepartmentsStrings(){
@@ -46,6 +44,7 @@ public class ListUtil {
         for (String s : departments.keySet()) {
                 stringList.add(s);
         }
+        stringList.sort(String::compareTo);
         return stringList;
     }
 
@@ -56,7 +55,5 @@ public class ListUtil {
     public static Department getDepartmentByName(String name){
        return departments.get(name);
     }
-
-
 
 }

@@ -51,13 +51,18 @@ public class DialogController {
     /**
      * JavaFx TextInput Dialog creating new Department
      */
-    public void showTextInputDialog(){
+    public void showAddDepartmentDialog(){
         TextInputDialog dialog = new TextInputDialog("Название подразделения");
         dialog.setTitle("Создание подразделения");
         dialog.setHeaderText("Новое подразделение");
         dialog.setContentText("Введите название подразделения:");
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(ListUtil::createDepartment);
+    }
+
+
+    public void showAddLocationDialog(){
+
     }
 
     /**

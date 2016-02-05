@@ -5,26 +5,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                     <items>
-                  <MenuItem mnemonicParsing="false" text="Печать"/>
+                  <MenuItem mnemonicParsing="false" text="Печать" />
                         <MenuItem mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Правка">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Добавить" />
-                  <MenuItem mnemonicParsing="false" text="Изменить" />
-                  <MenuItem mnemonicParsing="false" text="Удалить" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Добавить" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Изменить" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Удалить" />
                     </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="Таблицы">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Создать таблицу" />
+                  <MenuItem mnemonicParsing="false" text="Создать таблицу" onAction="#handleCreateTableMenuItem"/>
                   <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Открыть таблицу" />
               </items>
             </Menu>
