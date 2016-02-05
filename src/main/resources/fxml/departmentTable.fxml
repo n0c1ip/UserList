@@ -26,12 +26,12 @@
                              <columns>
                                  <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Имя" />
                                  <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Фамилия" />
-                                 <TableColumn fx:id="middleNameColumn" prefWidth="75.0" text="Отчество" visible="false" />
-                                 <TableColumn id="departmentColumn" fx:id="departmentColumn" prefWidth="75.0" text="Отдел" visible="false" />
-                                 <TableColumn fx:id="positionColumn" prefWidth="75.0" text="Должность" visible="false" />
-                                 <TableColumn fx:id="loginColumn" prefWidth="75.0" text="Логин" visible="false" />
-                                 <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Пароль" visible="false" />
-                                 <TableColumn fx:id="mailColumn" prefWidth="75.0" text="Эл. адрес" visible="false" />
+                                 <TableColumn fx:id="middleNameColumn" prefWidth="75.0" text="Отчество" />
+                                 <TableColumn id="departmentColumn" fx:id="departmentColumn" prefWidth="75.0" text="Отдел" />
+                                 <TableColumn fx:id="positionColumn" prefWidth="75.0" text="Должность" />
+                                 <TableColumn fx:id="loginColumn" prefWidth="75.0" text="Логин" />
+                                 <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Пароль" />
+                                 <TableColumn fx:id="mailColumn" prefWidth="75.0" text="Эл. адрес" />
                              </columns>
                              <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
