@@ -6,11 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
 import objects.User;
 import util.ListUtil;
-
-import java.util.Optional;
 
 public class DepartmentTableController {
 
@@ -73,14 +70,9 @@ public class DepartmentTableController {
         this.enterPoint = mainController;
     }
 
-    public void handleAddDepartment() {
+    public void hanleUserAddButton() {
 
-        TextInputDialog dialog = new TextInputDialog("Название подразделения");
-        dialog.setTitle("Создание подразделения");
-        dialog.setHeaderText("Новое подразделение");
-        dialog.setContentText("Введите название подразделения:");
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(ListUtil::createDepartment);
+
     }
 
 }

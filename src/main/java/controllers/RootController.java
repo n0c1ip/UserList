@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -87,7 +88,13 @@ public class RootController {
         }
     }
 
+    @FXML
+    private void handleAddDepartmentMenuItem() {
+        mainController.getDialogController().showTextInputDialog();
+    }
+
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
     }
+
 }

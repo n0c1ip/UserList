@@ -3,12 +3,15 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import objects.User;
-import sun.rmi.runtime.Log;
+import util.ListUtil;
+
+import java.util.Optional;
 
 
 /**
@@ -46,6 +49,18 @@ public class DialogController {
     }
 
     /**
+     * JavaFx TextInput Dialog creating new Department
+     */
+    public void showTextInputDialog(){
+        TextInputDialog dialog = new TextInputDialog("Название подразделения");
+        dialog.setTitle("Создание подразделения");
+        dialog.setHeaderText("Новое подразделение");
+        dialog.setContentText("Введите название подразделения:");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(ListUtil::createDepartment);
+    }
+
+    /**
      * Shows modal window dialog, with OK button
      * @param alertType type of dialog
      * @param dialogTitle window title
@@ -59,6 +74,9 @@ public class DialogController {
         alert.showAndWait();
     }
 
+    /**
+     * Log in Dialog, shows before running app
+     */
     public void showLoginDialog(){
         try{
             final Stage dialog = new Stage();
@@ -69,6 +87,7 @@ public class DialogController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
             AnchorPane login = loader.load();
             LoginController controller = loader.getController();
+            controller.setDialog(dialog);
             dialog.setScene(new Scene(login));
             dialog.showAndWait();
 

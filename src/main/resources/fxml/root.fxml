@@ -5,13 +5,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Выход" onAction="#closeMainWindow" />
+                  <MenuItem mnemonicParsing="false" text="Печать"/>
+                        <MenuItem mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Правка">
@@ -34,17 +35,11 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Подразделения">
               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
                 <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица подразделений" />
               </items>
             </Menu>
             </menus>
         </MenuBar>
     </top>
-   <center>
-      <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.35" prefHeight="96.0" prefWidth="227.0" text="User List" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Serif Regular" size="61.0" />
-         </font>
-      </Label>
-   </center>
 </BorderPane>
