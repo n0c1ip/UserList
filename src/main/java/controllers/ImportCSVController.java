@@ -74,8 +74,9 @@ public class ImportCSVController implements Dialog{
      * @param tablename table to load Users
      * @param csvfilename - path to csv file
      * @param delimiter - delimeter used in csv file
-     * @throws IOException
      * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     * @throws IOException
      */
     public void loadUsersFromCSV(String tablename, String csvfilename, char delimiter) throws IOException {
 

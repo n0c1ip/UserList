@@ -58,10 +58,10 @@ public class DepartmentTableController {
 
     }
 
-    private void showUserByDepartments(String newValue) {
-        if(newValue != null){
+    private void showUserByDepartments(String departmentName) {
+        if(departmentName != null){
             ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
-            userByDepartmentsList.setAll(ListUtil.getDepartmentByName(newValue).getUserList());
+            userByDepartmentsList.setAll(ListUtil.getDepartmentByName(departmentName).getUserList());
             userTable.setItems(userByDepartmentsList);
         }
     }
