@@ -22,12 +22,11 @@ public class MainController {
 
 
     public void show() {
-        addData();
         initDialogController();
         dialogController.showLoginDialog();
+        addData();
         initRootLayout();
         initTabLayout();
-
     }
 
     //Some dummy data
@@ -75,7 +74,6 @@ public class MainController {
         DialogController dialogController = new DialogController();
         dialogController.setPrimaryStage(primaryStage);
         this.dialogController = dialogController;
-
     }
 
     public void setMainWindowTitle(String title){
