@@ -59,18 +59,18 @@ public class DepartmentTableController {
     }
 
     private void showUserByDepartments(String departmentName) {
-        if(departmentName != null){
-            ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
-            userByDepartmentsList.setAll(ListUtil.getDepartmentByName(departmentName).getUserList());
-            userTable.setItems(userByDepartmentsList);
-        }
+//        if(departmentName != null){
+//            ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
+//            userByDepartmentsList.setAll(ListUtil.getDepartmentByName(departmentName).getUserList());
+//            userTable.setItems(userByDepartmentsList);
+//        }
     }
 
     public void setMainController(MainController mainController) {
         this.enterPoint = mainController;
     }
 
-    public void hanleUserAddButton() {
+    public void handleUserAddButton() {
 
 
     }

@@ -1,12 +1,11 @@
 package controllers;// Created by mva on 04.02.2016.
 
+import crud.DepartmentService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import objects.User;
-import util.ListUtil;
 
 import java.io.IOException;
 
@@ -31,14 +30,7 @@ public class MainController {
 
     //Some dummy data
     public void addData(){
-        ListUtil.createUserList("Центральный офис");
-        ListUtil.createUserList("Уволенные");
-        ListUtil.createUserList("Логистика");
-        ListUtil.createDepartment("Бухгалтерия");
-        ListUtil.createDepartment("ИТ отдел");
-        ListUtil.createDepartment("ЦТО");
-
-        User user = new User("Vasiliy", "Pupkin", "","ИТ отдел","","","","");
+        DepartmentService ds = new DepartmentService();
     }
 
     /**
