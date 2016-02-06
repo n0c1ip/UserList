@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-//@NamedQuery(name="User.getAll", query="SELECT c FROM users c")
+@NamedQuery(name="User.getAll", query="SELECT c FROM User c")
 public class User extends Model{
 
     private static final long serialVersionUID = 1L;

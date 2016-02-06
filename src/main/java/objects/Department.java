@@ -1,14 +1,17 @@
 package objects;
 //Created by mva on 28.01.2016.
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name="departments")
-//@NamedQuery(name="Department.findAll", query="SELECT c FROM departments c")
+@NamedQueries({
+        @NamedQuery(name="Department.getAll",
+                    query="SELECT d FROM Department d"),
+        @NamedQuery(name="Department.getByName",
+                    query="SELECT d FROM Department d WHERE d.name = :name")
+})
 public class Department extends Model{
 
     private String name;

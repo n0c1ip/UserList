@@ -1,6 +1,5 @@
 package controllers;// Created by mva on 04.02.2016.
 
-import crud.DepartmentService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -30,7 +29,7 @@ public class MainController {
 
     //Some dummy data
     public void addData(){
-        DepartmentService ds = new DepartmentService();
+
     }
 
     /**

@@ -35,8 +35,14 @@ public class DepartmentService {
         manager.getTransaction().commit();
     }
 
-    public List<Department> findAll(){
-        TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.findAll", Department.class);
+    public Department getByName(String name) {
+        TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
+        namedQuery.setParameter("name", name);
+        return namedQuery.getSingleResult();
+    }
+
+    public List<Department> getAll(){
+        TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getAll", Department.class);
         return namedQuery.getResultList();
     }
 }

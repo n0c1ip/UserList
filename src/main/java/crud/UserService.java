@@ -4,6 +4,8 @@ import objects.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UserService {
 
@@ -32,9 +34,9 @@ public class UserService {
             manager.getTransaction().commit();
         }
 
-//        public List<User> getAll(){
-//            TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
-//            return namedQuery.getResultList();
-//        }
+        public List<User> getAll(){
+            TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
+            return namedQuery.getResultList();
+        }
 
 }
