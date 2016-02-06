@@ -7,7 +7,7 @@ public class Department extends Model{
 
 
     private String name;
-    private HashSet<User> userHashSet = new HashSet<>();
+    private HashSet<User> userSet = new HashSet<>();
 
     public Department() {
     }
@@ -25,11 +25,11 @@ public class Department extends Model{
     }
 
     public HashSet<User> getUserList(){
-        return this.userHashSet;
+        return this.userSet;
     }
 
     public void addUserToDepartment(User user){
-        userHashSet.add(user);
+        userSet.add(user);
     }
 
     @Override

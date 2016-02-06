@@ -4,7 +4,6 @@ import com.opencsv.CSVReader;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -83,11 +82,12 @@ public class ImportCSVController implements Dialog{
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
-            ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
-                    nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
+            if (nextLine.length == 8 && ListUtil.getDepartmentsStrings().contains(nextLine[3])){
+                ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
+                        nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
+            }
         }
         reader.close();
-
     }
 
     public void handleLoadButton() {
@@ -109,12 +109,9 @@ public class ImportCSVController implements Dialog{
         } else {
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка файла","Выбирите файл");
         }
-
-
     }
 
-
-    public void handleCancelButton(ActionEvent actionEvent) {
+    public void handleCancelButton() {
         this.dialog.close();
     }
 }

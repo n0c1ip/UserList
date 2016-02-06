@@ -44,7 +44,6 @@ public class ChooseTabController implements Dialog {
     }
 
     public void handleCancelButton() {
-
         this.dialog.close();
     }
     public void handleOpenButton(){

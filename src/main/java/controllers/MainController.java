@@ -23,9 +23,11 @@ public class MainController {
 
     public void show() {
         addData();
+        initDialogController();
+        dialogController.showLoginDialog();
         initRootLayout();
         initTabLayout();
-        initDialogController();
+
     }
 
     //Some dummy data
@@ -58,14 +60,11 @@ public class MainController {
 
     /**
      * Initialization Tab Layout
-     * @return Tab Controller in RootLayout
      */
     private void initTabLayout() {
-        TabController tabController = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabpane.fxml"));
             TabPane tabPane = loader.load();
-            tabController = loader.getController();
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
             e.printStackTrace();
