@@ -17,11 +17,13 @@ public class LocationServiceTest {
         Location addedLocation = LocationService.add(location);
         Location foundLocation = LocationService.get(addedLocation.getId());
 
-        Assert.assertNotNull(addedLocation);
-        Assert.assertNotNull(foundLocation);
-        Assert.assertEquals(addedLocation.getId(), foundLocation.getId());
-
-        LocationService.delete(addedLocation.getId());
+        try {
+            Assert.assertNotNull(addedLocation);
+            Assert.assertNotNull(foundLocation);
+            Assert.assertEquals(addedLocation.getId(), foundLocation.getId());
+        } finally {
+            LocationService.delete(addedLocation.getId());
+        }
     }
 
     @Test
@@ -48,9 +50,11 @@ public class LocationServiceTest {
         LocationService.update(addedLocation);
         Location foundLocation = LocationService.get(addedLocation.getId());
 
-        Assert.assertEquals(foundLocation.getName(), newName);
-
-        LocationService.delete(foundLocation.getId());
+        try {
+            Assert.assertEquals(foundLocation.getName(), newName);
+        } finally {
+            LocationService.delete(foundLocation.getId());
+        }
     }
 
     @Test
@@ -60,10 +64,12 @@ public class LocationServiceTest {
         Location addedLocation = LocationService.add(location);
         Location gottenLocation = LocationService.getByName(addedLocation.getName());
 
-        Assert.assertNotNull(gottenLocation);
-        Assert.assertEquals(location.getName(), gottenLocation.getName());
-
-        LocationService.delete(addedLocation.getId());
+        try {
+            Assert.assertNotNull(gottenLocation);
+            Assert.assertEquals(location.getName(), gottenLocation.getName());
+        } finally {
+                LocationService.delete(addedLocation.getId());
+        }
     }
 
     @Test
@@ -87,11 +93,13 @@ public class LocationServiceTest {
             }
         }
 
-        Assert.assertEquals(expectedLocationsCount, locationsFound);
-
-        LocationService.delete(addedLocation1.getId());
-        LocationService.delete(addedLocation2.getId());
-        LocationService.delete(addedLocation3.getId());
+        try {
+            Assert.assertEquals(expectedLocationsCount, locationsFound);
+        } finally {
+            LocationService.delete(addedLocation1.getId());
+            LocationService.delete(addedLocation2.getId());
+            LocationService.delete(addedLocation3.getId());
+        }
     }
 
 
