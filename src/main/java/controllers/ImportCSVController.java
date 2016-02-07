@@ -1,6 +1,5 @@
 package controllers;
 
-import com.opencsv.CSVReader;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +9,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import objects.User;
 import util.ListUtil;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * <p>
@@ -80,15 +81,15 @@ public class ImportCSVController implements Dialog{
      */
     public void loadUsersFromCSV(String tablename, String csvfilename, char delimiter) throws IOException {
 
-        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
-        String[] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
-            if (nextLine.length == 8 && ListUtil.getDepartmentsStrings().contains(nextLine[3])){
-                ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
-                        nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
-            }
-        }
-        reader.close();
+//        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvfilename), "windows-1251"), delimiter);
+//        String[] nextLine;
+//        while ((nextLine = reader.readNext()) != null) {
+//            if (nextLine.length == 8 && ListUtil.getDepartmentsStrings().contains(nextLine[3])){
+//                ListUtil.getLocationByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
+//                        nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
+//            }
+//        }
+//        reader.close();
     }
 
     public void handleLoadButton() {

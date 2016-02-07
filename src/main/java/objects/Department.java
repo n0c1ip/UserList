@@ -1,37 +1,35 @@
 package objects;
 //Created by mva on 28.01.2016.
 
-import java.util.HashSet;
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
+@Table(name="departments")
+@NamedQueries({
+        @NamedQuery(name="Department.getAll",
+                    query="SELECT d FROM Department d"),
+        @NamedQuery(name="Department.getByName",
+                    query="SELECT d FROM Department d WHERE d.name = :name")
+})
 public class Department extends Model{
 
-
     private String name;
-    private HashSet<User> userSet = new HashSet<>();
+
+    @OneToMany(mappedBy="department")
+    private Set<User> userSet;
 
     public Department() {
     }
-
     public Department(String name) {
         this.name = name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
-
-    public HashSet<User> getUserList(){
-        return this.userSet;
-    }
-
-    public void addUserToDepartment(User user){
-        userSet.add(user);
-    }
-
     @Override
     public String toString() {
         return this.name;

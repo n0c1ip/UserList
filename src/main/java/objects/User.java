@@ -2,58 +2,52 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.hibernate.annotations.CollectionId;
-import util.ListUtil;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="users")
+@NamedQueries({
+        @NamedQuery(name="User.getAll",
+                    query="SELECT u FROM User u"),
+        @NamedQuery(name="User.getUsersByLocationName",
+                    query="SELECT u FROM User u WHERE u.location = :location")
+})
 public class User extends Model{
 
     private static final long serialVersionUID = 1L;
 
-
-    @Column(name = "firstname")
     private String firstName ="";
-    @Column(name = "lastname")
     private String lastName ="";
-    @Column(name = "middlename")
-    private String middleName = "1";
-
+    private String middleName = "";
+    @ManyToOne
+    @JoinColumn(name="department_id")
     private Department department = new Department("");
-//    @Column(name = "position")
-    private String position ="";
-//    @Column(name = "login")
-    private String login = "";
-//    @Column(name ="password")
-    private String password = "";
-//    @Column(name = "mail")
-    private String mail = "";
-//    @Column(name = "isFired")
-    private boolean isFired = false;
+    @ManyToOne
+    @JoinColumn(name="location_id")
+    private Location location = new Location("");
 
+    private String position ="";
+    private String login = "";
+    private String password = "";
+    private String mail = "";
+    private boolean isFired = false;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String middleName, String departmentname,
+    public User(String firstName, String lastName, String middleName, Department department, Location location,
                 String position, String login, String password, String mail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
-        this.department = ListUtil.getDepartmentByName(departmentname);
-        ListUtil.getDepartmentByName(departmentname).addUserToDepartment(this);
+        this.department = department;
+        this.location = location;
         this.position = position;
         this.login = login;
         this.password = password;
         this.mail = mail;
     }
-
-
-
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -64,7 +58,6 @@ public class User extends Model{
     public StringProperty getFirstNameProperty(){
         StringProperty fNameProperty = null;
         return fNameProperty = new SimpleStringProperty(this.firstName);
-
     }
 
     public void setLastName(String lastName) {
@@ -89,8 +82,8 @@ public class User extends Model{
         return mNameProperty = new SimpleStringProperty(this.middleName);
     }
 
-    public void setDepartment(String  departmentName) {
-        this.department = ListUtil.getDepartmentByName(departmentName);
+    public void setDepartment(Department department) {
+        this.department = department;
     }
     public Department getDepartment() {
         return department;
@@ -98,6 +91,13 @@ public class User extends Model{
     public StringProperty getDepartmentProperty(){
         StringProperty dptProperty = null;
         return dptProperty = new SimpleStringProperty(this.department.getName());
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+    public Location getLocation() {
+        return location;
     }
 
     public void setPosition(String position) {

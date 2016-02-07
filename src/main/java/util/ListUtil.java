@@ -22,7 +22,7 @@ public class ListUtil {
         return templist;
     }
 
-    public static ObservableList getListByName(String name){
+    public static ObservableList getLocationByName(String name){
         return maplist.get(name);
     }
 

@@ -22,23 +22,23 @@
                   <MenuItem disable="true" mnemonicParsing="false" text="Удалить" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Таблицы">
-              <items>
-                  <MenuItem mnemonicParsing="false" text="Создать таблицу" onAction="#handleCreateTableMenuItem"/>
-                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Открыть таблицу" />
-              </items>
-            </Menu>
-                <Menu mnemonicParsing="false" text="Пользователи ">
-                    <items>
-                        <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
-                    </items>
-                </Menu>
             <Menu mnemonicParsing="false" text="Подразделения">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
                 <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица подразделений" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Объекты">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
+                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Открыть объект" />
+              </items>
+            </Menu>
+                <Menu mnemonicParsing="false" text="Сервис">
+                    <items>
+                        <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
+                    </items>
+                </Menu>
             </menus>
         </MenuBar>
     </top>

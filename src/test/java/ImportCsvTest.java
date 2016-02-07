@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 //todo: use mockito for UnsupportedEncodingException & IOException tests
 public class ImportCsvTest {
@@ -12,5 +13,13 @@ public class ImportCsvTest {
         ImportCSVController controller = new ImportCSVController();
         controller.loadUsersFromCSV("TableName","thereisnocsvfile",';');
     }
+
+    @Test(expected = UnsupportedEncodingException.class)
+    public void shouldThrowUnsupportedEncodingException() throws IOException {
+
+    }
+
+
+
 
 }

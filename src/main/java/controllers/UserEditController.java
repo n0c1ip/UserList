@@ -89,14 +89,14 @@ public class UserEditController implements Dialog {
         editedUser.setFirstName(firstNameField.getText());
         editedUser.setLastName(lastNameField.getText());
         editedUser.setMiddleName(middleNameFiel.getText());
-        editedUser.setDepartment(departmentField.getValue().toString());
+//        editedUser.setDepartment(departmentField.getValue().toString());
         editedUser.setPosition(positionField.getText());
         editedUser.setLogin(loginField.getText());
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
 
         if(!IsUserExistInTable()){
-            ListUtil.getListByName(currentTable).add(editedUser);
+            ListUtil.getLocationByName(currentTable).add(editedUser);
         }
 
         this.dialog.close();
@@ -143,6 +143,6 @@ public class UserEditController implements Dialog {
      */
 
     private boolean IsUserExistInTable(){
-        return ListUtil.getListByName(currentTable).contains(editedUser);
+        return ListUtil.getLocationByName(currentTable).contains(editedUser);
     }
 }

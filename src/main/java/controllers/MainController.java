@@ -1,14 +1,16 @@
 package controllers;// Created by mva on 04.02.2016.
 
+import crud.LocatonService;
+import crud.UserService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import objects.User;
-import util.ListUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Main Controller initialize main window with Root Layout and
@@ -31,14 +33,17 @@ public class MainController {
 
     //Some dummy data
     public void addData(){
-        ListUtil.createUserList("Центральный офис");
-        ListUtil.createUserList("Уволенные");
-        ListUtil.createUserList("Логистика");
-        ListUtil.createDepartment("Бухгалтерия");
-        ListUtil.createDepartment("ИТ отдел");
-        ListUtil.createDepartment("ЦТО");
+        LocatonService ls = new LocatonService();
+        UserService us = new UserService();
 
-        User user = new User("Vasiliy", "Pupkin", "","ИТ отдел","","","","");
+        ArrayList<User> userlist = new ArrayList<>();
+        userlist.addAll(us.getUsersByLocationName("CO"));
+        for (User user : userlist) {
+            System.out.println(user.getFirstName());
+        }
+
+
+
     }
 
     /**
