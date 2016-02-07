@@ -7,7 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-@NamedQuery(name="User.getAll", query="SELECT c FROM User c")
+@NamedQueries({
+        @NamedQuery(name="User.getAll",
+                    query="SELECT u FROM User u"),
+        @NamedQuery(name="User.getUsersByLocationName",
+                    query="SELECT u FROM User u WHERE u.location = :location")
+})
 public class User extends Model{
 
     private static final long serialVersionUID = 1L;

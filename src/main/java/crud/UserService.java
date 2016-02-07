@@ -1,5 +1,6 @@
 package crud;
 
+import objects.Location;
 import objects.User;
 
 import javax.persistence.EntityManager;
@@ -37,6 +38,14 @@ public class UserService {
         public List<User> getAll(){
             TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
             return namedQuery.getResultList();
+        }
+
+        public List<User> getUsersByLocationName(String locationName){
+            TypedQuery<Location> getLocationByName = manager.createNamedQuery("Location.getByName", Location.class);
+            getLocationByName.setParameter("name", locationName);
+            TypedQuery<User> getUserByLocatonName = manager.createNamedQuery("User.getUsersByLocationName", User.class);
+            getUserByLocatonName.setParameter("location",getLocationByName.getSingleResult());
+            return getUserByLocatonName.getResultList();
         }
 
 }

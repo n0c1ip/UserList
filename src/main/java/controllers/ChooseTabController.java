@@ -55,9 +55,9 @@ public class ChooseTabController implements Dialog {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
             SplitPane table = loader.load();
             TableController controller = loader.getController();
-            controller.setEnterPoint(mainController);
-            controller.setCurrentTablename(currentTable);
-            controller.setUserTable(currentTable);
+            controller.setMainController(mainController);
+            controller.setCurrentLocationTable(currentTable);
+            controller.setUserLocationTable(currentTable);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab(currentTable);
             tab.setContent(table);

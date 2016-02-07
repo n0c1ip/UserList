@@ -85,7 +85,7 @@ public class ImportCSVController implements Dialog{
 //        String[] nextLine;
 //        while ((nextLine = reader.readNext()) != null) {
 //            if (nextLine.length == 8 && ListUtil.getDepartmentsStrings().contains(nextLine[3])){
-//                ListUtil.getListByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
+//                ListUtil.getLocationByName(tablename).add(new User(nextLine[0], nextLine[1], nextLine[2],
 //                        nextLine[3], nextLine[4], nextLine[5], nextLine[6], nextLine[7]));
 //            }
 //        }

@@ -96,7 +96,7 @@ public class UserEditController implements Dialog {
         editedUser.setMail(mailField.getText());
 
         if(!IsUserExistInTable()){
-            ListUtil.getListByName(currentTable).add(editedUser);
+            ListUtil.getLocationByName(currentTable).add(editedUser);
         }
 
         this.dialog.close();
@@ -143,6 +143,6 @@ public class UserEditController implements Dialog {
      */
 
     private boolean IsUserExistInTable(){
-        return ListUtil.getListByName(currentTable).contains(editedUser);
+        return ListUtil.getLocationByName(currentTable).contains(editedUser);
     }
 }

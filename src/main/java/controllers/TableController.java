@@ -12,7 +12,7 @@ import util.ListUtil;
 
 public class TableController {
 
-    private String currentTablename;
+    private String currentLocation;
     private static final String CREATE_TITLE = "Создание пользователя";
 
     public static String getCreateTitle() {
@@ -100,20 +100,20 @@ public class TableController {
     }
 
 
-    public void setEnterPoint(MainController mainController) {
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-    public void setUserTable(String tableName) {
-        userTable.setItems(ListUtil.getListByName(tableName));
+    public void setUserLocationTable(String locationName) {
+        userTable.setItems(ListUtil.getLocationByName(locationName));
     }
 
-    public void setCurrentTablename(String currentTablename) {
-        this.currentTablename = currentTablename;
+    public void setCurrentLocationTable(String currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
-    public String getCurrentTablename() {
-        return currentTablename;
+    public String getCurrentLocation() {
+        return currentLocation;
     }
 
     private void showUserDetails(User user) {
@@ -142,7 +142,7 @@ public class TableController {
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
         User user = new User();
-        mainController.getDialogController().showUserEditDialog(currentTablename, CREATE_TITLE, user);
+        mainController.getDialogController().showUserEditDialog(currentLocation, CREATE_TITLE, user);
     }
 
     @FXML
@@ -165,7 +165,7 @@ public class TableController {
     private void handleEditPerson() {
         User selecteduser = userTable.getSelectionModel().getSelectedItem();
         if (selecteduser != null) {
-            mainController.getDialogController().showUserEditDialog(currentTablename, EDIT_TITLE, selecteduser);
+            mainController.getDialogController().showUserEditDialog(currentLocation, EDIT_TITLE, selecteduser);
         }
 
     }
