@@ -1,6 +1,6 @@
 package controllers;// Created by mva on 04.02.2016.
 
-import crud.LocatonService;
+import crud.LocationService;
 import crud.UserService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,7 +33,7 @@ public class MainController {
 
     //Some dummy data
     public void addData(){
-        LocatonService ls = new LocatonService();
+        LocationService ls = new LocationService();
         UserService us = new UserService();
 
         ArrayList<User> userlist = new ArrayList<>();
