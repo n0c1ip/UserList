@@ -33,6 +33,10 @@ public class Location extends Model {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void addUserToLocation(User user){
         this.userSet.add(user);
     }
