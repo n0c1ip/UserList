@@ -53,7 +53,9 @@ public class LocationService {
     public static List<Location> getAll(){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         TypedQuery<Location> namedQuery = manager.createNamedQuery("Location.getAll", Location.class);
-        return namedQuery.getResultList();
+        List<Location> resultsList = namedQuery.getResultList();
+        manager.close();
+        return resultsList;
     }
 
 }
