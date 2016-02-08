@@ -2,6 +2,7 @@ package controllers;
 //Created by mva on 30.01.2016.
 
 import crud.DepartmentService;
+import crud.LocationService;
 import crud.UserService;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
@@ -33,9 +34,11 @@ public class UserEditController implements Dialog {
     @FXML
     private TextField lastNameField;
     @FXML
-    private TextField middleNameFiel;
+    private TextField middleNameField;
     @FXML
-    private ComboBox<Department> departmentField;
+    private ComboBox<Location> locationBox;
+    @FXML
+    private ComboBox<Department> departmentBox;
     @FXML
     private TextField positionField;
     @FXML
@@ -59,9 +62,16 @@ public class UserEditController implements Dialog {
      */
     @FXML
     private void initialize() {
+
+        //Load departments to ComboBox
         ObservableList<Department> departmentsList = FXCollections.observableArrayList();
         departmentsList.addAll(DepartmentService.getAll());
-        departmentField.setItems(departmentsList);
+        departmentBox.setItems(departmentsList);
+
+        //Load locations to ComboBox
+        ObservableList<Location> locationsList = FXCollections.observableArrayList();
+        locationsList.addAll(LocationService.getAll());
+        locationBox.setItems(locationsList);
     }
 
     /**
@@ -81,17 +91,14 @@ public class UserEditController implements Dialog {
 
         editedUser.setFirstName(firstNameField.getText());
         editedUser.setLastName(lastNameField.getText());
-        editedUser.setMiddleName(middleNameFiel.getText());
-        editedUser.setDepartment(departmentField.getValue());
+        editedUser.setMiddleName(middleNameField.getText());
+        editedUser.setLocation(locationBox.getValue());
+        editedUser.setDepartment(departmentBox.getValue());
         editedUser.setPosition(positionField.getText());
         editedUser.setLogin(loginField.getText());
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
-
-        if(!isUserAlreadyExist()){
-            UserService.add(editedUser);
-        }
-
+        UserService.add(editedUser);
         this.dialog.close();
     }
 
@@ -120,8 +127,9 @@ public class UserEditController implements Dialog {
         this.editedUser = editedUser;
         firstNameField.setText(editedUser.getFirstName());
         lastNameField.setText(editedUser.getLastName());
-        middleNameFiel.setText(editedUser.getMiddleName());
-        departmentField.getSelectionModel().select(editedUser.getDepartment());
+        middleNameField.setText(editedUser.getMiddleName());
+        locationBox.getSelectionModel().select(editedUser.getLocation());
+        departmentBox.getSelectionModel().select(editedUser.getDepartment());
         positionField.setText(editedUser.getPosition());
         loginField.setText(editedUser.getLogin());
         passwordField.setText(editedUser.getPassword());

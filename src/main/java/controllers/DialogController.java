@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import objects.Location;
 import objects.User;
-import util.ListUtil;
 
 import java.util.Optional;
 
@@ -58,7 +57,7 @@ public class DialogController {
         dialog.setHeaderText("Новое подразделение");
         dialog.setContentText("Введите название подразделения:");
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(ListUtil::createDepartment);
+//        result.
     }
 
 
