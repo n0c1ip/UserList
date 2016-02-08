@@ -3,57 +3,51 @@ package crud;
 import objects.Location;
 import objects.User;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+
+import static crud.QueryProvider.doQueryCasual;
+import static crud.QueryProvider.doQueryInTransaction;
 
 public class UserService {
 
     public static User add(User user){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
-            manager.getTransaction().begin();
-            User userFromDB = manager.merge(user);
-            manager.getTransaction().commit();
-            manager.close();
-            return userFromDB;
-        }
+        return doQueryInTransaction(manager -> manager.merge(user));
+    }
 
-        public static void delete(long id){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
-            manager.getTransaction().begin();
+    public static void delete(long id){
+        doQueryInTransaction(manager -> {
             manager.remove(manager.find(User.class, id));
-            manager.getTransaction().commit();
-            manager.close();
-        }
+            return null;
+        });
+    }
 
-        public static User get(long id){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
-            User foundUser = manager.find(User.class, id);
-            manager.close();
-            return foundUser;
-        }
+    public static User get(long id){
+        return doQueryCasual(manager -> manager.find(User.class, id));
+    }
 
-        public static void update(User user){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
-            manager.getTransaction().begin();
+    public static void update(User user){
+        doQueryInTransaction(manager -> {
             manager.merge(user);
-            manager.getTransaction().commit();
-            manager.close();
-        }
+            return null;
+        });
+    }
 
-        public static List<User> getAll(){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
-            TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
-            return namedQuery.getResultList();
-        }
-
-        public static List<User> getUsersByLocationName(String locationName){
-            EntityManager manager = EntityManagerFactory.createEntityManager();
+    public static List<User> getUsersByLocationName(String locationName){
+        return doQueryCasual(manager -> {
             TypedQuery<Location> getLocationByName = manager.createNamedQuery("Location.getByName", Location.class);
             getLocationByName.setParameter("name", locationName);
             TypedQuery<User> getUserByLocatonName = manager.createNamedQuery("User.getUsersByLocationName", User.class);
-            getUserByLocatonName.setParameter("location",getLocationByName.getSingleResult());
+            getUserByLocatonName.setParameter("location", getLocationByName.getSingleResult());
             return getUserByLocatonName.getResultList();
-        }
+        });
+    }
+
+    public static List<User> getAll(){
+        return doQueryCasual(manager -> {
+            TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
+            return namedQuery.getResultList();
+        });
+    }
 
 }
