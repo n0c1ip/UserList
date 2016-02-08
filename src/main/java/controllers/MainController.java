@@ -1,16 +1,12 @@
 package controllers;// Created by mva on 04.02.2016.
 
-import crud.LocationService;
-import crud.UserService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import objects.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Main Controller initialize main window with Root Layout and
@@ -33,15 +29,6 @@ public class MainController {
 
     //Some dummy data
     public void addData(){
-        LocationService ls = new LocationService();
-        UserService us = new UserService();
-
-        ArrayList<User> userlist = new ArrayList<>();
-        userlist.addAll(us.getUsersByLocationName("CO"));
-        for (User user : userlist) {
-            System.out.println(user.getFirstName());
-        }
-
 
 
     }

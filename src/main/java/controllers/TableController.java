@@ -1,28 +1,22 @@
 package controllers;
 
+import crud.UserService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import objects.Location;
 import objects.User;
-import util.ListUtil;
 
 
 public class TableController {
 
-    private String currentLocation;
+    private Location currentLocation;
     private static final String CREATE_TITLE = "Создание пользователя";
-
-    public static String getCreateTitle() {
-        return CREATE_TITLE;
-    }
-
-    public static String getEditTitle() {
-        return EDIT_TITLE;
-    }
-
     private static final String EDIT_TITLE = "Редактирование пользователя";
 
     @FXML
@@ -84,7 +78,6 @@ public class TableController {
 
         showUserDetails(null);
 
-
         //change user listener
         userTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserDetails(newValue));
@@ -104,15 +97,17 @@ public class TableController {
         this.mainController = mainController;
     }
 
-    public void setUserLocationTable(String locationName) {
-        userTable.setItems(ListUtil.getLocationByName(locationName));
+    public void setUserLocationTable(Location locationName) {
+        ObservableList<User> tableViewList = FXCollections.observableArrayList();
+        tableViewList.addAll(UserService.getAll());
+        userTable.setItems(tableViewList);
     }
 
-    public void setCurrentLocationTable(String currentLocation) {
+    public void setCurrentLocationTable(Location currentLocation) {
         this.currentLocation = currentLocation;
     }
 
-    public String getCurrentLocation() {
+    public Location getCurrentLocation() {
         return currentLocation;
     }
 
@@ -149,7 +144,9 @@ public class TableController {
     private void handleDeletePerson() {
         int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
+            User userToDelete = userTable.getSelectionModel().getSelectedItem();
             userTable.getItems().remove(selectedIndex);
+            UserService.delete(userToDelete.getId());
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -163,9 +160,9 @@ public class TableController {
 
     @FXML
     private void handleEditPerson() {
-        User selecteduser = userTable.getSelectionModel().getSelectedItem();
-        if (selecteduser != null) {
-            mainController.getDialogController().showUserEditDialog(currentLocation, EDIT_TITLE, selecteduser);
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            mainController.getDialogController().showUserEditDialog(currentLocation, EDIT_TITLE, selectedUser);
         }
 
     }

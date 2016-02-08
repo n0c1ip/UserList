@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import objects.Location;
 import objects.User;
 import util.ListUtil;
 
@@ -27,7 +28,7 @@ public class DialogController {
      * @param title Dialog title, depends (add\edit)
      * @param user editing User
      */
-    public void showUserEditDialog(String currentTable, String title, User user) {
+    public void showUserEditDialog(Location currentTable, String title, User user) {
         try{
             final Stage dialog = new Stage();
             dialog.setTitle(title);
@@ -39,7 +40,7 @@ public class DialogController {
             UserEditController controller = loader.getController();
             controller.setDialog(dialog);
             controller.setEditedUser(user);
-            controller.setCurrentTable(currentTable);
+            controller.setCurrentLocation(currentTable);
             dialog.setScene(new Scene(useredit));
             dialog.showAndWait();
 

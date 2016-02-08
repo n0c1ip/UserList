@@ -40,4 +40,9 @@ public class Location extends Model {
     public void addUserToLocation(User user){
         this.userSet.add(user);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

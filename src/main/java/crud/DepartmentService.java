@@ -4,45 +4,56 @@ package crud;
 import objects.Department;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class DepartmentService {
 
-    public EntityManager manager = Persistence.createEntityManagerFactory("UserList").createEntityManager();
-
-    public Department add(Department department){
+    public static Department add(Department department){
+        EntityManager manager = EntityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
         Department departmentFromDB = manager.merge(department);
         manager.getTransaction().commit();
+        manager.close();
         return departmentFromDB;
     }
 
-    public void delete(long id){
+    public static void delete(long id){
+        EntityManager manager = EntityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
-        manager.remove(get(id));
+        manager.remove(manager.find(Department.class,id));
         manager.getTransaction().commit();
+        manager.close();
     }
 
-    public Department get(long id){
-        return manager.find(Department.class, id);
+    public static Department get(long id){
+        EntityManager manager = EntityManagerFactory.createEntityManager();
+        Department foundDepartment = manager.find(Department.class, id);
+        manager.close();
+        return foundDepartment;
     }
 
-    public void update(Department department){
+    public static void update(Department department){
+        EntityManager manager = EntityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
         manager.merge(department);
         manager.getTransaction().commit();
+        manager.close();
     }
 
-    public Department getByName(String name) {
+    public static Department getByName(String name) {
+        EntityManager manager = EntityManagerFactory.createEntityManager();
         TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
         namedQuery.setParameter("name", name);
-        return namedQuery.getSingleResult();
+        Department department = namedQuery.getSingleResult();
+        manager.close();
+        return department;
     }
 
-    public List<Department> getAll(){
+    public static List<Department> getAll(){
+        EntityManager manager = EntityManagerFactory.createEntityManager();
         TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getAll", Department.class);
-        return namedQuery.getResultList();
+        List<Department> resultList = namedQuery.getResultList();
+        return resultList;
     }
 }
