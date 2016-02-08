@@ -1,5 +1,6 @@
 package controllers;// Created by mva on 04.02.2016.
 
+import crud.EntityManagerFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -20,6 +21,7 @@ public class MainController {
 
 
     public void show() {
+        EntityManagerFactory.initialize();
         initDialogController();
         dialogController.showLoginDialog();
         addData();
