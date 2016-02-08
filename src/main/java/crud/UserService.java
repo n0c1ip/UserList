@@ -1,5 +1,6 @@
 package crud;
 
+import objects.Department;
 import objects.Location;
 import objects.User;
 
@@ -40,6 +41,14 @@ public class UserService {
             TypedQuery<User> getUserByLocatonName = manager.createNamedQuery("User.getUsersByLocationName", User.class);
             getUserByLocatonName.setParameter("location", getLocationByName.getSingleResult());
             return getUserByLocatonName.getResultList();
+        });
+    }
+
+    public static List<User> getUsersByDepartment(Department department){
+        return doQueryCasual(manager -> {
+            TypedQuery<User> usersByDepartment = manager.createNamedQuery("User.getUsersByDepartment", User.class);
+            usersByDepartment.setParameter("department", department);
+            return usersByDepartment.getResultList();
         });
     }
 
