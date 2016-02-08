@@ -3,57 +3,48 @@ package crud;
 
 import objects.Department;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+
+import static crud.QueryProvider.doQueryCasual;
+import static crud.QueryProvider.doQueryInTransaction;
 
 public class DepartmentService {
 
     public static Department add(Department department){
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        manager.getTransaction().begin();
-        Department departmentFromDB = manager.merge(department);
-        manager.getTransaction().commit();
-        manager.close();
-        return departmentFromDB;
+        return doQueryInTransaction(manager -> manager.merge(department));
     }
 
     public static void delete(long id){
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        manager.getTransaction().begin();
-        manager.remove(manager.find(Department.class,id));
-        manager.getTransaction().commit();
-        manager.close();
+        doQueryInTransaction(manager -> {
+            manager.remove(manager.find(Department.class, id));
+            return null;
+        });
     }
 
     public static Department get(long id){
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        Department foundDepartment = manager.find(Department.class, id);
-        manager.close();
-        return foundDepartment;
+        return doQueryCasual(manager -> manager.find(Department.class, id));
     }
 
     public static void update(Department department){
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        manager.getTransaction().begin();
-        manager.merge(department);
-        manager.getTransaction().commit();
-        manager.close();
+        doQueryInTransaction(manager -> {
+            manager.merge(department);
+            return null;
+        });
     }
 
     public static Department getByName(String name) {
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
-        namedQuery.setParameter("name", name);
-        Department department = namedQuery.getSingleResult();
-        manager.close();
-        return department;
+        return doQueryCasual(manager -> {
+            TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
+            namedQuery.setParameter("name", name);
+            return namedQuery.getSingleResult();
+        });
     }
 
     public static List<Department> getAll(){
-        EntityManager manager = EntityManagerFactory.createEntityManager();
-        TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getAll", Department.class);
-        List<Department> resultList = namedQuery.getResultList();
-        return resultList;
+        return doQueryCasual(manager -> {
+            TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getAll", Department.class);
+            return namedQuery.getResultList();
+        });
     }
 }

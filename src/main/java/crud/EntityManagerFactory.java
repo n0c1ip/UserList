@@ -9,6 +9,8 @@ public class EntityManagerFactory {
 
     private EntityManagerFactory() {}
 
+    public static void initialize() {}
+
     public static EntityManager createEntityManager() {
         return entityManagerFactory.createEntityManager();
     }

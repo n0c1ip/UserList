@@ -10,7 +10,7 @@ import java.util.List;
 public class LocationServiceTest {
 
     @Test
-    public void ShouldAddLocationService() {
+    public void ShouldAddLocation() {
         Location location = new Location("locationToAdd");
 
         Location addedLocation = LocationService.add(location);
@@ -26,7 +26,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    public void ShouldDeleteLocationService() {
+    public void ShouldDeleteLocation() {
         Location location = new Location("locationToDelete");
 
         Location addedLocation = LocationService.add(location);
@@ -37,7 +37,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    public void ShouldUpdateLocationService() {
+    public void ShouldUpdateLocation() {
         String oldName = "locationToUpdate";
         String newName = "updatedLocation";
         Location location = new Location();
@@ -57,7 +57,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    public void ShouldGetByNameLocationService() {
+    public void ShouldGetByNameLocation() {
         Location location = new Location("locationToGetByName");
 
         Location addedLocation = LocationService.add(location);
@@ -72,7 +72,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    public void ShouldGetAllLocationServices() {
+    public void ShouldGetAllLocations() {
         int expectedLocationsCount = 3;
         String name1 = "locationOne";
         String name2 = "locationTwo";

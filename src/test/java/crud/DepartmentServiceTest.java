@@ -10,7 +10,7 @@ import java.util.List;
 public class DepartmentServiceTest {
 
     @Test
-    public void ShouldAddDepartmentService() {
+    public void ShouldAddDepartment() {
         Department department = new Department("departmentToAdd");
 
         Department addedDepartment = DepartmentService.add(department);
@@ -26,7 +26,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void ShouldDeleteDepartmentService(){
+    public void ShouldDeleteDepartment(){
         Department department = new Department("departmentToDel");
 
         Department departmentInDb = DepartmentService.add(department);
@@ -36,7 +36,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void ShouldUpdateDepartmentService(){
+    public void ShouldUpdateDepartment(){
         String oldName = "oldDepartment";
         String newName = "newDepartment";
 
@@ -53,7 +53,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void ShouldGetByNameDepartmentService(){
+    public void ShouldGetByNameDepartment(){
         String departmentName = "FindThisName";
         Department department = new Department(departmentName);
         department = DepartmentService.add(department);
@@ -66,8 +66,8 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void ShouldGetAllDepartmentService(){
-        int expectedLocationsCount = 3;
+    public void ShouldGetAllDepartments(){
+        int expectedDepartmentsCount = 3;
         String name1 = "departmentOne";
         String name2 = "departmentTwo";
         String name3 = "departmentThree";
@@ -87,7 +87,7 @@ public class DepartmentServiceTest {
         }
 
         try {
-            Assert.assertEquals(expectedLocationsCount, departmentFound);
+            Assert.assertEquals(expectedDepartmentsCount, departmentFound);
         } finally {
             DepartmentService.delete(addedDepartment1.getId());
             DepartmentService.delete(addedDepartment2.getId());
