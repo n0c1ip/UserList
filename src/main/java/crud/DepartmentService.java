@@ -18,7 +18,7 @@ public class DepartmentService {
         return departmentFromDB;
     }
 
-    public void delete(long id){
+    public static void delete(long id){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
         manager.remove(manager.find(Department.class,id));
@@ -26,14 +26,14 @@ public class DepartmentService {
         manager.close();
     }
 
-    public Department get(long id){
+    public static Department get(long id){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         Department foundDepartment = manager.find(Department.class, id);
         manager.close();
         return foundDepartment;
     }
 
-    public void update(Department department){
+    public static void update(Department department){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
         manager.merge(department);
@@ -41,7 +41,7 @@ public class DepartmentService {
         manager.close();
     }
 
-    public Department getByName(String name) {
+    public static Department getByName(String name) {
         EntityManager manager = EntityManagerFactory.createEntityManager();
         TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
         namedQuery.setParameter("name", name);
@@ -50,7 +50,7 @@ public class DepartmentService {
         return department;
     }
 
-    public List<Department> getAll(){
+    public static List<Department> getAll(){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getAll", Department.class);
         List<Department> resultList = namedQuery.getResultList();

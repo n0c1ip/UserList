@@ -1,6 +1,8 @@
 package controllers;
 //Created by mva on 30.01.2016.
 
+import crud.DepartmentService;
+import crud.UserService;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +12,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.Department;
+import objects.Location;
 import objects.User;
-import util.ListUtil;
 
 /**
  * <p>UserEditController uses for dialog of editing and adding Users.
@@ -32,7 +35,7 @@ public class UserEditController implements Dialog {
     @FXML
     private TextField middleNameFiel;
     @FXML
-    private ComboBox departmentField;
+    private ComboBox<Department> departmentField;
     @FXML
     private TextField positionField;
     @FXML
@@ -46,7 +49,7 @@ public class UserEditController implements Dialog {
 
 
     private Stage dialog;
-    private String currentTable;
+    private Location currentLocation;
     private User editedUser;
 
 
@@ -56,19 +59,9 @@ public class UserEditController implements Dialog {
      */
     @FXML
     private void initialize() {
-        ObservableList<String> departmentsList = FXCollections.observableList(ListUtil.getDepartmentsStrings());
+        ObservableList<Department> departmentsList = FXCollections.observableArrayList();
+        departmentsList.addAll(DepartmentService.getAll());
         departmentField.setItems(departmentsList);
-
-
-//        firedUser.selectedProperty().addListener(new ChangeListener<Boolean>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//                System.out.println(newValue);
-//            }
-//        });
-
-
-
     }
 
     /**
@@ -89,14 +82,14 @@ public class UserEditController implements Dialog {
         editedUser.setFirstName(firstNameField.getText());
         editedUser.setLastName(lastNameField.getText());
         editedUser.setMiddleName(middleNameFiel.getText());
-//        editedUser.setDepartment(departmentField.getValue().toString());
+        editedUser.setDepartment(departmentField.getValue());
         editedUser.setPosition(positionField.getText());
         editedUser.setLogin(loginField.getText());
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
 
-        if(!IsUserExistInTable()){
-            ListUtil.getLocationByName(currentTable).add(editedUser);
+        if(!isUserAlreadyExist()){
+            UserService.add(editedUser);
         }
 
         this.dialog.close();
@@ -113,10 +106,10 @@ public class UserEditController implements Dialog {
 
     /**
      * Set reference to current table which from called this controller
-     * @param currentTable
+     * @param currentLocation
      */
-    public void setCurrentTable(String currentTable) {
-        this.currentTable = currentTable;
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
     /**
@@ -142,7 +135,8 @@ public class UserEditController implements Dialog {
      * @return
      */
 
-    private boolean IsUserExistInTable(){
-        return ListUtil.getLocationByName(currentTable).contains(editedUser);
+    private boolean isUserAlreadyExist(){
+        //TODO check from db
+        return false;
     }
 }

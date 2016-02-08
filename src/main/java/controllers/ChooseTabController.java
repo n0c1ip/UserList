@@ -1,6 +1,7 @@
 package controllers;
 
 
+import crud.LocationService;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +12,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import objects.Location;
 import start.EnterPoint;
-import util.ListUtil;
 
 import java.io.IOException;
 
@@ -26,13 +27,13 @@ public class ChooseTabController implements Dialog {
     private TabPane tabLayout;
 
     @FXML
-    private ChoiceBox<String> choiceBox;
+    private ChoiceBox<Location> choiceBox;
 
     @FXML
     private void initialize(){
-        ObservableList<String> stringBox = FXCollections.observableArrayList();
-        stringBox.addAll(ListUtil.getMapStrings());
-        choiceBox.setItems(stringBox);
+        ObservableList<Location> stringBox = FXCollections.observableArrayList();
+        stringBox.addAll(LocationService.getAll());
+        choiceBox.setItems(stringBox.sorted());
         choiceBox.getSelectionModel().selectFirst();
     }
 
@@ -50,16 +51,16 @@ public class ChooseTabController implements Dialog {
         loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
         dialog.close();
     }
-    public void loadNewTab(String currentTable){
+    public void loadNewTab(Location currentLocation){
         try {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
             SplitPane table = loader.load();
             TableController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setCurrentLocationTable(currentTable);
-            controller.setUserLocationTable(currentTable);
+            controller.setCurrentLocationTable(currentLocation);
+            controller.setUserLocationTable(currentLocation);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab(currentTable);
+            Tab tab = new Tab(currentLocation.getName());
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
