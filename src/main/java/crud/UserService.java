@@ -1,5 +1,6 @@
 package crud;
 
+import objects.Department;
 import objects.Location;
 import objects.User;
 
@@ -47,13 +48,19 @@ public class UserService {
             return namedQuery.getResultList();
         }
 
-        public static List<User> getUsersByLocationName(String locationName){
+        public static List<User> getUsersByLocationName(Location location){
             EntityManager manager = EntityManagerFactory.createEntityManager();
-            TypedQuery<Location> getLocationByName = manager.createNamedQuery("Location.getByName", Location.class);
-            getLocationByName.setParameter("name", locationName);
-            TypedQuery<User> getUserByLocatonName = manager.createNamedQuery("User.getUsersByLocationName", User.class);
-            getUserByLocatonName.setParameter("location",getLocationByName.getSingleResult());
-            return getUserByLocatonName.getResultList();
+            TypedQuery<User> getUserByLocation = manager.createNamedQuery("User.getUsersByLocation", User.class);
+            getUserByLocation.setParameter("location",location);
+            return getUserByLocation.getResultList();
+        }
+
+        public static List<User> getUsersByDepartment(Department department){
+            EntityManager manager = EntityManagerFactory.createEntityManager();
+            TypedQuery<User> getUsersByDepartment = manager.createNamedQuery("User.getUsersByDepartment", User.class);
+            getUsersByDepartment.setParameter("department", department);
+            return getUsersByDepartment.getResultList();
+
         }
 
 }

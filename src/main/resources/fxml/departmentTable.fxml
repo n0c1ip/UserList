@@ -43,7 +43,7 @@
                      <children>
                             <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#hanleUserAddButton" prefHeight="25.0" prefWidth="97.0" text="Добавить">
+                                    <Button fx:id="addButton" mnemonicParsing="false"  prefHeight="25.0" prefWidth="97.0" text="Добавить">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>

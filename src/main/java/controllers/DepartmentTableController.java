@@ -1,19 +1,21 @@
 package controllers;
 
+import crud.DepartmentService;
+import crud.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import objects.Department;
 import objects.User;
-import util.ListUtil;
 
 public class DepartmentTableController {
 
     private MainController enterPoint;
     @FXML
-    private ListView<String> departmentListView;
+    private ListView<Department> departmentListView;
 
     @FXML
     private TableView<User> userTable;
@@ -39,8 +41,8 @@ public class DepartmentTableController {
     private void initialize(){
 
         //Departments ListView
-        ObservableList<String> departmentList = FXCollections.observableArrayList();
-        departmentList.setAll(ListUtil.getDepartmentsStrings());
+        ObservableList<Department> departmentList = FXCollections.observableArrayList();
+        departmentList.setAll(DepartmentService.getAll());
         departmentListView.setItems(departmentList);
 
         departmentListView.getSelectionModel().selectedItemProperty().addListener(
@@ -58,12 +60,12 @@ public class DepartmentTableController {
 
     }
 
-    private void showUserByDepartments(String departmentName) {
-//        if(departmentName != null){
-//            ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
-//            userByDepartmentsList.setAll(ListUtil.getDepartmentByName(departmentName).getUserList());
-//            userTable.setItems(userByDepartmentsList);
-//        }
+    private void showUserByDepartments(Department department) {
+        if(department != null){
+            ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
+            userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
+            userTable.setItems(userByDepartmentsList);
+        }
     }
 
     public void setMainController(MainController mainController) {
