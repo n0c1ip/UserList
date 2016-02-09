@@ -14,11 +14,11 @@ import java.util.List;
 public class UserServiceTest {
 
     /**
-     * Creates users for test purposes only
+     * Creates/deletes users for test purposes only
      */
     @Ignore
-    private static class TestUsersFactory {
-        public static User getTestUser(String firstName) {
+    private static class TestUsersManager {
+        public static User createTestUser(String firstName) {
             Location location = new Location("LocationToTest");
             Location addedLocation = LocationService.add(location);
             Department department = new Department("DepartmentToTest");
@@ -29,11 +29,17 @@ public class UserServiceTest {
             user.setDepartment(addedDepartment);
             return user;
         }
+
+        public static void deleteTestUser(User user) {
+            UserService.delete(user.getId());
+            LocationService.delete(user.getLocation().getId());
+            DepartmentService.delete(user.getDepartment().getId());
+        }
     }
 
     @Test
     public void ShouldAddUser() {
-        User user = TestUsersFactory.getTestUser("UserToAdd");
+        User user = TestUsersManager.createTestUser("UserToAdd");
         User addedUser = UserService.add(user);
         User foundUser = UserService.get(addedUser.getId());
 
@@ -42,33 +48,26 @@ public class UserServiceTest {
             Assert.assertNotNull(foundUser);
             Assert.assertEquals(addedUser.getId(), foundUser.getId());
         } finally {
-            UserService.delete(addedUser.getId());
-            LocationService.delete(addedUser.getLocation().getId());
-            DepartmentService.delete(addedUser.getDepartment().getId());
+            TestUsersManager.deleteTestUser(addedUser);
         }
     }
 
     @Test
     public void ShouldDeleteUser() {
-        User user = TestUsersFactory.getTestUser("UserToDelete");
+        User user = TestUsersManager.createTestUser("UserToDelete");
 
         User addedUser = UserService.add(user);
         long addedUserId = addedUser.getId();
-        UserService.delete(addedUserId);
+        TestUsersManager.deleteTestUser(addedUser);
 
-        try {
-            Assert.assertNull(UserService.get(addedUserId));
-        } finally {
-            LocationService.delete(addedUser.getLocation().getId());
-            DepartmentService.delete(addedUser.getDepartment().getId());
-        }
+        Assert.assertNull(UserService.get(addedUserId));
     }
 
     @Test
     public void ShouldUpdateUser() {
         String oldName = "oldUserName";
         String newName = "newUserName";
-        User user = TestUsersFactory.getTestUser(oldName);
+        User user = TestUsersManager.createTestUser(oldName);
         User addedUser = UserService.add(user);
 
         addedUser.setFirstName(newName);
@@ -78,15 +77,13 @@ public class UserServiceTest {
         try {
             Assert.assertEquals(foundUser.getFirstName(), newName);
         } finally {
-            UserService.delete(foundUser.getId());
-            LocationService.delete(foundUser.getLocation().getId());
-            DepartmentService.delete(foundUser.getDepartment().getId());
+            TestUsersManager.deleteTestUser(foundUser);
         }
     }
 
     @Test
     public void ShouldGetUsersByLocationName() {
-        User user = TestUsersFactory.getTestUser("UserToGetByLocationName");
+        User user = TestUsersManager.createTestUser("UserToGetByLocationName");
         User addedUser = UserService.add(user);
 
         boolean UserIsFound = false;
@@ -100,15 +97,13 @@ public class UserServiceTest {
         try {
             Assert.assertTrue(UserIsFound);
         } finally {
-            UserService.delete(addedUser.getId());
-            LocationService.delete(addedUser.getLocation().getId());
-            DepartmentService.delete(addedUser.getDepartment().getId());
+            TestUsersManager.deleteTestUser(addedUser);
         }
     }
 
     @Test
     public void ShouldGetUsersByDepartment() {
-        User user = TestUsersFactory.getTestUser("UserToGetByDepartment");
+        User user = TestUsersManager.createTestUser("UserToGetByDepartment");
         User addedUser = UserService.add(user);
 
         boolean UserIsFound = false;
@@ -122,17 +117,15 @@ public class UserServiceTest {
         try {
             Assert.assertTrue(UserIsFound);
         } finally {
-            UserService.delete(addedUser.getId());
-            LocationService.delete(addedUser.getLocation().getId());
-            DepartmentService.delete(addedUser.getDepartment().getId());
+            TestUsersManager.deleteTestUser(addedUser);
         }
     }
 
     @Test
     public void ShouldGetAllUsers() {
         int expectedUsersCount = 2;
-        User user1 = TestUsersFactory.getTestUser("User1ToGetAll");
-        User user2 = TestUsersFactory.getTestUser("User2ToGetAll");
+        User user1 = TestUsersManager.createTestUser("User1ToGetAll");
+        User user2 = TestUsersManager.createTestUser("User2ToGetAll");
 
         User addedUser1 = UserService.add(user1);
         User addedUser2 = UserService.add(user2);
@@ -150,12 +143,8 @@ public class UserServiceTest {
         try {
             Assert.assertEquals(expectedUsersCount, usersFound);
         } finally {
-            UserService.delete(addedUser1.getId());
-            LocationService.delete(addedUser1.getLocation().getId());
-            DepartmentService.delete(addedUser1.getDepartment().getId());
-            UserService.delete(addedUser2.getId());
-            LocationService.delete(addedUser2.getLocation().getId());
-            DepartmentService.delete(addedUser2.getDepartment().getId());
+            TestUsersManager.deleteTestUser(addedUser1);
+            TestUsersManager.deleteTestUser(addedUser2);
         }
     }
 }
