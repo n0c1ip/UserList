@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import objects.Organization;
 
 import java.io.IOException;
 
@@ -32,6 +33,7 @@ public class MainController {
     //Some dummy data
     public void addData(){
 
+        Organization organization = new Organization("aOrg");
 
     }
 
