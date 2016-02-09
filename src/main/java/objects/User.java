@@ -38,19 +38,6 @@ public class User extends Model{
     public User() {
     }
 
-    public User(String firstName, String lastName, String middleName, Department department, Location location,
-                String position, String login, String password, String mail) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.department = department;
-        this.location = location;
-        this.position = position;
-        this.login = login;
-        this.password = password;
-        this.mail = mail;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" prefHeight="603.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TableController">
+<SplitPane dividerPositions="0.5" prefHeight="603.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TableController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <TableView id="userTable" fx:id="userTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Имя" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Фамилия" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Имя" />
                   <TableColumn fx:id="middleNameColumn" prefWidth="75.0" text="Отчество" visible="false" />
                   <TableColumn id="departmentColumn" fx:id="departmentColumn" prefWidth="75.0" text="Отдел" visible="false" />
                   <TableColumn fx:id="positionColumn" prefWidth="75.0" text="Должность" visible="false" />

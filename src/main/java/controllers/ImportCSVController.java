@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import objects.Department;
 import objects.Location;
 import objects.User;
-
 import javax.persistence.NoResultException;
 import java.io.*;
 
@@ -75,7 +74,7 @@ public class ImportCSVController implements Dialog{
      * Loading Users from csv file to selected table
      * <p>
      * CSV file format:
-     * First Name; Last Name; Middle Name; Department Name; Position; Login; Password; E-Mail
+     * Last Name; First Name; Middle Name; Department Name; Position; Login; Password; E-Mail
      * @param location location to load Users
      * @param csvFilename - path to csv file
      * @param delimiter - delimeter used in csv file
@@ -86,13 +85,12 @@ public class ImportCSVController implements Dialog{
     public void loadUsersFromCSV(Location location, String csvFilename, char delimiter) throws IOException {
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvFilename), "windows-1251"), delimiter);
         String[] nextLine;
-
         while ((nextLine = reader.readNext()) != null) {
             if (nextLine.length == 8){
                 User userToAdd = new User();
 
-                userToAdd.setFirstName(nextLine[0]);
-                userToAdd.setLastName(nextLine[1]);
+                userToAdd.setLastName(nextLine[0]);
+                userToAdd.setFirstName(nextLine[1]);
                 userToAdd.setMiddleName(nextLine[2]);
                 userToAdd.setLocation(location);
                 Department department = new Department(nextLine[3]);

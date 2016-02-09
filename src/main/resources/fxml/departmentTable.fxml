@@ -24,14 +24,14 @@
                      <children>
                          <TableView id="userTable" fx:id="userTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
-                                 <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Имя" />
-                                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Фамилия" />
-                                 <TableColumn fx:id="middleNameColumn" prefWidth="75.0" text="Отчество" />
-                                 <TableColumn id="departmentColumn" fx:id="departmentColumn" prefWidth="75.0" text="Отдел" />
-                                 <TableColumn fx:id="positionColumn" prefWidth="75.0" text="Должность" />
-                                 <TableColumn fx:id="loginColumn" prefWidth="75.0" text="Логин" />
-                                 <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Пароль" />
-                                 <TableColumn fx:id="mailColumn" prefWidth="75.0" text="Эл. адрес" />
+                                 <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Фамилия" />
+                                 <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя" />
+                                 <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Отчество" />
+                                 <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="Отдел" />
+                                 <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="Должность" />
+                                 <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="Логин" />
+                                 <TableColumn fx:id="passwordColumn" minWidth="-1.0" prefWidth="-1.0" text="Пароль" />
+                                 <TableColumn fx:id="mailColumn" minWidth="-1.0" prefWidth="-1.0" text="Эл. адрес" />
                              </columns>
                              <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -43,7 +43,7 @@
                      <children>
                             <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" mnemonicParsing="false"  prefHeight="25.0" prefWidth="97.0" text="Добавить">
+                                    <Button fx:id="addButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Добавить">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>

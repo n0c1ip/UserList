@@ -74,7 +74,6 @@ public class DepartmentTableController {
 
     public void handleUserAddButton() {
 
-
     }
 
 }
