@@ -1,6 +1,9 @@
 package controllers;
 
+import com.opencsv.CSVReader;
+import crud.DepartmentService;
 import crud.LocationService;
+import crud.UserService;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,12 +13,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import objects.Department;
 import objects.Location;
+import objects.User;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import javax.persistence.NoResultException;
+import java.io.*;
 
 /**
  * <p>
@@ -74,15 +77,40 @@ public class ImportCSVController implements Dialog{
      * CSV file format:
      * First Name; Last Name; Middle Name; Department Name; Position; Login; Password; E-Mail
      * @param location location to load Users
-     * @param csvfilename - path to csv file
+     * @param csvFilename - path to csv file
      * @param delimiter - delimeter used in csv file
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public void loadUsersFromCSV(Location location, String csvfilename, char delimiter) throws IOException {
+    public void loadUsersFromCSV(Location location, String csvFilename, char delimiter) throws IOException {
+        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvFilename), "windows-1251"), delimiter);
+        String[] nextLine;
 
+        while ((nextLine = reader.readNext()) != null) {
+            if (nextLine.length == 8){
+                User userToAdd = new User();
 
+                userToAdd.setFirstName(nextLine[0]);
+                userToAdd.setLastName(nextLine[1]);
+                userToAdd.setMiddleName(nextLine[2]);
+                userToAdd.setLocation(location);
+                Department department = new Department(nextLine[3]);
+                try{
+                    department = DepartmentService.getByName(nextLine[3]);
+                } catch (NoResultException e){
+                    department = DepartmentService.add(department);
+                } finally {
+                    userToAdd.setDepartment(department);
+                }
+                userToAdd.setPosition(nextLine[4]);
+                userToAdd.setLogin(nextLine[5]);
+                userToAdd.setPassword(nextLine[6]);
+                userToAdd.setMail(nextLine[7]);
+                UserService.add(userToAdd);
+            }
+        }
+        reader.close();
     }
 
     public void handleLoadButton() {
