@@ -2,6 +2,7 @@ package crud;
 
 
 import objects.Department;
+import objects.Organization;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -38,6 +39,14 @@ public class DepartmentService {
             TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByName", Department.class);
             namedQuery.setParameter("name", name);
             return namedQuery.getSingleResult();
+        });
+    }
+
+    public static List<Department> getByOrganization(Organization organization){
+        return doQueryCasual(manager -> {
+            TypedQuery<Department> namedQuery = manager.createNamedQuery("Department.getByOrganization", Department.class);
+            namedQuery.setParameter("organization", organization);
+            return  namedQuery.getResultList();
         });
     }
 
