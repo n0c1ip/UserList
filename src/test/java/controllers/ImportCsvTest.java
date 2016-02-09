@@ -1,4 +1,5 @@
-import controllers.ImportCSVController;
+package controllers;
+
 import objects.Location;
 import org.junit.Test;
 
@@ -7,13 +8,12 @@ import java.io.IOException;
 
 public class ImportCsvTest {
 
-/*
+
     @Test(expected = FileNotFoundException.class)
     public void shouldThrowFileNotFoundException() throws IOException {
         ImportCSVController controller = new ImportCSVController();
         Location location = new Location("newLocation");
-        controller.loadUsersFromCSV(location,"thereisnocsvfile",';');
+        controller.loadUsersFromCSV(location,"thereIsNoFile",';');
     }
-*/
 
 }
