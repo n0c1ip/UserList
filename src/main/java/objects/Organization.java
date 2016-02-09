@@ -37,4 +37,9 @@ public class Organization extends Model {
     public void setDepartmentSet(Set<Department> departmentSet) {
         this.departmentSet = departmentSet;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

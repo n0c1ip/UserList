@@ -1,14 +1,17 @@
 package controllers;
 
 import crud.DepartmentService;
+import crud.OrganizationService;
 import crud.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Department;
+import objects.Organization;
 import objects.User;
 
 public class DepartmentTableController {
@@ -16,7 +19,8 @@ public class DepartmentTableController {
     private MainController enterPoint;
     @FXML
     private ListView<Department> departmentListView;
-
+    @FXML
+    private ComboBox<Organization> organizationComboBox;
     @FXML
     private TableView<User> userTable;
     @FXML
@@ -39,11 +43,18 @@ public class DepartmentTableController {
 
     @FXML
     private void initialize(){
+        //Organization ComboBox
+        ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
+        organizationsList.setAll(OrganizationService.getAll());
+        organizationComboBox.setItems(organizationsList.sorted());
+        organizationComboBox.getSelectionModel().selectFirst();
+
+        organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable1, oldValue, newValue ) -> showDepartmentByOrganizationSelect(newValue));
+
 
         //Departments ListView
-        ObservableList<Department> departmentList = FXCollections.observableArrayList();
-        departmentList.setAll(DepartmentService.getAll());
-        departmentListView.setItems(departmentList);
+
 
         departmentListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserByDepartments(newValue));
@@ -66,6 +77,12 @@ public class DepartmentTableController {
             userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
             userTable.setItems(userByDepartmentsList);
         }
+    }
+
+    private void showDepartmentByOrganizationSelect(Organization organization){
+        ObservableList<Department> departmentList = FXCollections.observableArrayList();
+        departmentList.setAll(DepartmentService.getByOrganization(organization));
+        departmentListView.setItems(departmentList);
     }
 
     public void setMainController(MainController mainController) {
