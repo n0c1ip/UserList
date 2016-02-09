@@ -19,8 +19,21 @@ public class Department extends Model{
     @OneToMany(mappedBy="department")
     private Set<User> userSet;
 
+    @ManyToOne
+    @JoinColumn(name="organization_id")
+    private Organization organization;
+
     public Department() {
     }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
     public Department(String name) {
         this.name = name;
     }
