@@ -15,7 +15,6 @@ import objects.User;
 
 public class TableController {
 
-    private Location currentLocation;
     private static final String CREATE_TITLE = "Создание пользователя";
     private static final String EDIT_TITLE = "Редактирование пользователя";
 
@@ -103,14 +102,6 @@ public class TableController {
         userTable.setItems(tableViewList);
     }
 
-    public void setCurrentLocationTable(Location currentLocation) {
-        this.currentLocation = currentLocation;
-    }
-
-    public Location getCurrentLocation() {
-        return currentLocation;
-    }
-
     private void showUserDetails(User user) {
         if (user != null) {
             firstNameLabel.setText(user.getFirstName());
@@ -137,7 +128,7 @@ public class TableController {
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
         User user = new User();
-        mainController.getDialogController().showUserEditDialog(currentLocation, CREATE_TITLE, user);
+        mainController.getDialogController().showUserEditDialog(CREATE_TITLE, user);
     }
 
     @FXML
@@ -162,7 +153,7 @@ public class TableController {
     private void handleEditPerson() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            mainController.getDialogController().showUserEditDialog(currentLocation, EDIT_TITLE, selectedUser);
+            mainController.getDialogController().showUserEditDialog(EDIT_TITLE, selectedUser);
         }
 
     }

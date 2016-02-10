@@ -16,7 +16,7 @@ import objects.User;
 
 public class DepartmentTableController {
 
-    private MainController enterPoint;
+    private MainController mainController;
     @FXML
     private ListView<Department> departmentListView;
     @FXML
@@ -48,14 +48,11 @@ public class DepartmentTableController {
         organizationsList.setAll(OrganizationService.getAll());
         organizationComboBox.setItems(organizationsList.sorted());
         organizationComboBox.getSelectionModel().selectFirst();
-
+        showDepartmentByOrganizationSelect(organizationComboBox.getValue());
         organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable1, oldValue, newValue ) -> showDepartmentByOrganizationSelect(newValue));
 
-
         //Departments ListView
-
-
         departmentListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserByDepartments(newValue));
 
@@ -68,6 +65,12 @@ public class DepartmentTableController {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
+
+        userTable.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                handleEditPerson();
+            }
+        });
 
     }
 
@@ -86,10 +89,15 @@ public class DepartmentTableController {
     }
 
     public void setMainController(MainController mainController) {
-        this.enterPoint = mainController;
+        this.mainController = mainController;
     }
 
-    public void handleUserAddButton() {
+    @FXML
+    private void handleEditPerson() {
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            mainController.getDialogController().showUserEditDialog("Редактирование пользователя", selectedUser);
+        }
 
     }
 

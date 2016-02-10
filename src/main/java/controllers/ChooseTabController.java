@@ -57,7 +57,6 @@ public class ChooseTabController implements Dialog {
             SplitPane table = loader.load();
             TableController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setCurrentLocationTable(currentLocation);
             controller.setUserLocationTable(currentLocation);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab(currentLocation.getName());

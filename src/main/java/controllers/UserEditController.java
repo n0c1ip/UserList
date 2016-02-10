@@ -3,6 +3,7 @@ package controllers;
 
 import crud.DepartmentService;
 import crud.LocationService;
+import crud.OrganizationService;
 import crud.UserService;
 import interfaces.Dialog;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Department;
 import objects.Location;
+import objects.Organization;
 import objects.User;
 
 /**
@@ -24,6 +26,7 @@ import objects.User;
  */
 
 public class UserEditController implements Dialog {
+
 
     @FXML
     private Button okButton;
@@ -35,6 +38,8 @@ public class UserEditController implements Dialog {
     private TextField lastNameField;
     @FXML
     private TextField middleNameField;
+    @FXML
+    private ComboBox<Organization> organizationComboBox;
     @FXML
     private ComboBox<Location> locationBox;
     @FXML
@@ -52,8 +57,8 @@ public class UserEditController implements Dialog {
 
 
     private Stage dialog;
-    private Location currentLocation;
     private User editedUser;
+    private boolean invalidData = false;
 
 
     /**
@@ -63,15 +68,24 @@ public class UserEditController implements Dialog {
     @FXML
     private void initialize() {
 
+        //Load organizationComboBox
+        ObservableList<Organization> organizationList = FXCollections.observableArrayList();
+        organizationList.addAll(OrganizationService.getAll());
+        organizationComboBox.setItems(organizationList.sorted());
+
         //Load departments to ComboBox
         ObservableList<Department> departmentsList = FXCollections.observableArrayList();
         departmentsList.addAll(DepartmentService.getAll());
-        departmentBox.setItems(departmentsList);
+        departmentBox.setItems(departmentsList.sorted());
 
         //Load locations to ComboBox
         ObservableList<Location> locationsList = FXCollections.observableArrayList();
         locationsList.addAll(LocationService.getAll());
         locationBox.setItems(locationsList);
+
+        //Change Departments in departmentsComboBox when Organization changes
+        organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable1, oldValue, newValue ) -> setDepartmentBoxByOrganization(newValue));
     }
 
     /**
@@ -89,19 +103,22 @@ public class UserEditController implements Dialog {
     @FXML
     private void handleOkButton() {
 
-        editedUser.setFirstName(firstNameField.getText());
-        editedUser.setLastName(lastNameField.getText());
-        editedUser.setMiddleName(middleNameField.getText());
-        editedUser.setLocation(locationBox.getValue());
-        editedUser.setDepartment(departmentBox.getValue());
-        editedUser.setPosition(positionField.getText());
-        editedUser.setLogin(loginField.getText());
-        editedUser.setPassword(passwordField.getText());
-        editedUser.setMail(mailField.getText());
-        UserService.add(editedUser);
-        this.dialog.close();
+        if(!invalidData && departmentBox.getSelectionModel().getSelectedItem() != null){
+            editedUser.setFirstName(firstNameField.getText());
+            editedUser.setLastName(lastNameField.getText());
+            editedUser.setMiddleName(middleNameField.getText());
+            editedUser.setLocation(locationBox.getValue());
+            editedUser.setDepartment(departmentBox.getValue());
+            editedUser.setPosition(positionField.getText());
+            editedUser.setLogin(loginField.getText());
+            editedUser.setPassword(passwordField.getText());
+            editedUser.setMail(mailField.getText());
+            UserService.add(editedUser);
+            this.dialog.close();
+        } else {
+            //show dialog invalid data !
+        }
     }
-
 
     /**
      * Handle cancel Button pressed. Closes dialog.
@@ -109,14 +126,6 @@ public class UserEditController implements Dialog {
     @FXML
     private void handleCancelButton() {
         this.dialog.close();
-    }
-
-    /**
-     * Set reference to current table which from called this controller
-     * @param currentLocation
-     */
-    public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
     }
 
     /**
@@ -128,6 +137,7 @@ public class UserEditController implements Dialog {
         firstNameField.setText(editedUser.getFirstName());
         lastNameField.setText(editedUser.getLastName());
         middleNameField.setText(editedUser.getMiddleName());
+        organizationComboBox.getSelectionModel().select(editedUser.getDepartment().getOrganization());
         locationBox.getSelectionModel().select(editedUser.getLocation());
         departmentBox.getSelectionModel().select(editedUser.getDepartment());
         positionField.setText(editedUser.getPosition());
@@ -138,13 +148,19 @@ public class UserEditController implements Dialog {
 
     }
 
-    /**
-     * Test for existing user in table
-     * @return
-     */
+    public void setDepartmentBoxByOrganization(Organization organization){
+        departmentBox.valueProperty().set(null);
+        ObservableList<Department> departmentList = FXCollections.observableArrayList();
+        departmentList.setAll(DepartmentService.getByOrganization(organization));
+        if(departmentList.isEmpty()){
+            departmentBox.setDisable(true);
+            invalidData = true;
+        } else {
+            departmentBox.setDisable(false);
+            invalidData = false;
+        }
+        departmentBox.setItems(departmentList);
 
-    private boolean isUserAlreadyExist(){
-        //TODO check from db
-        return false;
     }
+
 }
