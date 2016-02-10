@@ -82,12 +82,12 @@ public class UserServiceTest {
     }
 
     @Test
-    public void ShouldGetUsersByLocationName() {
-        User user = TestUsersManager.createTestUser("UserToGetByLocationName");
+    public void ShouldGetUsersByLocation() {
+        User user = TestUsersManager.createTestUser("UserToGetByLocation");
         User addedUser = UserService.add(user);
 
         boolean UserIsFound = false;
-        List<User> UserList = UserService.getUsersByLocationName(addedUser.getLocation().getName());
+        List<User> UserList = UserService.getUsersByLocation(addedUser.getLocation());
         for (User foundUser : UserList) {
             if (foundUser.getId() == addedUser.getId()) {
                 UserIsFound = true;
