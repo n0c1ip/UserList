@@ -34,13 +34,11 @@ public class UserService {
         });
     }
 
-    public static List<User> getUsersByLocationName(String locationName){
+    public static List<User> getUsersByLocation(Location location){
         return doQueryCasual(manager -> {
-            TypedQuery<Location> getLocationByName = manager.createNamedQuery("Location.getByName", Location.class);
-            getLocationByName.setParameter("name", locationName);
-            TypedQuery<User> getUserByLocatonName = manager.createNamedQuery("User.getUsersByLocationName", User.class);
-            getUserByLocatonName.setParameter("location", getLocationByName.getSingleResult());
-            return getUserByLocatonName.getResultList();
+            TypedQuery<User> getUserByLocation = manager.createNamedQuery("User.getUsersByLocation", User.class);
+            getUserByLocation.setParameter("location", location);
+            return getUserByLocation.getResultList();
         });
     }
 

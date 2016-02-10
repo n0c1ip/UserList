@@ -98,7 +98,8 @@ public class TableController {
 
     public void setUserLocationTable(Location locationName) {
         ObservableList<User> tableViewList = FXCollections.observableArrayList();
-        tableViewList.addAll(UserService.getAll());
+
+        tableViewList.addAll(UserService.getUsersByLocation(locationName));
         userTable.setItems(tableViewList);
     }
 
