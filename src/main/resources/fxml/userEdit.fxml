@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserEditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserEditController">
    <children>
       <GridPane fx:id="gridPane" layoutX="1.0" layoutY="33.0" prefHeight="321.0" prefWidth="310.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
         <columnConstraints>
@@ -109,7 +109,7 @@
             <TextField fx:id="loginField" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="mailField" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="departmentBox" prefHeight="25.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="departmentBox" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="positionField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <CheckBox fx:id="firedUser" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" text="Уволен" GridPane.rowIndex="10">
                <padding>
@@ -131,7 +131,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="locationBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="locationBox" prefHeight="25.0" prefWidth="252.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label prefHeight="30.0" prefWidth="106.0" text="Организация" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -141,7 +141,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="organizationComboBox" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="organizationComboBox" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="43.0" prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
