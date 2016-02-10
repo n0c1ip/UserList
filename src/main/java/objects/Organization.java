@@ -9,7 +9,7 @@ import java.util.Set;
         @NamedQuery(name="Organization.getAll",
                 query="SELECT o FROM Organization o"),
         @NamedQuery(name="Organization.getByName",
-                query="SELECT o FROM Department o WHERE o.name = :name")
+                query="SELECT o FROM Organization o WHERE o.name = :name")
 })
 public class Organization extends Model {
 
@@ -17,6 +17,9 @@ public class Organization extends Model {
 
     @OneToMany(mappedBy="organization")
     private Set<Department> departmentSet;
+
+    public Organization() {
+    }
 
     public Organization(String name) {
         this.name = name;
@@ -33,5 +36,10 @@ public class Organization extends Model {
     }
     public void setDepartmentSet(Set<Department> departmentSet) {
         this.departmentSet = departmentSet;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

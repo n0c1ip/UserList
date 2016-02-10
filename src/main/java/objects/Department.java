@@ -10,7 +10,9 @@ import java.util.Set;
         @NamedQuery(name="Department.getAll",
                     query="SELECT d FROM Department d"),
         @NamedQuery(name="Department.getByName",
-                    query="SELECT d FROM Department d WHERE d.name = :name")
+                    query="SELECT d FROM Department d WHERE d.name = :name"),
+        @NamedQuery(name="Department.getByOrganization",
+        query="SELECT d FROM Department d WHERE d.organization = :organization")
 })
 public class Department extends Model{
 
