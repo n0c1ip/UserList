@@ -76,14 +76,14 @@ public class ImportCSVController implements Dialog{
      * CSV file format:
      * Last Name; First Name; Middle Name; Department Name; Position; Login; Password; E-Mail
      * @param location location to load Users
-     * @param csvFilename - path to csv file
-     * @param delimiter - delimeter used in csv file
+     * @param fileInputStream - csv data input stream
+     * @param delimiter - delimeter used in csv
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public void loadUsersFromCSV(Location location, String csvFilename, char delimiter) throws IOException {
-        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(csvFilename), "windows-1251"), delimiter);
+    public void loadUsersFromCSV(Location location, InputStream fileInputStream, char delimiter) throws IOException {
+        CSVReader reader = new CSVReader(new InputStreamReader(fileInputStream, "windows-1251"), delimiter);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
             if (nextLine.length == 8){
@@ -114,7 +114,7 @@ public class ImportCSVController implements Dialog{
     public void handleLoadButton() {
         if (!filePathField.getText().isEmpty() && choiceBox.getSelectionModel().getSelectedItem() != null){
             try {
-                loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(),filePathField.getText(),';');
+                loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(), new FileInputStream(filePathField.getText()),';');
                 mainController.getDialogController().showAlertDialog(Alert.AlertType.INFORMATION,"Импорт из CSV","Импорт завершен");
             } catch (FileNotFoundException e) {
                 mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Файл не найден");
