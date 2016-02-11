@@ -23,7 +23,7 @@ public class MainController {
     public void show() {
         EntityManagerFactory.initialize();
         initDialogController();
-        dialogController.showLoginDialog();
+//        dialogController.showLoginDialog();
         addData();
         initRootLayout();
         initTabLayout();
