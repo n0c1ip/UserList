@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.io.*;
 import java.util.List;
 
-public class ImportCsvTest {
+public class ImportCsvControllerTest {
 
 
     @Test(expected = FileNotFoundException.class)
@@ -22,7 +22,7 @@ public class ImportCsvTest {
     }
 
     @Test
-    public void shouldImportCSV() throws IOException {
+    public void shouldLoadUsersFromCSV() throws IOException {
         String locationName = "LocationToTestCSVImport";
         Location location = new Location(locationName);
         Location addedLocation = LocationService.add(location);
