@@ -7,6 +7,7 @@ public class MainControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
+        MainController mainController = new MainController();
         return null;
     }
 }
