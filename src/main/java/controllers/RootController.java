@@ -38,7 +38,7 @@ public class RootController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choseLocation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseLocation.fxml"));
             AnchorPane choosepane = loader.load();
             ChooseTabController controller = loader.getController();
             controller.setMainController(mainController);
@@ -54,7 +54,7 @@ public class RootController {
 
     public void showDepartmentTable(){
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/departmentTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
             SplitPane table = loader.load();
             DepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
