@@ -14,4 +14,8 @@ public class EntityManagerFactory {
     public static EntityManager createEntityManager() {
         return entityManagerFactory.createEntityManager();
     }
+
+    public static void closeEntityManagerFactory(){
+        entityManagerFactory.close();
+    }
 }

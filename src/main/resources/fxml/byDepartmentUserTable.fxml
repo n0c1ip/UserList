@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DepartmentTableController">
+<SplitPane dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DepartmentTableController">
     <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
          <children>
@@ -41,21 +41,21 @@
                          </TableView>
                      </children>
                   </AnchorPane>
-                <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="599.0">
+                <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0">
                      <children>
-                            <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Добавить" onAction="#handleNewUserButton">
+                                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="97.0" text="Добавить">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="changeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Изменить" onAction="#handleEditPersonButton">
+                                    <Button fx:id="changeButton" mnemonicParsing="false" onAction="#handleEditPersonButton" prefHeight="25.0" prefWidth="97.0" text="Изменить">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Удалить" onAction="#handleDeletePerson">
+                                    <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="25.0" prefWidth="97.0" text="Удалить">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
