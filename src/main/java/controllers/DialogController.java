@@ -32,7 +32,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEdit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
             controller.setDialog(dialog);

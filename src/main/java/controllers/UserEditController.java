@@ -21,7 +21,7 @@ import objects.User;
 
 /**
  * <p>UserEditController uses for dialog of editing and adding Users.
- * uses userEdit.fxml for UI.
+ * uses userEditDialog.fxml for UI.
  * Before initialize need to set up current table, edited user and stage.
  */
 
