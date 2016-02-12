@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -22,20 +22,22 @@
                   <MenuItem disable="true" mnemonicParsing="false" text="Удалить" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Подразделения">
+            <Menu mnemonicParsing="false" text="Таблицы">
               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
-                <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица подразделений" />
+                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Таблица по объекту" />
+                <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица по подразделениям" />
+                  <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Объекты">
+            <Menu mnemonicParsing="false" text="Структура">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
-                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Открыть объект" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Сервис">
                     <items>
+                  <MenuItem mnemonicParsing="false" text="Настройки" />
                         <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>

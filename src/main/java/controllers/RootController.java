@@ -34,11 +34,11 @@ public class RootController {
 
         try {
             final Stage dialog = new Stage();
-            dialog.setTitle("Выбор таблицы");
+            dialog.setTitle("Выбор объекта");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choseLocation.fxml"));
             AnchorPane choosepane = loader.load();
             ChooseTabController controller = loader.getController();
             controller.setMainController(mainController);

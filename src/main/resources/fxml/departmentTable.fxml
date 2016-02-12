@@ -45,17 +45,17 @@
                      <children>
                             <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Добавить">
+                                    <Button fx:id="addButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Добавить" onAction="#handleNewUserButton">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="changeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Изменить">
+                                    <Button fx:id="changeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Изменить" onAction="#handleEditPersonButton">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Удалить">
+                                    <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Удалить" onAction="#handleDeletePerson">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>

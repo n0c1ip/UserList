@@ -6,10 +6,7 @@ import crud.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import objects.Department;
 import objects.Organization;
 import objects.User;
@@ -68,7 +65,7 @@ public class DepartmentTableController {
 
         userTable.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPerson();
+                handleEditPersonButton();
             }
         });
 
@@ -93,12 +90,36 @@ public class DepartmentTableController {
     }
 
     @FXML
-    private void handleEditPerson() {
+    private void handleEditPersonButton() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog("Редактирование пользователя", selectedUser);
         }
 
+    }
+
+    @FXML
+    private void handleNewUserButton() {
+        User user = new User();
+        mainController.getDialogController().showUserEditDialog("Добавить пользователя", user);
+    }
+
+    @FXML
+    private void handleDeletePerson() {
+        int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            User userToDelete = userTable.getSelectionModel().getSelectedItem();
+            userTable.getItems().remove(selectedIndex);
+            UserService.delete(userToDelete.getId());
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainController.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+        }
     }
 
 }
