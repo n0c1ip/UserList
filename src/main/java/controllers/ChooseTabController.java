@@ -18,7 +18,7 @@ import start.EnterPoint;
 import java.io.IOException;
 
 /**
- * Controller of Dialog for openning new tab with selected table
+ * Controller of Dialog for opening new tab with selected table
  */
 public class ChooseTabController implements Dialog {
 
@@ -53,7 +53,7 @@ public class ChooseTabController implements Dialog {
     }
     public void loadNewTab(Location currentLocation){
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/userTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
             SplitPane table = loader.load();
             TableController controller = loader.getController();
             controller.setMainController(mainController);

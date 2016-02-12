@@ -23,16 +23,9 @@ public class MainController {
     public void show() {
         EntityManagerFactory.initialize();
         initDialogController();
-        dialogController.showLoginDialog();
-        addData();
+//        dialogController.showLoginDialog();
         initRootLayout();
         initTabLayout();
-    }
-
-    //Some dummy data
-    public void addData(){
-
-
     }
 
     /**
