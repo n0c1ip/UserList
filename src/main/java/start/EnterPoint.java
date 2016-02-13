@@ -20,8 +20,12 @@ public class EnterPoint extends Application {
         mainController.setPrimaryStage(primaryStage);
         mainController.setMainWindowTitle("User List");
         mainController.show();
-        //when close windows, closes connection with db
-        primaryStage.setOnCloseRequest(event -> EntityManagerFactory.closeEntityManagerFactory());
+    }
+
+    @Override
+    public void stop() throws Exception {
+        EntityManagerFactory.closeEntityManagerFactory();
+        super.stop();
     }
 
 }

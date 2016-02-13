@@ -57,7 +57,7 @@ public class MainController {
         }
     }
 
-    private void initDialogController(){
+    public void initDialogController(){
         DialogController dialogController = new DialogController();
         dialogController.setPrimaryStage(primaryStage);
         this.dialogController = dialogController;
