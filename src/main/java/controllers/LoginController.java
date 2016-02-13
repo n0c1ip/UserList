@@ -1,6 +1,5 @@
 package controllers;// Created by mva on 05.02.2016.
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -19,7 +18,7 @@ public class LoginController {
     }
 
 
-    private void closeWindow(){
+    public void closeWindow(){
         Stage thisWindow = (Stage) loginButton.getScene().getWindow();
         thisWindow.close();
     }
