@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ImportCSVController">
+<AnchorPane fx:id="paneImportCsv" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ImportCSVController">
     <children>
         <ChoiceBox fx:id="choiceBox" layoutX="18.0" layoutY="48.0" prefHeight="25.0" prefWidth="245.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <cursor>

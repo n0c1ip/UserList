@@ -9,10 +9,10 @@
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
-                <Menu mnemonicParsing="false" text="Файл">
+                <Menu fx:id="menuFile" mnemonicParsing="false" text="Файл">
                     <items>
-                  <MenuItem mnemonicParsing="false" text="Печать" />
-                        <MenuItem mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
+                        <MenuItem mnemonicParsing="false" text="Печать" />
+                        <MenuItem fx:id="itemCloseWindow" mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Правка">
@@ -22,23 +22,23 @@
                   <MenuItem disable="true" mnemonicParsing="false" text="Удалить" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Таблицы">
-              <items>
-                  <MenuItem fx:id="addTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Таблица по объекту" />
-                <MenuItem mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица по подразделениям" />
-                  <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Структура">
-              <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
-              </items>
-            </Menu>
-                <Menu mnemonicParsing="false" text="Сервис">
+                <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
+                  <items>
+                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Таблица по объекту" />
+                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица по подразделениям" />
+                      <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
+                  <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
+                      <MenuItem fx:id="itemAddDepartment" mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
                   <MenuItem mnemonicParsing="false" text="Настройки" />
-                        <MenuItem fx:id="importCsvMenuItem" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
+                        <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
             </menus>
