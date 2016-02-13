@@ -4,7 +4,6 @@ import com.opencsv.CSVReader;
 import crud.DepartmentService;
 import crud.LocationService;
 import crud.UserService;
-import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +15,7 @@ import javafx.stage.Stage;
 import objects.Department;
 import objects.Location;
 import objects.User;
+
 import javax.persistence.NoResultException;
 import java.io.*;
 
@@ -25,10 +25,9 @@ import java.io.*;
  *
  */
 
-public class ImportCSVController implements Dialog{
+public class ImportCSVController {
 
     private MainController mainController;
-    private Stage dialog;
     private String filePath;
     @FXML
     ChoiceBox<Location> choiceBox;
@@ -65,9 +64,6 @@ public class ImportCSVController implements Dialog{
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
-    }
-    public void setDialog(Stage dialog) {
-        this.dialog = dialog;
     }
 
     /**
@@ -124,7 +120,7 @@ public class ImportCSVController implements Dialog{
             } catch (IOException e){
                 mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Ошибка");
             } finally {
-                dialog.close();
+                closeWindow();
             }
 
         } else {
@@ -133,6 +129,11 @@ public class ImportCSVController implements Dialog{
     }
 
     public void handleCancelButton() {
-        this.dialog.close();
+        closeWindow();
+    }
+
+    private void closeWindow(){
+        Stage thisWindow = (Stage) choiceBox.getScene().getWindow();
+        thisWindow.close();
     }
 }
