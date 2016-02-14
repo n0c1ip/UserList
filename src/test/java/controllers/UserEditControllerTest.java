@@ -40,7 +40,7 @@ public class UserEditControllerTest extends GuiTest {
         click("#passwordField").type("f");
         click("#mailField").type("g");
         click("#firedUser");
-        click("#cancelButton");
+        //click("#cancelButton");
     }
 
 }

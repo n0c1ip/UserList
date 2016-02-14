@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -26,8 +27,11 @@ public class DialogController {
      * @param user editing User
      */
     public void showUserEditDialog(String title, User user) {
+        getUserEditDialog(title, user).showAndWait();
+    }
+    public Stage getUserEditDialog(String title, User user) {
+        final Stage dialog = new Stage();
         try{
-            final Stage dialog = new Stage();
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
@@ -37,23 +41,26 @@ public class DialogController {
             UserEditController controller = loader.getController();
             controller.setEditedUser(user);
             dialog.setScene(new Scene(useredit));
-            dialog.showAndWait();
-
+            return  dialog;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return dialog;
     }
+
 
     /**
      * JavaFx TextInput Dialog creating new Department
      */
     public void showAddDepartmentDialog(){
+        Optional<String> result = getDepartmentDialog().showAndWait();
+    }
+    public Dialog getDepartmentDialog(){
         TextInputDialog dialog = new TextInputDialog("Название подразделения");
         dialog.setTitle("Создание подразделения");
         dialog.setHeaderText("Новое подразделение");
         dialog.setContentText("Введите название подразделения:");
-        Optional<String> result = dialog.showAndWait();
-//        result.
+        return dialog;
     }
 
 
@@ -68,19 +75,25 @@ public class DialogController {
      * @param contentText text inside window
      */
     public void showAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText){
+        getAlertDialog(alertType, dialogTitle, contentText).showAndWait();
+    }
+    public Alert getAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText) {
         Alert alert = new Alert(alertType);
         alert.setTitle(dialogTitle);
         alert.setHeaderText(null);
         alert.setContentText(contentText);
-        alert.showAndWait();
+        return alert;
     }
 
     /**
      * Log in Dialog, shows before running app
      */
     public void showLoginDialog(){
+        getLoginDialog().showAndWait();
+    }
+    public Stage getLoginDialog(){
+        final Stage dialog = new Stage();
         try{
-            final Stage dialog = new Stage();
             dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
@@ -89,14 +102,17 @@ public class DialogController {
             AnchorPane login = loader.load();
             LoginController controller = loader.getController();
             dialog.setScene(new Scene(login));
-            dialog.showAndWait();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return dialog;
     }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
     }
 }

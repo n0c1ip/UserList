@@ -1,38 +1,76 @@
 package controllers;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import objects.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
-import java.io.IOException;
 
-import static junit.framework.Assert.assertNotNull;
+public class DialogControllerTest extends GuiTest {
 
-public class DialogControllerTest extends GuiTest{
+    private Stage userEditDialog;
+    private String userTitleText= "Тест userEdit";
+
+    private Dialog departmentDialog;
+    private String departmentTitleText = "Создание подразделения";
+
+    private Dialog alertDialog;
+    private String alertTitleText = "Тест alert";
+
+    private Stage loginDialog;
 
     @Override
     protected Parent getRootNode() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        MainController mainController = new MainController();
+        mainController.setPrimaryStage(GuiTest.stage);
+        mainController.show();
 
-        AnchorPane login = new AnchorPane();
-        try {
-            login = loader.load();
+        DialogController dialogController = mainController.getDialogController();
+        departmentDialog = dialogController.getDepartmentDialog();
+        alertDialog = dialogController.getAlertDialog(Alert.AlertType.INFORMATION, alertTitleText, "");
+        userEditDialog = dialogController.getUserEditDialog(userTitleText, new User());
+        loginDialog = dialogController.getLoginDialog();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return login;
+        return new BorderPane();
     }
 
     @Test
-    public void loginShouldHaveAllElements() throws Exception {
-        assertNotNull(GuiTest.find("#paneLogin"));
-        click("#fieldUserName").type("log");
-        click("#fieldPassword").type("pass");
-//      click("#loginButton");
-        assertNotNull(GuiTest.find("#paneLogin"));
+    public void userEditDialogShouldBeCorrect() {
+        Assert.assertNotNull(userEditDialog);
+        Assert.assertEquals(userTitleText, userEditDialog.getTitle());
+        Assert.assertNotNull(userEditDialog.getOwner());
+        Assert.assertEquals(GuiTest.stage, userEditDialog.getOwner());
+        Assert.assertNotNull(userEditDialog.getScene().getRoot());
     }
 
+    @Test
+    public void departmentDialogShouldBeCorrect() {
+        Assert.assertNotNull(departmentDialog);
+        Assert.assertTrue(departmentDialog instanceof TextInputDialog);
+        Assert.assertEquals(departmentTitleText, departmentDialog.getTitle());
+    }
+
+    @Test
+    public void alertDialogShouldBeCorrect() {
+        Assert.assertNotNull(alertDialog);
+        Assert.assertTrue(alertDialog instanceof Alert);
+        Assert.assertEquals(alertTitleText, alertDialog.getTitle());
+    }
+
+    @Test
+    public void loginDialogShouldBeCorrect() {
+        Assert.assertNotNull(loginDialog);
+        Assert.assertNotNull(loginDialog.getOwner());
+        Assert.assertEquals(GuiTest.stage, loginDialog.getOwner());
+        Assert.assertNotNull(loginDialog.getScene().getRoot());
+    }
+
+
 }
+
