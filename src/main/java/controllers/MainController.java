@@ -3,6 +3,7 @@ package controllers;// Created by mva on 04.02.2016.
 import crud.EntityManagerFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -48,7 +49,8 @@ public class MainController {
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить основной интерфейс");
+            System.out.println(e.getStackTrace());
         }
     }
 
@@ -61,7 +63,8 @@ public class MainController {
             TabPane tabPane = loader.load();
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
-            e.printStackTrace();
+            dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс панели таблицы");
+            System.out.println(e.getStackTrace());
         }
     }
 
