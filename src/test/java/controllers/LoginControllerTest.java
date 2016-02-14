@@ -3,7 +3,7 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
@@ -16,12 +16,9 @@ public class LoginControllerTest extends GuiTest{
     @Override
     protected Parent getRootNode() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-
         AnchorPane login = new AnchorPane();
         try {
             login = loader.load();
-            LoginController loginController = loader.getController();
-            loginController.setDialog(new Stage());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,7 +30,7 @@ public class LoginControllerTest extends GuiTest{
         assertNotNull(GuiTest.find("#paneLogin"));
         click("#fieldUserName").type("log");
         click("#fieldPassword").type("pass");
-        click("#loginButton");
+        Assert.assertNotNull(find("#loginButton"));
         assertNotNull(GuiTest.find("#paneLogin"));
     }
 
