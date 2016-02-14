@@ -2,7 +2,6 @@ package controllers;
 
 
 import crud.LocationService;
-import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,10 +19,9 @@ import java.io.IOException;
 /**
  * Controller of Dialog for opening new tab with selected table
  */
-public class ChooseTabController implements Dialog {
+public class ChooseTabController {
 
     private MainController mainController;
-    private Stage dialog;
     private TabPane tabLayout;
 
     @FXML
@@ -40,16 +38,13 @@ public class ChooseTabController implements Dialog {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-    public void setDialog(Stage dialog) {
-        this.dialog = dialog;
-    }
 
     public void handleCancelButton() {
-        this.dialog.close();
+        closeWindow();
     }
     public void handleOpenButton(){
         loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
-        dialog.close();
+        closeWindow();
     }
     public void loadNewTab(Location currentLocation){
         try {
@@ -66,4 +61,10 @@ public class ChooseTabController implements Dialog {
             ex.printStackTrace();
         }
     }
+
+    private void closeWindow(){
+        Stage thisWindow = (Stage) choiceBox.getScene().getWindow();
+        thisWindow.close();
+    }
+
 }

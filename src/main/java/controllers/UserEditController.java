@@ -5,7 +5,6 @@ import crud.DepartmentService;
 import crud.LocationService;
 import crud.OrganizationService;
 import crud.UserService;
-import interfaces.Dialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,7 +24,7 @@ import objects.User;
  * Before initialize need to set up current table, edited user and stage.
  */
 
-public class UserEditController implements Dialog {
+public class UserEditController {
 
 
     @FXML
@@ -55,11 +54,8 @@ public class UserEditController implements Dialog {
     @FXML
     private CheckBox firedUser;
 
-
-    private Stage dialog;
     private User editedUser;
     private boolean invalidData = false;
-
 
     /**
      * Loading in ComboBox deprtments list.
@@ -86,15 +82,7 @@ public class UserEditController implements Dialog {
         //Change Departments in departmentsComboBox when Organization changes
         organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable1, oldValue, newValue ) -> setDepartmentBoxByOrganization(newValue));
-    }
 
-    /**
-     * Set reference to Stage. Uses when dialog closes.
-     * @param dialog
-     */
-    @Override
-    public void setDialog(Stage dialog) {
-        this.dialog = dialog;
     }
 
     /**
@@ -114,9 +102,9 @@ public class UserEditController implements Dialog {
             editedUser.setPassword(passwordField.getText());
             editedUser.setMail(mailField.getText());
             UserService.add(editedUser);
-            this.dialog.close();
+            closeWindow();
         } else {
-            //show dialog invalid data !
+            //show dialog invalid data
         }
     }
 
@@ -125,7 +113,7 @@ public class UserEditController implements Dialog {
      */
     @FXML
     private void handleCancelButton() {
-        this.dialog.close();
+       closeWindow();
     }
 
     /**
@@ -161,6 +149,11 @@ public class UserEditController implements Dialog {
         }
         departmentBox.setItems(departmentList);
 
+    }
+
+    private void closeWindow(){
+        Stage thisWindow = (Stage) okButton.getScene().getWindow();
+        thisWindow.close();
     }
 
 }

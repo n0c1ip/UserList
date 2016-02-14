@@ -3,15 +3,12 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
 import java.io.IOException;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
-import static org.loadui.testfx.Assertions.assertNodeExists;
 
 public class DialogControllerTest extends GuiTest{
 
@@ -22,8 +19,7 @@ public class DialogControllerTest extends GuiTest{
         AnchorPane login = new AnchorPane();
         try {
             login = loader.load();
-            LoginController loginController = loader.getController();
-            loginController.setDialog(new Stage());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +31,7 @@ public class DialogControllerTest extends GuiTest{
         assertNotNull(GuiTest.find("#paneLogin"));
         click("#fieldUserName").type("log");
         click("#fieldPassword").type("pass");
-        click("#loginButton");
+//      click("#loginButton");
         assertNotNull(GuiTest.find("#paneLogin"));
     }
 
