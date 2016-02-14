@@ -15,9 +15,10 @@ import java.io.IOException;
  */
 public class MainController {
 
+    private DialogController dialogController;
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private DialogController dialogController;
+
 
 
     public void show() {
@@ -26,6 +27,13 @@ public class MainController {
 //        dialogController.showLoginDialog();
         initRootLayout();
         initTabLayout();
+    }
+
+
+    public void initDialogController(){
+        DialogController dialogController = new DialogController();
+        dialogController.setPrimaryStage(primaryStage);
+        this.dialogController = dialogController;
     }
 
     /**
@@ -57,11 +65,7 @@ public class MainController {
         }
     }
 
-    public void initDialogController(){
-        DialogController dialogController = new DialogController();
-        dialogController.setPrimaryStage(primaryStage);
-        this.dialogController = dialogController;
-    }
+
 
     public void setMainWindowTitle(String title){
         this.primaryStage.setTitle(title);

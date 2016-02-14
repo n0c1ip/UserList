@@ -99,4 +99,8 @@ public class DialogController {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
+    }
 }
