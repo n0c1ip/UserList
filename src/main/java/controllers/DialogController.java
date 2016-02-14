@@ -35,7 +35,6 @@ public class DialogController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
-            controller.setDialog(dialog);
             controller.setEditedUser(user);
             dialog.setScene(new Scene(useredit));
             dialog.showAndWait();
@@ -89,7 +88,6 @@ public class DialogController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
             AnchorPane login = loader.load();
             LoginController controller = loader.getController();
-            controller.setDialog(dialog);
             dialog.setScene(new Scene(login));
             dialog.showAndWait();
 

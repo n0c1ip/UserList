@@ -18,7 +18,7 @@
                   <TableColumn id="departmentColumn" fx:id="departmentColumn" prefWidth="75.0" text="Отдел" />
                   <TableColumn fx:id="positionColumn" prefWidth="75.0" text="Должность" />
                   <TableColumn fx:id="loginColumn" prefWidth="75.0" text="Логин" />
-                  <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Пароль" visible="false" />
+                  <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Пароль"/>
                   <TableColumn fx:id="mailColumn" prefWidth="75.0" text="Эл. адрес" />
               </columns>
                <columnResizePolicy>

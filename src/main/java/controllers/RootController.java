@@ -42,7 +42,6 @@ public class RootController {
             AnchorPane choosepane = loader.load();
             ChooseTabController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setDialog(dialog);
             dialog.setScene(new Scene(choosepane));
             dialog.show();
 
@@ -79,7 +78,6 @@ public class RootController {
             AnchorPane importcsv = loader.load();
             ImportCSVController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setDialog(dialog);
             dialog.setScene(new Scene(importcsv));
             dialog.show();
 
