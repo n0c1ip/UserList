@@ -21,13 +21,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="173.0" text="Тип базы данных:" textAlignment="RIGHT" />
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="173.0" text="Тип базы данных" textAlignment="RIGHT" />
             <ComboBox fx:id="dbTypeComboBox" prefHeight="25.0" prefWidth="204.0" GridPane.columnIndex="1" />
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="128.0" text="Логин:" textAlignment="CENTER" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="128.0" text="Пароль:" textAlignment="CENTER" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="147.0" text="Логин" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="125.0" text="Пароль" textAlignment="CENTER" GridPane.rowIndex="3" />
             <Separator prefHeight="9.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="129.0" text="Сервер, порт:" textAlignment="RIGHT" textOverrun="CLIP" GridPane.rowIndex="1" />
-            <TextField fx:id="serverTextField" prefHeight="25.0" prefWidth="140.0" promptText="localhost:3306" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="129.0" text="Сервер:порт/база" textAlignment="RIGHT" textOverrun="CLIP" GridPane.rowIndex="1" />
+            <TextField fx:id="serverTextField" prefHeight="25.0" prefWidth="140.0" promptText="localhost:3306/testdb" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="loginTextField" promptText="login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <PasswordField fx:id="passwordField" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="testConnectionButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Тест соединения" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -36,8 +36,8 @@
       </GridPane>
       <HBox alignment="CENTER_RIGHT" layoutX="1.0" layoutY="410.0" prefHeight="43.0" prefWidth="339.0" spacing="10.0">
          <children>
-            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" text="Сохранить" />
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Отмена" onAction="#handleCancelButton"/>
+            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="25.0" text="Сохранить" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="25.0" prefWidth="74.0" text="Отмена" />
          </children>
       </HBox>
    </children>
