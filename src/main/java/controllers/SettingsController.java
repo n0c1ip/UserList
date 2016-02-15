@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class SettingsController {
@@ -47,5 +48,8 @@ public class SettingsController {
     }
 
 
-
+    public void handleCancelButton() {
+        Stage thisWindow = (Stage) dbTypeComboBox.getScene().getWindow();
+        thisWindow.close();
+    }
 }

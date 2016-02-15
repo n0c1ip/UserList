@@ -5,9 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
+<Pane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
    <children>
-      <GridPane alignment="TOP_RIGHT" layoutX="9.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="197.0" prefWidth="328.0">
+      <GridPane alignment="TOP_RIGHT" layoutX="9.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="197.0" prefWidth="324.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="118.0" />
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="201.0" />
@@ -34,10 +34,10 @@
             <Separator prefHeight="9.0" prefWidth="205.0" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <HBox alignment="CENTER_RIGHT" layoutX="60.0" layoutY="410.0" prefHeight="43.0" prefWidth="280.0" spacing="10.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="1.0" layoutY="410.0" prefHeight="43.0" prefWidth="339.0" spacing="10.0">
          <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="25.0" text="Сохранить" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="25.0" text="Отмена" />
+            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" text="Сохранить" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Отмена" onAction="#handleCancelButton"/>
          </children>
       </HBox>
    </children>
