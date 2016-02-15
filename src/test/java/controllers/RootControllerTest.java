@@ -97,6 +97,10 @@ public class RootControllerTest extends GuiTest {
         click("#choiceCancel");
     }
 
-
-
+    @Test
+    public void shouldHavePreferencesItem() throws Exception {
+        click("#menuService");
+        click("#preferences");
+        click("#cancelButton");
+    }
 }
