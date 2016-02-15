@@ -1,5 +1,6 @@
 package controllers;// Created by mva on 15.02.2016.
 
+import crud.SettingsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.Settings;
 
 
 public class SettingsController {
@@ -30,6 +32,7 @@ public class SettingsController {
     Button cancelButton;
 
     public SettingsController() {
+
     }
 
     @FXML
@@ -41,15 +44,34 @@ public class SettingsController {
                         "Local DB"
                 );
         dbTypeComboBox.setItems(options);
+
+        Settings settings = SettingsService.readSettings();
+        if (settings != null) {
+            loginTextField.setText(settings.getUserName());
+            passwordField.setText(settings.getPassword());
+            serverTextField.setText(settings.getServer());
+        }
     }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-
-    public void handleCancelButton() {
+    public void closeWindow() {
         Stage thisWindow = (Stage) dbTypeComboBox.getScene().getWindow();
         thisWindow.close();
+    }
+
+    public void handleCancelButton() {
+        closeWindow();
+    }
+
+    public void handleOkButton() {
+        Settings settings = new Settings();
+        settings.setUserName(loginTextField.getText());
+        settings.setPassword(passwordField.getText());
+        settings.setServer(serverTextField.getText());
+        SettingsService.writeSettings(settings);
+        closeWindow();
     }
 }
