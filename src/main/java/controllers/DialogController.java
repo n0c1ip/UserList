@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import objects.User;
 
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -42,8 +43,9 @@ public class DialogController {
             controller.setEditedUser(user);
             dialog.setScene(new Scene(useredit));
             return  dialog;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
+            System.out.println(e.getStackTrace());
         }
         return dialog;
     }
@@ -102,8 +104,9 @@ public class DialogController {
             AnchorPane login = loader.load();
             LoginController controller = loader.getController();
             dialog.setScene(new Scene(login));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс логина");
+            System.out.println(e.getStackTrace());
         }
         return dialog;
     }

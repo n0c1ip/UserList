@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Location;
 import start.EnterPoint;
@@ -46,7 +43,7 @@ public class ChooseTabController {
         loadNewTab(choiceBox.getSelectionModel().getSelectedItem());
         closeWindow();
     }
-    public void loadNewTab(Location currentLocation){
+    public TabPane loadNewTab(Location currentLocation){
         try {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
             SplitPane table = loader.load();
@@ -58,8 +55,10 @@ public class ChooseTabController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс локации пользователя");
+            System.out.println(ex.getStackTrace());
         }
+        return tabLayout;
     }
 
     private void closeWindow(){

@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -44,9 +45,9 @@ public class RootController {
             controller.setMainController(mainController);
             dialog.setScene(new Scene(choosepane));
             dialog.show();
-
         } catch (IOException e) {
-            e.printStackTrace();
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
+            System.out.println(e.getStackTrace());
         }
 
     }
@@ -62,7 +63,8 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений");
+            System.out.println(ex.getStackTrace());
         }
     }
 
@@ -80,9 +82,9 @@ public class RootController {
             controller.setMainController(mainController);
             dialog.setScene(new Scene(importcsv));
             dialog.show();
-
         } catch (IOException e) {
-            e.printStackTrace();
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
+            System.out.println(e.getStackTrace());
         }
     }
 
