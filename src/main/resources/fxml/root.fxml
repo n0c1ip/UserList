@@ -37,7 +37,7 @@
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
-                  <MenuItem mnemonicParsing="false" text="Настройки" />
+                  <MenuItem fx:id="preferences" mnemonicParsing="false" text="Настройки" onAction="#showPreferencesDialog"/>
                         <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>

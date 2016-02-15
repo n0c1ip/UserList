@@ -8,6 +8,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import start.EnterPoint;
@@ -88,6 +89,28 @@ public class RootController {
         }
     }
 
+    public void showPreferencesDialog() {
+        try {
+            final Stage dialog = new Stage();
+            dialog.setTitle("Настройки");
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(mainController.getPrimaryStage());
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
+            Pane settingsPane = loader.load();
+            SettingsController controller = loader.getController();
+            controller.setMainController(mainController);
+            dialog.setScene(new Scene(settingsPane));
+            dialog.show();
+        } catch (IOException e){
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
+            e.getStackTrace();
+        }
+
+    }
+
+
+
     @FXML
     private void handleAddDepartmentMenuItem() {
         mainController.getDialogController().showAddDepartmentDialog();
@@ -101,4 +124,6 @@ public class RootController {
     public void handleCreateTableMenuItem() {
 
     }
+
+
 }
