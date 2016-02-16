@@ -22,14 +22,14 @@ public class Settings implements Serializable{
 
     private String server;
     private String serverPrefix = "jdbc:mysql://";
-    public String getActualServer() {
-        return server;
+    public String getServerWithPrefix() {
+        return serverPrefix + server;
     }
     public String getServer() {
-        return server.replace(serverPrefix, "");
+        return server;
     }
     public void setServer(String server) {
-        this.server = serverPrefix + server;
+        this.server = server;
     }
 
 }

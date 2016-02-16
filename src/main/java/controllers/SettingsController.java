@@ -4,12 +4,12 @@ import crud.SettingsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Settings;
+
+import java.io.IOException;
+import java.util.Optional;
 
 
 public class SettingsController {
@@ -32,7 +32,6 @@ public class SettingsController {
     Button cancelButton;
 
     public SettingsController() {
-
     }
 
     @FXML
@@ -45,8 +44,9 @@ public class SettingsController {
                 );
         dbTypeComboBox.setItems(options);
 
-        Settings settings = SettingsService.readSettings();
-        if (settings != null) {
+        Optional<Settings> optionalSettings = SettingsService.readSettings();
+        if (optionalSettings.isPresent()) {
+            Settings settings = optionalSettings.get();
             loginTextField.setText(settings.getUserName());
             passwordField.setText(settings.getPassword());
             serverTextField.setText(settings.getServer());

@@ -76,10 +76,10 @@ public class DialogController {
      * @param dialogTitle window title
      * @param contentText text inside window
      */
-    public void showAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText){
+    public static void showAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText){
         getAlertDialog(alertType, dialogTitle, contentText).showAndWait();
     }
-    public Alert getAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText) {
+    public static Alert getAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText) {
         Alert alert = new Alert(alertType);
         alert.setTitle(dialogTitle);
         alert.setHeaderText(null);
