@@ -19,7 +19,7 @@ public class TableController {
     private static final String EDIT_TITLE = "Редактирование пользователя";
 
     @FXML
-    private TableView<User> userTable;
+    private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> firstNameColumn;
     @FXML
@@ -78,11 +78,11 @@ public class TableController {
         showUserDetails(null);
 
         //change user listener
-        userTable.getSelectionModel().selectedItemProperty().addListener(
+        tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showUserDetails(newValue));
 
         //Double click edit user
-        userTable.setOnMousePressed(event -> {
+        tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditPerson();
             }
@@ -99,7 +99,7 @@ public class TableController {
         ObservableList<User> tableViewList = FXCollections.observableArrayList();
 
         tableViewList.addAll(UserService.getUsersByLocation(locationName));
-        userTable.setItems(tableViewList);
+        tableView.setItems(tableViewList);
     }
 
     private void showUserDetails(User user) {
@@ -133,10 +133,10 @@ public class TableController {
 
     @FXML
     private void handleDeletePerson() {
-        int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            User userToDelete = userTable.getSelectionModel().getSelectedItem();
-            userTable.getItems().remove(selectedIndex);
+            User userToDelete = tableView.getSelectionModel().getSelectedItem();
+            tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
         } else {
             // Nothing selected.
@@ -151,7 +151,7 @@ public class TableController {
 
     @FXML
     private void handleEditPerson() {
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(EDIT_TITLE, selectedUser);
         }

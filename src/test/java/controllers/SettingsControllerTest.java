@@ -35,10 +35,4 @@ public class SettingsControllerTest extends GuiTest{
         Assert.assertNotNull(find("#saveButton"));
         Assert.assertNotNull(find("#cancelButton"));
     }
-
-    @Test
-    public void shouldShowSettings() throws Exception {
-        Pane userEdit = find("#settingsPane");
-        Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
-    }
 }

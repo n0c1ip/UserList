@@ -10,7 +10,7 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="842.0" prefWidth="751.0">
          <children>
-            <TableView id="userTable" fx:id="userTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Фамилия" />
                 <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Имя" />
