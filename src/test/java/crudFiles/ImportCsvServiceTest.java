@@ -1,8 +1,9 @@
-package controllers;
+package crudFiles;
 
-import crud.DepartmentService;
-import crud.LocationService;
-import crud.UserService;
+import controllers.ImportCSVController;
+import crudDB.DepartmentService;
+import crudDB.LocationService;
+import crudDB.UserService;
 import org.junit.Assert;
 import objects.Location;
 import objects.User;
@@ -11,14 +12,13 @@ import org.junit.Test;
 import java.io.*;
 import java.util.List;
 
-public class ImportCsvControllerTest {
+public class ImportCsvServiceTest {
 
 
     @Test(expected = FileNotFoundException.class)
     public void shouldThrowFileNotFoundException() throws IOException {
-        ImportCSVController controller = new ImportCSVController();
         Location location = new Location("newLocation");
-        controller.loadUsersFromCSV(location, new FileInputStream("thereIsNoFile"),';');
+        ImportCSVService.loadUsersFromCSV(location, new FileInputStream("thereIsNoFile"),';');
     }
 
     @Test
@@ -39,8 +39,7 @@ public class ImportCsvControllerTest {
                          userPosition + ";" + userLogin + ";" + userPassword + ";" + userMail;
         InputStream inputStream = new ByteArrayInputStream(csvLine.getBytes());
 
-        ImportCSVController controller = new ImportCSVController();
-        controller.loadUsersFromCSV(addedLocation, inputStream, ';');
+        ImportCSVService.loadUsersFromCSV(addedLocation, inputStream, ';');
 
         List<User> userList = UserService.getUsersByLocation(addedLocation);
         User user = userList.get(0);

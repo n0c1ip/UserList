@@ -1,13 +1,11 @@
-package crud;
+package crudDB;
 
 import objects.Department;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-
-import static crud.QueryProvider.doQueryCasual;
-import static crud.QueryProvider.doQueryInTransaction;
+import static crudDB.QueryProvider.doQueryCasual;
+import static crudDB.QueryProvider.doQueryInTransaction;
 
 public class QueryProviderTest {
 

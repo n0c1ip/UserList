@@ -1,12 +1,10 @@
 package controllers;
 
-import crud.LocationService;
+import crudDB.LocationService;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import objects.Location;
-import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
