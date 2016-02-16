@@ -45,7 +45,7 @@ public class DepartmentTableControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveUserTableView() throws Exception {
-        Assert.assertNotNull(find("#userTable"));
+        Assert.assertNotNull(find("#tableView"));
     }
 
     @Test

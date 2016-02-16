@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.web.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -24,7 +19,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                         <TableView id="userTable" fx:id="userTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                         <TableView  fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
                                  <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Фамилия" />
                                  <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя" />

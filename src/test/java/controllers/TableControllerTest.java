@@ -58,7 +58,7 @@ public class TableControllerTest extends GuiTest{
 
     @Test
     public void shouldAddDataToTable(){
-        TableView tableView = find("#userTable");
+        TableView tableView = find("#tableView");
         ObservableList<User> testList = FXCollections.observableArrayList();
         User testUser = new User();
         testUser.setDepartment(new Department("TestDepartment"));

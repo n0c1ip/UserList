@@ -19,7 +19,7 @@ public class DepartmentTableController {
     @FXML
     private ComboBox<Organization> organizationComboBox;
     @FXML
-    private TableView<User> userTable;
+    private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> firstNameColumn;
     @FXML
@@ -63,7 +63,7 @@ public class DepartmentTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-        userTable.setOnMousePressed(event -> {
+        tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditPersonButton();
             }
@@ -75,7 +75,7 @@ public class DepartmentTableController {
         if(department != null){
             ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
             userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
-            userTable.setItems(userByDepartmentsList);
+            tableView.setItems(userByDepartmentsList);
         }
     }
 
@@ -91,7 +91,7 @@ public class DepartmentTableController {
 
     @FXML
     private void handleEditPersonButton() {
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog("Редактирование пользователя", selectedUser);
         }
@@ -106,10 +106,10 @@ public class DepartmentTableController {
 
     @FXML
     private void handleDeletePerson() {
-        int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            User userToDelete = userTable.getSelectionModel().getSelectedItem();
-            userTable.getItems().remove(selectedIndex);
+            User userToDelete = tableView.getSelectionModel().getSelectedItem();
+            tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
         } else {
             // Nothing selected.

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -37,7 +37,8 @@
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
-                  <MenuItem fx:id="preferences" mnemonicParsing="false" text="Настройки" onAction="#showPreferencesDialog"/>
+                  <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="Настройки" />
+                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" text="Выгрузить в Excel" onAction="#uploadInExcel"/>
                         <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
