@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
@@ -16,6 +17,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import start.EnterPoint;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -167,8 +169,13 @@ public class RootController {
             sheet.autoSizeColumn(i);
         }
 
-        FileOutputStream fileOutputStream = new FileOutputStream("excel.xls");
+        //Save file dialog
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(mainController.getPrimaryStage());
+
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
         workbook.write(fileOutputStream);
+
         fileOutputStream.close();
         workbook.close();
     }
