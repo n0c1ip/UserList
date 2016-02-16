@@ -1,5 +1,6 @@
-package crud;
+package crudFiles;
 
+import crudFiles.SettingsService;
 import objects.Settings;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package controllers;
 
 
-import crud.LocationService;
+import crudDB.LocationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

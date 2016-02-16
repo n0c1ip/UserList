@@ -1,12 +1,10 @@
-package crud;
+package crudDB;
 
-import controllers.DialogController;
-import javafx.scene.control.Alert;
+import crudFiles.SettingsService;
 import objects.Settings;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

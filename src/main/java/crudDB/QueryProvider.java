@@ -1,4 +1,4 @@
-package crud;
+package crudDB;
 
 import javax.persistence.EntityManager;
 

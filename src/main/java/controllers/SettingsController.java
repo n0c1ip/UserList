@@ -1,6 +1,6 @@
 package controllers;// Created by mva on 15.02.2016.
 
-import crud.SettingsService;
+import crudFiles.SettingsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Settings;
 
-import java.io.IOException;
 import java.util.Optional;
 
 

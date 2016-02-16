@@ -1,4 +1,4 @@
-package crud;
+package crudDB;
 
 
 import objects.Department;
@@ -7,8 +7,8 @@ import objects.Organization;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-import static crud.QueryProvider.doQueryCasual;
-import static crud.QueryProvider.doQueryInTransaction;
+import static crudDB.QueryProvider.doQueryCasual;
+import static crudDB.QueryProvider.doQueryInTransaction;
 
 public class DepartmentService {
 

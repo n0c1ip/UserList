@@ -1,12 +1,12 @@
-package crud;
+package crudDB;
 
 import objects.Location;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-import static crud.QueryProvider.doQueryInTransaction;
-import static crud.QueryProvider.doQueryCasual;
+import static crudDB.QueryProvider.doQueryInTransaction;
+import static crudDB.QueryProvider.doQueryCasual;
 
 public class LocationService {
 

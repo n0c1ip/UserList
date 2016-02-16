@@ -1,4 +1,4 @@
-package crud;
+package crudDB;
 
 import org.junit.Assert;
 import org.junit.Test;

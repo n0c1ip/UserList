@@ -1,8 +1,8 @@
 package controllers;
 
-import crud.DepartmentService;
-import crud.OrganizationService;
-import crud.UserService;
+import crudDB.DepartmentService;
+import crudDB.OrganizationService;
+import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

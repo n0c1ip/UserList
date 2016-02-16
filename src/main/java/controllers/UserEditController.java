@@ -1,10 +1,10 @@
 package controllers;
 //Created by mva on 30.01.2016.
 
-import crud.DepartmentService;
-import crud.LocationService;
-import crud.OrganizationService;
-import crud.UserService;
+import crudDB.DepartmentService;
+import crudDB.LocationService;
+import crudDB.OrganizationService;
+import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -1,6 +1,6 @@
 package controllers;// Created by mva on 04.02.2016.
 
-import crud.EntityManagerFactory;
+import crudDB.EntityManagerFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;

@@ -1,4 +1,4 @@
-package crud;
+package crudDB;
 
 import objects.Location;
 import org.junit.Assert;
