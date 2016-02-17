@@ -34,6 +34,8 @@ public class SettingsController {
     @FXML
     Button cancelButton;
 
+    boolean connectionElementsDisabled = false;
+
     public SettingsController() {
     }
 
@@ -46,6 +48,26 @@ public class SettingsController {
                         "Local DB"
                 );
         dbTypeComboBox.setItems(options);
+
+        //Disables/enables connection settings fields
+        dbTypeComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable1, oldValue, newValue ) -> {
+                    if(newValue.matches("Local DB")){
+                        serverTextField.setDisable(true);
+                        loginTextField.setDisable(true);
+                        passwordField.setDisable(true);
+                        testConnectionButton.setDisable(true);
+                        connectionElementsDisabled = true;
+                    } else {
+                        if(connectionElementsDisabled){
+                            serverTextField.setDisable(false);
+                            loginTextField.setDisable(false);
+                            passwordField.setDisable(false);
+                            testConnectionButton.setDisable(false);
+                            connectionElementsDisabled = false;
+                        }
+                    }
+                });
 
         Optional<Settings> optionalSettings = SettingsService.readSettings();
         if (optionalSettings.isPresent()) {
