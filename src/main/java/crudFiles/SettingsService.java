@@ -6,6 +6,9 @@ import javafx.scene.control.Alert;
 import objects.Settings;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class SettingsService {
@@ -58,6 +61,14 @@ public class SettingsService {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить данные из файла настроек (ошибка чтения)");
         }
         return Optional.empty();
+    }
+
+    public static boolean isSettingsValid(Settings settings) {
+        try (Connection connection = DriverManager.getConnection(settings.getServerWithPrefix(), settings.getUserName(), settings.getPassword())) {
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
 }

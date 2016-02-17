@@ -30,7 +30,7 @@
             <TextField fx:id="serverTextField" prefHeight="25.0" prefWidth="140.0" promptText="localhost:3306/testdb" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="loginTextField" promptText="login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <PasswordField fx:id="passwordField" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="testConnectionButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Тест соединения" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="testConnectionButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleTestButton" prefHeight="25.0" prefWidth="111.0" text="Тест соединения" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Separator prefHeight="9.0" prefWidth="205.0" GridPane.rowIndex="5" />
          </children>
       </GridPane>

@@ -8,7 +8,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Settings;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Optional;
+import java.util.Set;
 
 
 public class SettingsController {
@@ -66,11 +70,29 @@ public class SettingsController {
     }
 
     public void handleOkButton() {
+        Settings settings = fieldsToSettings();
+        if (SettingsService.isSettingsValid(settings)) {
+            SettingsService.writeSettings(fieldsToSettings());
+            closeWindow();
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
+        }
+    }
+
+    public void handleTestButton() {
+        if (SettingsService.isSettingsValid(fieldsToSettings())) {
+            DialogController.showAlertDialog(Alert.AlertType.INFORMATION, "Проверка соединения", "Соединение успешно установлено!");
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
+        }
+    }
+
+    private Settings fieldsToSettings() {
         Settings settings = new Settings();
         settings.setUserName(loginTextField.getText());
         settings.setPassword(passwordField.getText());
         settings.setServer(serverTextField.getText());
-        SettingsService.writeSettings(settings);
-        closeWindow();
+        return settings;
     }
+
 }
