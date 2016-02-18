@@ -51,24 +51,29 @@ public class DialogController {
     }
 
 
-    /**
-     * JavaFx TextInput Dialog creating new Department
-     */
-    public void showAddDepartmentDialog(){
-        Optional<String> result = getDepartmentDialog().showAndWait();
+    public Optional<String> showAddLocationDialog(){
+        Optional<String> result = getObjectDialog("объекта").showAndWait();
+        return result;
     }
-    public Dialog getDepartmentDialog(){
-        TextInputDialog dialog = new TextInputDialog("Название подразделения");
-        dialog.setTitle("Создание подразделения");
-        dialog.setHeaderText("Новое подразделение");
-        dialog.setContentText("Введите название подразделения:");
+
+    public Optional<String> showAddOrganizationDialog(){
+        Optional<String> result = getObjectDialog("организации").showAndWait();
+        return result;
+    }
+
+    public Optional<String> showAddDepartmentDialog(){
+        Optional<String> result = getObjectDialog("подразделения").showAndWait();
+        return result;
+    }
+
+    public Dialog getObjectDialog(String objectName){
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Создание " + objectName);
+        dialog.setHeaderText("Создание " + objectName);
+        dialog.setContentText("Введите название " + objectName + ":");
         return dialog;
     }
 
-
-    public void showAddLocationDialog(){
-
-    }
 
     /**
      * Shows modal window dialog, with OK button

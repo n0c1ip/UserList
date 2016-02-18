@@ -1,5 +1,7 @@
 package controllers;
 
+import crudDB.LocationService;
+import crudDB.OrganizationService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import objects.Location;
+import objects.Organization;
 import objects.User;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -19,6 +23,7 @@ import start.EnterPoint;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller contains menu bar, handles menu bar items actions.
@@ -114,18 +119,33 @@ public class RootController {
 
     }
 
+
+    @FXML
+    public void handleAddLocationMenuItem(){
+        Optional<String> nameOptional = mainController.getDialogController().showAddLocationDialog();
+        if (nameOptional.isPresent() & !nameOptional.get().isEmpty()) {
+            Location location = new Location(nameOptional.get());
+            Location addedLocation = LocationService.add(location);
+        }
+    }
+
+    @FXML
+    public void handleAddOrganizationMenuItem(){
+        Optional<String> nameOptional = mainController.getDialogController().showAddOrganizationDialog();
+        if (nameOptional.isPresent() & !nameOptional.get().isEmpty()) {
+            Organization organization = new Organization(nameOptional.get());
+            Organization addedOrganization = OrganizationService.add(organization);
+        }
+    }
+
     @FXML
     private void handleAddDepartmentMenuItem() {
         mainController.getDialogController().showAddDepartmentDialog();
     }
 
+
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
-    }
-
-
-    public void handleCreateTableMenuItem() {
-
     }
 
     public void uploadInExcel() throws IOException {

@@ -20,6 +20,10 @@ public class DialogControllerTest extends GuiTest {
     private Dialog departmentDialog;
     private String departmentTitleText = "Создание подразделения";
 
+    private Dialog organizationDialog;
+    private String organizationTitleText = "Создание организации";
+
+
     private Dialog alertDialog;
     private String alertTitleText = "Тест alert";
 
@@ -32,7 +36,8 @@ public class DialogControllerTest extends GuiTest {
         mainController.show();
 
         DialogController dialogController = mainController.getDialogController();
-        departmentDialog = dialogController.getDepartmentDialog();
+        departmentDialog = dialogController.getObjectDialog("подразделения");
+        organizationDialog = dialogController.getObjectDialog("организации");
         alertDialog = dialogController.getAlertDialog(Alert.AlertType.INFORMATION, alertTitleText, "");
         userEditDialog = dialogController.getUserEditDialog(userTitleText, new User());
         loginDialog = dialogController.getLoginDialog();
@@ -47,6 +52,13 @@ public class DialogControllerTest extends GuiTest {
         Assert.assertNotNull(userEditDialog.getOwner());
         Assert.assertEquals(GuiTest.stage, userEditDialog.getOwner());
         Assert.assertNotNull(userEditDialog.getScene().getRoot());
+    }
+
+    @Test
+    public void organizationDialogShouldBeCorrect() {
+        Assert.assertNotNull(organizationDialog);
+        Assert.assertTrue(organizationDialog instanceof TextInputDialog);
+        Assert.assertEquals(organizationTitleText, organizationDialog.getTitle());
     }
 
     @Test

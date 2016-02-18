@@ -31,14 +31,15 @@
                 </Menu>
                 <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
                   <items>
-                      <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddLocationMenuItem" text="Создать объект" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddOrganizationMenuItem" text="Создать организацию" />
                       <MenuItem fx:id="itemAddDepartment" mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
                   <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="Настройки" />
-                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" text="Выгрузить в Excel" onAction="#uploadInExcel"/>
+                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="Выгрузить в Excel" />
                         <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
