@@ -142,7 +142,7 @@ public class RootController {
     @FXML
     public void handleAddLocationMenuItem(){
         Optional<String> nameOptional = mainController.getDialogController().showAddLocationDialog();
-        if (nameOptional.isPresent() & !nameOptional.get().isEmpty()) {
+        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
             Location location = new Location(nameOptional.get());
             Location addedLocation = LocationService.add(location);
         }
@@ -151,15 +151,10 @@ public class RootController {
     @FXML
     public void handleAddOrganizationMenuItem(){
         Optional<String> nameOptional = mainController.getDialogController().showAddOrganizationDialog();
-        if (nameOptional.isPresent() & !nameOptional.get().isEmpty()) {
+        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
             Organization organization = new Organization(nameOptional.get());
             Organization addedOrganization = OrganizationService.add(organization);
         }
-    }
-
-    @FXML
-    private void handleAddDepartmentMenuItem() {
-        mainController.getDialogController().showAddDepartmentDialog();
     }
 
 
