@@ -63,6 +63,25 @@ public class RootController {
 
     }
 
+
+    public void showDeparmentsInOrganizationTable() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+            SplitPane table = loader.load();
+            DepartmentsInOrganizationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Подразделения по организации");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
     public void showDepartmentTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
@@ -70,11 +89,11 @@ public class RootController {
             DepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Подразделения");
+            Tab tab = new Tab("Пользователи по подразделению");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений");
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
             System.out.println(ex.getStackTrace());
         }
     }

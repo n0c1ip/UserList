@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import objects.Department;
+import objects.Organization;
 import objects.User;
 
 import java.io.IOException;
@@ -41,6 +43,30 @@ public class DialogController {
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
             controller.setEditedUser(user);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
+            System.out.println(e.getStackTrace());
+        }
+        return dialog;
+    }
+
+    public void showDepartmentEditDialog(String title, Department department, Organization organization) {
+        getDepartmentEditDialog(title, department, organization).showAndWait();
+    }
+    public Stage getDepartmentEditDialog(String title, Department department, Organization organization) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            DepartmentEditController controller = loader.getController();
+            controller.setActiveOrganization(organization);
+            controller.setEditedDepartment(department);
             dialog.setScene(new Scene(useredit));
             return  dialog;
         } catch (IOException e) {

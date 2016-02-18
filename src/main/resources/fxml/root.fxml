@@ -24,8 +24,9 @@
                 </Menu>
                 <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
                   <items>
-                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Таблица по объекту" />
-                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица по подразделениям" />
+                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Пользователи по объектам" />
+                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
+                  <MenuItem mnemonicParsing="false" onAction="#showDeparmentsInOrganizationTable" text="Подразделения по организации" />
                       <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
                   </items>
                 </Menu>
