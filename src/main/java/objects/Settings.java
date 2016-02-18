@@ -31,5 +31,8 @@ public class Settings implements Serializable{
     public void setServer(String server) {
         this.server = server;
     }
+    public void setServerWithPrefix(String server) {
+        this.server = server.replace(serverPrefix, "");
+    }
 
 }

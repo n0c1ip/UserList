@@ -12,19 +12,24 @@ import java.util.Optional;
 public class EntityManagerFactory {
 
     private static javax.persistence.EntityManagerFactory entityManagerFactory;
+    private static Settings settings;
 
     static {
         Map<String, String> properties = new HashMap<>();
         Optional<Settings> optionalSettings = SettingsService.readSettings();
 
         if (optionalSettings.isPresent()) {
-            Settings settings = optionalSettings.get();
+            settings = optionalSettings.get();
             properties.put("hibernate.connection.username", settings.getUserName());
             properties.put("hibernate.connection.password", settings.getPassword());
             properties.put("hibernate.connection.url", settings.getServerWithPrefix());
             properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         }
         entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
+    }
+
+    public static Optional<Settings> getActiveSettings() {
+        return Optional.ofNullable(settings);
     }
 
     private EntityManagerFactory() {}
