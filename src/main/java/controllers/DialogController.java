@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import objects.Department;
+import objects.Organization;
 import objects.User;
 
 import java.io.File;
@@ -52,25 +54,49 @@ public class DialogController {
         return dialog;
     }
 
-
-    /**
-     * JavaFx TextInput Dialog creating new Department
-     */
-    public void showAddDepartmentDialog(){
-        Optional<String> result = getDepartmentDialog().showAndWait();
+    public void showDepartmentEditDialog(String title, Department department, Organization organization) {
+        getDepartmentEditDialog(title, department, organization).showAndWait();
     }
-    public Dialog getDepartmentDialog(){
-        TextInputDialog dialog = new TextInputDialog("Название подразделения");
-        dialog.setTitle("Создание подразделения");
-        dialog.setHeaderText("Новое подразделение");
-        dialog.setContentText("Введите название подразделения:");
+    public Stage getDepartmentEditDialog(String title, Department department, Organization organization) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            DepartmentEditController controller = loader.getController();
+            controller.setActiveOrganization(organization);
+            controller.setEditedDepartment(department);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
+            System.out.println(e.getStackTrace());
+        }
         return dialog;
     }
 
 
-    public void showAddLocationDialog(){
-
+    public Optional<String> showAddLocationDialog(){
+        Optional<String> result = getObjectDialog("объекта").showAndWait();
+        return result;
     }
+
+    public Optional<String> showAddOrganizationDialog(){
+        Optional<String> result = getObjectDialog("организации").showAndWait();
+        return result;
+    }
+
+    public Dialog getObjectDialog(String objectName){
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Создание " + objectName);
+        dialog.setHeaderText("Создание " + objectName);
+        dialog.setContentText("Введите название " + objectName + ":");
+        return dialog;
+    }
+
 
     /**
      * Shows modal window dialog, with OK button

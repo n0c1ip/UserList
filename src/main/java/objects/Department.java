@@ -1,6 +1,9 @@
 package objects;
 //Created by mva on 28.01.2016.
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -44,6 +47,10 @@ public class Department extends Model{
     }
     public String getName() {
         return name;
+    }
+    public StringProperty getNameProperty(){
+        StringProperty lNameProperty = null;
+        return lNameProperty = new SimpleStringProperty(this.name);
     }
     @Override
     public String toString() {

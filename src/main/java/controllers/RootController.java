@@ -8,12 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 import start.EnterPoint;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -25,7 +29,9 @@ public class RootController {
     public RootController() {
     }
 
+    // References
     private MainController mainController;
+    private TabPane tabLayout;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -60,10 +66,13 @@ public class RootController {
             controller.setMainController(this.mainController);
             TabPane tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab("Подразделения");
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Пользователи по подразделению");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений");
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
             System.out.println(ex.getStackTrace());
         }
     }
@@ -102,7 +111,7 @@ public class RootController {
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
         } catch (IOException e){
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
             e.getStackTrace();
         }
 
@@ -122,23 +131,6 @@ public class RootController {
     }
 
     public void uploadInExcel() throws IOException {
-
-        TabPane tabPane = (TabPane) mainController.getRootLayout().getCenter();
-        if (tabPane.getSelectionModel().isEmpty()) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Сначала откройте таблицу");
-        } else {
-
-            Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
-            TableView currentTable = (TableView) currentTab.getContent().lookup("#tableView");
-            ObservableList<TableColumn> columns = currentTable.getColumns();
-            ObservableList<User> userList = currentTable.getItems();
-
-            File file = mainController.getDialogController().showFileSaveDialog("Excel files (*.xls)","*.xls");
-
-            if (file != null){
-                UploadInExcelService.uploadInExcel(columns,userList,file);
-            }
-        }
+        UploadInExcelService.uploadInExcel(mainController);
     }
-
 }

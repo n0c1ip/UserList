@@ -24,21 +24,22 @@
                 </Menu>
                 <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
                   <items>
-                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Таблица по объекту" />
-                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Таблица по подразделениям" />
+                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Пользователи по объектам" />
+                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
+                  <MenuItem mnemonicParsing="false" onAction="#showDeparmentsInOrganizationTable" text="Подразделения по организации" />
                       <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
                   <items>
-                      <MenuItem mnemonicParsing="false" onAction="#handleCreateTableMenuItem" text="Создать объект" />
-                      <MenuItem fx:id="itemAddDepartment" mnemonicParsing="false" onAction="#handleAddDepartmentMenuItem" text="Создать подразделение" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddLocationMenuItem" text="Создать объект" />
+                    <MenuItem mnemonicParsing="false" onAction="#handleAddOrganizationMenuItem" text="Создать организацию" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
                   <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="Настройки" />
-                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" text="Выгрузить в Excel" onAction="#uploadInExcel"/>
+                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="Выгрузить в Excel" />
                         <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
                     </items>
                 </Menu>
