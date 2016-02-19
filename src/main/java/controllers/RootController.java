@@ -10,18 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.Location;
 import objects.Organization;
 import objects.User;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
 import start.EnterPoint;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -57,8 +53,8 @@ public class RootController {
             dialog.setScene(new Scene(choosepane));
             dialog.show();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
+            System.out.println(e.getStackTrace());
         }
 
     }
@@ -76,7 +72,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
             System.out.println(ex.getMessage());
         }
 
@@ -93,8 +89,8 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
+            System.out.println(ex.getStackTrace());
         }
     }
 
@@ -113,8 +109,8 @@ public class RootController {
             dialog.setScene(new Scene(importcsv));
             dialog.show();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
+            System.out.println(e.getStackTrace());
         }
     }
 
@@ -132,8 +128,8 @@ public class RootController {
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
         } catch (IOException e){
-            e.getMessage();
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
+            e.getStackTrace();
         }
 
     }
@@ -163,6 +159,22 @@ public class RootController {
     }
 
     public void uploadInExcel() throws IOException {
-        UploadInExcelService.uploadInExcel(mainController);
+
+        TabPane tabPane = (TabPane) mainController.getRootLayout().getCenter();
+        if (tabPane.getSelectionModel().isEmpty()) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Сначала откройте таблицу");
+        } else {
+
+            Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
+            TableView currentTable = (TableView) currentTab.getContent().lookup("#tableView");
+            ObservableList<TableColumn> columns = currentTable.getColumns();
+            ObservableList<User> userList = currentTable.getItems();
+
+            File file = mainController.getDialogController().showFileSaveDialog("Excel files (*.xls)","*.xls");
+
+            if (file != null){
+                UploadInExcelService.uploadInExcel(columns,userList,file);
+            }
+        }
     }
 }
