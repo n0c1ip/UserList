@@ -13,10 +13,11 @@ import java.util.Optional;
 
 public class SettingsService {
 
+    private SettingsService() {}
+
     private static final String APPLICATION_LOCATION = System.getProperty("user.dir");
     private static final String DEFAULT_FILE_NAME = "settings";
     private static final String DEFAULT_FULL_PATH = APPLICATION_LOCATION + "\\" + DEFAULT_FILE_NAME;
-
 
     public static void writeSettings(Settings settings) {
         writeSettings(settings, "");

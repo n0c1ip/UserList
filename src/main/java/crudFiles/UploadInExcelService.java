@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class UploadInExcelService {
 
+    private UploadInExcelService() {}
+
     public static void uploadInExcel(MainController mainController) throws IOException {
 
         TabPane tabPane = (TabPane) mainController.getRootLayout().getCenter();

@@ -12,6 +12,8 @@ import java.io.*;
 
 public class ImportCSVService {
 
+    private ImportCSVService() {}
+
     /**
      * Loading Users from csv file to selected table
      * <p>
