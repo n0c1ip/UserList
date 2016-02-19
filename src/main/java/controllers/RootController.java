@@ -1,5 +1,7 @@
 package controllers;
 
+import crudDB.LocationService;
+import crudDB.OrganizationService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import objects.Location;
+import objects.Organization;
 import objects.User;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -19,6 +23,7 @@ import start.EnterPoint;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller contains menu bar, handles menu bar items actions.
@@ -52,8 +57,27 @@ public class RootController {
             dialog.setScene(new Scene(choosepane));
             dialog.show();
         } catch (IOException e) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
             System.out.println(e.getStackTrace());
+        }
+
+    }
+
+
+    public void showDeparmentsInOrganizationTable() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+            SplitPane table = loader.load();
+            DepartmentsInOrganizationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Подразделения по организации");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
+            System.out.println(ex.getMessage());
         }
 
     }
@@ -64,14 +88,11 @@ public class RootController {
             SplitPane table = loader.load();
             DepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
-            TabPane tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Подразделения");
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab("Пользователи по подразделению");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений");
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
             System.out.println(ex.getStackTrace());
         }
@@ -92,7 +113,7 @@ public class RootController {
             dialog.setScene(new Scene(importcsv));
             dialog.show();
         } catch (IOException e) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
+            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
             System.out.println(e.getStackTrace());
         }
     }
@@ -117,17 +138,28 @@ public class RootController {
 
     }
 
+
     @FXML
-    private void handleAddDepartmentMenuItem() {
-        mainController.getDialogController().showAddDepartmentDialog();
+    public void handleAddLocationMenuItem(){
+        Optional<String> nameOptional = mainController.getDialogController().showAddLocationDialog();
+        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
+            Location location = new Location(nameOptional.get());
+            Location addedLocation = LocationService.add(location);
+        }
     }
+
+    @FXML
+    public void handleAddOrganizationMenuItem(){
+        Optional<String> nameOptional = mainController.getDialogController().showAddOrganizationDialog();
+        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
+            Organization organization = new Organization(nameOptional.get());
+            Organization addedOrganization = OrganizationService.add(organization);
+        }
+    }
+
 
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
-    }
-
-    public void handleCreateTableMenuItem() {
-
     }
 
     public void uploadInExcel() throws IOException {
