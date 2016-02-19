@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -13,6 +14,7 @@ import objects.Department;
 import objects.Organization;
 import objects.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -143,5 +145,12 @@ public class DialogController {
 
     public Stage getPrimaryStage() {
         return this.primaryStage;
+    }
+
+    public File showFileSaveDialog(String descriptionExtention, String extension){
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(descriptionExtention,extension);
+        fileChooser.getExtensionFilters().add(extFilter);
+        return fileChooser.showSaveDialog(primaryStage);
     }
 }
