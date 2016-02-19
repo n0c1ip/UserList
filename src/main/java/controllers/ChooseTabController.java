@@ -55,8 +55,8 @@ public class ChooseTabController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
+            System.out.println(ex.getMessage());
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс локации пользователя");
-            System.out.println(ex.getStackTrace());
         }
         return tabLayout;
     }

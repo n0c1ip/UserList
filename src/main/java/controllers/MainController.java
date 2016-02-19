@@ -49,8 +49,8 @@ public class MainController {
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить основной интерфейс");
-            System.out.println(e.getStackTrace());
         }
     }
 
@@ -63,8 +63,8 @@ public class MainController {
             TabPane tabPane = loader.load();
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс панели таблицы");
-            System.out.println(e.getStackTrace());
         }
     }
 

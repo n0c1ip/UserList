@@ -57,8 +57,8 @@ public class RootController {
             dialog.setScene(new Scene(choosepane));
             dialog.show();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
-            System.out.println(e.getStackTrace());
         }
 
     }
@@ -93,8 +93,8 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
+            System.out.println(ex.getMessage());
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
-            System.out.println(ex.getStackTrace());
         }
     }
 
@@ -113,8 +113,8 @@ public class RootController {
             dialog.setScene(new Scene(importcsv));
             dialog.show();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
-            System.out.println(e.getStackTrace());
         }
     }
 
@@ -132,8 +132,8 @@ public class RootController {
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
         } catch (IOException e){
+            e.getMessage();
             mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
-            e.getStackTrace();
         }
 
     }

@@ -46,8 +46,8 @@ public class DialogController {
             dialog.setScene(new Scene(useredit));
             return  dialog;
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
-            System.out.println(e.getStackTrace());
         }
         return dialog;
     }
@@ -70,8 +70,8 @@ public class DialogController {
             dialog.setScene(new Scene(useredit));
             return  dialog;
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
-            System.out.println(e.getStackTrace());
         }
         return dialog;
     }
@@ -131,8 +131,8 @@ public class DialogController {
             LoginController controller = loader.getController();
             dialog.setScene(new Scene(login));
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс логина");
-            System.out.println(e.getStackTrace());
         }
         return dialog;
     }
