@@ -9,9 +9,7 @@
     <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
          <children>
-            <ListView fx:id="departmentListView" layoutX="34.0" layoutY="29.0" prefHeight="498.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
-            <Separator layoutY="24.0" prefHeight="1.0" prefWidth="260.0" />
-            <ComboBox fx:id="organizationComboBox" layoutY="2.0" prefHeight="25.0" prefWidth="260.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="2.0" />
+            <ListView fx:id="organizationListView" layoutX="34.0" prefHeight="527.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
         </AnchorPane>
         <AnchorPane prefHeight="610.0" prefWidth="463.0">

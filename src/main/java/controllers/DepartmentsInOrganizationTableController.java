@@ -13,9 +13,7 @@ public class DepartmentsInOrganizationTableController {
 
     private MainController mainController;
     @FXML
-    private ListView<Department> departmentListView;
-    @FXML
-    private ComboBox<Organization> organizationComboBox;
+    private ListView<Organization> organizationListView;
     @FXML
     private TableView<Department> tableView;
     @FXML
@@ -25,10 +23,10 @@ public class DepartmentsInOrganizationTableController {
     private void initialize(){
         ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
         organizationsList.setAll(OrganizationService.getAll());
-        organizationComboBox.setItems(organizationsList.sorted());
-        organizationComboBox.getSelectionModel().selectFirst();
-        showDepartmentByOrganizationSelect(organizationComboBox.getValue());
-        organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
+        organizationListView.setItems(organizationsList.sorted());
+        organizationListView.getSelectionModel().selectFirst();
+        showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
+        organizationListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable1, oldValue, newValue ) -> showDepartmentByOrganizationSelect(newValue));
 
         name.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -55,16 +53,16 @@ public class DepartmentsInOrganizationTableController {
     private void handleEditDepartmentButton() {
         Department selectedDepartment = tableView.getSelectionModel().getSelectedItem();
         if (selectedDepartment != null) {
-            mainController.getDialogController().showDepartmentEditDialog("Редактирование подразделения", selectedDepartment, organizationComboBox.getValue());
-            initialize();
+            mainController.getDialogController().showDepartmentEditDialog("Редактирование подразделения", selectedDepartment, organizationListView.getSelectionModel().getSelectedItem());
+            showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         }
     }
 
     @FXML
     private void handleNewDepartmentButton() {
         Department department = new Department();
-        mainController.getDialogController().showDepartmentEditDialog("Добавить подразделение", department, organizationComboBox.getValue());
-        initialize();
+        mainController.getDialogController().showDepartmentEditDialog("Добавить подразделение", department, organizationListView.getSelectionModel().getSelectedItem());
+        showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -72,8 +70,8 @@ public class DepartmentsInOrganizationTableController {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             Department departmentToDelete = tableView.getSelectionModel().getSelectedItem();
-            tableView.getItems().remove(selectedIndex);
             DepartmentService.delete(departmentToDelete.getId());
+            showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainController.getPrimaryStage());
