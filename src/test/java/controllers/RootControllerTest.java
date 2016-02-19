@@ -81,11 +81,11 @@ public class RootControllerTest extends GuiTest {
     }
 
     @Test
-    public void shouldHaveAddDeparmentTableItem() throws Exception {
-        click("#menuAdd");
-        click("#itemAddDepartment");
-        assertNodeExists("Новое подразделение");
-        push(KeyCode.ESCAPE);
+    public void shouldHaveShowDeparmentsInOrganizationTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemDeparmentInOrgTable");
+        assertNotNull(GuiTest.find("#deparmentsInOrganizationTable"));
+        assertTrue(GuiTest.find("#deparmentsInOrganizationTable").isVisible());
     }
 
     @Test
