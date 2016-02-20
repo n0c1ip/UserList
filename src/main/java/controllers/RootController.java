@@ -59,23 +59,36 @@ public class RootController {
 
     }
 
+    public void showOrganizationTable() {
+         try {
+           FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+            SplitPane table = loader.load();
+            OrganizationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Организации");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public void showDeparmentsInOrganizationTable() {
-
         try {
             FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
             SplitPane table = loader.load();
             DepartmentsInOrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Подразделения по организации");
+            Tab tab = new Tab("Подразделения");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
             System.out.println(ex.getMessage());
         }
-
     }
 
     public void showDepartmentTable(){

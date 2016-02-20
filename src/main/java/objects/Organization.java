@@ -1,5 +1,8 @@
 package objects;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -25,6 +28,10 @@ public class Organization extends Model {
         this.name = name;
     }
 
+    public StringProperty getNameProperty(){
+        StringProperty lNameProperty = null;
+        return lNameProperty = new SimpleStringProperty(this.name);
+    }
     public String getName() {
         return name;
     }

@@ -54,6 +54,31 @@ public class DialogController {
         return dialog;
     }
 
+
+
+    public void showOrganizationEditDialog(String title, Organization organization) {
+        getOrganizationEditDialog(title, organization).showAndWait();
+    }
+    public Stage getOrganizationEditDialog(String title, Organization organization) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            OrganizationEditController controller = loader.getController();
+            controller.setEditedOrganization(organization);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования организации");
+        }
+        return dialog;
+    }
+
     public void showDepartmentEditDialog(String title, Department department, Organization organization) {
         getDepartmentEditDialog(title, department, organization).showAndWait();
     }
