@@ -17,7 +17,7 @@ public class DepartmentEditController {
     @FXML
     private Button cancelButton;
     @FXML
-    private TextField name;
+    private TextField nameField;
 
     private Department editedDepartment;
     private Organization activeOrganization;
@@ -31,7 +31,7 @@ public class DepartmentEditController {
     private void handleOkButton() {
 
         if(!invalidData){
-            editedDepartment.setName(name.getText());
+            editedDepartment.setName(nameField.getText());
             editedDepartment.setOrganization(activeOrganization);
             DepartmentService.add(editedDepartment);
             closeWindow();
@@ -49,7 +49,7 @@ public class DepartmentEditController {
 
     public void setEditedDepartment(Department editedDepartment) {
         this.editedDepartment = editedDepartment;
-        name.setText(editedDepartment.getName());
+        nameField.setText(editedDepartment.getName());
     }
 
     private void closeWindow(){
