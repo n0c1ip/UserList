@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -24,10 +24,10 @@
                 </Menu>
                 <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
                   <items>
-                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showAddTabTableDialog" text="Пользователи по объектам" />
+                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
                       <MenuItem mnemonicParsing="false" fx:id="itemOrganizationTable" onAction="#showOrganizationTable" text="Организации" />
-                      <MenuItem mnemonicParsing="false" fx:id="itemDeparmentInOrgTable" onAction="#showDeparmentsInOrganizationTable" text="Подразделения" />
+                      <MenuItem fx:id="itemDeparmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения" />
                       <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
                   </items>
                 </Menu>

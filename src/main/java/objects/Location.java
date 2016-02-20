@@ -19,6 +19,8 @@ public class Location extends Model {
 
     private String name;
 
+    private String address;
+
     @OneToMany(mappedBy="location")
     private Set<User> userSet;
 
@@ -29,16 +31,20 @@ public class Location extends Model {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public void addUserToLocation(User user){
-        this.userSet.add(user);
     }
 
     @Override
