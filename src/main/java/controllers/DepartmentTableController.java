@@ -36,6 +36,8 @@ public class DepartmentTableController {
     private TableColumn<User, String> passwordColumn;
     @FXML
     private TableColumn<User, String> mailColumn;
+    @FXML
+    private Label usersCount;
 
 
     @FXML
@@ -76,6 +78,7 @@ public class DepartmentTableController {
             ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
             userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
             tableView.setItems(userByDepartmentsList);
+            usersCount.setText(String.valueOf(tableView.getItems().size()));
         }
     }
 
