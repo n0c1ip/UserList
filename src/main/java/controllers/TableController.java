@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import objects.Location;
 import objects.User;
 
@@ -18,6 +15,7 @@ public class TableController {
     private static final String CREATE_TITLE = "Создание пользователя";
     private static final String EDIT_TITLE = "Редактирование пользователя";
 
+    //Table
     @FXML
     private TableView<User> tableView;
     @FXML
@@ -38,6 +36,7 @@ public class TableController {
     private TableColumn<User, String> mailColumn;
 
 
+    //User preview
     @FXML
     private Label firstNameLabel;
     @FXML
@@ -49,11 +48,21 @@ public class TableController {
     @FXML
     private Label positionLabel;
     @FXML
+    private Label pcNameLabel;
+    @FXML
     private Label loginLabel;
     @FXML
     private Label passwordLabel;
     @FXML
     private Label mailLabel;
+
+    //Location preview
+    @FXML
+    private Label locationNameLabel;
+    @FXML
+    private Label locationAddressLabel;
+    @FXML
+    private Label locationUserCounterLabel;
 
 
     private MainController mainController;
@@ -88,6 +97,8 @@ public class TableController {
             }
         });
 
+
+
     }
 
 
@@ -95,11 +106,14 @@ public class TableController {
         this.mainController = mainController;
     }
 
-    public void setUserLocationTable(Location locationName) {
+    public void setUserLocationTable(Location location) {
         ObservableList<User> tableViewList = FXCollections.observableArrayList();
-
-        tableViewList.addAll(UserService.getUsersByLocation(locationName));
+        tableViewList.addAll(UserService.getUsersByLocation(location));
         tableView.setItems(tableViewList);
+
+        locationNameLabel.setText(location.getName());
+        locationAddressLabel.setText(location.getAddress());
+        locationUserCounterLabel.setText(Integer.toString(tableViewList.size()));
     }
 
     private void showUserDetails(User user) {

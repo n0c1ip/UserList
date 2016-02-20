@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Location;
-import start.EnterPoint;
+import start.EntryPoint;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ public class ChooseTabController {
     }
     public TabPane loadNewTab(Location currentLocation){
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
             SplitPane table = loader.load();
             TableController controller = loader.getController();
             controller.setMainController(mainController);
@@ -56,7 +56,7 @@ public class ChooseTabController {
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс локации пользователя");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс локации пользователя");
         }
         return tabLayout;
     }
