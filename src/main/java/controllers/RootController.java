@@ -61,7 +61,7 @@ public class RootController {
 
     public void showOrganizationTable() {
          try {
-           FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+           FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
             SplitPane table = loader.load();
             OrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
