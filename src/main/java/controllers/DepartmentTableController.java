@@ -31,6 +31,8 @@ public class DepartmentTableController {
     @FXML
     private TableColumn<User, String> positionColumn;
     @FXML
+    private TableColumn<User, String> pcColumn;
+    @FXML
     private TableColumn<User, String> loginColumn;
     @FXML
     private TableColumn<User, String> passwordColumn;
@@ -61,6 +63,7 @@ public class DepartmentTableController {
         departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getDepartmentProperty());
         middleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getMiddleNameProperty());
         positionColumn.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
+        pcColumn.setCellValueFactory(cellData -> cellData.getValue().getPcProperty());
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());

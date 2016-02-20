@@ -29,6 +29,8 @@ public class TableController {
     @FXML
     private TableColumn<User, String> positionColumn;
     @FXML
+    private TableColumn<User, String> pcColumn;
+    @FXML
     private TableColumn<User, String> loginColumn;
     @FXML
     private TableColumn<User, String> passwordColumn;
@@ -80,6 +82,7 @@ public class TableController {
         departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getDepartmentProperty());
         middleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getMiddleNameProperty());
         positionColumn.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
+        pcColumn.setCellValueFactory(cellData -> cellData.getValue().getPcProperty());
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
@@ -133,6 +136,7 @@ public class TableController {
             middleNameLabel.setText("");
             departmentLabel.setText("");
             positionLabel.setText("");
+            pcColumn.setText("");
             loginLabel.setText("");
             passwordLabel.setText("");
             mailLabel.setText("");
