@@ -176,6 +176,8 @@ public class RootController {
 
             if (file != null){
                 UploadInExcelService.uploadInExcel(columns,userList,file);
+                DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
+                        "Завершено", "Файл сохранен" + "\n" + file.getAbsolutePath());
             }
         }
     }
