@@ -26,7 +26,7 @@
                   <items>
                       <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
-                      <MenuItem fx:id="itemDeparmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения по организации" />
+                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения по организации" />
                       <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
                   </items>
                 </Menu>
