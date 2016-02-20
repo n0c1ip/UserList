@@ -109,11 +109,6 @@ public class DialogController {
         return result;
     }
 
-    public Optional<String> showAddOrganizationDialog(){
-        Optional<String> result = getObjectDialog("организации").showAndWait();
-        return result;
-    }
-
     public Dialog getObjectDialog(String objectName){
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Создание " + objectName);

@@ -34,7 +34,6 @@
                 <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
                   <items>
                       <MenuItem mnemonicParsing="false" onAction="#handleAddLocationMenuItem" text="Создать объект" />
-                    <MenuItem mnemonicParsing="false" onAction="#handleAddOrganizationMenuItem" text="Создать организацию" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">

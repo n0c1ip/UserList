@@ -158,16 +158,6 @@ public class RootController {
         }
     }
 
-    @FXML
-    public void handleAddOrganizationMenuItem(){
-        Optional<String> nameOptional = mainController.getDialogController().showAddOrganizationDialog();
-        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
-            Organization organization = new Organization(nameOptional.get());
-            Organization addedOrganization = OrganizationService.add(organization);
-        }
-    }
-
-
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
     }
