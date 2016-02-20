@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class EnterPoint extends Application {
+public class EntryPoint extends Application {
 
     public static void main(String[] args) {
         launch(args);

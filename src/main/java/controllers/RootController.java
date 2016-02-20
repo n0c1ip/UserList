@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import objects.Location;
 import objects.Organization;
 import objects.User;
-import start.EnterPoint;
+import start.EntryPoint;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class RootController {
         this.mainController = mainController;
     }
 
-    public void showAddTabTableDialog() {
+    public void showUsersByLocationTable() {
 
         try {
             final Stage dialog = new Stage();
@@ -47,10 +47,10 @@ public class RootController {
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseLocation.fxml"));
-            AnchorPane choosepane = loader.load();
+            AnchorPane anchorPane = loader.load();
             ChooseTabController controller = loader.getController();
             controller.setMainController(mainController);
-            dialog.setScene(new Scene(choosepane));
+            dialog.setScene(new Scene(anchorPane));
             dialog.show();
         } catch (IOException e) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
@@ -60,10 +60,10 @@ public class RootController {
     }
 
 
-    public void showDeparmentsInOrganizationTable() {
+    public void showDepartmentsInOrganizationTable() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
             SplitPane table = loader.load();
             DepartmentsInOrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -80,7 +80,7 @@ public class RootController {
 
     public void showDepartmentTable(){
         try {
-            FXMLLoader loader = new FXMLLoader(EnterPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
             SplitPane table = loader.load();
             DepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
