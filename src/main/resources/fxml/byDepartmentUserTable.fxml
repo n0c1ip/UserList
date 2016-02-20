@@ -28,6 +28,7 @@
                                  <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Отчество" />
                                  <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="Отдел" />
                                  <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="Должность" />
+                                 <TableColumn fx:id="pcColumn" minWidth="-1.0" prefWidth="-1.0" text="Компьютер" />
                                  <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="Логин" />
                                  <TableColumn fx:id="passwordColumn" minWidth="-1.0" prefWidth="-1.0" text="Пароль" />
                                  <TableColumn fx:id="mailColumn" minWidth="-1.0" prefWidth="-1.0" text="Эл. адрес" />
