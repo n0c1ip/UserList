@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public class EntityManagerFactory {
 
+    private EntityManagerFactory() {}
+
     private static javax.persistence.EntityManagerFactory entityManagerFactory;
     private static Settings settings;
 
@@ -31,8 +33,6 @@ public class EntityManagerFactory {
     public static Optional<Settings> getActiveSettings() {
         return Optional.ofNullable(settings);
     }
-
-    private EntityManagerFactory() {}
 
     public static void initialize() {}
 

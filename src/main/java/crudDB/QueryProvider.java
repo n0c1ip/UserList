@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 
 public class QueryProvider {
 
+    private QueryProvider() {}
+
     public interface Query<T> {
         T call(EntityManager manager);
     }
