@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="paneDepartmentTable" dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DepartmentTableController">
+<SplitPane fx:id="paneDepartmentTable" dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInDepartmentTableController">
     <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
          <children>

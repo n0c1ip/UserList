@@ -1,7 +1,6 @@
 package controllers;
 
 import crudDB.LocationService;
-import crudDB.OrganizationService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.Location;
-import objects.Organization;
 import objects.User;
 import start.EntryPoint;
 
@@ -96,7 +94,7 @@ public class RootController {
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
             SplitPane table = loader.load();
-            DepartmentTableController controller = loader.getController();
+            UsersInDepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab("Пользователи по подразделению");
