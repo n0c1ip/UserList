@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -15,26 +13,14 @@
                         <MenuItem fx:id="itemCloseWindow" mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Правка">
-                    <items>
-                        <MenuItem disable="true" mnemonicParsing="false" text="Добавить" />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Изменить" />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Удалить" />
-                    </items>
-                </Menu>
                 <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
                   <items>
                       <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
-                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения по организации" />
-                      <MenuItem mnemonicParsing="false" fx:id="itemOrganizationTable" onAction="#showOrganizationTable" text="Организации" />
-                      <MenuItem fx:id="itemDeparmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения" />
-                      <MenuItem mnemonicParsing="false" text="Уволенные сотрудники" />
-                  </items>
-                </Menu>
-                <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
-                  <items>
-                      <MenuItem mnemonicParsing="false" onAction="#handleAddLocationMenuItem" text="Создать объект" />
+                      <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="Организации" />
+                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения" />
+                      <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="Объекты" />
+                      <MenuItem mnemonicParsing="false" text="Здесь будут признаки" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">

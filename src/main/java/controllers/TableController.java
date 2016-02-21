@@ -12,8 +12,8 @@ import objects.User;
 
 public class TableController {
 
-    private static final String CREATE_TITLE = "Создание пользователя";
-    private static final String EDIT_TITLE = "Редактирование пользователя";
+    private final String CREATE_TITLE = "Создание пользователя";
+    private final String EDIT_TITLE = "Редактирование пользователя";
 
     //Table
     @FXML
@@ -126,6 +126,11 @@ public class TableController {
             middleNameLabel.setText(user.getMiddleName());
             departmentLabel.setText(user.getDepartment().getName());
             positionLabel.setText(user.getPosition());
+            if(user.getPc() != null){
+                pcNameLabel.setText(user.getPc().getName());
+            } else{
+                pcNameLabel.setText("Нет компьютера");
+            }
             loginLabel.setText(user.getLogin());
             passwordLabel.setText(user.getPassword());
             mailLabel.setText(user.getMail());
@@ -136,7 +141,7 @@ public class TableController {
             middleNameLabel.setText("");
             departmentLabel.setText("");
             positionLabel.setText("");
-            pcColumn.setText("");
+            pcNameLabel.setText("");
             loginLabel.setText("");
             passwordLabel.setText("");
             mailLabel.setText("");

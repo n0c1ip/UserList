@@ -36,10 +36,10 @@ public class UserEditControllerTest extends GuiTest {
         click("#locationBox").push(KeyCode.DOWN).push(KeyCode.ENTER);
         click("#departmentBox").push(KeyCode.DOWN).push(KeyCode.ENTER);
         click("#positionField").type("d");
-        click("#loginField").type("e");
-        click("#passwordField").type("f");
-        click("#mailField").type("g");
-        click("#firedUser");
+        click("#pcField").type("e");
+        click("#loginField").type("f");
+        click("#passwordField").type("g");
+        click("#mailField").type("h");
         //click("#cancelButton");
     }
 

@@ -1,5 +1,8 @@
 package objects;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,6 +22,8 @@ public class Location extends Model {
 
     private String name;
 
+    private String city;
+
     private String address;
 
     @OneToMany(mappedBy="location")
@@ -34,17 +39,34 @@ public class Location extends Model {
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
+    }
+    public StringProperty getAdderssProperty(){
+        StringProperty lAddressProperty = null;
+        return lAddressProperty = new SimpleStringProperty(this.address);
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
     public String getName() {
         return this.name;
+    }
+    public StringProperty getNameProperty(){
+        StringProperty lNameProperty = null;
+        return lNameProperty = new SimpleStringProperty(this.name);
+    }
+
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public StringProperty getCityProperty(){
+        StringProperty lCityProperty = null;
+        return lCityProperty = new SimpleStringProperty(this.city);
     }
 
     @Override
