@@ -29,6 +29,8 @@ public class DepartmentEditControllerTest extends GuiTest {
     @Test
     public void shouldHaveAllElements() throws Exception {
         assertNotNull(GuiTest.find("#paneDepartmentEdit"));
+        assertNotNull(GuiTest.find("#okButton"));
+        assertNotNull(GuiTest.find("#cancelButton"));
         click("#nameField").type("a");
     }
 
