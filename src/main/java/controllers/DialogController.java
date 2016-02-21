@@ -12,12 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import objects.Department;
+import objects.Location;
 import objects.Organization;
 import objects.User;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
 
 /**
@@ -55,8 +55,6 @@ public class DialogController {
         }
         return dialog;
     }
-
-
 
     public void showOrganizationEditDialog(String title, Organization organization) {
         getOrganizationEditDialog(title, organization).showAndWait();
@@ -106,10 +104,25 @@ public class DialogController {
         return dialog;
     }
 
+    public void showLocationEditDialog(String title, Location location){
+        final Stage dialog = new Stage();
+        dialog.getIcons().add(new Image("icons/location-icon.png"));
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/locationEditDialog.fxml"));
+            AnchorPane locationEdit = loader.load();
+            LocationEditController controller = loader.getController();
+            controller.setEditedLocation(location);
+            dialog.setScene(new Scene(locationEdit));
+            dialog.showAndWait();
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
+        }
 
-    public Optional<String> showAddLocationDialog(){
-        Optional<String> result = getObjectDialog("объекта").showAndWait();
-        return result;
     }
 
     public Dialog getObjectDialog(String objectName){
@@ -170,9 +183,9 @@ public class DialogController {
         return this.primaryStage;
     }
 
-    public File showFileSaveDialog(String descriptionExtention, String extension){
+    public File showFileSaveDialog(String descriptionExtension, String extension){
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(descriptionExtention,extension);
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(descriptionExtension,extension);
         fileChooser.getExtensionFilters().add(extFilter);
         return fileChooser.showSaveDialog(primaryStage);
     }

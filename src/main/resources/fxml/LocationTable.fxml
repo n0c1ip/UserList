@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:id="LocationTable" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LocationTableController">
+    <items>
+        <AnchorPane prefHeight="610.0" prefWidth="463.0">
+            <children>
+            <SplitPane dividerPositions="0.8819047619047619" orientation="VERTICAL" prefHeight="527.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                         <TableView fx:id="locationTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                             <columns>
+                                 <TableColumn fx:id="locationNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Наименование объекта" />
+                              <TableColumn fx:id="locationCityColumn" minWidth="-1.0" prefWidth="-1.0" text="Город" />
+                              <TableColumn fx:id="locationAddressColumn" minWidth="-1.0" prefWidth="-1.0" text="Адрес" />
+                             </columns>
+                             <columnResizePolicy>
+                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                             </columnResizePolicy>
+                         </TableView>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0">
+                     <children>
+                            <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <children>
+                                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewLocationButton" prefHeight="25.0" prefWidth="97.0" text="Добавить">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                    </Button>
+                                    <Button fx:id="changeButton" mnemonicParsing="false" onAction="#handleEditLocationButton" prefHeight="25.0" prefWidth="97.0" text="Изменить">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                    </Button>
+                                    <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeleteLocationButton" prefHeight="25.0" prefWidth="97.0" text="Удалить">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                                    </Button>
+                                </children>
+                            </HBox>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

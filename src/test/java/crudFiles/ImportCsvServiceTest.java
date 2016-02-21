@@ -1,12 +1,11 @@
 package crudFiles;
 
-import controllers.ImportCSVController;
 import crudDB.DepartmentService;
 import crudDB.LocationService;
 import crudDB.UserService;
-import org.junit.Assert;
 import objects.Location;
 import objects.User;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -37,6 +36,7 @@ public class ImportCsvServiceTest {
         String userMail = "mmail@7r.perm.ru";
         String csvLine = userLastName + ";" + userFirstName + ";"  + userMiddleName + ";" + userDepartmentName + ";" +
                          userPosition + ";" + userLogin + ";" + userPassword + ";" + userMail;
+
         InputStream inputStream = new ByteArrayInputStream(csvLine.getBytes());
 
         ImportCSVService.loadUsersFromCSV(addedLocation, inputStream, ';');

@@ -36,7 +36,7 @@ public class User extends Model{
 
     @OneToOne
     @JoinColumn(name="pc_id")
-    private Pc pc = new Pc("");
+    private Pc pc;
 
     public User() {
     }
