@@ -47,9 +47,9 @@ public class ChooseTabController {
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
             SplitPane table = loader.load();
-            TableController controller = loader.getController();
+            UsersInLocationTableController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setUserLocationTable(currentLocation);
+            controller.setUsersByLocationTable(currentLocation);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab(currentLocation.getName());
             tab.setContent(table);

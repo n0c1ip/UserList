@@ -40,20 +40,17 @@ public class RootController {
     public void showUsersByLocationTable() {
 
         try {
-            final Stage dialog = new Stage();
-            dialog.setTitle("Выбор объекта");
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.initOwner(mainController.getPrimaryStage());
-            dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseLocation.fxml"));
-            AnchorPane anchorPane = loader.load();
-            ChooseTabController controller = loader.getController();
-            controller.setMainController(mainController);
-            dialog.setScene(new Scene(anchorPane));
-            dialog.show();
-        } catch (IOException e) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора объекта");
-            System.out.println(e.getStackTrace());
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+            SplitPane table = loader.load();
+            UsersInLocationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Пользователи по объектам");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по объектам");
+            System.out.println(ex.getStackTrace());
         }
 
     }
