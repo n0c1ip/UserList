@@ -11,7 +11,7 @@ import objects.Department;
 import objects.Organization;
 import objects.User;
 
-public class DepartmentTableController {
+public class UsersInDepartmentTableController {
 
     private MainController mainController;
     @FXML

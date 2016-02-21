@@ -28,7 +28,7 @@ public class DepartmentTableControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DepartmentTableController controller = loader.getController();
+        UsersInDepartmentTableController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }

@@ -1,7 +1,6 @@
 package controllers;
 
 import crudDB.LocationService;
-import crudDB.OrganizationService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.Location;
-import objects.Organization;
 import objects.User;
 import start.EntryPoint;
 
@@ -60,6 +58,21 @@ public class RootController {
 
     }
 
+    public void showOrganizationTable() {
+         try {
+           FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+            SplitPane table = loader.load();
+            OrganizationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Организации");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public void showDepartmentsInOrganizationTable() {
 
@@ -69,21 +82,20 @@ public class RootController {
             DepartmentsInOrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Подразделения по организации");
+            Tab tab = new Tab("Подразделения");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
             System.out.println(ex.getMessage());
         }
-
     }
 
     public void showDepartmentTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
             SplitPane table = loader.load();
-            DepartmentTableController controller = loader.getController();
+            UsersInDepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab("Пользователи по подразделению");
@@ -146,16 +158,6 @@ public class RootController {
         }
     }
 
-    @FXML
-    public void handleAddOrganizationMenuItem(){
-        Optional<String> nameOptional = mainController.getDialogController().showAddOrganizationDialog();
-        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
-            Organization organization = new Organization(nameOptional.get());
-            Organization addedOrganization = OrganizationService.add(organization);
-        }
-    }
-
-
     public void closeMainWindow(){
         mainController.getPrimaryStage().close();
     }
@@ -176,6 +178,8 @@ public class RootController {
 
             if (file != null){
                 UploadInExcelService.uploadInExcel(columns,userList,file);
+                DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
+                        "Завершено", "Файл сохранен" + "\n" + file.getAbsolutePath());
             }
         }
     }
