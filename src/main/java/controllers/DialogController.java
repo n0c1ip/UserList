@@ -21,7 +21,7 @@ import java.io.IOException;
 
 
 /**
- * Contoller for Dialog windows
+ * Controller for Dialog windows
  */
 public class DialogController {
 
@@ -105,6 +105,9 @@ public class DialogController {
     }
 
     public void showLocationEditDialog(String title, Location location){
+        getLocationEditDialog(title,location).showAndWait();
+    }
+    public Stage getLocationEditDialog(String title, Location location) {
         final Stage dialog = new Stage();
         dialog.getIcons().add(new Image("icons/location-icon.png"));
         try{
@@ -117,12 +120,12 @@ public class DialogController {
             LocationEditController controller = loader.getController();
             controller.setEditedLocation(location);
             dialog.setScene(new Scene(locationEdit));
-            dialog.showAndWait();
+            return dialog;
         } catch (IOException e){
             System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
         }
-
+        return dialog;
     }
 
     public Dialog getObjectDialog(String objectName){
@@ -132,7 +135,6 @@ public class DialogController {
         dialog.setContentText("Введите название " + objectName + ":");
         return dialog;
     }
-
 
     /**
      * Shows modal window dialog, with OK button
