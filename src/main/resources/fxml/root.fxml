@@ -25,11 +25,6 @@
                       <MenuItem mnemonicParsing="false" text="Здесь будут признаки" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuAdd" mnemonicParsing="false" text="Структура">
-                  <items>
-                      <MenuItem mnemonicParsing="false" onAction="#handleAddLocationMenuItem" text="Создать объект" />
-                  </items>
-                </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
                     <items>
                   <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="Настройки" />
