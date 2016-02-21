@@ -12,7 +12,7 @@ import start.EntryPoint;
 
 import java.io.IOException;
 
-public class DepartmentTableControllerTest extends GuiTest {
+public class UsersInDepartmentTableControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
