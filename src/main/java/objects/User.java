@@ -33,7 +33,10 @@ public class User extends Model{
     private String login = "";
     private String password = "";
     private String mail = "";
-    private boolean isFired = false;
+
+    @OneToOne
+    @JoinColumn(name="pc_id")
+    private Pc pc = new Pc("");
 
     public User() {
     }
@@ -133,10 +136,20 @@ public class User extends Model{
         return mailProperty = new SimpleStringProperty(this.mail);
     }
 
-    public boolean isFired() {
-        return isFired;
+    public void setPc(Pc pc) {
+        this.pc = pc;
     }
-    public void setIsFired(boolean isFired) {
-        this.isFired = isFired;
+    public Pc getPc() {
+        return pc;
     }
+    public StringProperty getPcProperty(){
+        StringProperty pcProperty = null;
+        if (this.pc != null) {
+            pcProperty = new SimpleStringProperty(this.pc.getName());
+        } else {
+            pcProperty = new SimpleStringProperty("");
+        }
+        return pcProperty;
+    }
+
 }

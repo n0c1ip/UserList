@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -38,6 +39,7 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
+            dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
@@ -84,6 +86,7 @@ public class DialogController {
     }
     public Stage getDepartmentEditDialog(String title, Department department, Organization organization) {
         final Stage dialog = new Stage();
+        dialog.getIcons().add(new Image("icons/department-icon.png"));
         try{
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);

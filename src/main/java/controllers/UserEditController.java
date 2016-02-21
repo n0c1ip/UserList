@@ -1,22 +1,15 @@
 package controllers;
 //Created by mva on 30.01.2016.
 
-import crudDB.DepartmentService;
-import crudDB.LocationService;
-import crudDB.OrganizationService;
-import crudDB.UserService;
+import crudDB.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import objects.Department;
-import objects.Location;
-import objects.Organization;
-import objects.User;
+import objects.*;
 
 /**
  * <p>UserEditController uses for dialog of editing and adding Users.
@@ -46,13 +39,13 @@ public class UserEditController {
     @FXML
     private TextField positionField;
     @FXML
+    private TextField pcField;
+    @FXML
     private TextField loginField;
     @FXML
     private TextField passwordField;
     @FXML
     private TextField mailField;
-    @FXML
-    private CheckBox firedUser;
 
     private User editedUser;
     private boolean invalidData = false;
@@ -98,6 +91,7 @@ public class UserEditController {
             editedUser.setLocation(locationBox.getValue());
             editedUser.setDepartment(departmentBox.getValue());
             editedUser.setPosition(positionField.getText());
+            editedUser.setPc(PcService.add(new Pc(pcField.getText())));
             editedUser.setLogin(loginField.getText());
             editedUser.setPassword(passwordField.getText());
             editedUser.setMail(mailField.getText());
@@ -129,10 +123,12 @@ public class UserEditController {
         locationBox.getSelectionModel().select(editedUser.getLocation());
         departmentBox.getSelectionModel().select(editedUser.getDepartment());
         positionField.setText(editedUser.getPosition());
+        if(editedUser.getPc() != null){
+            pcField.setText(editedUser.getPc().getName());
+        }
         loginField.setText(editedUser.getLogin());
         passwordField.setText(editedUser.getPassword());
         mailField.setText(editedUser.getMail());
-        firedUser.setSelected(editedUser.isFired());
 
     }
 

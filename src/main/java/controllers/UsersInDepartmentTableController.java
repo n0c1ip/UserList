@@ -31,11 +31,15 @@ public class UsersInDepartmentTableController {
     @FXML
     private TableColumn<User, String> positionColumn;
     @FXML
+    private TableColumn<User, String> pcColumn;
+    @FXML
     private TableColumn<User, String> loginColumn;
     @FXML
     private TableColumn<User, String> passwordColumn;
     @FXML
     private TableColumn<User, String> mailColumn;
+    @FXML
+    private Label usersCount;
 
 
     @FXML
@@ -59,6 +63,7 @@ public class UsersInDepartmentTableController {
         departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getDepartmentProperty());
         middleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getMiddleNameProperty());
         positionColumn.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
+        pcColumn.setCellValueFactory(cellData -> cellData.getValue().getPcProperty());
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
@@ -76,6 +81,7 @@ public class UsersInDepartmentTableController {
             ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
             userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
             tableView.setItems(userByDepartmentsList);
+            usersCount.setText(String.valueOf(tableView.getItems().size()));
         }
     }
 
