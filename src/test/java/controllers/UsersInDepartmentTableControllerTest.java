@@ -62,6 +62,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
         click("#middleNameColumn");
         click("#departmentColumn");
         click("#positionColumn");
+        click("#pcColumn");
         click("#loginColumn");
         click("#passwordColumn");
         click("#mailColumn");
