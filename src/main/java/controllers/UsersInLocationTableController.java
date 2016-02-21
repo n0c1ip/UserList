@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.LocationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,12 +11,14 @@ import objects.Location;
 import objects.User;
 
 
-public class TableController {
+public class UsersInLocationTableController {
 
     private final String CREATE_TITLE = "Создание пользователя";
     private final String EDIT_TITLE = "Редактирование пользователя";
 
     //Table
+    @FXML
+    private ListView<Location> locationListView;
     @FXML
     private TableView<User> tableView;
     @FXML
@@ -38,44 +41,24 @@ public class TableController {
     private TableColumn<User, String> mailColumn;
 
 
-    //User preview
     @FXML
-    private Label firstNameLabel;
-    @FXML
-    private Label lastNameLabel;
-    @FXML
-    private Label middleNameLabel;
-    @FXML
-    private Label departmentLabel;
-    @FXML
-    private Label positionLabel;
-    @FXML
-    private Label pcNameLabel;
-    @FXML
-    private Label loginLabel;
-    @FXML
-    private Label passwordLabel;
-    @FXML
-    private Label mailLabel;
-
-    //Location preview
-    @FXML
-    private Label locationNameLabel;
-    @FXML
-    private Label locationAddressLabel;
-    @FXML
-    private Label locationUserCounterLabel;
+    private Label usersCount;
 
 
     private MainController mainController;
 
 
-    public TableController() {
+    public UsersInLocationTableController() {
 
     }
 
     @FXML
     private void initialize() {
+
+        locationListView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> setUsersByLocationTable(newValue));
+
+        showAllLocations();
 
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
@@ -87,16 +70,11 @@ public class TableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-        showUserDetails(null);
-
-        //change user listener
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showUserDetails(newValue));
 
         //Double click edit user
         tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPerson();
+                handleEditPersonButton();
             }
         });
 
@@ -109,49 +87,25 @@ public class TableController {
         this.mainController = mainController;
     }
 
-    public void setUserLocationTable(Location location) {
+    private void showAllLocations(){
+        ObservableList<Location> locationList = FXCollections.observableArrayList();
+        locationList.setAll(LocationService.getAll());
+        locationListView.setItems(locationList);
+    }
+
+    public void setUsersByLocationTable(Location location) {
         ObservableList<User> tableViewList = FXCollections.observableArrayList();
         tableViewList.addAll(UserService.getUsersByLocation(location));
         tableView.setItems(tableViewList);
 
-        locationNameLabel.setText(location.getName());
-        locationAddressLabel.setText(location.getAddress());
-        locationUserCounterLabel.setText(Integer.toString(tableViewList.size()));
-    }
-
-    private void showUserDetails(User user) {
-        if (user != null) {
-            firstNameLabel.setText(user.getFirstName());
-            lastNameLabel.setText(user.getLastName());
-            middleNameLabel.setText(user.getMiddleName());
-            departmentLabel.setText(user.getDepartment().getName());
-            positionLabel.setText(user.getPosition());
-            if(user.getPc() != null){
-                pcNameLabel.setText(user.getPc().getName());
-            } else{
-                pcNameLabel.setText("Нет компьютера");
-            }
-            loginLabel.setText(user.getLogin());
-            passwordLabel.setText(user.getPassword());
-            mailLabel.setText(user.getMail());
-        } else {
-
-            firstNameLabel.setText("");
-            lastNameLabel.setText("");
-            middleNameLabel.setText("");
-            departmentLabel.setText("");
-            positionLabel.setText("");
-            pcNameLabel.setText("");
-            loginLabel.setText("");
-            passwordLabel.setText("");
-            mailLabel.setText("");
-        }
+        usersCount.setText(Integer.toString(tableViewList.size()));
     }
 
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(CREATE_TITLE, user);
+        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -161,6 +115,7 @@ public class TableController {
             User userToDelete = tableView.getSelectionModel().getSelectedItem();
             tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -170,13 +125,15 @@ public class TableController {
             alert.setContentText("Please select a person in the table.");
             alert.showAndWait();
         }
+
     }
 
     @FXML
-    private void handleEditPerson() {
+    private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(EDIT_TITLE, selectedUser);
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
         }
 
     }
