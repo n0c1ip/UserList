@@ -13,8 +13,8 @@ import objects.User;
 
 public class UsersInLocationTableController {
 
-    private static final String CREATE_TITLE = "Создание пользователя";
-    private static final String EDIT_TITLE = "Редактирование пользователя";
+    private final String CREATE_TITLE = "Создание пользователя";
+    private final String EDIT_TITLE = "Редактирование пользователя";
 
     //Table
     @FXML

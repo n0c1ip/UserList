@@ -1,9 +1,7 @@
 package controllers;
 
-import crudDB.LocationService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,13 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import objects.Location;
 import objects.User;
 import start.EntryPoint;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * Controller contains menu bar, handles menu bar items actions.
@@ -57,7 +53,7 @@ public class RootController {
 
     public void showOrganizationTable() {
          try {
-           FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
             SplitPane table = loader.load();
             OrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -67,6 +63,22 @@ public class RootController {
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void showLocationTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/LocationTable.fxml"));
+            SplitPane table = loader.load();
+            LocationTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Объекты");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс объектов");
             System.out.println(ex.getMessage());
         }
     }
@@ -143,16 +155,6 @@ public class RootController {
             e.getStackTrace();
         }
 
-    }
-
-
-    @FXML
-    public void handleAddLocationMenuItem(){
-        Optional<String> nameOptional = mainController.getDialogController().showAddLocationDialog();
-        if (nameOptional.isPresent() && !nameOptional.get().isEmpty()) {
-            Location location = new Location(nameOptional.get());
-            Location addedLocation = LocationService.add(location);
-        }
     }
 
     public void closeMainWindow(){
