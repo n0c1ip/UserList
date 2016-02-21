@@ -17,7 +17,7 @@
                 </Menu>
                 <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
                   <items>
-                      <MenuItem fx:id="itemAddTabTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
+                      <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
                       <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="Организации" />
                       <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения" />

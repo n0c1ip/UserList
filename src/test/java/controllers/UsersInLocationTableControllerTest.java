@@ -12,7 +12,7 @@ import start.EntryPoint;
 
 import java.io.IOException;
 
-public class DepartmentTableControllerTest extends GuiTest {
+public class UsersInLocationTableControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
@@ -20,7 +20,7 @@ public class DepartmentTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
+        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
         SplitPane table = new SplitPane();
 
         try {
@@ -28,19 +28,14 @@ public class DepartmentTableControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        UsersInDepartmentTableController controller = loader.getController();
+        UsersInLocationTableController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }
 
     @Test
-    public void shouldHaveOrganizationComboBox() throws Exception {
-        Assert.assertNotNull(find("#organizationComboBox"));
-    }
-
-    @Test
-    public void shouldHaveDepartmentList() throws Exception {
-        Assert.assertNotNull(find("#departmentListView"));
+    public void shouldHaveLocationList() throws Exception {
+        Assert.assertNotNull(find("#locationListView"));
     }
 
     @Test
@@ -62,6 +57,7 @@ public class DepartmentTableControllerTest extends GuiTest {
         click("#middleNameColumn");
         click("#departmentColumn");
         click("#positionColumn");
+        click("#pcColumn");
         click("#loginColumn");
         click("#passwordColumn");
         click("#mailColumn");

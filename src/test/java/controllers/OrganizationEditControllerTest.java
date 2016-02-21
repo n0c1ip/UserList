@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
@@ -12,12 +11,12 @@ import java.io.IOException;
 import static junit.framework.TestCase.assertNotNull;
 
 
-public class DepartmentEditControllerTest extends GuiTest {
+public class OrganizationEditControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
         try {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
             AnchorPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {
@@ -28,7 +27,7 @@ public class DepartmentEditControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveAllElements() throws Exception {
-        assertNotNull(GuiTest.find("#paneDepartmentEdit"));
+        assertNotNull(GuiTest.find("#paneOrganizationEdit"));
         assertNotNull(GuiTest.find("#okButton"));
         assertNotNull(GuiTest.find("#cancelButton"));
         click("#nameField").type("a");

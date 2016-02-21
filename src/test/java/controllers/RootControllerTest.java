@@ -58,11 +58,35 @@ public class RootControllerTest extends GuiTest {
     }
 
     @Test
-    public void shouldHaveShowDeparmentTableItem() throws Exception {
+    public void shouldHaveUsersByLocationTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemUsersByLocationTable");
+        assertNotNull(GuiTest.find("#paneLocationTable"));
+        assertTrue(GuiTest.find("#paneLocationTable").isVisible());
+    }
+
+    @Test
+    public void shouldHaveDeparmentTableItem() throws Exception {
         click("#menuTables");
         click("#itemDepartmentTable");
         assertNotNull(GuiTest.find("#paneDepartmentTable"));
         assertTrue(GuiTest.find("#paneDepartmentTable").isVisible());
+    }
+
+    @Test
+    public void shouldHaveOrganizationTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemOrganizationTable");
+        assertNotNull(GuiTest.find("#organizationTableTotal"));
+        assertTrue(GuiTest.find("#organizationTableTotal").isVisible());
+    }
+
+    @Test
+    public void shouldHaveDepartmentInOrgTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemDepartmentInOrgTable");
+        assertNotNull(GuiTest.find("#deparmentsInOrganizationTable"));
+        assertTrue(GuiTest.find("#deparmentsInOrganizationTable").isVisible());
     }
 
     @Test
