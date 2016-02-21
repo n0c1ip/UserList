@@ -61,8 +61,6 @@ public class UploadInExcelService {
             fileOutputStream = new FileOutputStream(file);
             workbook.write(fileOutputStream);
             fileOutputStream.close();
-            DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
-                    "Завершено", "Файл сохранен" + "\n" + file.getAbsolutePath());
         }
         workbook.close();
     }
