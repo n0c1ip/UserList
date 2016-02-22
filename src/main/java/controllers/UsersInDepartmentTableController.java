@@ -27,6 +27,8 @@ public class UsersInDepartmentTableController {
     @FXML
     private TableColumn<User, String> lastNameColumn;
     @FXML
+    private TableColumn<User, String> locationColumn;
+    @FXML
     private TableColumn<User, String> middleNameColumn;
     @FXML
     private TableColumn<User, String> departmentColumn;
@@ -65,6 +67,7 @@ public class UsersInDepartmentTableController {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
         departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getDepartmentProperty());
+        locationColumn.setCellValueFactory(cellData -> cellData.getValue().getLocationProperty());
         middleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getMiddleNameProperty());
         positionColumn.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
         pcColumn.setCellValueFactory(cellData -> cellData.getValue().getPcProperty());

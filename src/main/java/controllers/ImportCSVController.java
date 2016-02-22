@@ -1,9 +1,6 @@
 package controllers;
 
-import com.opencsv.CSVReader;
-import crudDB.DepartmentService;
-import crudDB.LocationService;
-import crudDB.UserService;
+import crudDB.OrganizationService;
 import crudFiles.ImportCSVService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,11 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import objects.Department;
-import objects.Location;
-import objects.User;
+import objects.Organization;
 
-import javax.persistence.NoResultException;
 import java.io.*;
 
 /**
@@ -31,20 +25,20 @@ public class ImportCSVController {
     private MainController mainController;
     private String filePath;
     @FXML
-    ChoiceBox<Location> choiceBox;
+    ChoiceBox<Organization> choiceBox;
     @FXML
     TextField filePathField;
 
 
     /**
-     * Loading list of tables in ChoiceBox,
+     * Loading organization in ChoiceBox,
      * Set TextField not editable
      */
     @FXML
     private void initialize(){
-        ObservableList<Location> stringBox = FXCollections.observableArrayList();
-        stringBox.addAll(LocationService.getAll());
-        choiceBox.setItems(stringBox.sorted());
+        ObservableList<Organization> organizations = FXCollections.observableArrayList();
+        organizations.addAll(OrganizationService.getAll());
+        choiceBox.setItems(organizations.sorted());
         choiceBox.getSelectionModel().selectFirst();
         filePathField.setEditable(false);
     }
@@ -72,20 +66,20 @@ public class ImportCSVController {
         if (!filePathField.getText().isEmpty() && choiceBox.getSelectionModel().getSelectedItem() != null){
             try {
                 ImportCSVService.loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(), new FileInputStream(filePathField.getText()), ';');
-                mainController.getDialogController().showAlertDialog(Alert.AlertType.INFORMATION,"Импорт из CSV","Импорт завершен");
+                DialogController.showAlertDialog(Alert.AlertType.INFORMATION,"Импорт из CSV","Импорт завершен");
             } catch (FileNotFoundException e) {
-                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Файл не найден");
+                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Файл не найден");
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
-                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Неверная кодировка файла");
+                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Неверная кодировка файла");
             } catch (IOException e){
-                mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Ошибка");
+                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Ошибка");
             } finally {
                 closeWindow();
             }
 
         } else {
-            mainController.getDialogController().showAlertDialog(Alert.AlertType.ERROR,"Ошибка файла","Выбирите файл");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка файла","Выбирите файл");
         }
     }
 
