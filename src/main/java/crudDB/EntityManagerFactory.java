@@ -17,6 +17,16 @@ public class EntityManagerFactory {
     private static Settings settings;
 
     static {
+        if (entityManagerFactory == null) {
+            initialize();
+        }
+    }
+
+    public static Optional<Settings> getActiveSettings() {
+        return Optional.ofNullable(settings);
+    }
+
+    public static void initialize() {
         Map<String, String> properties = new HashMap<>();
         Optional<Settings> optionalSettings = SettingsService.readSettings();
 
@@ -30,12 +40,6 @@ public class EntityManagerFactory {
         }
         entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
     }
-
-    public static Optional<Settings> getActiveSettings() {
-        return Optional.ofNullable(settings);
-    }
-
-    public static void initialize() {}
 
     public static EntityManager createEntityManager() {
         return entityManagerFactory.createEntityManager();
