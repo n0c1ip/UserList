@@ -26,6 +26,7 @@ public class EntityManagerFactory {
             properties.put("hibernate.connection.password", settings.getPassword());
             properties.put("hibernate.connection.url", settings.getServerWithInnerSettings());
             properties.put("hibernate.connection.driver_class", settings.getDriverClass());
+            properties.put("hibernate.connection.autocommit", "true");
         }
         entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
     }
