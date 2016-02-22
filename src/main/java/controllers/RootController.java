@@ -120,6 +120,7 @@ public class RootController {
 
         try {
             final Stage dialog = new Stage();
+            dialog.getIcons().add(new Image("icons/import-icon.png"));
             dialog.setTitle("Импорт из CSV");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
