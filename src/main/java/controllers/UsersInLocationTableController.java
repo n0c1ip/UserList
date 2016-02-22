@@ -80,10 +80,7 @@ public class UsersInLocationTableController {
             }
         });
 
-
-
     }
-
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -135,8 +132,7 @@ public class UsersInLocationTableController {
 
     @FXML
     private void handleNewUserButton(ActionEvent actionEvent) {
-        User user = new User();
-        mainController.getDialogController().showUserEditDialog(CREATE_TITLE, user);
+        mainController.getDialogController().showNewUserMethodChoiceDialog(locationListView.getSelectionModel().getSelectedItem());
         setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
     }
 
