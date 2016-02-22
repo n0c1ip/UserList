@@ -6,13 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="paneLocationTable" dividerPositions="0.5" prefHeight="676.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInLocationTableController">
+<SplitPane fx:id="paneLocationTable" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ExistingUserChoiceController">
     <items>
-        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
-            <children>
-                <ListView fx:id="locationListView" layoutX="34.0" prefHeight="527.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            </children>
-        </AnchorPane>
         <AnchorPane prefHeight="610.0" prefWidth="463.0">
             <children>
                 <SplitPane dividerPositions="0.8819047619047619" orientation="VERTICAL" prefHeight="527.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -39,26 +34,12 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0">
                             <children>
-                                <HBox alignment="CENTER_RIGHT" layoutX="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="369.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox alignment="CENTER_RIGHT" layoutX="717.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="113.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="717.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                              <TextField fx:id="searchField" prefHeight="25.0" prefWidth="177.0" promptText="Фильтр" />
-                                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="97.0" text="Добавить">
+                                        <Button fx:id="choiceButton" mnemonicParsing="false" onAction="#handleChoiceUserButton" prefHeight="25.0" prefWidth="97.0" text="Выбрать">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
-                                        </Button>
-                                        <Button fx:id="changeButton" mnemonicParsing="false" onAction="#handleEditPersonButton" prefHeight="25.0" prefWidth="97.0" text="Изменить">
-                                            <opaqueInsets>
-                                                <Insets />
-                                            </opaqueInsets>
-                                        </Button>
-                                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="25.0" prefWidth="97.0" text="Удалить">
-                                            <opaqueInsets>
-                                                <Insets />
-                                            </opaqueInsets>
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
                                         </Button>
                                     </children>
                                 </HBox>
@@ -67,7 +48,7 @@
                                         <Font name="System Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="usersCount" layoutX="160.0" layoutY="10.0" prefHeight="17.0" prefWidth="47.0">
+                                <Label fx:id="usersCount" layoutX="160.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0">
                                     <font>
                                         <Font name="System Italic" size="12.0" />
                                     </font></Label>

@@ -17,6 +17,16 @@ public class EntityManagerFactory {
     private static Settings settings;
 
     static {
+        if (entityManagerFactory == null) {
+            initialize();
+        }
+    }
+
+    public static Optional<Settings> getActiveSettings() {
+        return Optional.ofNullable(settings);
+    }
+
+    public static void initialize() {
         Map<String, String> properties = new HashMap<>();
         Optional<Settings> optionalSettings = SettingsService.readSettings();
 
@@ -24,17 +34,12 @@ public class EntityManagerFactory {
             settings = optionalSettings.get();
             properties.put("hibernate.connection.username", settings.getUserName());
             properties.put("hibernate.connection.password", settings.getPassword());
-            properties.put("hibernate.connection.url", settings.getServerWithPrefix());
-            properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+            properties.put("hibernate.connection.url", settings.getServerWithInnerSettings());
+            properties.put("hibernate.connection.driver_class", settings.getDriverClass());
+            properties.put("hibernate.connection.autocommit", "true");
         }
         entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
     }
-
-    public static Optional<Settings> getActiveSettings() {
-        return Optional.ofNullable(settings);
-    }
-
-    public static void initialize() {}
 
     public static EntityManager createEntityManager() {
         return entityManagerFactory.createEntityManager();

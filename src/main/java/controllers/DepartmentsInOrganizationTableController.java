@@ -15,7 +15,7 @@ public class DepartmentsInOrganizationTableController {
     @FXML
     private ListView<Organization> organizationListView;
     @FXML
-    private TableView<Department> deparmentTable;
+    private TableView<Department> tableView;
     @FXML
     private TableColumn<Department, String> departmentNameColumn;
 
@@ -31,7 +31,7 @@ public class DepartmentsInOrganizationTableController {
 
         departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 
-        deparmentTable.setOnMousePressed(event -> {
+        tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditDepartmentButton();
             }
@@ -42,7 +42,7 @@ public class DepartmentsInOrganizationTableController {
     private void showDepartmentByOrganizationSelect(Organization organization){
         ObservableList<Department> departmentList = FXCollections.observableArrayList();
         departmentList.setAll(DepartmentService.getByOrganization(organization));
-        deparmentTable.setItems(departmentList);
+        tableView.setItems(departmentList);
     }
 
     public void setMainController(MainController mainController) {
@@ -51,7 +51,7 @@ public class DepartmentsInOrganizationTableController {
 
     @FXML
     private void handleEditDepartmentButton() {
-        Department selectedDepartment = deparmentTable.getSelectionModel().getSelectedItem();
+        Department selectedDepartment = tableView.getSelectionModel().getSelectedItem();
         if (selectedDepartment != null) {
             mainController.getDialogController().showDepartmentEditDialog("Редактирование подразделения", selectedDepartment, organizationListView.getSelectionModel().getSelectedItem());
             showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
@@ -67,9 +67,9 @@ public class DepartmentsInOrganizationTableController {
 
     @FXML
     private void handleDeleteDepartment() {
-        int selectedIndex = deparmentTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            Department departmentToDelete = deparmentTable.getSelectionModel().getSelectedItem();
+            Department departmentToDelete = tableView.getSelectionModel().getSelectedItem();
             DepartmentService.delete(departmentToDelete.getId());
             showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         } else {

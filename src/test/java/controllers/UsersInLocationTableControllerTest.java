@@ -12,7 +12,7 @@ import start.EntryPoint;
 
 import java.io.IOException;
 
-public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
+public class UsersInLocationTableControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
@@ -20,7 +20,7 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
         SplitPane table = new SplitPane();
 
         try {
@@ -28,17 +28,23 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DepartmentsInOrganizationTableController controller = loader.getController();
+        UsersInLocationTableController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }
 
     @Test
-    public void shouldHaveAllElements() throws Exception {
-        Assert.assertNotNull(find("#organizationListView"));
-        Assert.assertNotNull(find("#tableView"));
-        Assert.assertNotNull(find("#departmentNameColumn"));
+    public void shouldHaveLocationList() throws Exception {
+        Assert.assertNotNull(find("#locationListView"));
+    }
 
+    @Test
+    public void shouldHaveUserTableView() throws Exception {
+        Assert.assertNotNull(find("#tableView"));
+    }
+
+    @Test
+    public void shouldHaveUserManagementButtons() throws Exception {
         Assert.assertNotNull(find("#addButton"));
         Assert.assertNotNull(find("#changeButton"));
         Assert.assertNotNull(find("#removeButton"));
@@ -46,14 +52,22 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
 
     @Test
     public void shouldSortTable() throws Exception {
-        click("#departmentNameColumn");
+        click("#lastNameColumn");
+        click("#firstNameColumn");
+        click("#middleNameColumn");
+        click("#departmentColumn");
+        click("#positionColumn");
+        click("#pcColumn");
+        click("#loginColumn");
+        click("#passwordColumn");
+        click("#mailColumn");
     }
 
     @Test
-    public void shouldOpenDepartmentEditDialog() throws Exception {
+    public void shouldOpenMethodChoiceDialog() throws Exception {
         click("#addButton");
-        AnchorPane departmentEdit = find("#paneDepartmentEdit");
-        Assert.assertTrue(departmentEdit .getScene().getWindow().isShowing());
+        AnchorPane userEdit = find("#paneUserMethodChoice");
+        Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
         type(KeyCode.ESCAPE);
     }
 }
