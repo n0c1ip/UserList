@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="LocationTable" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LocationTableController">
+<SplitPane fx:id="splitPane" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LocationTableController">
     <items>
         <AnchorPane prefHeight="610.0" prefWidth="463.0">
             <children>
@@ -13,7 +13,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                         <TableView fx:id="locationTable" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                         <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
                                  <TableColumn fx:id="locationNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Наименование объекта" />
                               <TableColumn fx:id="locationCityColumn" minWidth="-1.0" prefWidth="-1.0" text="Город" />

@@ -5,6 +5,8 @@ import crudDB.OrganizationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Department;
@@ -40,6 +42,8 @@ public class UsersInDepartmentTableController {
     private TableColumn<User, String> mailColumn;
     @FXML
     private Label usersCount;
+    @FXML
+    private TextField searchField;
 
 
     @FXML
@@ -80,7 +84,38 @@ public class UsersInDepartmentTableController {
         if(department != null){
             ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
             userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
-            tableView.setItems(userByDepartmentsList);
+
+            //Wrap observableList in FilteredList
+            FilteredList<User> filteredData = new FilteredList<>(userByDepartmentsList, p -> true);
+            //Wrap FilteredList in SortedList
+            SortedList<User> sortedData = new SortedList<>(filteredData);
+
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(user -> {
+                    // If filter text is empty, display all users.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    //filter text
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (user.getFirstName().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getLastName().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getMiddleName().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getDepartment().toString().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getPosition().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getLogin().toLowerCase().contains(lowerCaseFilter) ||
+                            user.getMail().toLowerCase().contains(lowerCaseFilter))
+                    {
+                        return true; // Filter matches users fields.
+                    }
+                    return false; // Does not match.
+                });
+            });
+
+            //Bind the SortedList comparator to the TableView comparator.
+            sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+            tableView.setItems(sortedData);
             usersCount.setText(String.valueOf(tableView.getItems().size()));
         }
     }

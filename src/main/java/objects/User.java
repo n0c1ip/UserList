@@ -152,4 +152,16 @@ public class User extends Model{
         return pcProperty;
     }
 
+    @Override
+    public String toString() {
+        String userInfo = lastName + " "
+                + firstName + " "
+                + middleName + " "
+                + department + " "
+                + pc + " "
+                + login + " "
+                + password + " "
+                + mail + " ";
+        return userInfo.replaceAll("\\s{2,}", " ");
+    }
 }

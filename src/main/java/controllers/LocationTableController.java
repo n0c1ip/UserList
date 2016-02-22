@@ -15,7 +15,7 @@ public class LocationTableController {
 
 
     @FXML
-    TableView<Location> locationTable;
+    TableView<Location> tableView;
 
     @FXML
     TableColumn<Location, String> locationNameColumn;
@@ -33,7 +33,7 @@ public class LocationTableController {
         locationCityColumn.setCellValueFactory(cellData -> cellData.getValue().getCityProperty());
         locationAddressColumn.setCellValueFactory(cellData -> cellData.getValue().getAdderssProperty());
 
-        locationTable.setOnMousePressed(event -> {
+        tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditLocationButton();
             }
@@ -51,7 +51,7 @@ public class LocationTableController {
     }
 
     public void handleEditLocationButton() {
-        Location selectedLocation = locationTable.getSelectionModel().getSelectedItem();
+        Location selectedLocation = tableView.getSelectionModel().getSelectedItem();
         if (selectedLocation != null) {
             mainController.getDialogController().showLocationEditDialog("Редактирование объекта", selectedLocation);
         }
@@ -64,6 +64,6 @@ public class LocationTableController {
     private void showAllLocations(){
         ObservableList<Location> locationsList = FXCollections.observableArrayList();
         locationsList.setAll(LocationService.getAll());
-        locationTable.setItems(locationsList);
+        tableView.setItems(locationsList);
     }
 }

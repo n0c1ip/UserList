@@ -13,7 +13,7 @@ public class OrganizationTableController {
 
     private MainController mainController;
     @FXML
-    private TableView<Organization> organizationTable;
+    private TableView<Organization> tableView;
     @FXML
     private TableColumn<Organization, String> organizationNameColumn;
 
@@ -23,7 +23,7 @@ public class OrganizationTableController {
 
         organizationNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 
-        organizationTable.setOnMousePressed(event -> {
+        tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditOrganizationButton();
             }
@@ -33,7 +33,7 @@ public class OrganizationTableController {
     private void showAllOrganizations(){
         ObservableList<Organization> organizationList = FXCollections.observableArrayList();
         organizationList.setAll(OrganizationService.getAll());
-        organizationTable.setItems(organizationList);
+        tableView.setItems(organizationList);
     }
 
     public void setMainController(MainController mainController) {
@@ -42,7 +42,7 @@ public class OrganizationTableController {
 
     @FXML
     private void handleEditOrganizationButton() {
-        Organization selectedOrganization = organizationTable.getSelectionModel().getSelectedItem();
+        Organization selectedOrganization = tableView.getSelectionModel().getSelectedItem();
         if (selectedOrganization != null) {
             mainController.getDialogController().showOrganizationEditDialog("Редактирование организации", selectedOrganization);
             showAllOrganizations();
@@ -58,9 +58,9 @@ public class OrganizationTableController {
 
     @FXML
     private void handleDeleteOrganization() {
-        int selectedIndex = organizationTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            Organization organizationToDelete = organizationTable.getSelectionModel().getSelectedItem();
+            Organization organizationToDelete = tableView.getSelectionModel().getSelectedItem();
             OrganizationService.delete(organizationToDelete.getId());
             showAllOrganizations();
         } else {
