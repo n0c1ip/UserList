@@ -64,7 +64,7 @@ public class SettingsService {
     }
 
     public static boolean isSettingsValid(Settings settings) {
-        try (Connection connection = DriverManager.getConnection(settings.getServerWithPrefix(), settings.getUserName(), settings.getPassword())) {
+        try (Connection connection = DriverManager.getConnection(settings.getServerWithInnerSettings(), settings.getUserName(), settings.getPassword())) {
             return true;
         } catch (SQLException e) {
             return false;

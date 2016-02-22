@@ -39,31 +39,33 @@ public class SettingsController {
     public SettingsController() {
     }
 
+    private final String MYSQL_DB_NAME = "MySQL";
+    private final String EMBEDDED_DB_NAME = "Embedded DB";
+
     @FXML
     private void initialize(){
         ObservableList<String> options =
                 FXCollections.observableArrayList(
-                        "MySQL",
-                        "PostgreSQL",
-                        "Local DB"
+                        MYSQL_DB_NAME,
+                        EMBEDDED_DB_NAME
                 );
         dbTypeComboBox.setItems(options);
 
         //Disables/enables connection settings fields
         dbTypeComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable1, oldValue, newValue ) -> {
-                    if(newValue.matches("Local DB")){
+                    if(newValue.matches(EMBEDDED_DB_NAME)){
                         serverTextField.setDisable(true);
                         loginTextField.setDisable(true);
                         passwordField.setDisable(true);
-                        testConnectionButton.setDisable(true);
+                        //testConnectionButton.setDisable(true);
                         connectionElementsDisabled = true;
                     } else {
                         if(connectionElementsDisabled){
                             serverTextField.setDisable(false);
                             loginTextField.setDisable(false);
                             passwordField.setDisable(false);
-                            testConnectionButton.setDisable(false);
+                          //  testConnectionButton.setDisable(false);
                             connectionElementsDisabled = false;
                         }
                     }
@@ -72,6 +74,14 @@ public class SettingsController {
         Optional<Settings> optionalSettings = SettingsService.readSettings();
         if (optionalSettings.isPresent()) {
             Settings settings = optionalSettings.get();
+            switch (settings.getDatabase()) {
+                case MYSQL:
+                    dbTypeComboBox.setValue(MYSQL_DB_NAME);
+                    break;
+                case EMBEDDED:
+                    dbTypeComboBox.setValue(EMBEDDED_DB_NAME);
+                    break;
+            }
             loginTextField.setText(settings.getUserName());
             passwordField.setText(settings.getPassword());
             serverTextField.setText(settings.getServer());
@@ -96,6 +106,7 @@ public class SettingsController {
         if (SettingsService.isSettingsValid(settings)) {
             SettingsService.writeSettings(fieldsToSettings());
             closeWindow();
+            DialogController.showAlertDialog(Alert.AlertType.INFORMATION, "Требуется перезапуск", "Перезапустите программу чтобы настройки вступили в силу");
         } else {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
         }
@@ -111,9 +122,17 @@ public class SettingsController {
 
     private Settings fieldsToSettings() {
         Settings settings = new Settings();
-        settings.setUserName(loginTextField.getText());
-        settings.setPassword(passwordField.getText());
-        settings.setServer(serverTextField.getText());
+        switch (dbTypeComboBox.getValue()) {
+            case MYSQL_DB_NAME:
+                settings.setDatabase(Settings.DATABASE.MYSQL);
+                settings.setUserName(loginTextField.getText());
+                settings.setPassword(passwordField.getText());
+                settings.setServer(serverTextField.getText());
+                break;
+            case EMBEDDED_DB_NAME:
+                settings.setDatabase(Settings.DATABASE.EMBEDDED);
+                break;
+        }
         return settings;
     }
 

@@ -24,8 +24,8 @@ public class EntityManagerFactory {
             settings = optionalSettings.get();
             properties.put("hibernate.connection.username", settings.getUserName());
             properties.put("hibernate.connection.password", settings.getPassword());
-            properties.put("hibernate.connection.url", settings.getServerWithPrefix());
-            properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+            properties.put("hibernate.connection.url", settings.getServerWithInnerSettings());
+            properties.put("hibernate.connection.driver_class", settings.getDriverClass());
         }
         entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
     }
