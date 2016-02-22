@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="paneLocationTable" dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInLocationTableController">
+<SplitPane fx:id="paneLocationTable" dividerPositions="0.5" prefHeight="676.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInLocationTableController">
     <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
             <children>
@@ -41,6 +41,7 @@
                             <children>
                                 <HBox alignment="CENTER_RIGHT" layoutX="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="369.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
+                              <TextField fx:id="searchField" prefHeight="25.0" prefWidth="177.0" promptText="Фильтр" />
                                         <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="97.0" text="Добавить">
                                             <opaqueInsets>
                                                 <Insets />
@@ -66,7 +67,7 @@
                                         <Font name="System Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="usersCount" layoutX="160.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0">
+                                <Label fx:id="usersCount" layoutX="160.0" layoutY="10.0" prefHeight="17.0" prefWidth="47.0">
                                     <font>
                                         <Font name="System Italic" size="12.0" />
                                     </font></Label>
