@@ -1,5 +1,6 @@
 package controllers;// Created by mva on 15.02.2016.
 
+import crudDB.EntityManagerFactory;
 import crudFiles.SettingsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import objects.Settings;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,6 +37,7 @@ public class SettingsController {
     Button cancelButton;
 
     boolean connectionElementsDisabled = false;
+    private TabPane tabLayout;
 
     public SettingsController() {
     }
@@ -105,8 +108,12 @@ public class SettingsController {
         Settings settings = fieldsToSettings();
         if (SettingsService.isSettingsValid(settings)) {
             SettingsService.writeSettings(fieldsToSettings());
+            if (tabLayout != null) {
+                tabLayout.getTabs().removeAll(tabLayout.getTabs());
+            }
+            EntityManagerFactory.closeEntityManagerFactory();
+            EntityManagerFactory.initialize();
             closeWindow();
-            DialogController.showAlertDialog(Alert.AlertType.INFORMATION, "Требуется перезапуск", "Перезапустите программу чтобы настройки вступили в силу");
         } else {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
         }
@@ -136,4 +143,7 @@ public class SettingsController {
         return settings;
     }
 
+    public void setTabLayout(TabPane tabLayout) {
+        this.tabLayout = tabLayout;
+    }
 }

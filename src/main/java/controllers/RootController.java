@@ -148,6 +148,7 @@ public class RootController {
             Pane settingsPane = loader.load();
             SettingsController controller = loader.getController();
             controller.setMainController(mainController);
+            controller.setTabLayout(tabLayout);
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
         } catch (IOException e){
