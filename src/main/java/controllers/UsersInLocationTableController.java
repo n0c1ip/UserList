@@ -72,14 +72,12 @@ public class UsersInLocationTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-
         //Double click edit user
         tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditPersonButton();
             }
         });
-
     }
 
     public void setMainController(MainController mainController) {
@@ -109,14 +107,7 @@ public class UsersInLocationTableController {
                 }
                 //filter text
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (user.getFirstName().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getLastName().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getMiddleName().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getDepartment().toString().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getPosition().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getLogin().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getMail().toLowerCase().contains(lowerCaseFilter))
-                        {
+                if (user.toString().toLowerCase().contains(lowerCaseFilter)){
                     return true; // Filter matches users fields.
                 }
                 return false; // Does not match.

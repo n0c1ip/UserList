@@ -35,7 +35,7 @@ public class OrganizationTableControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveOrganizationTableView() throws Exception {
-        Assert.assertNotNull(find("#organizationTable"));
+        Assert.assertNotNull(find("#tableView"));
     }
 
     @Test
