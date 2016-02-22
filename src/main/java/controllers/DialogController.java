@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,56 @@ import java.io.IOException;
 public class DialogController {
 
     private Stage primaryStage;
+
+
+    public void showExistingUserChoiceDialog(Location location) {
+        getExistingUserChoiceDialog(location).showAndWait();
+    }
+    public Stage getExistingUserChoiceDialog(Location location) {
+        final Stage dialog = new Stage();
+        try {
+            dialog.setTitle("Выбор пользователя из списка");
+            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/existingUserChoiceTable.fxml"));
+            SplitPane useredit = loader.load();
+            ExistingUserChoiceController controller = loader.getController();
+            controller.setLocation(location);
+            dialog.setScene(new Scene(useredit));
+            return dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+        }
+        return dialog;
+    }
+
+    public void showNewUserMethodChoiceDialog(Location location) {
+        getNewUserMethodChoiceDialog(location).showAndWait();
+    }
+    public Stage getNewUserMethodChoiceDialog(Location location) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle("Выбор способа добавления пользователя");
+            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            UserMethodChoiceController controller = loader.getController();
+            controller.setLocation(location);
+            controller.setDialogController(this);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+        }
+        return dialog;
+    }
 
     /**
      * Dialog shows when called adding or editing User
