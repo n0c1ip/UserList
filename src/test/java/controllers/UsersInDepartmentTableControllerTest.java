@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import start.EntryPoint;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
         FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
+        loader.setResources(I18n.TABLE.getBundle());
         SplitPane table = new SplitPane();
 
         try {

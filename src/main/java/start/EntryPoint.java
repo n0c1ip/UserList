@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+
 /**
  *
  */
@@ -17,6 +19,10 @@ public class EntryPoint extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        //TODO Move in settings
+        Locale.setDefault(new Locale("en"));
+
         MainController mainController = new MainController();
         primaryStage.getIcons().add(new Image("icons/icon.png"));
         mainController.setPrimaryStage(primaryStage);

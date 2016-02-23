@@ -9,27 +9,26 @@
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
-                <Menu fx:id="menuFile" mnemonicParsing="false" text="Файл">
+                <Menu fx:id="menuFile" mnemonicParsing="false" text="%MenuBar.File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Печать" />
-                        <MenuItem fx:id="itemCloseWindow" mnemonicParsing="false" onAction="#closeMainWindow" text="Выход" />
+                        <MenuItem fx:id="itemCloseWindow" mnemonicParsing="false" onAction="#closeMainWindow" text="%MenuBar.Exit" />
                     </items>
                 </Menu>
-                <Menu fx:id="menuTables" mnemonicParsing="false" text="Таблицы">
+                <Menu fx:id="menuTables" mnemonicParsing="false" text="%MenuBar.Tables">
                   <items>
-                      <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="Пользователи по объектам" />
-                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="Пользователи по подразделениям" />
-                      <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="Организации" />
-                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="Подразделения" />
-                      <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="Объекты" />
+                      <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="%MenuBar.UsersByLocations" />
+                      <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
+                      <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
+                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
+                      <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
                       <MenuItem mnemonicParsing="false" text="Здесь будут признаки" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuService" mnemonicParsing="false" text="Сервис">
+                <Menu fx:id="menuService" mnemonicParsing="false" text="%MenuBar.Tools">
                     <items>
-                  <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="Настройки" />
-                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="Выгрузить в Excel" />
-                        <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="Импорт из csv" />
+                  <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="%MenuBar.Preferences" />
+                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="%MenuBar.UploadInExcel" />
+                        <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="%MenuBar.ImportFormCSV" />
                     </items>
                 </Menu>
             </menus>

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Location;
 import objects.User;
+import util.I18n;
 
 
 public class UsersInLocationTableController {
@@ -118,7 +119,8 @@ public class UsersInLocationTableController {
         sortedData.comparatorProperty().bind(tableView.comparatorProperty());
 
         tableView.setItems(sortedData);
-        usersCount.setText(Integer.toString(userList.size()));
+        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                +String.valueOf(tableView.getItems().size()));
     }
 
     @FXML

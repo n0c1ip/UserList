@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import objects.Department;
 import objects.Organization;
 import objects.User;
+import util.I18n;
 
 public class UsersInDepartmentTableController {
 
@@ -112,7 +113,8 @@ public class UsersInDepartmentTableController {
             sortedData.comparatorProperty().bind(tableView.comparatorProperty());
 
             tableView.setItems(sortedData);
-            usersCount.setText(String.valueOf(tableView.getItems().size()));
+            usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                                         +String.valueOf(tableView.getItems().size()));
         }
     }
 

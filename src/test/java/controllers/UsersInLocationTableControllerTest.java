@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
@@ -12,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import start.EntryPoint;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -24,6 +23,7 @@ public class UsersInLocationTableControllerTest extends GuiTest {
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
         FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+        loader.setResources(I18n.TABLE.getBundle());
         SplitPane table = new SplitPane();
 
         try {
