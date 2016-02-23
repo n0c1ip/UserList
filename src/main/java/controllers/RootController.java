@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
 import start.EntryPoint;
+import util.I18n;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,11 +38,12 @@ public class RootController {
 
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane table = loader.load();
             UsersInLocationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Пользователи по объектам");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.UsersByLocations"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -54,11 +56,12 @@ public class RootController {
     public void showOrganizationTable() {
          try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane table = loader.load();
             OrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Организации");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Organizations"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -70,11 +73,12 @@ public class RootController {
     public void showLocationTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/LocationTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane table = loader.load();
             LocationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Объекты");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Locations"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -87,11 +91,12 @@ public class RootController {
 
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane table = loader.load();
             DepartmentsInOrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Подразделения");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Departments"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -103,15 +108,16 @@ public class RootController {
     public void showDepartmentTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane table = loader.load();
             UsersInDepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Пользователи по подразделению");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.UsersByDepartments"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по подразделениям");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), "Не удалось загрузить интерфейс пользователей по подразделениям");
             System.out.println(ex.getStackTrace());
         }
     }

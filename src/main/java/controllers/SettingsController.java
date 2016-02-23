@@ -19,6 +19,8 @@ public class SettingsController {
     @FXML
     ComboBox<String> dbTypeComboBox;
     @FXML
+    ComboBox<String> languageComboBox;
+    @FXML
     TextField serverTextField;
     @FXML
     TextField loginTextField;
@@ -31,6 +33,7 @@ public class SettingsController {
     @FXML
     Button cancelButton;
 
+
     boolean connectionElementsDisabled = false;
     private TabPane tabLayout;
 
@@ -40,14 +43,25 @@ public class SettingsController {
     private final String MYSQL_DB_NAME = "MySQL";
     private final String EMBEDDED_DB_NAME = "Embedded DB";
 
+    private final String ENGLISH_NAME = "English";
+    private final String RUSSIAN_NAME = "Русский";
+
     @FXML
     private void initialize(){
-        ObservableList<String> options =
+
+        ObservableList<String> languages =
+                FXCollections.observableArrayList(
+                        ENGLISH_NAME,
+                        RUSSIAN_NAME
+                );
+        languageComboBox.setItems(languages);
+
+        ObservableList<String> databases =
                 FXCollections.observableArrayList(
                         MYSQL_DB_NAME,
                         EMBEDDED_DB_NAME
                 );
-        dbTypeComboBox.setItems(options);
+        dbTypeComboBox.setItems(databases);
 
         //Disables/enables connection settings fields
         dbTypeComboBox.getSelectionModel().selectedItemProperty().addListener(

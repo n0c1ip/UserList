@@ -24,7 +24,7 @@ public class RootControllerTest extends GuiTest {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
             BorderPane rootLayout = rootLoader.load();
 
-            FXMLLoader tabpaneLoader = new FXMLLoader(getClass().getResource("/fxml/tabpane.fxml"));
+            FXMLLoader tabpaneLoader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));
             TabPane tabPane = tabpaneLoader.load();
             rootLayout.setCenter(tabPane);
 
