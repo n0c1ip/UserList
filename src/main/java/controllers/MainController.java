@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -14,13 +15,11 @@ import java.io.IOException;
  * Main Controller initialize main window with Root Layout and
  * Tab Layout in it.
  */
-public class MainController {
+public class MainController{
 
     private DialogController dialogController;
     private Stage primaryStage;
     private BorderPane rootLayout;
-
-
 
     public void show() {
         EntityManagerFactory.initialize();
@@ -29,7 +28,6 @@ public class MainController {
         initRootLayout();
         initTabLayout();
     }
-
 
     public void initDialogController(){
         DialogController dialogController = new DialogController();
@@ -43,6 +41,7 @@ public class MainController {
     private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
+            loader.setResources(I18n.ROOT.getBundle());
             rootLayout = loader.load();
             RootController rootController = loader.getController();
             rootController.setMainController(this);
@@ -50,7 +49,7 @@ public class MainController {
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить основной интерфейс");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), I18n.ERROR.getString("ErrorRootLayoutLoader"));
         }
     }
 
@@ -59,16 +58,14 @@ public class MainController {
      */
     private void initTabLayout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabpane.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));
             TabPane tabPane = loader.load();
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            dialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс панели таблицы");
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), I18n.ERROR.getString("ErrorTabPaneLoader"));
         }
     }
-
-
 
     public void setMainWindowTitle(String title){
         this.primaryStage.setTitle(title);
