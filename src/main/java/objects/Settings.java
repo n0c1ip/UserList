@@ -51,13 +51,12 @@ public class Settings implements Serializable{
     }
 
     DriverInnerSettings driverInnerSettings;
-    DATABASE database;
 
+    DATABASE database;
     public void setDatabase(DATABASE database) {
         driverInnerSettings = databaseSettings.get(database);
         this.database = database;
     }
-
     public DATABASE getDatabase() {
         return database;
     }
