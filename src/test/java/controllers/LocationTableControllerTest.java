@@ -6,6 +6,7 @@ import javafx.scene.control.SplitPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class LocationTableControllerTest extends GuiTest{
 
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/LocationTable.fxml"));
+            rootLoader.setResources(I18n.TABLE.getBundle());
             SplitPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

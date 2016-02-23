@@ -8,25 +8,23 @@ import java.util.Set;
 
 public class SettingsTest {
 
-/*
     @Test
-    public void shouldSetServerWithPrefix() {
-        String prefix = "jdbc:mysql://";
-        String server = "localhost:3306/testdb";
+    public void shouldGetDatabase() {
+        Settings.DATABASE expectedDB = Settings.DATABASE.MYSQL;
         Settings settings = new Settings();
-        settings.setServerWithPrefix(prefix + server);
-        Assert.assertEquals(server, settings.getServer());
-        Assert.assertEquals(prefix + server, settings.getServerWithPrefix());
+        settings.setDatabase(expectedDB);
+        Assert.assertEquals(expectedDB, settings.getDatabase());
     }
 
     @Test
-    public void shouldGetServerWithPrefix() {
-        String prefix = "jdbc:mysql://";
-        String server = "localhost:3306/testdb";
+    public void shouldSetServerInnerSettings() {
+        String prefix = "jdbc:derby:testdb";
+        String postfix = ";create=true";
+        String server = "";
         Settings settings = new Settings();
-        settings.setServer(server);
+        settings.setDatabase(Settings.DATABASE.EMBEDDED);
         Assert.assertEquals(server, settings.getServer());
-        Assert.assertEquals(prefix + server, settings.getServerWithPrefix());
+        Assert.assertEquals(prefix + server + postfix, settings.getServerWithInnerSettings());
     }
-*/
+
 }

@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class RootControllerTest extends GuiTest {
 
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
+            rootLoader.setResources(I18n.ROOT.getBundle());
             BorderPane rootLayout = rootLoader.load();
 
             FXMLLoader tabpaneLoader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));

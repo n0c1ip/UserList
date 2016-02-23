@@ -9,11 +9,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import start.EntryPoint;
-import util.I18n;
 
 import java.io.IOException;
 
-public class UsersInDepartmentTableControllerTest extends GuiTest {
+public class ExistingUserChoiceControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
@@ -21,8 +20,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
-        loader.setResources(I18n.TABLE.getBundle());
+        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/existingUserChoiceTable.fxml"));
         SplitPane table = new SplitPane();
 
         try {
@@ -30,20 +28,11 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        UsersInDepartmentTableController controller = loader.getController();
+        ExistingUserChoiceController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }
 
-    @Test
-    public void shouldHaveOrganizationComboBox() throws Exception {
-        Assert.assertNotNull(find("#organizationComboBox"));
-    }
-
-    @Test
-    public void shouldHaveDepartmentList() throws Exception {
-        Assert.assertNotNull(find("#departmentListView"));
-    }
 
     @Test
     public void shouldHaveUserTableView() throws Exception {
@@ -51,10 +40,8 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
     }
 
     @Test
-    public void shouldHaveUserManagementButtons() throws Exception {
-        Assert.assertNotNull(find("#addButton"));
-        Assert.assertNotNull(find("#changeButton"));
-        Assert.assertNotNull(find("#removeButton"));
+    public void shouldHaveUserChoiceButtons() throws Exception {
+        Assert.assertNotNull(find("#choiceButton"));
     }
 
     @Test
@@ -70,11 +57,4 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
         click("#mailColumn");
     }
 
-    @Test
-    public void shouldOpenUserEditDialog() throws Exception {
-        click("#addButton");
-        AnchorPane userEdit = find("#paneUserEdit");
-        Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
-        type(KeyCode.ESCAPE);
-    }
 }
