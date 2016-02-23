@@ -27,18 +27,20 @@ public class EntityManagerFactory {
     }
 
     public static void initialize() {
-        Map<String, String> properties = new HashMap<>();
-        Optional<Settings> optionalSettings = SettingsService.readSettings();
+        if (entityManagerFactory == null || !entityManagerFactory.isOpen()) {
+            Map<String, String> properties = new HashMap<>();
+            Optional<Settings> optionalSettings = SettingsService.readSettings();
 
-        if (optionalSettings.isPresent()) {
-            settings = optionalSettings.get();
-            properties.put("hibernate.connection.username", settings.getUserName());
-            properties.put("hibernate.connection.password", settings.getPassword());
-            properties.put("hibernate.connection.url", settings.getServerWithInnerSettings());
-            properties.put("hibernate.connection.driver_class", settings.getDriverClass());
-            properties.put("hibernate.connection.autocommit", "true");
+            if (optionalSettings.isPresent()) {
+                settings = optionalSettings.get();
+                properties.put("hibernate.connection.username", settings.getUserName());
+                properties.put("hibernate.connection.password", settings.getPassword());
+                properties.put("hibernate.connection.url", settings.getServerWithInnerSettings());
+                properties.put("hibernate.connection.driver_class", settings.getDriverClass());
+                properties.put("hibernate.connection.autocommit", "true");
+            }
+            entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
         }
-        entityManagerFactory = Persistence.createEntityManagerFactory("UserList", properties);
     }
 
     public static EntityManager createEntityManager() {

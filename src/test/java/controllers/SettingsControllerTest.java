@@ -30,9 +30,25 @@ public class SettingsControllerTest extends GuiTest{
         Assert.assertNotNull(find("#serverTextField"));
         Assert.assertNotNull(find("#loginTextField"));
         Assert.assertNotNull(find("#passwordField"));
-        Assert.assertNotNull(find("#passwordField"));
         Assert.assertNotNull(find("#testConnectionButton"));
         Assert.assertNotNull(find("#saveButton"));
         Assert.assertNotNull(find("#cancelButton"));
     }
+
+    @Test
+    public void shouldBlockElementsWithEmbedded() throws Exception {
+        click("#dbTypeComboBox").click("Embedded DB");
+        Assert.assertTrue(find("#serverTextField").isDisabled());
+        Assert.assertTrue(find("#loginTextField").isDisabled());
+        Assert.assertTrue(find("#passwordField").isDisabled());
+    }
+
+    @Test
+    public void shouldUnblockElementsWithMysql() throws Exception {
+        click("#dbTypeComboBox").click("MySQL");
+        Assert.assertFalse(find("#serverTextField").isDisabled());
+        Assert.assertFalse(find("#loginTextField").isDisabled());
+        Assert.assertFalse(find("#passwordField").isDisabled());
+    }
+
 }

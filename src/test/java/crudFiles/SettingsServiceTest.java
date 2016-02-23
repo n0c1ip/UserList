@@ -19,6 +19,7 @@ public class SettingsServiceTest {
     @Test
     public void shouldWriteSettings() {
         Settings settings = new Settings();
+        settings.setDatabase(Settings.DATABASE.MYSQL);
         settings.setServer("testWriteServer");
         settings.setUserName("testWriteUser");
         settings.setPassword("testWritePassword");
@@ -41,6 +42,7 @@ public class SettingsServiceTest {
     @Test
     public void shouldReadSettings() {
         Settings expectedSettings = new Settings();
+        expectedSettings.setDatabase(Settings.DATABASE.MYSQL);
         expectedSettings.setServer("testReadServer");
         expectedSettings.setUserName("testReadUser");
         expectedSettings.setPassword("testReadPassword");
@@ -54,6 +56,7 @@ public class SettingsServiceTest {
         Assert.assertEquals(expectedSettings.getServer(), actualSettings.getServer());
         Assert.assertEquals(expectedSettings.getUserName(), actualSettings.getUserName());
         Assert.assertEquals(expectedSettings.getPassword(), actualSettings.getPassword());
+        Assert.assertEquals(expectedSettings.getDatabase(), actualSettings.getDatabase());
 
         File settingsFile = new File(settingsFilePath);
         try {
@@ -66,6 +69,7 @@ public class SettingsServiceTest {
     @Test
     public void settingsShouldBeInvalid() {
         Settings settings = new Settings();
+        settings.setDatabase(Settings.DATABASE.MYSQL);
         settings.setServer("invalidServerTest");
         settings.setUserName("invalidUserTest");
         settings.setPassword("invalidPasswordTest");

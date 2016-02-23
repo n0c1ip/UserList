@@ -6,6 +6,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import objects.Location;
 import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,6 +23,9 @@ public class DialogControllerTest extends GuiTest {
 
     private Dialog organizationDialog;
     private String organizationTitleText = "Создание организации";
+
+    private Stage userChoiceDialog;
+    private String userChoiceDialogTitleText = "Выбор пользователя из списка";
 
 
     private Dialog alertDialog;
@@ -40,6 +44,7 @@ public class DialogControllerTest extends GuiTest {
         organizationDialog = dialogController.getObjectDialog("организации");
         alertDialog = dialogController.getAlertDialog(Alert.AlertType.INFORMATION, alertTitleText, "");
         userEditDialog = dialogController.getUserEditDialog(userTitleText, new User());
+        userChoiceDialog = dialogController.getExistingUserChoiceDialog(new Location());
         loginDialog = dialogController.getLoginDialog();
 
         return new BorderPane();
@@ -81,6 +86,13 @@ public class DialogControllerTest extends GuiTest {
         Assert.assertNotNull(loginDialog.getOwner());
         Assert.assertEquals(GuiTest.stage, loginDialog.getOwner());
         Assert.assertNotNull(loginDialog.getScene().getRoot());
+    }
+
+    @Test
+    public void userChoiceDialogShouldBeCorrect() {
+        Assert.assertNotNull(userChoiceDialog);
+        Assert.assertTrue(userChoiceDialog instanceof Stage);
+        Assert.assertEquals(userChoiceDialogTitleText, userChoiceDialog.getTitle());
     }
 
 

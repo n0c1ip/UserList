@@ -1,9 +1,8 @@
 package crudFiles;
 
-import crudDB.DepartmentService;
-import crudDB.LocationService;
-import crudDB.UserService;
+import crudDB.*;
 import objects.Location;
+import objects.Organization;
 import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,48 +15,55 @@ public class ImportCsvServiceTest {
 
     @Test(expected = FileNotFoundException.class)
     public void shouldThrowFileNotFoundException() throws IOException {
-        Location location = new Location("newLocation");
-        ImportCSVService.loadUsersFromCSV(location, new FileInputStream("thereIsNoFile"),';');
+        Organization organization = new Organization("newOrg");
+        ImportCSVService.loadUsersFromCSV(organization, new FileInputStream("thereIsNoFile"),';');
     }
 
     @Test
     public void shouldLoadUsersFromCSV() throws IOException {
-        String locationName = "LocationToTestCSVImport";
-        Location location = new Location(locationName);
-        Location addedLocation = LocationService.add(location);
+        String userOrganizationName = "OrganizationToTestCSVImport";
+        Organization organization = new Organization(userOrganizationName);
+        Organization addedOrganzation = OrganizationService.add(organization);
 
         String userLastName = "LastName";
         String userFirstName = "FirstName";
         String userMiddleName = "MiddleName";
+        String userLocationName = "LocationNameToTestCsvImport";
         String userDepartmentName = "DepartmentNameToTestCsvImport";
         String userPosition = "Position";
+        String userPc = "pcTest";
         String userLogin = "Login";
         String userPassword = "P4SSW0RD";
         String userMail = "mmail@7r.perm.ru";
-        String csvLine = userLastName + ";" + userFirstName + ";"  + userMiddleName + ";" + userDepartmentName + ";" +
-                         userPosition + ";" + userLogin + ";" + userPassword + ";" + userMail;
+        String csvLine = userLastName + ";" + userFirstName + ";"  + userMiddleName + ";" + userLocationName + ";" +
+                         userDepartmentName + ";" + userPosition + ";" + userPc + ";" + userLogin + ";" + userPassword + ";" + userMail;
 
         InputStream inputStream = new ByteArrayInputStream(csvLine.getBytes());
 
-        ImportCSVService.loadUsersFromCSV(addedLocation, inputStream, ';');
+        ImportCSVService.loadUsersFromCSV(addedOrganzation, inputStream, ';');
 
-        List<User> userList = UserService.getUsersByLocation(addedLocation);
+        List<User> userList = UserService.getUsersByDepartment(DepartmentService.getByName(userDepartmentName));
         User user = userList.get(0);
 
         try {
             Assert.assertEquals(userLastName, user.getLastName());
             Assert.assertEquals(userFirstName, user.getFirstName());
             Assert.assertEquals(userMiddleName, user.getMiddleName());
+            Assert.assertEquals(userLocationName, user.getLocation().getName());
+            Assert.assertEquals(userOrganizationName, user.getDepartment().getOrganization().getName());
+            Assert.assertEquals(userDepartmentName, user.getDepartment().getName());
             Assert.assertEquals(userPosition, user.getPosition());
+            Assert.assertEquals(userPc, user.getPc().getName());
             Assert.assertEquals(userLogin, user.getLogin());
             Assert.assertEquals(userPassword, user.getPassword());
             Assert.assertEquals(userMail, user.getMail());
-            Assert.assertEquals(locationName, user.getLocation().getName());
-            Assert.assertEquals(userDepartmentName, user.getDepartment().getName());
+
         } finally {
            UserService.delete(user.getId());
+           PcService.delete(user.getPc().getId());
            LocationService.delete(user.getLocation().getId());
            DepartmentService.delete(user.getDepartment().getId());
+           OrganizationService.delete(user.getDepartment().getOrganization().getId());
         }
 
     }

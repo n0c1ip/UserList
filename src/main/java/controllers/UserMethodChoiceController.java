@@ -20,11 +20,6 @@ public class UserMethodChoiceController {
     private Location location;
     private DialogController dialogController;
 
-    @FXML
-    private void handleLoginButton(){
-        closeWindow();
-    }
-
     public void handleNewUserButton() {
         User user = new User();
         dialogController.showUserEditDialog("Создание пользователя", user);
