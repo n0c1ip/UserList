@@ -27,6 +27,8 @@ public class UsersInDepartmentTableController {
     @FXML
     private TableColumn<User, String> lastNameColumn;
     @FXML
+    private TableColumn<User, String> locationColumn;
+    @FXML
     private TableColumn<User, String> middleNameColumn;
     @FXML
     private TableColumn<User, String> departmentColumn;
@@ -65,6 +67,7 @@ public class UsersInDepartmentTableController {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
         departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getDepartmentProperty());
+        locationColumn.setCellValueFactory(cellData -> cellData.getValue().getLocationProperty());
         middleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getMiddleNameProperty());
         positionColumn.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
         pcColumn.setCellValueFactory(cellData -> cellData.getValue().getPcProperty());
@@ -98,14 +101,7 @@ public class UsersInDepartmentTableController {
                     }
                     //filter text
                     String lowerCaseFilter = newValue.toLowerCase();
-                    if (user.getFirstName().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getLastName().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getMiddleName().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getDepartment().toString().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getPosition().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getLogin().toLowerCase().contains(lowerCaseFilter) ||
-                            user.getMail().toLowerCase().contains(lowerCaseFilter))
-                    {
+                    if (user.toString().toLowerCase().contains(lowerCaseFilter)){
                         return true; // Filter matches users fields.
                     }
                     return false; // Does not match.

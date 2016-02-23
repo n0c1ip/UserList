@@ -36,7 +36,7 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
     @Test
     public void shouldHaveAllElements() throws Exception {
         Assert.assertNotNull(find("#organizationListView"));
-        Assert.assertNotNull(find("#deparmentTable"));
+        Assert.assertNotNull(find("#tableView"));
         Assert.assertNotNull(find("#departmentNameColumn"));
 
         Assert.assertNotNull(find("#addButton"));

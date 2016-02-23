@@ -91,6 +91,10 @@ public class User extends Model{
     public Location getLocation() {
         return location;
     }
+    public StringProperty getLocationProperty(){
+        StringProperty locationProperty = null;
+        return locationProperty = new SimpleStringProperty(this.location.getName());
+    }
 
     public void setPosition(String position) {
         this.position = position;

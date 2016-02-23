@@ -64,9 +64,9 @@ public class UsersInLocationTableControllerTest extends GuiTest {
     }
 
     @Test
-    public void shouldOpenUserEditDialog() throws Exception {
+    public void shouldOpenMethodChoiceDialog() throws Exception {
         click("#addButton");
-        AnchorPane userEdit = find("#paneUserEdit");
+        AnchorPane userEdit = find("#paneUserMethodChoice");
         Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
         type(KeyCode.ESCAPE);
     }
