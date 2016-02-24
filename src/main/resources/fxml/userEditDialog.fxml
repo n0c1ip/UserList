@@ -29,16 +29,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Label prefHeight="33.0" prefWidth="99.0" text="Фамилия" GridPane.rowIndex="1">
-                 <padding>
-                     <Insets left="20.0" />
-                 </padding>
-                 <font>
-                     <Font name="System Bold" size="12.0" />
-                     <Font name="System Bold" size="12.0" />
-                 </font>
-             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Имя">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.FirstName" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -47,7 +38,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="106.0" text="Отчество" GridPane.rowIndex="2">
+            <Label prefHeight="30.0" prefWidth="106.0" text="%Label.MiddleName" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -56,7 +47,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Отдел" GridPane.rowIndex="5">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Department" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -65,7 +56,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Должность" GridPane.rowIndex="6">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Position" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -74,7 +65,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Логин" GridPane.rowIndex="8">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Login" GridPane.rowIndex="8">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -83,7 +74,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Пароль" GridPane.rowIndex="9">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Password" GridPane.rowIndex="9">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -92,7 +83,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Эл. адрес" GridPane.rowIndex="10">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Mail" GridPane.rowIndex="10">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -101,18 +92,18 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="firstNameField" GridPane.columnIndex="1">
+            <TextField fx:id="lastNameField" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="lastNameField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="firstNameField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="middleNameField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="loginField" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField fx:id="mailField" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="departmentBox" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="positionField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label prefHeight="33.0" prefWidth="99.0" text="Объект" GridPane.rowIndex="4">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Location" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -122,7 +113,7 @@
                </padding>
             </Label>
             <ComboBox fx:id="locationBox" prefHeight="25.0" prefWidth="252.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label prefHeight="30.0" prefWidth="106.0" text="Организация" GridPane.rowIndex="3">
+            <Label prefHeight="30.0" prefWidth="106.0" text="%Label.Organization" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -132,7 +123,7 @@
                </padding>
             </Label>
             <ComboBox fx:id="organizationComboBox" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label prefHeight="33.0" prefWidth="99.0" text="Компьютер" GridPane.rowIndex="7">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Pc" GridPane.rowIndex="7">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -142,12 +133,21 @@
                </padding>
             </Label>
             <TextField fx:id="pcField" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.LastName">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
          </children>
       </GridPane>
       <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="43.0" prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="ОК" />
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="58.0" text="Отмена" />
+            <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="%Button.ok" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="58.0" text="%Button.Cancel" />
          </children>
       </HBox>
    </children>

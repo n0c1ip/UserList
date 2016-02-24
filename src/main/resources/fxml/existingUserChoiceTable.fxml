@@ -16,15 +16,15 @@
                             <children>
                                 <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="483.0" prefWidth="599.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <columns>
-                                        <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Фамилия" />
-                                        <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя" />
-                                        <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Отчество" />
-                                        <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="Отдел" />
-                                        <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="Должность" />
-                                        <TableColumn fx:id="pcColumn" minWidth="-1.0" prefWidth="-1.0" text="Компьютер" />
-                                        <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="Логин" />
-                                        <TableColumn fx:id="passwordColumn" minWidth="-1.0" prefWidth="-1.0" text="Пароль" />
-                                        <TableColumn fx:id="mailColumn" minWidth="-1.0" prefWidth="-1.0" text="Эл. адрес" />
+                                        <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.LastName" />
+                                        <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.FirstName" />
+                                        <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.MiddleName" />
+                                        <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Department" />
+                                        <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Position" />
+                                        <TableColumn fx:id="pcColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Pc" />
+                                        <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Login" />
+                                        <TableColumn fx:id="passwordColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Password" />
+                                        <TableColumn fx:id="mailColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Mail" />
                                     </columns>
                                     <columnResizePolicy>
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -36,22 +36,18 @@
                             <children>
                                 <HBox alignment="CENTER_RIGHT" layoutX="717.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="113.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="717.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Button fx:id="choiceButton" mnemonicParsing="false" onAction="#handleChoiceUserButton" prefHeight="25.0" prefWidth="97.0" text="Выбрать">
+                                        <Button fx:id="choiceButton" mnemonicParsing="false" onAction="#handleChoiceUserButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
                                         </Button>
                                     </children>
                                 </HBox>
-                                <Label layoutX="25.0" layoutY="10.0" prefHeight="17.0" prefWidth="134.0" text="Кол-во пользователей:">
+                                <Label fx:id="usersCount" layoutX="25.0" layoutY="10.0" prefHeight="17.0" prefWidth="153.0" text="%Label.UserCount">
                                     <font>
                                         <Font name="System Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="usersCount" layoutX="160.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0">
-                                    <font>
-                                        <Font name="System Italic" size="12.0" />
-                                    </font></Label>
                             </children>
                         </AnchorPane>
                     </items>

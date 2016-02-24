@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Location;
+import util.I18n;
 
 public class LocationTableController {
 
@@ -42,7 +43,7 @@ public class LocationTableController {
 
     public void handleNewLocationButton() {
         Location newLocation = new Location();
-        mainController.getDialogController().showLocationEditDialog("Создание объекта", newLocation);
+        mainController.getDialogController().showLocationEditDialog(I18n.DIALOG.getString("Title.AddLocation"), newLocation);
         showAllLocations();
     }
 
@@ -53,7 +54,7 @@ public class LocationTableController {
     public void handleEditLocationButton() {
         Location selectedLocation = tableView.getSelectionModel().getSelectedItem();
         if (selectedLocation != null) {
-            mainController.getDialogController().showLocationEditDialog("Редактирование объекта", selectedLocation);
+            mainController.getDialogController().showLocationEditDialog(I18n.DIALOG.getString("Title.EditLocation"), selectedLocation);
         }
     }
 
