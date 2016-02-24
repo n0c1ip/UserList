@@ -2,12 +2,15 @@ package controllers;
 
 
 import crudDB.LocationService;
+import crudDB.OrganizationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Location;
+import objects.Organization;
 
 public class LocationTableController {
 
@@ -47,7 +50,19 @@ public class LocationTableController {
     }
 
     public void handleDeleteLocationButton() {
-
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Location locationToDelete = tableView.getSelectionModel().getSelectedItem();
+            LocationService.delete(locationToDelete.getId());
+            showAllLocations();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainController.getPrimaryStage());
+            alert.setTitle("Не выбрана организация");
+            alert.setHeaderText("Не выбрана организация");
+            alert.setContentText("Сначала выберите организацию");
+            alert.showAndWait();
+        }
     }
 
     public void handleEditLocationButton() {

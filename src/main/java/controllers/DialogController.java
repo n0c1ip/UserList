@@ -12,10 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import objects.Department;
-import objects.Location;
-import objects.Organization;
-import objects.User;
+import objects.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,6 +103,30 @@ public class DialogController {
         }
         return dialog;
     }
+
+    public void showSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
+        getSignUnlimitedEditDialog(title, signUnlimited).showAndWait();
+    }
+    public Stage getSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            SignUnlimitedEditController controller = loader.getController();
+            controller.setEditedSignUnlimited(signUnlimited);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования признака");
+        }
+        return dialog;
+    }
+
 
     public void showOrganizationEditDialog(String title, Organization organization) {
         getOrganizationEditDialog(title, organization).showAndWait();
