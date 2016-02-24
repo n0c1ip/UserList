@@ -10,8 +10,8 @@ import static crudDB.QueryProvider.doQueryInTransaction;
 
 public class SignUnlimitedService {
 
-    public static SignUnlimited add(SignUnlimited SignUnlimited){
-        return doQueryInTransaction(manager -> manager.merge(SignUnlimited));
+    public static SignUnlimited add(SignUnlimited signUnlimited){
+        return doQueryInTransaction(manager -> manager.merge(signUnlimited));
     }
 
     public static void delete(long id){
@@ -25,9 +25,9 @@ public class SignUnlimitedService {
         return doQueryCasual(manager -> manager.find(SignUnlimited.class, id));
     }
 
-    public static void update(SignUnlimited SignUnlimited){
+    public static void update(SignUnlimited signUnlimited){
         doQueryInTransaction(manager -> {
-            manager.merge(SignUnlimited);
+            manager.merge(signUnlimited);
             return null;
         });
     }

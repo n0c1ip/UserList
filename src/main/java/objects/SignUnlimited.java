@@ -7,7 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javax.persistence.*;
 
 @Entity
-@Table(name="SignUnlimited")
+@Table(name="sign_unlimited")
 @NamedQueries({
         @NamedQuery(name="SignUnlimited.getAll",
                 query="SELECT s FROM SignUnlimited s"),
