@@ -122,6 +122,24 @@ public class RootController {
         }
     }
 
+
+    public void showSignUnlimitedTable() {
+        try {
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
+            SplitPane table = loader.load();
+            SignUnlimitedTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.SignUnlimited"));
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public void showImportFormCSV() {
 
         try {

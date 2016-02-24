@@ -92,6 +92,22 @@ public class RootControllerTest extends GuiTest {
     }
 
     @Test
+    public void shouldHaveSignUnlimitedTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemSignUnlimitedTable");
+        assertNotNull(GuiTest.find("#signUnlimitedTableTotal"));
+        assertTrue(GuiTest.find("#signUnlimitedTableTotal").isVisible());
+    }
+
+    @Test
+    public void shouldHaveItemLocationTableItem() throws Exception {
+        click("#menuTables");
+        click("#itemLocationTable");
+        assertNotNull(GuiTest.find("#itemLocationSplitPane"));
+        assertTrue(GuiTest.find("#itemLocationSplitPane").isVisible());
+    }
+
+    @Test
     public void shouldHaveImportCsvItem() throws Exception {
         click("#menuService");
         click("#itemImportCsv");
