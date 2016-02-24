@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import objects.Department;
 import objects.Location;
+import objects.Pc;
 import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,6 +25,7 @@ public class UploadInExcelServiceTest {
         testUser.setLastName("LastName");
         testUser.setMiddleName("MiddleName");
         testUser.setLocation(new Location("TestLocation"));
+        testUser.setPc(new Pc("TestPC"));
         testUser.setDepartment(new Department("TestDepartment"));
         testUser.setPosition("TestPosition");
         testUser.setLogin("TestLogin");

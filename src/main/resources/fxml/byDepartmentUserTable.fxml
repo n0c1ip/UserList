@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="paneDepartmentTable" dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInDepartmentTableController">
+<SplitPane fx:id="paneDepartmentTable" dividerPositions="0.5" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersInDepartmentTableController">
     <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
          <children>
@@ -65,7 +65,7 @@
                                     </Button>
                                 </children>
                             </HBox>
-                        <Label fx:id="usersCount" layoutX="25.0" layoutY="10.0" prefHeight="17.0" prefWidth="141.0" text="%Label.UserCount">
+                        <Label fx:id="usersCount" layoutX="25.0" layoutY="10.0" prefHeight="17.0" prefWidth="185.0" text="%Label.UserCount">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
