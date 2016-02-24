@@ -1,9 +1,7 @@
 package crudFiles;
 
 
-import controllers.DialogController;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import objects.User;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -45,9 +43,10 @@ public class UploadInExcelService {
             userRow.createCell(2).setCellValue(userList.get(i).getMiddleName());
             userRow.createCell(3).setCellValue(userList.get(i).getDepartment().toString());
             userRow.createCell(4).setCellValue(userList.get(i).getPosition());
-            userRow.createCell(5).setCellValue(userList.get(i).getLogin());
-            userRow.createCell(6).setCellValue(userList.get(i).getPassword());
-            userRow.createCell(7).setCellValue(userList.get(i).getMail());
+            userRow.createCell(5).setCellValue(userList.get(i).getPc().toString());
+            userRow.createCell(6).setCellValue(userList.get(i).getLogin());
+            userRow.createCell(7).setCellValue(userList.get(i).getPassword());
+            userRow.createCell(8).setCellValue(userList.get(i).getMail());
         }
 
         //autoSizeColumn should be call after data added to table
