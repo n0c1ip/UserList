@@ -6,9 +6,10 @@ import java.util.ResourceBundle;
 
 public enum I18n {
 
-        ROOT("root"),
-        ERROR("error"),
-        TABLE("table");
+    ROOT("root"),
+    ERROR("error"),
+    TABLE("table"),
+    DIALOG("dialog");
 
         private final ResourceBundle resourceBundle;
         private static final String DEFAULT_LOCATION = "i18n.";

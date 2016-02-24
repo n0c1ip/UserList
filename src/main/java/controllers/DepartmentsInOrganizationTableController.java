@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Department;
 import objects.Organization;
+import util.I18n;
 
 public class DepartmentsInOrganizationTableController {
 
@@ -53,7 +54,8 @@ public class DepartmentsInOrganizationTableController {
     private void handleEditDepartmentButton() {
         Department selectedDepartment = tableView.getSelectionModel().getSelectedItem();
         if (selectedDepartment != null) {
-            mainController.getDialogController().showDepartmentEditDialog("Редактирование подразделения", selectedDepartment, organizationListView.getSelectionModel().getSelectedItem());
+            mainController.getDialogController().showDepartmentEditDialog(I18n.DIALOG.getString("Title.EditDepartment"),
+                                        selectedDepartment, organizationListView.getSelectionModel().getSelectedItem());
             showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         }
     }
@@ -61,7 +63,8 @@ public class DepartmentsInOrganizationTableController {
     @FXML
     private void handleNewDepartmentButton() {
         Department department = new Department();
-        mainController.getDialogController().showDepartmentEditDialog("Добавить подразделение", department, organizationListView.getSelectionModel().getSelectedItem());
+        mainController.getDialogController().showDepartmentEditDialog(I18n.DIALOG.getString("Title.AddDepartment"),
+                                            department, organizationListView.getSelectionModel().getSelectedItem());
         showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
     }
 

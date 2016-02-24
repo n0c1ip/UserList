@@ -6,10 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="paneUserMethodChoice" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserMethodChoiceController">
+<AnchorPane fx:id="paneUserMethodChoice" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="235.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserMethodChoiceController">
    <children>
-      <Button fx:id="newUserButton" layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="158.0" text="Новый пользователь" />
-      <Button fx:id="existingUserButton" layoutX="46.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleExistingUserButton" prefHeight="25.0" prefWidth="158.0" text="Пользователи из списка" />
+      <Button fx:id="newUserButton" layoutX="39.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="158.0" text="%Button.NewUser" />
+      <Button fx:id="existingUserButton" layoutX="39.0" layoutY="45.0" mnemonicParsing="false" onAction="#handleExistingUserButton" prefHeight="25.0" prefWidth="158.0" text="%Button.UsersFromList" />
    </children>
    <opaqueInsets>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

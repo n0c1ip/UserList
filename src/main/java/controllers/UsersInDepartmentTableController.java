@@ -132,7 +132,7 @@ public class UsersInDepartmentTableController {
     private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            mainController.getDialogController().showUserEditDialog("Редактирование пользователя", selectedUser);
+            mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
         }
 
     }
@@ -140,7 +140,7 @@ public class UsersInDepartmentTableController {
     @FXML
     private void handleNewUserButton() {
         User user = new User();
-        mainController.getDialogController().showUserEditDialog("Добавить пользователя", user);
+        mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
     }
 
     @FXML
