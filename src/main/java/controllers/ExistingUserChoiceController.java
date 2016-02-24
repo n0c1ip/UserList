@@ -1,15 +1,17 @@
 package controllers;
 
-import crudDB.LocationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import objects.Location;
 import objects.User;
+import util.I18n;
 
 
 public class ExistingUserChoiceController {
@@ -77,7 +79,8 @@ public class ExistingUserChoiceController {
         ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
         userByDepartmentsList.setAll(UserService.getAll());
         tableView.setItems(userByDepartmentsList);
-        usersCount.setText(String.valueOf(tableView.getItems().size()));
+        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                                  +String.valueOf(tableView.getItems().size()));
     }
 
     @FXML

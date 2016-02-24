@@ -35,7 +35,7 @@ public class LocationTableControllerTest extends GuiTest{
 
     @Test
     public void shouldBeVisible() throws Exception {
-        Assert.assertNotNull(find("#splitPane").isVisible());
+        Assert.assertNotNull(find("#itemLocationSplitPane").isVisible());
     }
 
     @Test

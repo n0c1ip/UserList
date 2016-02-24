@@ -2,12 +2,16 @@ package controllers;
 
 
 import crudDB.LocationService;
+import crudDB.OrganizationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Location;
+import util.I18n;
+import objects.Organization;
 
 public class LocationTableController {
 
@@ -42,18 +46,30 @@ public class LocationTableController {
 
     public void handleNewLocationButton() {
         Location newLocation = new Location();
-        mainController.getDialogController().showLocationEditDialog("Создание объекта", newLocation);
+        mainController.getDialogController().showLocationEditDialog(I18n.DIALOG.getString("Title.AddLocation"), newLocation);
         showAllLocations();
     }
 
     public void handleDeleteLocationButton() {
-
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Location locationToDelete = tableView.getSelectionModel().getSelectedItem();
+            LocationService.delete(locationToDelete.getId());
+            showAllLocations();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainController.getPrimaryStage());
+            alert.setTitle("Не выбрана организация");
+            alert.setHeaderText("Не выбрана организация");
+            alert.setContentText("Сначала выберите организацию");
+            alert.showAndWait();
+        }
     }
 
     public void handleEditLocationButton() {
         Location selectedLocation = tableView.getSelectionModel().getSelectedItem();
         if (selectedLocation != null) {
-            mainController.getDialogController().showLocationEditDialog("Редактирование объекта", selectedLocation);
+            mainController.getDialogController().showLocationEditDialog(I18n.DIALOG.getString("Title.EditLocation"), selectedLocation);
         }
     }
 

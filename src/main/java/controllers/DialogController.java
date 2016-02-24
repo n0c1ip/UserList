@@ -16,6 +16,8 @@ import objects.Department;
 import objects.Location;
 import objects.Organization;
 import objects.User;
+import util.I18n;
+import objects.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,12 +37,13 @@ public class DialogController {
     public Stage getExistingUserChoiceDialog(Location location) {
         final Stage dialog = new Stage();
         try {
-            dialog.setTitle("Выбор пользователя из списка");
+            dialog.setTitle(I18n.TABLE.getString("Title.ExistingUserChoice"));
             dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/existingUserChoiceTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane useredit = loader.load();
             ExistingUserChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -59,12 +62,13 @@ public class DialogController {
     public Stage getNewUserMethodChoiceDialog(Location location) {
         final Stage dialog = new Stage();
         try{
-            dialog.setTitle("Выбор способа добавления пользователя");
+            dialog.setTitle(I18n.DIALOG.getString("Title.UserMethodAdd"));
             dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             UserMethodChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -95,6 +99,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
             controller.setEditedUser(user);
@@ -107,6 +112,30 @@ public class DialogController {
         return dialog;
     }
 
+    public void showSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
+        getSignUnlimitedEditDialog(title, signUnlimited).showAndWait();
+    }
+    public Stage getSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            AnchorPane useredit = loader.load();
+            SignUnlimitedEditController controller = loader.getController();
+            controller.setEditedSignUnlimited(signUnlimited);
+            dialog.setScene(new Scene(useredit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования признака");
+        }
+        return dialog;
+    }
+
+
     public void showOrganizationEditDialog(String title, Organization organization) {
         getOrganizationEditDialog(title, organization).showAndWait();
     }
@@ -114,10 +143,12 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
+            dialog.getIcons().add(new Image("icons/organization-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             OrganizationEditController controller = loader.getController();
             controller.setEditedOrganization(organization);
@@ -142,6 +173,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             DepartmentEditController controller = loader.getController();
             controller.setActiveOrganization(organization);
@@ -167,6 +199,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/locationEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane locationEdit = loader.load();
             LocationEditController controller = loader.getController();
             controller.setEditedLocation(location);

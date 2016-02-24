@@ -12,17 +12,17 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></ChoiceBox>
-        <Button fx:id="choiceLoad" defaultButton="true" layoutX="97.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleLoadButton" prefHeight="25.0" prefWidth="78.0" text="Загрузить">
+        <Button fx:id="choiceLoad" defaultButton="true" layoutX="97.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleLoadButton" prefHeight="25.0" prefWidth="78.0" text="%Button.Load">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-        <Button fx:id="choiceCancel" cancelButton="true" layoutX="183.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="25.0" prefWidth="78.0" text="Отмена">
+        <Button fx:id="choiceCancel" cancelButton="true" layoutX="183.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="25.0" prefWidth="78.0" text="%Button.Cancel">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-      <Label layoutX="19.0" layoutY="14.0" prefHeight="25.0" prefWidth="174.0" text="Организация для импорта:" AnchorPane.leftAnchor="11.0" />
+      <Label layoutX="19.0" layoutY="14.0" prefHeight="25.0" prefWidth="174.0" text="%Label.OrganizationToImport" AnchorPane.leftAnchor="11.0" />
       <TextField fx:id="filePathField" layoutX="26.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" AnchorPane.leftAnchor="18.0" />
-      <Label layoutX="19.0" layoutY="87.0" prefHeight="17.0" prefWidth="78.0" text="Файл CSV:" AnchorPane.leftAnchor="10.0" />
+      <Label layoutX="19.0" layoutY="87.0" prefHeight="17.0" prefWidth="78.0" text="%Label.FileCSV" AnchorPane.leftAnchor="10.0" />
       <Button layoutX="231.0" layoutY="110.0" mnemonicParsing="false" onAction="#chooseCsvFile" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.rightAnchor="10.0" />
     </children>
     <styleClass>

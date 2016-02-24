@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Organization;
+import util.I18n;
 
 public class OrganizationTableController {
 
@@ -44,7 +45,7 @@ public class OrganizationTableController {
     private void handleEditOrganizationButton() {
         Organization selectedOrganization = tableView.getSelectionModel().getSelectedItem();
         if (selectedOrganization != null) {
-            mainController.getDialogController().showOrganizationEditDialog("Редактирование организации", selectedOrganization);
+            mainController.getDialogController().showOrganizationEditDialog(I18n.DIALOG.getString("Title.EditOrganization"), selectedOrganization);
             showAllOrganizations();
         }
     }
@@ -52,7 +53,7 @@ public class OrganizationTableController {
     @FXML
     private void handleNewOrganizationButton() {
         Organization organization = new Organization();
-        mainController.getDialogController().showOrganizationEditDialog("Добавить организацию", organization);
+        mainController.getDialogController().showOrganizationEditDialog(I18n.DIALOG.getString("Title.AddOrganization"), organization);
         showAllOrganizations();
     }
 

@@ -122,16 +122,35 @@ public class RootController {
         }
     }
 
+
+    public void showSignUnlimitedTable() {
+        try {
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
+            SplitPane table = loader.load();
+            SignUnlimitedTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.SignUnlimited"));
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public void showImportFormCSV() {
 
         try {
             final Stage dialog = new Stage();
             dialog.getIcons().add(new Image("icons/import-icon.png"));
-            dialog.setTitle("Импорт из CSV");
+            dialog.setTitle(I18n.DIALOG.getString("Title.ImportFromCSV"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/importCSV.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane importcsv = loader.load();
             ImportCSVController controller = loader.getController();
             controller.setMainController(mainController);
@@ -147,11 +166,12 @@ public class RootController {
         try {
             final Stage dialog = new Stage();
             dialog.getIcons().add(new Image("icons/settings-icon.png"));
-            dialog.setTitle("Настройки");
+            dialog.setTitle(I18n.DIALOG.getString("Title.Settings"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             Pane settingsPane = loader.load();
             SettingsController controller = loader.getController();
             controller.setMainController(mainController);
