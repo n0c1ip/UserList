@@ -25,6 +25,7 @@ public class SettingsControllerTest extends GuiTest{
 
     @Test
     public void shouldHaveAllElements() throws Exception {
+        Assert.assertNotNull(find("#languageComboBox"));
         Assert.assertNotNull(find("#settingsPane"));
         Assert.assertNotNull(find("#dbTypeComboBox"));
         Assert.assertNotNull(find("#serverTextField"));

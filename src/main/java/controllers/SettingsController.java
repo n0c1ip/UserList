@@ -9,7 +9,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Settings;
 
+import java.util.Locale;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 
 public class SettingsController {
@@ -86,6 +88,14 @@ public class SettingsController {
         Optional<Settings> optionalSettings = SettingsService.readSettings();
         if (optionalSettings.isPresent()) {
             Settings settings = optionalSettings.get();
+            switch (settings.getLanguage()) {
+                case ENGLISH:
+                    languageComboBox.setValue(ENGLISH_NAME);
+                    break;
+                case RUSSIAN:
+                    languageComboBox.setValue(RUSSIAN_NAME);
+                    break;
+            }
             switch (settings.getDatabase()) {
                 case MYSQL:
                     dbTypeComboBox.setValue(MYSQL_DB_NAME);
@@ -116,7 +126,11 @@ public class SettingsController {
     public void handleOkButton() {
         Settings settings = fieldsToSettings();
         if (SettingsService.isSettingsValid(settings)) {
-            SettingsService.writeSettings(fieldsToSettings());
+            SettingsService.writeSettings(settings);
+            //locale section TODO localization on fly
+            ResourceBundle.clearCache();
+            Locale.setDefault(settings.getLanguageLocale());
+            // database section
             if (tabLayout != null) {
                 tabLayout.getTabs().removeAll(tabLayout.getTabs());
             }
@@ -138,6 +152,16 @@ public class SettingsController {
 
     private Settings fieldsToSettings() {
         Settings settings = new Settings();
+
+        switch (languageComboBox.getValue()) {
+            case ENGLISH_NAME:
+                settings.setLanguage(Settings.LANGUAGE.ENGLISH);
+                break;
+            case RUSSIAN_NAME:
+                settings.setLanguage(Settings.LANGUAGE.RUSSIAN);
+                break;
+        }
+
         switch (dbTypeComboBox.getValue()) {
             case MYSQL_DB_NAME:
                 settings.setDatabase(Settings.DATABASE.MYSQL);
