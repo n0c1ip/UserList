@@ -7,6 +7,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import objects.Location;
+import objects.SignUnlimited;
 import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,9 +25,11 @@ public class DialogControllerTest extends GuiTest {
     private Dialog organizationDialog;
     private String organizationTitleText = "Создание организации";
 
+    private Stage signUnlimitedDialog;
+    private String signUnlimitedDialogTitleText = "Редактирование признака";
+
     private Stage userChoiceDialog;
     private String userChoiceDialogTitleText = "Выбор пользователя из списка";
-
 
     private Dialog alertDialog;
     private String alertTitleText = "Тест alert";
@@ -46,6 +49,7 @@ public class DialogControllerTest extends GuiTest {
         userEditDialog = dialogController.getUserEditDialog(userTitleText, new User());
         userChoiceDialog = dialogController.getExistingUserChoiceDialog(new Location());
         loginDialog = dialogController.getLoginDialog();
+        signUnlimitedDialog = dialogController.getSignUnlimitedEditDialog(signUnlimitedDialogTitleText, new SignUnlimited());
 
         return new BorderPane();
     }
@@ -93,6 +97,14 @@ public class DialogControllerTest extends GuiTest {
         Assert.assertNotNull(userChoiceDialog);
         Assert.assertTrue(userChoiceDialog instanceof Stage);
         Assert.assertEquals(userChoiceDialogTitleText, userChoiceDialog.getTitle());
+    }
+
+    @Test
+    public void SignUnlimitedEditDialogShouldBeCorrect() {
+        Assert.assertNotNull(signUnlimitedDialog);
+        Assert.assertTrue(signUnlimitedDialog instanceof Stage);
+        Assert.assertEquals(GuiTest.stage, signUnlimitedDialog.getOwner());
+        Assert.assertEquals(signUnlimitedDialogTitleText, signUnlimitedDialog.getTitle());
     }
 
 
