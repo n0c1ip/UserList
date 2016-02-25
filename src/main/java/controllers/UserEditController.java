@@ -49,6 +49,11 @@ public class UserEditController {
 
     private User editedUser;
     private boolean invalidData = false;
+    private DialogController dialogController;
+
+    public void setDialogController(DialogController dialogController) {
+        this.dialogController = dialogController;
+    }
 
     /**
      * Loading in ComboBox deprtments list.
@@ -131,6 +136,14 @@ public class UserEditController {
         mailField.setText(editedUser.getMail());
 
     }
+
+
+    @FXML
+    private void handleUserSignUnlimitedButton() {
+        dialogController.showUserSignUnlimitedTableDialog("Признаки пользователя", editedUser);
+    }
+
+
 
     public void setDepartmentBoxByOrganization(Organization organization){
         departmentBox.valueProperty().set(null);

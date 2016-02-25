@@ -29,6 +29,7 @@ import java.io.IOException;
 public class DialogController {
 
     private Stage primaryStage;
+    private MainController mainController;
 
 
     public void showExistingUserChoiceDialog(Location location) {
@@ -102,6 +103,7 @@ public class DialogController {
             loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
+            controller.setDialogController(this);
             controller.setEditedUser(user);
             dialog.setScene(new Scene(useredit));
             return  dialog;
@@ -131,6 +133,59 @@ public class DialogController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования признака");
+        }
+        return dialog;
+    }
+
+
+
+    public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
+        getUserSignUnlimitedEditDialog(title, userSignUnlimited).showAndWait();
+    }
+    public Stage getUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
+            AnchorPane userSignUnlimitedPane = loader.load();
+            UserSignUnlimitedEditController controller = loader.getController();
+            controller.setEditedUserSignUnlimited(userSignUnlimited);
+//            controller.showUserUnlimitedSigns();
+            controller.setMainController(mainController);
+            dialog.setScene(new Scene(userSignUnlimitedPane));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс признаков пользователя");
+        }
+        return dialog;
+    }
+
+
+    public void showUserSignUnlimitedTableDialog(String title, User user) {
+        getUserSignUnlimitedTableDialog(title, user).showAndWait();
+    }
+    public Stage getUserSignUnlimitedTableDialog(String title, User user) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            SplitPane userSignUnlimited = loader.load();
+            UserSignUnlimitedTableController controller = loader.getController();
+            controller.setUser(user);
+            controller.showUserUnlimitedSigns();
+            controller.setMainController(mainController);
+            dialog.setScene(new Scene(userSignUnlimited));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс признаков пользователя");
         }
         return dialog;
     }
@@ -259,6 +314,10 @@ public class DialogController {
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс логина");
         }
         return dialog;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
     public void setPrimaryStage(Stage primaryStage) {
