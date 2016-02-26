@@ -18,9 +18,6 @@ public class SignUnlimited extends Model{
 
     private String name;
 
-   /* @OneToOne(mappedBy="SignUnlimited")
-    private User user; */
-
     public SignUnlimited() {
     }
 

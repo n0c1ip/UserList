@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.SignUnlimited;
 import objects.SignUnlimited;
+import util.I18n;
 
 public class SignUnlimitedTableController {
 
@@ -45,7 +46,7 @@ public class SignUnlimitedTableController {
     private void handleEditSignUnlimitedButton() {
         SignUnlimited selectedSignUnlimited = tableView.getSelectionModel().getSelectedItem();
         if (selectedSignUnlimited != null) {
-            mainController.getDialogController().showSignUnlimitedEditDialog("Редактирование признака", selectedSignUnlimited);
+            mainController.getDialogController().showSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Edit"), selectedSignUnlimited);
             showAllUnlimitedSigns();
         }
     }
@@ -53,7 +54,7 @@ public class SignUnlimitedTableController {
     @FXML
     private void handleNewSignUnlimitedButton() {
         SignUnlimited signUnlimited = new SignUnlimited();
-        mainController.getDialogController().showSignUnlimitedEditDialog("Добавить признак", signUnlimited);
+        mainController.getDialogController().showSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Add"), signUnlimited);
         showAllUnlimitedSigns();
     }
 

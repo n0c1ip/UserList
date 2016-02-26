@@ -22,7 +22,6 @@
                       <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
                       <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
-                      <MenuItem mnemonicParsing="false" text="Здесь будут признаки" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="%MenuBar.Tools">

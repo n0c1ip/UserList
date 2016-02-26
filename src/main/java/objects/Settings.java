@@ -56,7 +56,6 @@ public class Settings implements Serializable{
         languageSettings = new HashMap<>();
         languageSettings.put(LANGUAGE.ENGLISH, new Locale("en"));
         languageSettings.put(LANGUAGE.RUSSIAN, new Locale("ru"));
-
     }
 
 
@@ -89,7 +88,6 @@ public class Settings implements Serializable{
         return userName;
     }
 
-
     private String password = "";
     public void setPassword(String password) {
         this.password = password;
@@ -97,7 +95,6 @@ public class Settings implements Serializable{
     public String getPassword() {
         return password;
     }
-
 
     private String server = "";
     public void setServer(String server) {

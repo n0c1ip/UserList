@@ -125,6 +125,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
             controller.setEditedSignUnlimited(signUnlimited);
@@ -150,10 +151,10 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
-//            controller.showUserUnlimitedSigns();
             controller.setMainController(mainController);
             dialog.setScene(new Scene(userSignUnlimitedPane));
             return  dialog;
@@ -176,6 +177,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
             controller.setUser(user);

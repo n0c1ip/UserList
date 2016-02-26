@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.*;
+import util.I18n;
 
 /**
  * <p>UserEditController uses for dialog of editing and adding Users.
@@ -140,7 +141,7 @@ public class UserEditController {
 
     @FXML
     private void handleUserSignUnlimitedButton() {
-        dialogController.showUserSignUnlimitedTableDialog("Признаки пользователя", editedUser);
+        dialogController.showUserSignUnlimitedTableDialog(I18n.DIALOG.getString("UserSign.All"), editedUser);
     }
 
 
