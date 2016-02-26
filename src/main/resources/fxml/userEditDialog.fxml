@@ -144,8 +144,9 @@
             </Label>
          </children>
       </GridPane>
-      <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="43.0" prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="43.0" prefWidth="335.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
+            <Button fx:id="signUnlimitedButton" mnemonicParsing="false" onAction="#handleUserSignUnlimitedButton" prefHeight="30.0" prefWidth="66.0" text="Sign" />
             <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="%Button.ok" />
             <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="58.0" text="%Button.Cancel" />
          </children>

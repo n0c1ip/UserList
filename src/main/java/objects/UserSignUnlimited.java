@@ -31,10 +31,6 @@ public class UserSignUnlimited extends Model{
     public UserSignUnlimited() {
     }
 
-    public void setOrganization(SignUnlimited signUnlimited) {
-        this.signUnlimited = signUnlimited;
-    }
-
     public UserSignUnlimited(String value) {
         this.value = value;
     }
