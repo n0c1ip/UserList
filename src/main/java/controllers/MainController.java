@@ -32,6 +32,7 @@ public class MainController{
     public void initDialogController(){
         DialogController dialogController = new DialogController();
         dialogController.setPrimaryStage(primaryStage);
+        dialogController.setMainController(this);
         this.dialogController = dialogController;
     }
 

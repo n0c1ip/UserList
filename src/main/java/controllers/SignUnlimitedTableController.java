@@ -32,9 +32,9 @@ public class SignUnlimitedTableController {
     }
 
     private void showAllUnlimitedSigns(){
-        ObservableList<SignUnlimited> SignUnlimitedList = FXCollections.observableArrayList();
-        SignUnlimitedList.setAll(SignUnlimitedService.getAll());
-        tableView.setItems(SignUnlimitedList);
+        ObservableList<SignUnlimited> signUnlimitedList = FXCollections.observableArrayList();
+        signUnlimitedList.setAll(SignUnlimitedService.getAll());
+        tableView.setItems(signUnlimitedList);
     }
 
     public void setMainController(MainController mainController) {
@@ -52,8 +52,8 @@ public class SignUnlimitedTableController {
 
     @FXML
     private void handleNewSignUnlimitedButton() {
-        SignUnlimited SignUnlimited = new SignUnlimited();
-        mainController.getDialogController().showSignUnlimitedEditDialog("Добавить признак", SignUnlimited);
+        SignUnlimited signUnlimited = new SignUnlimited();
+        mainController.getDialogController().showSignUnlimitedEditDialog("Добавить признак", signUnlimited);
         showAllUnlimitedSigns();
     }
 
