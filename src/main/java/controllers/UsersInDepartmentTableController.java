@@ -48,6 +48,9 @@ public class UsersInDepartmentTableController {
     @FXML
     private TextField searchField;
 
+    private ContextMenu userContextMenu;
+
+
 
     @FXML
     private void initialize(){
@@ -76,11 +79,23 @@ public class UsersInDepartmentTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
+        //TableView double click
         tableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditPersonButton();
             }
         });
+
+        //TableView context menu
+        initiateUserContextMenu();
+        tableView.setOnMousePressed(event -> {
+            if (event.isSecondaryButtonDown()) {
+                userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+            }
+        });
+
+
+
 
     }
 
@@ -118,6 +133,21 @@ public class UsersInDepartmentTableController {
         }
     }
 
+    private void initiateUserContextMenu(){
+        //TODO internationalization
+        MenuItem addUser = new MenuItem("Add User");
+        MenuItem editUser = new MenuItem("Edit User");
+        MenuItem removeUser = new MenuItem("Remove User");
+        MenuItem showUnlimitedSigns = new MenuItem("Show Signs");
+
+        userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
+
+        addUser.setOnAction(event -> handleNewUserButton());
+        editUser.setOnAction(event -> handleEditPersonButton());
+        removeUser.setOnAction(event -> handleDeletePerson());
+        showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
+    }
+
     private void showDepartmentByOrganizationSelect(Organization organization){
         ObservableList<Department> departmentList = FXCollections.observableArrayList();
         departmentList.setAll(DepartmentService.getByOrganization(organization));
@@ -127,22 +157,18 @@ public class UsersInDepartmentTableController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-
     @FXML
     private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
         }
-
     }
-
     @FXML
     private void handleNewUserButton() {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
     }
-
     @FXML
     private void handleDeletePerson() {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
@@ -159,6 +185,11 @@ public class UsersInDepartmentTableController {
             alert.setContentText("Please select a person in the table.");
             alert.showAndWait();
         }
+    }
+
+    private void showUserSignUnlimited(User user){
+        //TODO internationalization
+        mainController.getDialogController().showUserUnlimitedSigns("title",user);
     }
 
 }

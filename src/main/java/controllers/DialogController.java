@@ -137,8 +137,6 @@ public class DialogController {
         return dialog;
     }
 
-
-
     public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
         getUserSignUnlimitedEditDialog(title, userSignUnlimited).showAndWait();
     }
@@ -164,7 +162,6 @@ public class DialogController {
         return dialog;
     }
 
-
     public void showUserSignUnlimitedTableDialog(String title, User user) {
         getUserSignUnlimitedTableDialog(title, user).showAndWait();
     }
@@ -189,7 +186,6 @@ public class DialogController {
         }
         return dialog;
     }
-
 
     public void showOrganizationEditDialog(String title, Organization organization) {
         getOrganizationEditDialog(title, organization).showAndWait();
@@ -267,6 +263,28 @@ public class DialogController {
         return dialog;
     }
 
+    public void showUserUnlimitedSigns(String title, User user){
+        getUserUnlimitedSigns(title, user).showAndWait();
+    }
+    private Stage getUserUnlimitedSigns(String title, User user){
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedDialog.fxml"));
+            AnchorPane locationEdit = loader.load();
+            dialog.setScene(new Scene(locationEdit));
+            return dialog;
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
+        }
+        return dialog;
+    }
+
     public Dialog getObjectDialog(String objectName){
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Создание " + objectName);
@@ -319,7 +337,6 @@ public class DialogController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
