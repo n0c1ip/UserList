@@ -79,18 +79,14 @@ public class UsersInDepartmentTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-        //TableView double click
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPersonButton();
-            }
-        });
-
-        //TableView context menu
+        //TableView context menu & double click
         initiateUserContextMenu();
         tableView.setOnMousePressed(event -> {
             if (event.isSecondaryButtonDown()) {
                 userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+            }
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                handleEditPersonButton();
             }
         });
 
@@ -134,11 +130,10 @@ public class UsersInDepartmentTableController {
     }
 
     private void initiateUserContextMenu(){
-        //TODO internationalization
-        MenuItem addUser = new MenuItem("Add User");
-        MenuItem editUser = new MenuItem("Edit User");
-        MenuItem removeUser = new MenuItem("Remove User");
-        MenuItem showUnlimitedSigns = new MenuItem("Show Signs");
+        MenuItem addUser = new MenuItem(I18n.TABLE.getString("ContextMenu.AddUser"));
+        MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
+        MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
+        MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
 
         userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
 
@@ -188,8 +183,7 @@ public class UsersInDepartmentTableController {
     }
 
     private void showUserSignUnlimited(User user){
-        //TODO internationalization
-        mainController.getDialogController().showUserUnlimitedSigns("title",user);
+        mainController.getDialogController().showUserSignUnlimitedTableDialog("Signs",user);
     }
 
 }

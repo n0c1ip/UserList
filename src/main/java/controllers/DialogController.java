@@ -151,7 +151,6 @@ public class DialogController {
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
-//            controller.showUserUnlimitedSigns();
             controller.setMainController(mainController);
             dialog.setScene(new Scene(userSignUnlimitedPane));
             return  dialog;
@@ -258,28 +257,6 @@ public class DialogController {
             return dialog;
         } catch (IOException e){
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
-        }
-        return dialog;
-    }
-
-    public void showUserUnlimitedSigns(String title, User user){
-        getUserUnlimitedSigns(title, user).showAndWait();
-    }
-    private Stage getUserUnlimitedSigns(String title, User user){
-        final Stage dialog = new Stage();
-        try{
-            dialog.setTitle(title);
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.initOwner(primaryStage);
-            dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedDialog.fxml"));
-            AnchorPane locationEdit = loader.load();
-            dialog.setScene(new Scene(locationEdit));
-            return dialog;
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
         }
         return dialog;

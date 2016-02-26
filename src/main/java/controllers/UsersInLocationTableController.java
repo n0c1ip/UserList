@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Location;
@@ -48,6 +47,7 @@ public class UsersInLocationTableController {
 
     @FXML
     private Label usersCount;
+    private ContextMenu userContextMenu;
     private MainController mainController;
 
 
@@ -73,8 +73,12 @@ public class UsersInLocationTableController {
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
 
-        //Double click edit user
+        //TableView context menu & double click
+        initiateUserContextMenu();
         tableView.setOnMousePressed(event -> {
+            if (event.isSecondaryButtonDown()) {
+                userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+            }
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 handleEditPersonButton();
             }
@@ -124,7 +128,7 @@ public class UsersInLocationTableController {
     }
 
     @FXML
-    private void handleNewUserButton(ActionEvent actionEvent) {
+    private void handleNewUserButton() {
         mainController.getDialogController().showNewUserMethodChoiceDialog(locationListView.getSelectionModel().getSelectedItem());
         setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
     }
@@ -157,6 +161,24 @@ public class UsersInLocationTableController {
             setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
         }
 
+    }
+
+    private void showUserSignUnlimited(User user){
+        mainController.getDialogController().showUserSignUnlimitedTableDialog("Signs",user);
+    }
+
+    private void initiateUserContextMenu(){
+        MenuItem addUser = new MenuItem(I18n.TABLE.getString("ContextMenu.AddUser"));
+        MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
+        MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
+        MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
+
+        userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
+
+        addUser.setOnAction(event -> handleNewUserButton());
+        editUser.setOnAction(event -> handleEditPersonButton());
+        removeUser.setOnAction(event -> handleDeletePerson());
+        showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
     }
 
 }
