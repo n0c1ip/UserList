@@ -1,9 +1,12 @@
 package objects;
 
+import crudDB.UserClassificationService;
+import crudDB.UserSignUnlimitedService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -168,6 +171,17 @@ public class User extends Model{
                 + login + " "
                 + password + " "
                 + mail + " ";
+
+        List<UserSignUnlimited> signs = UserSignUnlimitedService.getByUser(this);
+        for (UserSignUnlimited sign : signs) {
+            userInfo += sign.getValue() + " ";
+        }
+
+        List<UserClassification> classifications = UserClassificationService.getByUser(this);
+        for (UserClassification classification : classifications) {
+            userInfo += classification.getClassification().getName() + " ";
+        }
+
         return userInfo.replaceAll("\\s{2,}", " ");
     }
 }
