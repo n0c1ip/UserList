@@ -32,13 +32,13 @@ public class DialogController {
     private MainController mainController;
 
 
-    public void showExistingUserChoiceDialog(Location location) {
-        getExistingUserChoiceDialog(location).showAndWait();
+    public void showExistingUserChoiceDialog(String title, Location location) {
+        getExistingUserChoiceDialog(title, location).showAndWait();
     }
-    public Stage getExistingUserChoiceDialog(Location location) {
+    public Stage getExistingUserChoiceDialog(String title, Location location) {
         final Stage dialog = new Stage();
         try {
-            dialog.setTitle(I18n.TABLE.getString("Title.ExistingUserChoice"));
+            dialog.setTitle(title);
             dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
