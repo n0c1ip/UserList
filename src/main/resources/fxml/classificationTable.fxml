@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:id="classificationTablePane" dividerPositions="0.5" prefHeight="676.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClassificationController">
+    <items>
+        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="260.0">
+            <children>
+                <ListView fx:id="classificationListView" layoutX="34.0" prefHeight="527.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="610.0" prefWidth="463.0">
+            <children>
+                <SplitPane dividerPositions="0.8819047619047619" orientation="VERTICAL" prefHeight="527.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                            <children>
+                                <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="483.0" prefWidth="599.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.LastName" />
+                                        <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.FirstName" />
+                                        <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.MiddleName" />
+                                        <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Department" />
+                                        <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Position" />
+                                        <TableColumn fx:id="pcColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Pc" />
+                                        <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Login" />
+                                        <TableColumn fx:id="passwordColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Password" />
+                                        <TableColumn fx:id="mailColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Mail" />
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0">
+                            <children>
+                                <HBox alignment="CENTER_RIGHT" layoutX="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="369.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                              <TextField fx:id="searchField" prefHeight="25.0" prefWidth="177.0" promptText="%TextField.Filter" />
+                                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </Button>
+                                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="usersCount" layoutX="25.0" layoutY="10.0" prefHeight="17.0" prefWidth="196.0" text="%Label.UserCount">
+                                    <font>
+                                        <Font name="System Italic" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

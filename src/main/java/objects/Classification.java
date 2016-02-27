@@ -22,6 +22,8 @@ public class Classification extends Model {
 
     private String name;
 
+    public Classification() {
+    }
     public String getName() {
         return name;
     }
