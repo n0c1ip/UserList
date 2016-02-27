@@ -11,6 +11,8 @@ import objects.Classification;
 import objects.User;
 import util.I18n;
 
+import javax.persistence.RollbackException;
+
 public class ClassificationController {
 
     @FXML
@@ -102,23 +104,37 @@ public class ClassificationController {
     }
 
     private void handleEditClassification() {
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        mainController.getDialogController().showClassificationEditDialog("Изменить классификатор", classification);
+        showAllClassifications();
+    }
 
+    private void handleRemoveClassification() {
+        int selectedIndex = classificationListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Classification classificationToDelete = classificationListView.getSelectionModel().getSelectedItem();
+            try{
+                ClassificationService.delete(classificationToDelete.getId());
+                classificationListView.getItems().remove(selectedIndex);
+            }catch (RollbackException e){
+                DialogController.showAlertDialog(Alert.AlertType.ERROR, "Удалиение классификатора", "Нельзя удалить классификатор с пользователями");
+            }
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
+        }
     }
 
     private void initiateClassificationContextMenu(){
-        MenuItem addUser = new MenuItem(I18n.TABLE.getString("ContextMenu.AddUser"));
-        MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
-        MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
-        MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
+        MenuItem addClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.AddClassification"));
+        MenuItem editClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.EditClassification"));
+        MenuItem removeClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveClassification"));
 
-        classificationContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
+        classificationContextMenu = new ContextMenu(addClassification,editClassification,removeClassification);
 
-        addUser.setOnAction(event -> handelNewClassification());
-//        editUser.setOnAction(event -> handleEditPersonButton());
-//        removeUser.setOnAction(event -> handleDeletePerson());
-//        showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
+        addClassification.setOnAction(event -> handelNewClassification());
+        editClassification.setOnAction(event -> handleEditClassification());
+        removeClassification.setOnAction(event -> handleRemoveClassification());
     }
-
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
