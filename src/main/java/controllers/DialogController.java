@@ -138,6 +138,29 @@ public class DialogController {
         return dialog;
     }
 
+    public void showClassificationEditDialog(String title, Classification classification) {
+        getClassificationEditDialog(title, classification).showAndWait();
+    }
+    public Stage getClassificationEditDialog(String title, Classification classification) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/classificationEditDialog.fxml"));
+            AnchorPane classificationEdit = loader.load();
+            ClassificationEditDialogController controller = loader.getController();
+            controller.setEditedClassification(classification);
+            dialog.setScene(new Scene(classificationEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования классификатора");
+        }
+        return dialog;
+    }
+
 
 
     public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
@@ -165,7 +188,6 @@ public class DialogController {
         return dialog;
     }
 
-
     public void showUserSignUnlimitedTableDialog(String title, User user) {
         getUserSignUnlimitedTableDialog(title, user).showAndWait();
     }
@@ -191,7 +213,6 @@ public class DialogController {
         }
         return dialog;
     }
-
 
     public void showOrganizationEditDialog(String title, Organization organization) {
         getOrganizationEditDialog(title, organization).showAndWait();
@@ -321,7 +342,6 @@ public class DialogController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }

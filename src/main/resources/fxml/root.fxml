@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -14,16 +13,20 @@
                         <MenuItem fx:id="itemCloseWindow" mnemonicParsing="false" onAction="#closeMainWindow" text="%MenuBar.Exit" />
                     </items>
                 </Menu>
-                <Menu fx:id="menuTables" mnemonicParsing="false" text="%MenuBar.Tables">
+                <Menu fx:id="menuTables" mnemonicParsing="false" text="%MenuBar.Users">
                   <items>
                       <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="%MenuBar.UsersByLocations" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
-                      <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
-                      <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
-                      <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
                   </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="%MenuBar.Structure">
+               <items>
+                   <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
+                   <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
+                   <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
+               </items>
+            </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="%MenuBar.Tools">
                     <items>
                   <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="%MenuBar.Preferences" />

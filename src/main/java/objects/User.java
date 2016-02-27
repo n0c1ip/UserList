@@ -13,7 +13,9 @@ import javax.persistence.*;
         @NamedQuery(name="User.getUsersByLocation",
                     query="SELECT u FROM User u WHERE u.location = :location"),
         @NamedQuery(name="User.getUsersByDepartment",
-                    query = "SELECT u FROM User u WHERE u.department = :department")
+                    query = "SELECT u FROM User u WHERE u.department = :department"),
+        @NamedQuery(name="User.getUsersByClassification",
+                query="SELECT u FROM UserClassification uc JOIN uc.user u WHERE uc.classification = :classification")
 })
 public class User extends Model{
 
