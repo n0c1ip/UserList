@@ -18,6 +18,7 @@ import objects.Organization;
 import objects.User;
 import util.I18n;
 import objects.*;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class DialogController {
         final Stage dialog = new Stage();
         try {
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
@@ -64,7 +65,7 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(I18n.DIALOG.getString("Title.UserMethodAdd"));
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
@@ -95,7 +96,7 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
@@ -221,7 +222,7 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/organization-icon.png"));
+            dialog.getIcons().add(Icons.getOrganizationIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
@@ -244,7 +245,7 @@ public class DialogController {
     }
     public Stage getDepartmentEditDialog(String title, Department department, Organization organization) {
         final Stage dialog = new Stage();
-        dialog.getIcons().add(new Image("icons/department-icon.png"));
+        dialog.getIcons().add(Icons.getDepartmentIcon());
         try{
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
@@ -270,7 +271,7 @@ public class DialogController {
     }
     public Stage getLocationEditDialog(String title, Location location) {
         final Stage dialog = new Stage();
-        dialog.getIcons().add(new Image("icons/location-icon.png"));
+        dialog.getIcons().add(Icons.getLocationIcon());
         try{
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);

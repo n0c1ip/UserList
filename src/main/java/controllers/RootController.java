@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import objects.User;
 import start.EntryPoint;
 import util.I18n;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
@@ -161,7 +162,7 @@ public class RootController {
 
         try {
             final Stage dialog = new Stage();
-            dialog.getIcons().add(new Image("icons/import-icon.png"));
+            dialog.getIcons().add(Icons.getImportIcon());
             dialog.setTitle(I18n.DIALOG.getString("Title.ImportFromCSV"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
@@ -182,7 +183,7 @@ public class RootController {
     public void showPreferencesDialog() {
         try {
             final Stage dialog = new Stage();
-            dialog.getIcons().add(new Image("icons/settings-icon.png"));
+            dialog.getIcons().add(Icons.getSettingsIcon());
             dialog.setTitle(I18n.DIALOG.getString("Title.Settings"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
