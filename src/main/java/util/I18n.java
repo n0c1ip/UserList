@@ -26,7 +26,7 @@ public enum I18n {
             }
         }
 
-        public ResourceBundle getBundle (){
+        public ResourceBundle getResourceBundle(){
             return resourceBundle;
         }
 

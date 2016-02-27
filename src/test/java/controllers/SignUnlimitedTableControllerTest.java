@@ -22,7 +22,7 @@ public class SignUnlimitedTableControllerTest extends GuiTest {
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
         FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
-        loader.setResources(I18n.TABLE.getBundle());
+        loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 
         try {

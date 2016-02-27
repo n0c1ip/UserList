@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -45,7 +44,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/existingUserChoiceTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane useredit = loader.load();
             ExistingUserChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -70,7 +69,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserMethodChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -101,7 +100,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
             controller.setDialogController(this);
@@ -126,7 +125,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
             controller.setEditedSignUnlimited(signUnlimited);
@@ -175,7 +174,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
@@ -200,7 +199,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
             controller.setUser(user);
@@ -227,7 +226,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             OrganizationEditController controller = loader.getController();
             controller.setEditedOrganization(organization);
@@ -252,7 +251,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             DepartmentEditController controller = loader.getController();
             controller.setActiveOrganization(organization);
@@ -278,7 +277,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/locationEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane locationEdit = loader.load();
             LocationEditController controller = loader.getController();
             controller.setEditedLocation(location);

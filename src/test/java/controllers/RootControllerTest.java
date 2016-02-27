@@ -23,7 +23,7 @@ public class RootControllerTest extends GuiTest {
 
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
-            rootLoader.setResources(I18n.ROOT.getBundle());
+            rootLoader.setResources(I18n.ROOT.getResourceBundle());
             BorderPane rootLayout = rootLoader.load();
 
             FXMLLoader tabpaneLoader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));

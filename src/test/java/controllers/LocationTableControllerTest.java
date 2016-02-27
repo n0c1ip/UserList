@@ -17,7 +17,7 @@ public class LocationTableControllerTest extends GuiTest{
 
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/LocationTable.fxml"));
-            rootLoader.setResources(I18n.TABLE.getBundle());
+            rootLoader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

@@ -22,7 +22,7 @@ public class TableControllerTest extends GuiTest{
     protected Parent getRootNode() {
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/byLocationUserTable.fxml"));
-            rootLoader.setResources(I18n.TABLE.getBundle());
+            rootLoader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane rootLayout = rootLoader.load();
             UsersInLocationTableController controller = rootLoader.getController();
             MainController mainController = new MainController();

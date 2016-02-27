@@ -23,7 +23,7 @@ public class UsersInLocationTableControllerTest extends GuiTest {
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
         FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
-        loader.setResources(I18n.TABLE.getBundle());
+        loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 
         try {

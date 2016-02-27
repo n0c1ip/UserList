@@ -42,7 +42,7 @@ public class MainController{
     private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
-            loader.setResources(I18n.ROOT.getBundle());
+            loader.setResources(I18n.ROOT.getResourceBundle());
             rootLayout = loader.load();
             RootController rootController = loader.getController();
             rootController.setMainController(this);

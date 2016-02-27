@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
@@ -19,7 +18,7 @@ public class DepartmentEditControllerTest extends GuiTest {
     protected Parent getRootNode() {
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
-            rootLoader.setResources(I18n.DIALOG.getBundle());
+            rootLoader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

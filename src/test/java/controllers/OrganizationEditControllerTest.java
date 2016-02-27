@@ -18,7 +18,7 @@ public class OrganizationEditControllerTest extends GuiTest {
     protected Parent getRootNode() {
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
-            rootLoader.setResources(I18n.DIALOG.getBundle());
+            rootLoader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

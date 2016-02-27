@@ -17,8 +17,8 @@ public class UserSignUnlimitedTableControllerTest extends GuiTest{
 
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
-            rootLoader.setResources(I18n.TABLE.getBundle());
-            rootLoader.setResources(I18n.TABLE.getBundle());
+            rootLoader.setResources(I18n.TABLE.getResourceBundle());
+            rootLoader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

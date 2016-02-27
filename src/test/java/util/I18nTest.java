@@ -9,7 +9,7 @@ public class I18nTest {
 
     @Test
     public void shouldReturnCorrectBundle() {
-        ResourceBundle resourceBundle = I18n.DIALOG.getBundle();
+        ResourceBundle resourceBundle = I18n.DIALOG.getResourceBundle();
         Assert.assertNotNull(resourceBundle);
         Assert.assertNotNull(resourceBundle.getLocale());
         Assert.assertFalse(resourceBundle.keySet().isEmpty());

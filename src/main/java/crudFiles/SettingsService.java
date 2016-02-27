@@ -17,20 +17,21 @@ public class SettingsService {
 
     private static final String APPLICATION_LOCATION = System.getProperty("user.dir");
     private static final String DEFAULT_FILE_NAME = "settings";
-    private static final String DEFAULT_FULL_PATH = APPLICATION_LOCATION + "\\" + DEFAULT_FILE_NAME;
+    private static final String DEFAULT_FULL_PATH = APPLICATION_LOCATION + File.separator + DEFAULT_FILE_NAME;
 
     public static void writeSettings(Settings settings) {
         writeSettings(settings, "");
     }
 
     public static void writeSettings(Settings settings, String fullPath) {
-        String actualFullPath = (fullPath != "" ? fullPath : DEFAULT_FULL_PATH);
-        FileOutputStream fileOutputStream = null;
+        String actualFullPath = (fullPath.equals("") ? DEFAULT_FULL_PATH : fullPath);
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(actualFullPath);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(settings);
-            objectOutputStream.close();
+            try(ObjectOutput objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(settings);
+                objectOutputStream.close();
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось сохранить данные в файл настроек (не найден класс)");
@@ -45,12 +46,13 @@ public class SettingsService {
     }
 
     public static Optional<Settings> readSettings(String fullPath) {
-        String actualFullPath = (fullPath != "" ? fullPath : DEFAULT_FULL_PATH);
-        try(FileInputStream fileInputStream = new FileInputStream(actualFullPath);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
-            Settings settings = (Settings) objectInputStream.readObject();
-            objectInputStream.close();
-            return Optional.of(settings);
+        String actualFullPath = (fullPath.equals("") ? DEFAULT_FULL_PATH : fullPath);
+        try (FileInputStream fileInputStream = new FileInputStream(actualFullPath)) {
+            try (ObjectInput objectInputStream = new ObjectInputStream(fileInputStream)) {
+                Settings settings = (Settings) objectInputStream.readObject();
+                objectInputStream.close();
+                return Optional.of(settings);
+            }
         } catch (FileNotFoundException e) {
             // totally ok
         } catch (ClassNotFoundException e) {
@@ -64,7 +66,7 @@ public class SettingsService {
     }
 
     public static boolean isSettingsValid(Settings settings) {
-        try (Connection connection = DriverManager.getConnection(settings.getServerWithInnerSettings(), settings.getUserName(), settings.getPassword())) {
+        try (Connection ignored = DriverManager.getConnection(settings.getServerWithInnerSettings(), settings.getUserName(), settings.getPassword())) {
             return true;
         } catch (SQLException e) {
             return false;

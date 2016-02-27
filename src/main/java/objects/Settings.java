@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static objects.Settings.DATABASE.MYSQL;
-
 
 interface DriverInnerSettings {
     default String getServerPrefix() {return "";}
@@ -42,10 +40,10 @@ class EmbeddedDbSettings implements DriverInnerSettings, Serializable{
 
 public class Settings implements Serializable{
 
-    public enum LANGUAGE {ENGLISH, RUSSIAN};
+    public enum LANGUAGE {ENGLISH, RUSSIAN}
     private static final Map<LANGUAGE, Locale> languageSettings;
 
-    public enum DATABASE {MYSQL, EMBEDDED};
+    public enum DATABASE {MYSQL, EMBEDDED}
     private static final Map<DATABASE, DriverInnerSettings> databaseSettings;
 
     static {
@@ -59,7 +57,7 @@ public class Settings implements Serializable{
     }
 
 
-    LANGUAGE language;
+    private LANGUAGE language;
     public void setLanguage(LANGUAGE language) {
         this.language = language;
     }
@@ -70,8 +68,8 @@ public class Settings implements Serializable{
         return languageSettings.get(language);
     }
 
-    DriverInnerSettings driverInnerSettings;
-    DATABASE database;
+    private DriverInnerSettings driverInnerSettings;
+    private DATABASE database;
     public void setDatabase(DATABASE database) {
         driverInnerSettings = databaseSettings.get(database);
         this.database = database;
