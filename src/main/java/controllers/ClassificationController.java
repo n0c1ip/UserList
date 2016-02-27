@@ -1,14 +1,15 @@
 package controllers;
 
 import crudDB.ClassificationService;
+import crudDB.UserClassificationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Classification;
 import objects.User;
+import objects.UserClassification;
 import util.I18n;
 
 import javax.persistence.RollbackException;
@@ -47,6 +48,10 @@ public class ClassificationController {
 
     @FXML
     private void initialize() {
+
+        tableView.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
 
         classificationListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> setUserByClassification(newValue));
@@ -91,10 +96,29 @@ public class ClassificationController {
         tableView.setItems(userList);
     }
 
-    public void handleNewUserButton(ActionEvent actionEvent) {
+    public void handleAddUserToClassificationButton() {
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        if(classification != null){
+            mainController.getDialogController().showExistingUserInDepartmentChoiceDialog(I18n.DIALOG.getString("Title.AddUsers"), classification);
+            setUserByClassification(classification);
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать классификатор");
+        }
     }
 
-    public void handleDeletePerson(ActionEvent actionEvent) {
+    public void handleDeletePersonFromClassification() {
+        ObservableList<User> userList = tableView.getSelectionModel().getSelectedItems();
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        if(!userList.isEmpty()){
+            for (User user : userList) {
+                UserClassification us = UserClassificationService.getByUserAndClassification(user,classification);
+                UserClassificationService.delete(us.getId());
+            }
+            setUserByClassification(classification);
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать пользователя");
+        }
+
     }
 
     private void handelNewClassification() {
@@ -139,4 +163,5 @@ public class ClassificationController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+
 }

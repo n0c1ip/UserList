@@ -41,12 +41,12 @@
                                 <HBox alignment="CENTER_RIGHT" layoutX="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="369.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                               <TextField fx:id="searchField" prefHeight="25.0" prefWidth="177.0" promptText="%TextField.Filter" />
-                                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewUserButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
+                                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddUserToClassificationButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
                                         </Button>
-                                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
+                                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeletePersonFromClassification" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
