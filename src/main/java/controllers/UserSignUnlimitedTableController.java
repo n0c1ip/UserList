@@ -54,6 +54,8 @@ public class UserSignUnlimitedTableController {
         if (selectedUserSignUnlimited != null) {
             mainController.getDialogController().showUserSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Edit"), selectedUserSignUnlimited);
             showUserUnlimitedSigns();
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
     }
 
@@ -73,12 +75,7 @@ public class UserSignUnlimitedTableController {
             UserSignUnlimitedService.delete(userSignUnlimitedToDelete.getId());
             showUserUnlimitedSigns();
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainController.getPrimaryStage());
-            alert.setTitle("Не выбран признак");
-            alert.setHeaderText("Не выбран признак");
-            alert.setContentText("Сначала выберите признак");
-            alert.showAndWait();
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
 
     }

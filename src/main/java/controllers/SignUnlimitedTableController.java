@@ -66,12 +66,7 @@ public class SignUnlimitedTableController {
             SignUnlimitedService.delete(SignUnlimitedToDelete.getId());
             showAllUnlimitedSigns();
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainController.getPrimaryStage());
-            alert.setTitle("Не выбран признак");
-            alert.setHeaderText("Не выбран признак");
-            alert.setContentText("Сначала выберите признак");
-            alert.showAndWait();
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
 
     }
