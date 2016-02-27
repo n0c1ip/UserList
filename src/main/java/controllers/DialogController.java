@@ -16,6 +16,7 @@ import objects.Department;
 import objects.Location;
 import objects.Organization;
 import objects.User;
+import start.EntryPoint;
 import util.I18n;
 import objects.*;
 
@@ -53,6 +54,29 @@ public class DialogController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+        }
+        return dialog;
+    }
+
+    public void showExistingUserInDepartmentChoiceDialog(String title, Classification classification){
+        getExistingUserInDepartmentChoiceDialog(title, classification).showAndWait();
+    }
+    public Stage getExistingUserInDepartmentChoiceDialog(String title, Classification classification){
+        final Stage dialog = new Stage();
+        try {
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(mainController.getPrimaryStage());
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userClassificationChoiceDialog.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
+            SplitPane table = loader.load();
+            UserClassificationChoiceController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            controller.setClassification(classification);
+            dialog.setScene(new Scene(table));
+            return dialog;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return dialog;
     }
@@ -160,8 +184,6 @@ public class DialogController {
         }
         return dialog;
     }
-
-
 
     public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
         getUserSignUnlimitedEditDialog(title, userSignUnlimited).showAndWait();
