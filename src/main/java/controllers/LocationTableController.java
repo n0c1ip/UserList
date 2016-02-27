@@ -57,12 +57,7 @@ public class LocationTableController {
             LocationService.delete(locationToDelete.getId());
             showAllLocations();
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainController.getPrimaryStage());
-            alert.setTitle("Не выбрана организация");
-            alert.setHeaderText("Не выбрана организация");
-            alert.setContentText("Сначала выберите организацию");
-            alert.showAndWait();
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбрана организация", "Сначала выберите организацию");
         }
     }
 

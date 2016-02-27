@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import objects.SignUnlimited;
 import objects.User;
 import objects.UserSignUnlimited;
+import util.I18n;
 
 public class UserSignUnlimitedTableController {
 
@@ -51,8 +52,10 @@ public class UserSignUnlimitedTableController {
     private void handleEditUserSignUnlimitedButton() {
         UserSignUnlimited selectedUserSignUnlimited = tableView.getSelectionModel().getSelectedItem();
         if (selectedUserSignUnlimited != null) {
-            mainController.getDialogController().showUserSignUnlimitedEditDialog("Редактирование признака", selectedUserSignUnlimited);
+            mainController.getDialogController().showUserSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Edit"), selectedUserSignUnlimited);
             showUserUnlimitedSigns();
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
     }
 
@@ -60,7 +63,7 @@ public class UserSignUnlimitedTableController {
     private void handleNewUserSignUnlimitedButton() {
         UserSignUnlimited userSignUnlimited = new UserSignUnlimited();
         userSignUnlimited.setUser(user);
-        mainController.getDialogController().showUserSignUnlimitedEditDialog("Добавить признак", userSignUnlimited);
+        mainController.getDialogController().showUserSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Add"), userSignUnlimited);
         showUserUnlimitedSigns();
     }
 
@@ -72,12 +75,7 @@ public class UserSignUnlimitedTableController {
             UserSignUnlimitedService.delete(userSignUnlimitedToDelete.getId());
             showUserUnlimitedSigns();
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainController.getPrimaryStage());
-            alert.setTitle("Не выбран признак");
-            alert.setHeaderText("Не выбран признак");
-            alert.setContentText("Сначала выберите признак");
-            alert.showAndWait();
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
 
     }

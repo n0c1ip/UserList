@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.I18n;
 
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ public class DepartmentEditControllerTest extends GuiTest {
     protected Parent getRootNode() {
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            rootLoader.setResources(I18n.DIALOG.getBundle());
             AnchorPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

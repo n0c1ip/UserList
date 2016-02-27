@@ -77,7 +77,7 @@ public class RootControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveOrganizationTableItem() throws Exception {
-        click("#menuTables");
+        click("#menuTablesStructure");
         click("#itemOrganizationTable");
         assertNotNull(GuiTest.find("#organizationTableTotal"));
         assertTrue(GuiTest.find("#organizationTableTotal").isVisible());
@@ -85,7 +85,7 @@ public class RootControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveDepartmentInOrgTableItem() throws Exception {
-        click("#menuTables");
+        click("#menuTablesStructure");
         click("#itemDepartmentInOrgTable");
         assertNotNull(GuiTest.find("#deparmentsInOrganizationTable"));
         assertTrue(GuiTest.find("#deparmentsInOrganizationTable").isVisible());
@@ -101,7 +101,7 @@ public class RootControllerTest extends GuiTest {
 
     @Test
     public void shouldHaveItemLocationTableItem() throws Exception {
-        click("#menuTables");
+        click("#menuTablesStructure");
         click("#itemLocationTable");
         assertNotNull(GuiTest.find("#itemLocationSplitPane"));
         assertTrue(GuiTest.find("#itemLocationSplitPane").isVisible());
