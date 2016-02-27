@@ -171,13 +171,7 @@ public class UsersInDepartmentTableController {
             tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
         } else {
-            // Nothing selected.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainController.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Person Selected");
-            alert.setContentText("Please select a person in the table.");
-            alert.showAndWait();
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
         }
     }
 

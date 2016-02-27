@@ -47,7 +47,7 @@ public class DialogControllerTest extends GuiTest {
         organizationDialog = dialogController.getObjectDialog("организации");
         alertDialog = dialogController.getAlertDialog(Alert.AlertType.INFORMATION, alertTitleText, "");
         userEditDialog = dialogController.getUserEditDialog(userTitleText, new User());
-        userChoiceDialog = dialogController.getExistingUserChoiceDialog(new Location());
+        userChoiceDialog = dialogController.getExistingUserChoiceDialog(userChoiceDialogTitleText, new Location());
         loginDialog = dialogController.getLoginDialog();
         signUnlimitedDialog = dialogController.getSignUnlimitedEditDialog(signUnlimitedDialogTitleText, new SignUnlimited());
 

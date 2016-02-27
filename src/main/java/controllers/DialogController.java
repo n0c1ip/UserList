@@ -32,13 +32,13 @@ public class DialogController {
     private MainController mainController;
 
 
-    public void showExistingUserChoiceDialog(Location location) {
-        getExistingUserChoiceDialog(location).showAndWait();
+    public void showExistingUserChoiceDialog(String title, Location location) {
+        getExistingUserChoiceDialog(title, location).showAndWait();
     }
-    public Stage getExistingUserChoiceDialog(Location location) {
+    public Stage getExistingUserChoiceDialog(String title, Location location) {
         final Stage dialog = new Stage();
         try {
-            dialog.setTitle(I18n.TABLE.getString("Title.ExistingUserChoice"));
+            dialog.setTitle(title);
             dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
@@ -125,6 +125,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
             controller.setEditedSignUnlimited(signUnlimited);
@@ -173,6 +174,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
@@ -197,6 +199,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
             controller.setUser(user);
