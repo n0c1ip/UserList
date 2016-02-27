@@ -137,6 +137,31 @@ public class DialogController {
         return dialog;
     }
 
+    public void showClassificationEditDialog(String title, Classification classification) {
+        getClassificationEditDialog(title, classification).showAndWait();
+    }
+    public Stage getClassificationEditDialog(String title, Classification classification) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/classificationEditDialog.fxml"));
+            AnchorPane classificationEdit = loader.load();
+            ClassificationEditDialogController controller = loader.getController();
+            controller.setEditedClassification(classification);
+            dialog.setScene(new Scene(classificationEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования классификатора");
+        }
+        return dialog;
+    }
+
+
+
     public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
         getUserSignUnlimitedEditDialog(title, userSignUnlimited).showAndWait();
     }

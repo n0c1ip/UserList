@@ -1,8 +1,6 @@
 package crudDB;
 
-import objects.Department;
-import objects.Location;
-import objects.User;
+import objects.*;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -53,6 +51,15 @@ public class UserService {
     public static List<User> getAll(){
         return doQueryCasual(manager -> {
             TypedQuery<User> namedQuery = manager.createNamedQuery("User.getAll", User.class);
+            return namedQuery.getResultList();
+        });
+    }
+
+    public static List<User> getUsersByClassification(Classification classification){
+        return doQueryCasual(manager -> {
+            TypedQuery<User> namedQuery = manager.createNamedQuery("User.getUsersByClassification", User.class);
+            namedQuery.setParameter("classification",classification);
+            List<User> user = namedQuery.getResultList();
             return namedQuery.getResultList();
         });
     }

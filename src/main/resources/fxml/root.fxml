@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -17,7 +18,7 @@
                       <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="%MenuBar.UsersByLocations" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
-                      <MenuItem mnemonicParsing="false" text="Здесь будут признаки" />
+                      <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
                   </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="%MenuBar.Structure">
