@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -13,6 +12,7 @@ import javafx.stage.Stage;
 import objects.User;
 import start.EntryPoint;
 import util.I18n;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class RootController {
 
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UsersInLocationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -56,7 +56,7 @@ public class RootController {
     public void showOrganizationTable() {
          try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             OrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -73,7 +73,7 @@ public class RootController {
     public void showLocationTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/LocationTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             LocationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -91,7 +91,7 @@ public class RootController {
 
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             DepartmentsInOrganizationTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -108,7 +108,7 @@ public class RootController {
     public void showDepartmentTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UsersInDepartmentTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -126,7 +126,7 @@ public class RootController {
     public void showSignUnlimitedTable() {
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             SignUnlimitedTableController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -143,7 +143,7 @@ public class RootController {
     public void showClassificationTable(){
         try {
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/classificationTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             ClassificationController controller = loader.getController();
             controller.setMainController(this.mainController);
@@ -161,13 +161,13 @@ public class RootController {
 
         try {
             final Stage dialog = new Stage();
-            dialog.getIcons().add(new Image("icons/import-icon.png"));
+            dialog.getIcons().add(Icons.getImportIcon());
             dialog.setTitle(I18n.DIALOG.getString("Title.ImportFromCSV"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/importCSV.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane importcsv = loader.load();
             ImportCSVController controller = loader.getController();
             controller.setMainController(mainController);
@@ -182,13 +182,13 @@ public class RootController {
     public void showPreferencesDialog() {
         try {
             final Stage dialog = new Stage();
-            dialog.getIcons().add(new Image("icons/settings-icon.png"));
+            dialog.getIcons().add(Icons.getSettingsIcon());
             dialog.setTitle(I18n.DIALOG.getString("Title.Settings"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             Pane settingsPane = loader.load();
             SettingsController controller = loader.getController();
             controller.setMainController(mainController);

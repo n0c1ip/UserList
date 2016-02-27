@@ -43,8 +43,7 @@ public class Location extends Model {
         this.address = address;
     }
     public StringProperty getAdderssProperty(){
-        StringProperty lAddressProperty = null;
-        return lAddressProperty = new SimpleStringProperty(this.address);
+        return new SimpleStringProperty(this.address);
     }
 
     public void setName(String name) {
@@ -54,8 +53,7 @@ public class Location extends Model {
         return this.name;
     }
     public StringProperty getNameProperty(){
-        StringProperty lNameProperty = null;
-        return lNameProperty = new SimpleStringProperty(this.name);
+        return new SimpleStringProperty(this.name);
     }
 
     public String getCity() {
@@ -65,8 +63,7 @@ public class Location extends Model {
         this.city = city;
     }
     public StringProperty getCityProperty(){
-        StringProperty lCityProperty = null;
-        return lCityProperty = new SimpleStringProperty(this.city);
+        return new SimpleStringProperty(this.city);
     }
 
     @Override

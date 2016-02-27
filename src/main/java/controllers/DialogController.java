@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -19,6 +18,7 @@ import objects.User;
 import start.EntryPoint;
 import util.I18n;
 import objects.*;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,12 +40,12 @@ public class DialogController {
         final Stage dialog = new Stage();
         try {
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/existingUserChoiceTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane useredit = loader.load();
             ExistingUserChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -88,12 +88,12 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(I18n.DIALOG.getString("Title.UserMethodAdd"));
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserMethodChoiceController controller = loader.getController();
             controller.setLocation(location);
@@ -119,12 +119,12 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/User-icon.png"));
+            dialog.getIcons().add(Icons.getUserIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
             controller.setDialogController(this);
@@ -149,7 +149,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
             controller.setEditedSignUnlimited(signUnlimited);
@@ -196,7 +196,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
@@ -221,7 +221,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
             controller.setUser(user);
@@ -243,12 +243,12 @@ public class DialogController {
         final Stage dialog = new Stage();
         try{
             dialog.setTitle(title);
-            dialog.getIcons().add(new Image("icons/organization-icon.png"));
+            dialog.getIcons().add(Icons.getOrganizationIcon());
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             OrganizationEditController controller = loader.getController();
             controller.setEditedOrganization(organization);
@@ -266,14 +266,14 @@ public class DialogController {
     }
     public Stage getDepartmentEditDialog(String title, Department department, Organization organization) {
         final Stage dialog = new Stage();
-        dialog.getIcons().add(new Image("icons/department-icon.png"));
+        dialog.getIcons().add(Icons.getDepartmentIcon());
         try{
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             DepartmentEditController controller = loader.getController();
             controller.setActiveOrganization(organization);
@@ -292,14 +292,14 @@ public class DialogController {
     }
     public Stage getLocationEditDialog(String title, Location location) {
         final Stage dialog = new Stage();
-        dialog.getIcons().add(new Image("icons/location-icon.png"));
+        dialog.getIcons().add(Icons.getLocationIcon());
         try{
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/locationEditDialog.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane locationEdit = loader.load();
             LocationEditController controller = loader.getController();
             controller.setEditedLocation(location);

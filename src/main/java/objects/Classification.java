@@ -31,8 +31,7 @@ public class Classification extends Model {
         this.name = name;
     }
     public StringProperty getNameProperty(){
-        StringProperty nameProperty = null;
-        return nameProperty = new SimpleStringProperty(this.name);
+        return new SimpleStringProperty(this.name);
     }
 
     @Override

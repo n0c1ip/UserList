@@ -16,7 +16,7 @@ public class SettingsControllerTest extends GuiTest{
     protected Parent getRootNode() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
-            loader.setResources(I18n.DIALOG.getBundle());
+            loader.setResources(I18n.DIALOG.getResourceBundle());
             Pane settingsPane = loader.load();
             return settingsPane;
         } catch (IOException e) {

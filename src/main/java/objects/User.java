@@ -1,9 +1,12 @@
 package objects;
 
+import crudDB.UserClassificationService;
+import crudDB.UserSignUnlimitedService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -50,8 +53,7 @@ public class User extends Model{
         return firstName;
     }
     public StringProperty getFirstNameProperty(){
-        StringProperty fNameProperty = null;
-        return fNameProperty = new SimpleStringProperty(this.firstName);
+        return new SimpleStringProperty(this.firstName);
     }
 
     public void setLastName(String lastName) {
@@ -61,8 +63,7 @@ public class User extends Model{
         return lastName;
     }
     public StringProperty getLastNameProperty(){
-        StringProperty lNameProperty = null;
-        return lNameProperty = new SimpleStringProperty(this.lastName);
+        return new SimpleStringProperty(this.lastName);
     }
 
     public void setMiddleName(String middleName) {
@@ -72,8 +73,8 @@ public class User extends Model{
         return middleName;
     }
     public StringProperty getMiddleNameProperty(){
-        StringProperty mNameProperty = null;
-        return mNameProperty = new SimpleStringProperty(this.middleName);
+
+        return new SimpleStringProperty(this.middleName);
     }
 
     public void setDepartment(Department department) {
@@ -83,8 +84,7 @@ public class User extends Model{
         return department;
     }
     public StringProperty getDepartmentProperty(){
-        StringProperty dptProperty = null;
-        return dptProperty = new SimpleStringProperty(this.department.getName());
+        return new SimpleStringProperty(this.department.getName());
     }
 
     public void setLocation(Location location) {
@@ -94,8 +94,7 @@ public class User extends Model{
         return location;
     }
     public StringProperty getLocationProperty(){
-        StringProperty locationProperty = null;
-        return locationProperty = new SimpleStringProperty(this.location.getName());
+        return new SimpleStringProperty(this.location.getName());
     }
 
     public void setPosition(String position) {
@@ -105,8 +104,7 @@ public class User extends Model{
         return position;
     }
     public StringProperty getPositionProperty(){
-        StringProperty psnProperty = null;
-        return psnProperty = new SimpleStringProperty(this.position);
+        return new SimpleStringProperty(this.position);
     }
 
     public void setLogin(String login) {
@@ -116,8 +114,7 @@ public class User extends Model{
         return login;
     }
     public StringProperty getLoginProperty(){
-        StringProperty lgnProperty = null;
-        return lgnProperty = new SimpleStringProperty(this.login);
+        return new SimpleStringProperty(this.login);
     }
 
     public void setPassword(String password) {
@@ -127,8 +124,7 @@ public class User extends Model{
         return password;
     }
     public StringProperty getPasswordProperty(){
-        StringProperty pswdProperty = null;
-        return pswdProperty = new SimpleStringProperty(this.password);
+        return new SimpleStringProperty(this.password);
     }
 
     public void setMail(String mail) {
@@ -138,8 +134,7 @@ public class User extends Model{
         return mail;
     }
     public StringProperty getMailProperty(){
-        StringProperty mailProperty = null;
-        return mailProperty = new SimpleStringProperty(this.mail);
+        return new SimpleStringProperty(this.mail);
     }
 
     public void setPc(Pc pc) {
@@ -149,7 +144,7 @@ public class User extends Model{
         return pc;
     }
     public StringProperty getPcProperty(){
-        StringProperty pcProperty = null;
+        StringProperty pcProperty;
         if (this.pc != null) {
             pcProperty = new SimpleStringProperty(this.pc.getName());
         } else {
@@ -168,6 +163,17 @@ public class User extends Model{
                 + login + " "
                 + password + " "
                 + mail + " ";
+
+        List<UserSignUnlimited> signs = UserSignUnlimitedService.getByUser(this);
+        for (UserSignUnlimited sign : signs) {
+            userInfo += sign.getValue() + " ";
+        }
+
+        List<UserClassification> classifications = UserClassificationService.getByUser(this);
+        for (UserClassification classification : classifications) {
+            userInfo += classification.getClassification().getName() + " ";
+        }
+
         return userInfo.replaceAll("\\s{2,}", " ");
     }
 }

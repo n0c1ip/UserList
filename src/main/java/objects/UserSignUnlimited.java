@@ -2,9 +2,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="user_sign_unlimited")
@@ -41,8 +39,7 @@ public class UserSignUnlimited extends Model{
         return value;
     }
     public StringProperty getValueProperty(){
-        StringProperty lValueProperty = null;
-        return lValueProperty = new SimpleStringProperty(this.value);
+        return new SimpleStringProperty(this.value);
     }
     @Override
     public String toString() {

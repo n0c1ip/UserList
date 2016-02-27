@@ -32,8 +32,7 @@ public class SignUnlimited extends Model{
         this.name = name;
     }
     public ObservableValue<String> getNameProperty() {
-        StringProperty lNameProperty = null;
-        return lNameProperty = new SimpleStringProperty(this.name);
+        return new SimpleStringProperty(this.name);
     }
 
     @Override

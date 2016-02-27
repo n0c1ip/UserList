@@ -19,7 +19,7 @@ public class UserSignUnlimitedEditControllerTest extends GuiTest {
     protected Parent getRootNode() {
         try {
             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
-            rootLoader.setResources(I18n.DIALOG.getBundle());
+            rootLoader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane rootLayout = rootLoader.load();
             return rootLayout;
         } catch (IOException e) {

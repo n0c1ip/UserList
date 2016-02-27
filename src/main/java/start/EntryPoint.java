@@ -4,16 +4,13 @@ import controllers.MainController;
 import crudDB.EntityManagerFactory;
 import crudFiles.SettingsService;
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import objects.Settings;
-
+import util.I18n;
+import util.Icons;
 import java.util.Locale;
 import java.util.Optional;
 
-/**
- *
- */
 public class EntryPoint extends Application {
 
     public static void main(String[] args) {
@@ -29,9 +26,9 @@ public class EntryPoint extends Application {
         }
 
         MainController mainController = new MainController();
-        primaryStage.getIcons().add(new Image("icons/icon.png"));
+        primaryStage.getIcons().add(Icons.getApplicationIcon());
         mainController.setPrimaryStage(primaryStage);
-        mainController.setMainWindowTitle("User List");
+        mainController.setMainWindowTitle(I18n.ROOT.getString("Program.Name"));
         mainController.show();
     }
 
