@@ -31,12 +31,12 @@ public class UserEditControllerTest extends GuiTest {
     @Test
     public void shouldHaveAllElements() throws Exception {
         assertNotNull(GuiTest.find("#paneUserEdit"));
-        click("#firstNameField").type("a");
-        click("#lastNameField").type("b");
+        click("#lastNameField").type("a");
+        click("#firstNameField").type("b");
         click("#middleNameField").type("c");
-        click("#organizationComboBox").push(KeyCode.DOWN).push(KeyCode.ENTER);
-        click("#locationBox").push(KeyCode.DOWN).push(KeyCode.ENTER);
-        click("#departmentBox").push(KeyCode.DOWN).push(KeyCode.ENTER);
+        click("#organizationComboBox").push(KeyCode.ESCAPE);
+        click("#locationBox").push(KeyCode.ESCAPE);
+        click("#departmentBox").push(KeyCode.ESCAPE);
         click("#positionField").type("d");
         click("#pcField").type("e");
         click("#loginField").type("f");
