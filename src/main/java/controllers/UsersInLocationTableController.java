@@ -76,6 +76,9 @@ public class UsersInLocationTableController {
         //TableView context menu & double click
         initiateUserContextMenu();
         tableView.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
+                userContextMenu.hide();
+            }
             if (event.isSecondaryButtonDown()) {
                 userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
             }
