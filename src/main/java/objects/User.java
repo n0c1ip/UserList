@@ -21,7 +21,7 @@ public class User extends Model{
 
     private static final long serialVersionUID = 1L;
 
-    private String firstName ="";
+     private String firstName ="";
     private String lastName ="";
     private String middleName = "";
     @ManyToOne
