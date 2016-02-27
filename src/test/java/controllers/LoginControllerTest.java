@@ -28,8 +28,8 @@ public class LoginControllerTest extends GuiTest{
     @Test
     public void loginShouldHaveAllElements() throws Exception {
         assertNotNull(GuiTest.find("#paneLogin"));
-        click("#fieldUserName").type("log");
-        click("#fieldPassword").type("pass");
+        click("#fieldUserName").type("l");
+        click("#fieldPassword").type("p");
         Assert.assertNotNull(find("#loginButton"));
         assertNotNull(GuiTest.find("#paneLogin"));
     }

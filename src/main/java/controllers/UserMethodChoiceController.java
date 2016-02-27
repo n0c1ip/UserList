@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import objects.Location;
 import objects.User;
+import util.I18n;
 
 /**
  * Controller of LogIn dialog
@@ -27,7 +28,7 @@ public class UserMethodChoiceController {
     }
 
     public void handleExistingUserButton() {
-        dialogController.showExistingUserChoiceDialog(location);
+        dialogController.showExistingUserChoiceDialog(I18n.TABLE.getString("Title.ExistingUserChoice"), location);
         closeWindow();
     }
 

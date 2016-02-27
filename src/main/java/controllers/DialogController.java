@@ -16,6 +16,7 @@ import objects.Department;
 import objects.Location;
 import objects.Organization;
 import objects.User;
+import start.EntryPoint;
 import util.I18n;
 import objects.*;
 
@@ -32,13 +33,13 @@ public class DialogController {
     private MainController mainController;
 
 
-    public void showExistingUserChoiceDialog(Location location) {
-        getExistingUserChoiceDialog(location).showAndWait();
+    public void showExistingUserChoiceDialog(String title, Location location) {
+        getExistingUserChoiceDialog(title, location).showAndWait();
     }
-    public Stage getExistingUserChoiceDialog(Location location) {
+    public Stage getExistingUserChoiceDialog(String title, Location location) {
         final Stage dialog = new Stage();
         try {
-            dialog.setTitle(I18n.TABLE.getString("Title.ExistingUserChoice"));
+            dialog.setTitle(title);
             dialog.getIcons().add(new Image("icons/User-icon.png"));
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
@@ -53,6 +54,29 @@ public class DialogController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+        }
+        return dialog;
+    }
+
+    public void showExistingUserInDepartmentChoiceDialog(String title, Classification classification){
+        getExistingUserInDepartmentChoiceDialog(title, classification).showAndWait();
+    }
+    public Stage getExistingUserInDepartmentChoiceDialog(String title, Classification classification){
+        final Stage dialog = new Stage();
+        try {
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(mainController.getPrimaryStage());
+            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userClassificationChoiceDialog.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
+            SplitPane table = loader.load();
+            UserClassificationChoiceController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            controller.setClassification(classification);
+            dialog.setScene(new Scene(table));
+            return dialog;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return dialog;
     }
@@ -125,6 +149,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
             controller.setEditedSignUnlimited(signUnlimited);
@@ -160,8 +185,6 @@ public class DialogController {
         return dialog;
     }
 
-
-
     public void showUserSignUnlimitedEditDialog(String title, UserSignUnlimited userSignUnlimited) {
         getUserSignUnlimitedEditDialog(title, userSignUnlimited).showAndWait();
     }
@@ -173,6 +196,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
+            loader.setResources(I18n.DIALOG.getBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
@@ -197,6 +221,7 @@ public class DialogController {
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            loader.setResources(I18n.TABLE.getBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
             controller.setUser(user);

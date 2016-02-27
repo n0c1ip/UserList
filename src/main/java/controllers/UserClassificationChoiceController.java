@@ -2,6 +2,7 @@ package controllers;
 
 import crudDB.DepartmentService;
 import crudDB.OrganizationService;
+import crudDB.UserClassificationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,12 +10,13 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import objects.Department;
-import objects.Organization;
-import objects.User;
+import javafx.stage.Stage;
+import objects.*;
 import util.I18n;
 
-public class UsersInDepartmentTableController {
+import javax.persistence.NoResultException;
+
+public class UserClassificationChoiceController {
 
     private MainController mainController;
     @FXML
@@ -48,12 +50,15 @@ public class UsersInDepartmentTableController {
     @FXML
     private TextField searchField;
 
-    private ContextMenu userContextMenu;
-
-
+    private Classification classification;
 
     @FXML
     private void initialize(){
+
+        tableView.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
+
         //Organization ComboBox
         ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
         organizationsList.setAll(OrganizationService.getAll());
@@ -78,20 +83,6 @@ public class UsersInDepartmentTableController {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
-
-        //TableView context menu & double click
-        initiateUserContextMenu();
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
-                userContextMenu.hide();
-            }
-            if (event.isSecondaryButtonDown()) {
-                userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
-            }
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPersonButton();
-            }
-        });
     }
 
     private void showUserByDepartments(Department department) {
@@ -124,22 +115,8 @@ public class UsersInDepartmentTableController {
 
             tableView.setItems(sortedData);
             usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
-                                         +String.valueOf(tableView.getItems().size()));
+                    +String.valueOf(tableView.getItems().size()));
         }
-    }
-
-    private void initiateUserContextMenu(){
-        MenuItem addUser = new MenuItem(I18n.TABLE.getString("ContextMenu.AddUser"));
-        MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
-        MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
-        MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
-
-        userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
-
-        addUser.setOnAction(event -> handleNewUserButton());
-        editUser.setOnAction(event -> handleEditPersonButton());
-        removeUser.setOnAction(event -> handleDeletePerson());
-        showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
     }
 
     private void showDepartmentByOrganizationSelect(Organization organization){
@@ -151,32 +128,38 @@ public class UsersInDepartmentTableController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-    @FXML
-    private void handleEditPersonButton() {
-        User selectedUser = tableView.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
-        }
-    }
-    @FXML
-    private void handleNewUserButton() {
-        User user = new User();
-        mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
-    }
-    @FXML
-    private void handleDeletePerson() {
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            User userToDelete = tableView.getSelectionModel().getSelectedItem();
-            tableView.getItems().remove(selectedIndex);
-            UserService.delete(userToDelete.getId());
-        } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
-        }
+
+    public void handleChoiceButton() {
+            ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
+            for (User user : users) {
+                if(!isAlreadyExistInClassification(user,classification)){
+                    UserClassification userclassification = new UserClassification();
+                    userclassification.setClassification(this.classification);
+                    userclassification.setUser(user);
+                    UserClassificationService.add(userclassification);
+                } else {
+                    DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Пользователь " +
+                            user.getLastName() + " " + user.getFirstName() + " уже добавлен");
+                }
+            }
+            closeWindow();
     }
 
-    private void showUserSignUnlimited(User user){
-        mainController.getDialogController().showUserSignUnlimitedTableDialog("Signs",user);
+    public void setClassification(Classification classification) {
+        this.classification = classification;
     }
 
+    private boolean isAlreadyExistInClassification(User user, Classification classification){
+        try{
+            UserClassificationService.getByUserAndClassification(user,classification);
+        } catch (NoResultException e){
+            return false;
+        }
+        return true;
+    }
+
+    private void closeWindow(){
+        Stage thisWindow = (Stage) tableView.getScene().getWindow();
+        thisWindow.close();
+    }
 }

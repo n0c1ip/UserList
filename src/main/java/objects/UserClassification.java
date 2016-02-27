@@ -8,7 +8,9 @@ import javax.persistence.*;
         @NamedQuery(name="UserClassification.getAll",
                 query="SELECT u FROM UserClassification u"),
         @NamedQuery(name="UserClassification.getByUser",
-                query="SELECT u FROM UserClassification u WHERE u.user = :user")
+                query="SELECT u FROM UserClassification u WHERE u.user = :user"),
+        @NamedQuery(name="UserClassification.getByUserAndClassification",
+        query="SELECT u FROM UserClassification u WHERE u.user = :user AND u.classification = :classification")
 })
 public class UserClassification extends Model{
 

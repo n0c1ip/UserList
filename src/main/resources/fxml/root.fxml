@@ -21,7 +21,7 @@
                       <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
                   </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="%MenuBar.Structure">
+            <Menu fx:id="menuTablesStructure" mnemonicParsing="false" text="%MenuBar.Structure">
                <items>
                    <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
                    <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
