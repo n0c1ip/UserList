@@ -94,6 +94,8 @@ public class ClassificationController {
         ObservableList<User> userList = FXCollections.observableArrayList();
         userList.setAll(UserService.getUsersByClassification(classification));
         tableView.setItems(userList);
+        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                +String.valueOf(tableView.getItems().size()));
     }
 
     public void handleAddUserToClassificationButton() {
