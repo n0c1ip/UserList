@@ -13,11 +13,9 @@ public class ClassificationEditDialogController {
     TextField nameField;
     private Classification editedClassification;
 
-
-
-
     public void setEditedClassification(Classification editedClassification) {
         this.editedClassification = editedClassification;
+        nameField.setText(editedClassification.getName());
     }
 
     public void handleOkButton() {

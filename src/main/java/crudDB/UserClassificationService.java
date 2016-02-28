@@ -1,5 +1,6 @@
 package crudDB;
 
+import objects.Classification;
 import objects.User;
 import objects.UserClassification;
 
@@ -45,6 +46,16 @@ public class UserClassificationService {
             TypedQuery<UserClassification> namedQuery = manager.createNamedQuery("UserClassification.getByUser", UserClassification.class);
             namedQuery.setParameter("user", user);
             return namedQuery.getResultList();
+        });
+    }
+
+    public static UserClassification getByUserAndClassification(User user, Classification classification){
+        return doQueryCasual(manager -> {
+            TypedQuery<UserClassification> namedQuery = manager.createNamedQuery
+                    ("UserClassification.getByUserAndClassification", UserClassification.class);
+            namedQuery.setParameter("user", user);
+            namedQuery.setParameter("classification", classification);
+            return namedQuery.getSingleResult();
         });
     }
 

@@ -1,15 +1,18 @@
 package controllers;
 
 import crudDB.ClassificationService;
+import crudDB.UserClassificationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Classification;
 import objects.User;
+import objects.UserClassification;
 import util.I18n;
+
+import javax.persistence.RollbackException;
 
 public class ClassificationController {
 
@@ -45,6 +48,10 @@ public class ClassificationController {
 
     @FXML
     private void initialize() {
+
+        tableView.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
 
         classificationListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> setUserByClassification(newValue));
@@ -87,12 +94,33 @@ public class ClassificationController {
         ObservableList<User> userList = FXCollections.observableArrayList();
         userList.setAll(UserService.getUsersByClassification(classification));
         tableView.setItems(userList);
+        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                +String.valueOf(tableView.getItems().size()));
     }
 
-    public void handleNewUserButton(ActionEvent actionEvent) {
+    public void handleAddUserToClassificationButton() {
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        if(classification != null){
+            mainController.getDialogController().showExistingUserInDepartmentChoiceDialog(I18n.DIALOG.getString("Title.AddUsers"), classification);
+            setUserByClassification(classification);
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать классификатор");
+        }
     }
 
-    public void handleDeletePerson(ActionEvent actionEvent) {
+    public void handleDeletePersonFromClassification() {
+        ObservableList<User> userList = tableView.getSelectionModel().getSelectedItems();
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        if(!userList.isEmpty()){
+            for (User user : userList) {
+                UserClassification us = UserClassificationService.getByUserAndClassification(user,classification);
+                UserClassificationService.delete(us.getId());
+            }
+            setUserByClassification(classification);
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать пользователя");
+        }
+
     }
 
     private void handelNewClassification() {
@@ -102,25 +130,40 @@ public class ClassificationController {
     }
 
     private void handleEditClassification() {
+        Classification classification = classificationListView.getSelectionModel().getSelectedItem();
+        mainController.getDialogController().showClassificationEditDialog("Изменить классификатор", classification);
+        showAllClassifications();
+    }
 
+    private void handleRemoveClassification() {
+        int selectedIndex = classificationListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Classification classificationToDelete = classificationListView.getSelectionModel().getSelectedItem();
+            try{
+                ClassificationService.delete(classificationToDelete.getId());
+                classificationListView.getItems().remove(selectedIndex);
+            }catch (RollbackException e){
+                DialogController.showAlertDialog(Alert.AlertType.ERROR, "Удалиение классификатора", "Нельзя удалить классификатор с пользователями");
+            }
+        } else {
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
+        }
     }
 
     private void initiateClassificationContextMenu(){
-        MenuItem addUser = new MenuItem(I18n.TABLE.getString("ContextMenu.AddUser"));
-        MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
-        MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
-        MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
+        MenuItem addClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.AddClassification"));
+        MenuItem editClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.EditClassification"));
+        MenuItem removeClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveClassification"));
 
-        classificationContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
+        classificationContextMenu = new ContextMenu(addClassification,editClassification,removeClassification);
 
-        addUser.setOnAction(event -> handelNewClassification());
-//        editUser.setOnAction(event -> handleEditPersonButton());
-//        removeUser.setOnAction(event -> handleDeletePerson());
-//        showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
+        addClassification.setOnAction(event -> handelNewClassification());
+        editClassification.setOnAction(event -> handleEditClassification());
+        removeClassification.setOnAction(event -> handleRemoveClassification());
     }
-
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+
 }
