@@ -68,7 +68,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userClassificationChoiceDialog.fxml"));
-            loader.setResources(I18n.TABLE.getBundle());
+            loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UserClassificationChoiceController controller = loader.getController();
             controller.setMainController(this.mainController);
