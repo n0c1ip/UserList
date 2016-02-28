@@ -29,7 +29,6 @@ public class ExistingUserChoiceControllerTest extends GuiTest {
             e.printStackTrace();
         }
         ExistingUserChoiceController controller = loader.getController();
-        controller.setMainController(mainController);
         return table;
     }
 

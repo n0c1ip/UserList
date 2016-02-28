@@ -71,7 +71,6 @@ public class DialogController {
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UserClassificationChoiceController controller = loader.getController();
-            controller.setMainController(this.mainController);
             controller.setClassification(classification);
             dialog.setScene(new Scene(table));
             return dialog;
@@ -200,7 +199,6 @@ public class DialogController {
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
-            controller.setMainController(mainController);
             dialog.setScene(new Scene(userSignUnlimitedPane));
             return  dialog;
         } catch (IOException e) {

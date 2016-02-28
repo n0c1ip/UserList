@@ -15,9 +15,6 @@ import util.I18n;
 
 public class UsersInLocationTableController {
 
-    private final String CREATE_TITLE = "Создание пользователя";
-    private final String EDIT_TITLE = "Редактирование пользователя";
-
     //Table
     @FXML
     private ListView<Location> locationListView;
@@ -44,7 +41,6 @@ public class UsersInLocationTableController {
     @FXML
     private TextField searchField;
 
-
     @FXML
     private Label usersCount;
     private ContextMenu userContextMenu;
@@ -57,7 +53,6 @@ public class UsersInLocationTableController {
 
     @FXML
     private void initialize() {
-
         locationListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> setUsersByLocationTable(newValue));
 
@@ -115,10 +110,7 @@ public class UsersInLocationTableController {
                 }
                 //filter text
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (user.toString().toLowerCase().contains(lowerCaseFilter)){
-                    return true; // Filter matches users fields.
-                }
-                return false; // Does not match.
+                return user.toString().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -147,17 +139,15 @@ public class UsersInLocationTableController {
         } else {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
         }
-
     }
 
     @FXML
     private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            mainController.getDialogController().showUserEditDialog(EDIT_TITLE, selectedUser);
+            mainController.getDialogController().showUserEditDialog(I18n.TABLE.getString("ContextMenu.EditUser"), selectedUser);
             setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
         }
-
     }
 
     private void showUserSignUnlimited(User user){

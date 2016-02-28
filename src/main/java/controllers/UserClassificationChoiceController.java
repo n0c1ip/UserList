@@ -18,7 +18,6 @@ import javax.persistence.NoResultException;
 
 public class UserClassificationChoiceController {
 
-    private MainController mainController;
     @FXML
     private ListView<Department> departmentListView;
     @FXML
@@ -54,7 +53,6 @@ public class UserClassificationChoiceController {
 
     @FXML
     private void initialize(){
-
         tableView.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );
@@ -103,10 +101,7 @@ public class UserClassificationChoiceController {
                     }
                     //filter text
                     String lowerCaseFilter = newValue.toLowerCase();
-                    if (user.toString().toLowerCase().contains(lowerCaseFilter)){
-                        return true; // Filter matches users fields.
-                    }
-                    return false; // Does not match.
+                    return user.toString().toLowerCase().contains(lowerCaseFilter);
                 });
             });
 
@@ -123,10 +118,6 @@ public class UserClassificationChoiceController {
         ObservableList<Department> departmentList = FXCollections.observableArrayList();
         departmentList.setAll(DepartmentService.getByOrganization(organization));
         departmentListView.setItems(departmentList);
-    }
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     public void handleChoiceButton() {

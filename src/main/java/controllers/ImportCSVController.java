@@ -19,15 +19,13 @@ import java.io.*;
  * Class controller for import Users from CSV file.</p>
  *
  */
-
 public class ImportCSVController {
 
     private MainController mainController;
-    private String filePath;
     @FXML
-    ChoiceBox<Organization> choiceBox;
+    private ChoiceBox<Organization> choiceBox;
     @FXML
-    TextField filePathField;
+    private TextField filePathField;
 
 
     /**
@@ -52,7 +50,7 @@ public class ImportCSVController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File selectedFile = fileChooser.showOpenDialog(mainController.getPrimaryStage());
         if(selectedFile != null){
-            filePath = selectedFile.getAbsolutePath();
+            String filePath = selectedFile.getAbsolutePath();
             filePathField.setText(filePath);
         }
     }

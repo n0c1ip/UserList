@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
 import start.EntryPoint;
+import util.Fxml;
 import util.I18n;
 import util.Icons;
 
@@ -35,9 +36,8 @@ public class RootController {
     }
 
     public void showUsersByLocationTable() {
-
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("byLocationUserTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UsersInLocationTableController controller = loader.getController();
@@ -47,15 +47,15 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
+            System.out.println(ex.getMessage());
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по объектам");
-            System.out.println(ex.getStackTrace());
         }
 
     }
 
     public void showOrganizationTable() {
          try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/OrganizationTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("OrganizationTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             OrganizationTableController controller = loader.getController();
@@ -72,7 +72,7 @@ public class RootController {
 
     public void showLocationTable(){
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/LocationTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("LocationTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             LocationTableController controller = loader.getController();
@@ -88,9 +88,8 @@ public class RootController {
     }
 
     public void showDepartmentsInOrganizationTable() {
-
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byOrganizationDepartmentsTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("byOrganizationDepartmentsTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             DepartmentsInOrganizationTableController controller = loader.getController();
@@ -107,7 +106,7 @@ public class RootController {
 
     public void showDepartmentTable(){
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byDepartmentUserTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("byDepartmentUserTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UsersInDepartmentTableController controller = loader.getController();
@@ -117,15 +116,15 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
+            System.out.println(ex.getMessage());
             DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), "Не удалось загрузить интерфейс пользователей по подразделениям");
-            System.out.println(ex.getStackTrace());
         }
     }
 
 
     public void showSignUnlimitedTable() {
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("SignUnlimitedTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             SignUnlimitedTableController controller = loader.getController();
@@ -142,7 +141,7 @@ public class RootController {
 
     public void showClassificationTable(){
         try {
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/classificationTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("classificationTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             ClassificationController controller = loader.getController();
@@ -158,7 +157,6 @@ public class RootController {
     }
 
     public void showImportFormCSV() {
-
         try {
             final Stage dialog = new Stage();
             dialog.getIcons().add(Icons.getImportIcon());
@@ -166,7 +164,7 @@ public class RootController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/importCSV.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("importCSV.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane importcsv = loader.load();
             ImportCSVController controller = loader.getController();
@@ -174,8 +172,8 @@ public class RootController {
             dialog.setScene(new Scene(importcsv));
             dialog.show();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
-            System.out.println(e.getStackTrace());
         }
     }
 
@@ -187,11 +185,10 @@ public class RootController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("settings.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             Pane settingsPane = loader.load();
             SettingsController controller = loader.getController();
-            controller.setMainController(mainController);
             controller.setTabLayout(tabLayout);
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
@@ -207,7 +204,6 @@ public class RootController {
     }
 
     public void uploadInExcel() throws IOException {
-
         TabPane tabPane = (TabPane) mainController.getRootLayout().getCenter();
         if (tabPane.getSelectionModel().isEmpty()) {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Сначала откройте таблицу");
@@ -223,7 +219,7 @@ public class RootController {
             if (file != null){
                 UploadInExcelService.uploadInExcel(columns,userList,file);
                 DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
-                        "Завершено", "Файл сохранен" + "\n" + file.getAbsolutePath());
+                        "Завершено", "Файл сохранен" + System.lineSeparator() + file.getAbsolutePath());
             }
         }
     }

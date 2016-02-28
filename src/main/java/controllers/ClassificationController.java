@@ -17,9 +17,9 @@ import javax.persistence.RollbackException;
 public class ClassificationController {
 
     @FXML
-    ListView<Classification> classificationListView;
+    private ListView<Classification> classificationListView;
     @FXML
-    TableView<User> tableView;
+    private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> firstNameColumn;
     @FXML
@@ -48,7 +48,6 @@ public class ClassificationController {
 
     @FXML
     private void initialize() {
-
         tableView.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );

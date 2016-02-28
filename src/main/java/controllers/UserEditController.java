@@ -1,10 +1,10 @@
 package controllers;
-//Created by mva on 30.01.2016.
 
 import crudDB.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -17,9 +17,7 @@ import util.I18n;
  * uses userEditDialog.fxml for UI.
  * Before initialize need to set up current table, edited user and stage.
  */
-
 public class UserEditController {
-
 
     @FXML
     private Button okButton;
@@ -57,12 +55,11 @@ public class UserEditController {
     }
 
     /**
-     * Loading in ComboBox deprtments list.
+     * Loading in ComboBox departments list.
      * It's load when dialog shows, not when creates instance.
      */
     @FXML
     private void initialize() {
-
         //Load organizationComboBox
         ObservableList<Organization> organizationList = FXCollections.observableArrayList();
         organizationList.addAll(OrganizationService.getAll());
@@ -89,7 +86,6 @@ public class UserEditController {
      */
     @FXML
     private void handleOkButton() {
-
         if(!invalidData && departmentBox.getSelectionModel().getSelectedItem() != null){
             editedUser.setFirstName(firstNameField.getText());
             editedUser.setLastName(lastNameField.getText());
@@ -104,7 +100,7 @@ public class UserEditController {
             UserService.add(editedUser);
             closeWindow();
         } else {
-            //show dialog invalid data
+            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Редактирование пользователя", "Не получается сохранить пользователя");
         }
     }
 
@@ -118,7 +114,6 @@ public class UserEditController {
 
     /**
      * Set edited User
-     * @param editedUser
      */
     public void setEditedUser(User editedUser) {
         this.editedUser = editedUser;
@@ -135,16 +130,12 @@ public class UserEditController {
         loginField.setText(editedUser.getLogin());
         passwordField.setText(editedUser.getPassword());
         mailField.setText(editedUser.getMail());
-
     }
-
 
     @FXML
     private void handleUserSignUnlimitedButton() {
         dialogController.showUserSignUnlimitedTableDialog(I18n.DIALOG.getString("UserSign.All"), editedUser);
     }
-
-
 
     public void setDepartmentBoxByOrganization(Organization organization){
         departmentBox.valueProperty().set(null);
@@ -158,7 +149,6 @@ public class UserEditController {
             invalidData = false;
         }
         departmentBox.setItems(departmentList);
-
     }
 
     private void closeWindow(){

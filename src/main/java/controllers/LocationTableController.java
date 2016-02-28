@@ -1,8 +1,6 @@
 package controllers;
 
-
 import crudDB.LocationService;
-import crudDB.OrganizationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Location;
 import util.I18n;
-import objects.Organization;
 
 public class LocationTableController {
 
@@ -19,18 +16,17 @@ public class LocationTableController {
 
 
     @FXML
-    TableView<Location> tableView;
+    private TableView<Location> tableView;
 
     @FXML
-    TableColumn<Location, String> locationNameColumn;
+    private TableColumn<Location, String> locationNameColumn;
     @FXML
-    TableColumn<Location, String> locationCityColumn;
+    private TableColumn<Location, String> locationCityColumn;
     @FXML
-    TableColumn<Location, String> locationAddressColumn;
+    private TableColumn<Location, String> locationAddressColumn;
 
     @FXML
     private void initialize(){
-
         showAllLocations();
 
         locationNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());

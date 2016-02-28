@@ -10,7 +10,7 @@ import objects.Classification;
 public class ClassificationEditDialogController {
 
     @FXML
-    TextField nameField;
+    private TextField nameField;
     private Classification editedClassification;
 
     public void setEditedClassification(Classification editedClassification) {

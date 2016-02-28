@@ -51,7 +51,6 @@ public class UsersInDepartmentTableController {
     private ContextMenu userContextMenu;
 
 
-
     @FXML
     private void initialize(){
         //Organization ComboBox
@@ -112,10 +111,7 @@ public class UsersInDepartmentTableController {
                     }
                     //filter text
                     String lowerCaseFilter = newValue.toLowerCase();
-                    if (user.toString().toLowerCase().contains(lowerCaseFilter)){
-                        return true; // Filter matches users fields.
-                    }
-                    return false; // Does not match.
+                    return user.toString().toLowerCase().contains(lowerCaseFilter);
                 });
             });
 
@@ -151,6 +147,7 @@ public class UsersInDepartmentTableController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+
     @FXML
     private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
@@ -158,11 +155,13 @@ public class UsersInDepartmentTableController {
             mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
         }
     }
+
     @FXML
     private void handleNewUserButton() {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
     }
+
     @FXML
     private void handleDeletePerson() {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();

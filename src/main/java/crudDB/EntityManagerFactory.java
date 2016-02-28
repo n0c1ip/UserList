@@ -13,8 +13,8 @@ public class EntityManagerFactory {
 
     private EntityManagerFactory() {}
 
-    private static javax.persistence.EntityManagerFactory entityManagerFactory;
-    private static Settings settings;
+    private static javax.persistence.EntityManagerFactory entityManagerFactory = null;
+    private static Settings settings = null;
 
     static {
         if (entityManagerFactory == null) {
