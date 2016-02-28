@@ -1,6 +1,5 @@
-package controllers;// Created by mva on 05.02.2016.
+package controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -8,9 +7,6 @@ import objects.Location;
 import objects.User;
 import util.I18n;
 
-/**
- * Controller of LogIn dialog
- */
 public class UserMethodChoiceController {
 
     @FXML

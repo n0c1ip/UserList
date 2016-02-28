@@ -6,6 +6,7 @@ import javafx.scene.control.SplitPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -16,11 +17,10 @@ public class UserSignUnlimitedTableControllerTest extends GuiTest{
     protected Parent getRootNode() {
 
         try {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            FXMLLoader rootLoader = Fxml.getFXMLLoader("userSignUnlimitedTable.fxml");
             rootLoader.setResources(I18n.TABLE.getResourceBundle());
             rootLoader.setResources(I18n.TABLE.getResourceBundle());
-            SplitPane rootLayout = rootLoader.load();
-            return rootLayout;
+            return rootLoader.<SplitPane>load();
         } catch (IOException e) {
             e.printStackTrace();
         }

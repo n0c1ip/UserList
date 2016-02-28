@@ -1,6 +1,5 @@
 package controllers;
 
-import crudDB.DepartmentService;
 import crudDB.SignUnlimitedService;
 import crudDB.UserSignUnlimitedService;
 import javafx.collections.FXCollections;
@@ -11,15 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import objects.Department;
 import objects.SignUnlimited;
 import objects.UserSignUnlimited;
 
 
 public class UserSignUnlimitedEditController {
 
-
-    private MainController mainController;
     @FXML
     private Button okButton;
     @FXML
@@ -30,17 +26,12 @@ public class UserSignUnlimitedEditController {
     private TextField valueField;
 
     private UserSignUnlimited editedUserSignUnlimited;
-    private boolean invalidData = false;
 
     @FXML
     private void initialize() {
         ObservableList<SignUnlimited> signUnlimitedList = FXCollections.observableArrayList();
         signUnlimitedList.addAll(SignUnlimitedService.getAll());
         signBox.setItems(signUnlimitedList);
-    }
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     @FXML

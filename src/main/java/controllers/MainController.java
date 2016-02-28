@@ -1,4 +1,4 @@
-package controllers;// Created by mva on 04.02.2016.
+package controllers;
 
 import crudDB.EntityManagerFactory;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -24,7 +25,6 @@ public class MainController{
     public void show() {
         EntityManagerFactory.initialize();
         initDialogController();
-//        dialogController.showLoginDialog();
         initRootLayout();
         initTabLayout();
     }
@@ -41,7 +41,7 @@ public class MainController{
      */
     private void initRootLayout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("root.fxml");
             loader.setResources(I18n.ROOT.getResourceBundle());
             rootLayout = loader.load();
             RootController rootController = loader.getController();
@@ -59,7 +59,7 @@ public class MainController{
      */
     private void initTabLayout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("tabPane.fxml");
             TabPane tabPane = loader.load();
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {

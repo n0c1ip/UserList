@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.SignUnlimited;
-import objects.SignUnlimited;
 import util.I18n;
 
 public class SignUnlimitedTableController {
@@ -68,7 +67,6 @@ public class SignUnlimitedTableController {
         } else {
             DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
         }
-
     }
 
 }

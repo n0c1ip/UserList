@@ -40,7 +40,6 @@ public class ExistingUserChoiceController {
     @FXML
     private Label usersCount;
 
-    private MainController mainController;
     private Location location;
 
     public ExistingUserChoiceController() {
@@ -102,8 +101,5 @@ public class ExistingUserChoiceController {
         this.location = location;
     }
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
 }
 

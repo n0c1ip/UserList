@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class LoginControllerTest extends GuiTest{
 
     @Override
     protected Parent getRootNode() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        FXMLLoader loader = Fxml.getFXMLLoader("login.fxml");
         AnchorPane login = new AnchorPane();
         try {
             login = loader.load();

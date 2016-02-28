@@ -16,27 +16,25 @@ import java.util.ResourceBundle;
 
 public class SettingsController {
 
-    private MainController mainController;
-
     @FXML
-    ComboBox<String> dbTypeComboBox;
+    private ComboBox<String> dbTypeComboBox;
     @FXML
-    ComboBox<String> languageComboBox;
+    private ComboBox<String> languageComboBox;
     @FXML
-    TextField serverTextField;
+    private TextField serverTextField;
     @FXML
-    TextField loginTextField;
+    private TextField loginTextField;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    Button testConnectionButton;
+    private Button testConnectionButton;
     @FXML
-    Button saveButton;
+    private Button saveButton;
     @FXML
-    Button cancelButton;
+    private Button cancelButton;
 
 
-    boolean connectionElementsDisabled = false;
+    private boolean connectionElementsDisabled = false;
     private TabPane tabLayout;
 
     public SettingsController() {
@@ -108,10 +106,6 @@ public class SettingsController {
             passwordField.setText(settings.getPassword());
             serverTextField.setText(settings.getServer());
         }
-    }
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     public void closeWindow() {

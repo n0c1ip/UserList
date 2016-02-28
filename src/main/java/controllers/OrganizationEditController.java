@@ -19,7 +19,6 @@ public class OrganizationEditController {
     private TextField nameField;
 
     private Organization editedOrganization;
-    private boolean invalidData = false;
 
     @FXML
     private void initialize() {
@@ -27,12 +26,9 @@ public class OrganizationEditController {
 
     @FXML
     private void handleOkButton() {
-
-        if(!invalidData){
-            editedOrganization.setName(nameField.getText());
-            OrganizationService.add(editedOrganization);
-            closeWindow();
-        }
+        editedOrganization.setName(nameField.getText());
+        OrganizationService.add(editedOrganization);
+        closeWindow();
     }
 
     @FXML

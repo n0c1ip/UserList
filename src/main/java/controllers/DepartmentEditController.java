@@ -8,9 +8,7 @@ import javafx.stage.Stage;
 import objects.Department;
 import objects.Organization;
 
-
 public class DepartmentEditController {
-
 
     @FXML
     private Button okButton;
@@ -21,7 +19,6 @@ public class DepartmentEditController {
 
     private Department editedDepartment;
     private Organization activeOrganization;
-    private boolean invalidData = false;
 
     @FXML
     private void initialize() {
@@ -29,13 +26,10 @@ public class DepartmentEditController {
 
     @FXML
     private void handleOkButton() {
-
-        if(!invalidData){
-            editedDepartment.setName(nameField.getText());
-            editedDepartment.setOrganization(activeOrganization);
-            DepartmentService.add(editedDepartment);
-            closeWindow();
-        }
+        editedDepartment.setName(nameField.getText());
+        editedDepartment.setOrganization(activeOrganization);
+        DepartmentService.add(editedDepartment);
+        closeWindow();
     }
 
     @FXML

@@ -16,6 +16,7 @@ import objects.Location;
 import objects.Organization;
 import objects.User;
 import start.EntryPoint;
+import util.Fxml;
 import util.I18n;
 import objects.*;
 import util.Icons;
@@ -44,7 +45,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/existingUserChoiceTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("existingUserChoiceTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane useredit = loader.load();
             ExistingUserChoiceController controller = loader.getController();
@@ -67,11 +68,10 @@ public class DialogController {
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
-            FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userClassificationChoiceDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("userClassificationChoiceDialog.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
             UserClassificationChoiceController controller = loader.getController();
-            controller.setMainController(this.mainController);
             controller.setClassification(classification);
             dialog.setScene(new Scene(table));
             return dialog;
@@ -92,7 +92,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("userMethodChoiceDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserMethodChoiceController controller = loader.getController();
@@ -123,7 +123,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("userEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             UserEditController controller = loader.getController();
@@ -148,7 +148,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUnlimitedEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("signUnlimitedEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             SignUnlimitedEditController controller = loader.getController();
@@ -172,7 +172,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/classificationEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("classificationEditDialog.fxml");
             AnchorPane classificationEdit = loader.load();
             ClassificationEditDialogController controller = loader.getController();
             controller.setEditedClassification(classification);
@@ -195,12 +195,11 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedEdit.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("userSignUnlimitedEdit.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane userSignUnlimitedPane = loader.load();
             UserSignUnlimitedEditController controller = loader.getController();
             controller.setEditedUserSignUnlimited(userSignUnlimited);
-            controller.setMainController(mainController);
             dialog.setScene(new Scene(userSignUnlimitedPane));
             return  dialog;
         } catch (IOException e) {
@@ -220,7 +219,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userSignUnlimitedTable.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("userSignUnlimitedTable.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane userSignUnlimited = loader.load();
             UserSignUnlimitedTableController controller = loader.getController();
@@ -247,7 +246,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/organizationEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("organizationEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             OrganizationEditController controller = loader.getController();
@@ -272,7 +271,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departmentEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("departmentEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane useredit = loader.load();
             DepartmentEditController controller = loader.getController();
@@ -298,7 +297,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/locationEditDialog.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("locationEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane locationEdit = loader.load();
             LocationEditController controller = loader.getController();
@@ -312,13 +311,6 @@ public class DialogController {
         return dialog;
     }
 
-    public Dialog getObjectDialog(String objectName){
-        TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("Создание " + objectName);
-        dialog.setHeaderText("Создание " + objectName);
-        dialog.setContentText("Введите название " + objectName + ":");
-        return dialog;
-    }
 
     /**
      * Shows modal window dialog, with OK button
@@ -337,12 +329,6 @@ public class DialogController {
         return alert;
     }
 
-    /**
-     * Log in Dialog, shows before running app
-     */
-    public void showLoginDialog(){
-        getLoginDialog().showAndWait();
-    }
     public Stage getLoginDialog(){
         final Stage dialog = new Stage();
         try{
@@ -350,9 +336,8 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("login.fxml");
             AnchorPane login = loader.load();
-            LoginController controller = loader.getController();
             dialog.setScene(new Scene(login));
         } catch (IOException e) {
             System.out.println(e.getMessage());

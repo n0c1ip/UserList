@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -15,10 +16,9 @@ public class SettingsControllerTest extends GuiTest{
     @Override
     protected Parent getRootNode() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/settings.fxml"));
+            FXMLLoader loader = Fxml.getFXMLLoader("settings.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
-            Pane settingsPane = loader.load();
-            return settingsPane;
+            return loader.<Pane>load();
         } catch (IOException e) {
             e.printStackTrace();
         }

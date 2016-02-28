@@ -10,7 +10,6 @@ import objects.SignUnlimited;
 
 public class SignUnlimitedEditController {
 
-
     @FXML
     private Button okButton;
     @FXML
@@ -19,7 +18,6 @@ public class SignUnlimitedEditController {
     private TextField nameField;
 
     private SignUnlimited editedSignUnlimited;
-    private boolean invalidData = false;
 
     @FXML
     private void initialize() {
@@ -27,12 +25,9 @@ public class SignUnlimitedEditController {
 
     @FXML
     private void handleOkButton() {
-
-        if(!invalidData){
-            editedSignUnlimited.setName(nameField.getText());
-            SignUnlimitedService.add(editedSignUnlimited);
-            closeWindow();
-        }
+        editedSignUnlimited.setName(nameField.getText());
+        SignUnlimitedService.add(editedSignUnlimited);
+        closeWindow();
     }
 
     @FXML

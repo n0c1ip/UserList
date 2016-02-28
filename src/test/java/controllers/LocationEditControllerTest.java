@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -15,10 +16,9 @@ public class LocationEditControllerTest extends GuiTest{
     @Override
     protected Parent getRootNode() {
         try {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/LocationEditDialog.fxml"));
+            FXMLLoader rootLoader = Fxml.getFXMLLoader("LocationEditDialog.fxml");
             rootLoader.setResources(I18n.DIALOG.getResourceBundle());
-            AnchorPane rootLayout = rootLoader.load();
-            return rootLayout;
+            return rootLoader.<AnchorPane>load();
         } catch (IOException e) {
             e.printStackTrace();
         }

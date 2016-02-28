@@ -8,16 +8,16 @@ import objects.Location;
 
 public class LocationEditController {
 
-    Location editedLocation;
+    private Location editedLocation;
     
     @FXML
-    TextField locationNameField;
+    private TextField locationNameField;
         
     @FXML
-    TextField locationCityField;
+    private TextField locationCityField;
     
     @FXML
-    TextField locationAddressField;
+    private TextField locationAddressField;
     
     public void setEditedLocation(Location editedLocation) {
         this.editedLocation = editedLocation;

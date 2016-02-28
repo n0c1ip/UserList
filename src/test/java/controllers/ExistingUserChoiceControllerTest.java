@@ -6,7 +6,7 @@ import javafx.scene.control.SplitPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
-import start.EntryPoint;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class ExistingUserChoiceControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/existingUserChoiceTable.fxml"));
+        FXMLLoader loader = Fxml.getFXMLLoader("existingUserChoiceTable.fxml");
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 
@@ -28,8 +28,7 @@ public class ExistingUserChoiceControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ExistingUserChoiceController controller = loader.getController();
-        controller.setMainController(mainController);
+
         return table;
     }
 
