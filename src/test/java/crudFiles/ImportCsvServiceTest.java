@@ -1,7 +1,6 @@
 package crudFiles;
 
 import crudDB.*;
-import objects.Location;
 import objects.Organization;
 import objects.User;
 import org.junit.Assert;

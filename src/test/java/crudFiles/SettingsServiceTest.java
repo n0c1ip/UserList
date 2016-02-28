@@ -1,16 +1,12 @@
 package crudFiles;
 
 import crudDB.EntityManagerFactory;
-import crudFiles.SettingsService;
 import objects.Settings;
 import org.junit.Assert;
 import org.junit.Test;
-
-import javax.validation.constraints.AssertFalse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -23,7 +19,7 @@ public class SettingsServiceTest {
         settings.setServer("testWriteServer");
         settings.setUserName("testWriteUser");
         settings.setPassword("testWritePassword");
-        String settingsFilePath = System.getProperty("user.dir") + "\\settingsTest";
+        String settingsFilePath = System.getProperty("user.dir") + File.separator + "settingsTest";
 
         SettingsService.writeSettings(settings, settingsFilePath);
         File settingsFile = new File(settingsFilePath);
@@ -46,7 +42,7 @@ public class SettingsServiceTest {
         expectedSettings.setServer("testReadServer");
         expectedSettings.setUserName("testReadUser");
         expectedSettings.setPassword("testReadPassword");
-        String settingsFilePath = System.getProperty("user.dir") + "\\settingsTest";
+        String settingsFilePath = System.getProperty("user.dir") + File.separator + "settingsTest";
 
         SettingsService.writeSettings(expectedSettings, settingsFilePath);
         Optional<Settings> optionalSettings = SettingsService.readSettings(settingsFilePath);

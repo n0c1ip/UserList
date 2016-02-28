@@ -24,8 +24,7 @@ public class UserSignUnlimitedServiceTest {
             user.setFirstName(firstName);
             user.setLocation(addedLocation);
             user.setDepartment(addedDepartment);
-            User addedUser = UserService.add(user);
-            return addedUser;
+            return UserService.add(user);
         }
 
         public static void deleteTestUser(User user) {

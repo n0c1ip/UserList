@@ -3,8 +3,6 @@ package objects;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Set;
-
 
 public class SettingsTest {
 

@@ -43,25 +43,29 @@ public class UploadInExcelServiceTest {
         try {
             UploadInExcelService.uploadInExcel(columns,users,file);
         } catch (ExceptionInInitializerError e){
+            Assert.assertTrue(false); //test should fail if exception is encountered
         }
 
-        FileInputStream fileInputStream = new FileInputStream(file);
-        StringBuilder builder = new StringBuilder();
-        int getChar;
-        while((getChar = fileInputStream.read()) != -1){
-            builder.append((char)getChar);
-        }
-        String finalString = builder.toString();
-        fileInputStream.close();
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
 
-        Assert.assertTrue(finalString.contains("FirstName"));
-        Assert.assertTrue(finalString.contains("LastName"));
-        Assert.assertTrue(finalString.contains("MiddleName"));
-        Assert.assertTrue(finalString.contains("TestDepartment"));
-        Assert.assertTrue(finalString.contains("TestPosition"));
-        Assert.assertTrue(finalString.contains("TestLogin"));
-        Assert.assertTrue(finalString.contains("TestMail"));
-        Assert.assertTrue(finalString.contains("TestPassword"));
+            StringBuilder builder = new StringBuilder();
+            int getChar;
+            while((getChar = fileInputStream.read()) != -1){
+                builder.append((char)getChar);
+            }
+            String finalString = builder.toString();
+            fileInputStream.close();
+
+
+            Assert.assertTrue(finalString.contains("FirstName"));
+            Assert.assertTrue(finalString.contains("LastName"));
+            Assert.assertTrue(finalString.contains("MiddleName"));
+            Assert.assertTrue(finalString.contains("TestDepartment"));
+            Assert.assertTrue(finalString.contains("TestPosition"));
+            Assert.assertTrue(finalString.contains("TestLogin"));
+            Assert.assertTrue(finalString.contains("TestMail"));
+            Assert.assertTrue(finalString.contains("TestPassword"));
+        }
 
         Files.deleteIfExists(file.toPath());
 
