@@ -12,6 +12,7 @@ import objects.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class TableControllerTest extends GuiTest{
     @Override
     protected Parent getRootNode() {
         try {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/byLocationUserTable.fxml"));
+            FXMLLoader rootLoader = Fxml.getFXMLLoader("byLocationUserTable.fxml");
             rootLoader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane rootLayout = rootLoader.load();
             UsersInLocationTableController controller = rootLoader.getController();
@@ -61,7 +62,7 @@ public class TableControllerTest extends GuiTest{
 
     @Test
     public void shouldAddDataToTable(){
-        TableView tableView = find("#tableView");
+        TableView<User> tableView = find("#tableView");
         ObservableList<User> testList = FXCollections.observableArrayList();
         User testUser = new User();
         testUser.setDepartment(new Department("TestDepartment"));

@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import start.EntryPoint;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class UsersInLocationTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/byLocationUserTable.fxml"));
+        FXMLLoader loader = Fxml.getFXMLLoader("byLocationUserTable.fxml");
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 
@@ -64,14 +65,6 @@ public class UsersInLocationTableControllerTest extends GuiTest {
         click("#loginColumn");
         click("#passwordColumn");
         click("#mailColumn");
-    }
-
-    @Ignore
-    public void shouldOpenMethodChoiceDialog() throws Exception {
-        click("#addButton");
-        AnchorPane userEdit = find("#paneUserMethodChoice");
-        Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
-        type(KeyCode.ESCAPE);
     }
 
 }

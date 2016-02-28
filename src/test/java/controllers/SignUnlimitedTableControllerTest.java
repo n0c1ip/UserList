@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
-import start.EntryPoint;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class SignUnlimitedTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/SignUnlimitedTable.fxml"));
+        FXMLLoader loader = Fxml.getFXMLLoader("SignUnlimitedTable.fxml");
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 

@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -22,11 +23,11 @@ public class RootControllerTest extends GuiTest {
     protected Parent getRootNode() {
 
         try {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/fxml/root.fxml"));
+            FXMLLoader rootLoader = Fxml.getFXMLLoader("root.fxml");
             rootLoader.setResources(I18n.ROOT.getResourceBundle());
             BorderPane rootLayout = rootLoader.load();
 
-            FXMLLoader tabpaneLoader = new FXMLLoader(getClass().getResource("/fxml/tabPane.fxml"));
+            FXMLLoader tabpaneLoader = Fxml.getFXMLLoader("tabPane.fxml");
             TabPane tabPane = tabpaneLoader.load();
             rootLayout.setCenter(tabPane);
 
@@ -43,13 +44,6 @@ public class RootControllerTest extends GuiTest {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Ignore
-    public void shouldHaveCloseWindowItem() throws Exception {
-        click("#menuFile");
-        click("#itemCloseWindow");
-        assertNull(GuiTest.find("#menuBar"));
     }
 
     @Test

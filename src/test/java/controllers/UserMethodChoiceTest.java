@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.Fxml;
 import util.I18n;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class UserMethodChoiceTest extends GuiTest{
 
     @Override
     protected Parent getRootNode() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userMethodChoiceDialog.fxml"));
+        FXMLLoader loader = Fxml.getFXMLLoader("userMethodChoiceDialog.fxml");
         loader.setResources(I18n.DIALOG.getResourceBundle());
         AnchorPane login = new AnchorPane();
         try {
