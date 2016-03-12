@@ -34,7 +34,7 @@ public class PcService {
 
     public static Pc getByName(String name) {
         return doQueryCasual(manager -> {
-            TypedQuery<Pc> namedQuery = manager.createNamedQuery("PC.getByName", Pc.class);
+            TypedQuery<Pc> namedQuery = manager.createNamedQuery("Pc.getByName", Pc.class);
             namedQuery.setParameter("name", name);
             return namedQuery.getSingleResult();
         });

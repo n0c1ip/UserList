@@ -4,6 +4,7 @@ import crudDB.UserClassificationService;
 import crudDB.UserSignUnlimitedService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -53,6 +54,7 @@ public class User extends Model{
     private String password = "";
 
     @NotBlank(message = "Почта должно быть заполнена")
+    @Email(message = "Эл. почта не соответсвует формату")
     private String mail = "";
 
     @OneToOne
