@@ -23,6 +23,7 @@ public class EntryPoint extends Application {
         Optional<Settings> optionalSettings = SettingsService.readSettings();
         if (optionalSettings.isPresent()) {
             Locale.setDefault(optionalSettings.get().getLanguageLocale());
+            EntityManagerFactory.initialize();
         }
 
         MainController mainController = new MainController();

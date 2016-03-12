@@ -1,7 +1,9 @@
 package controllers;
 
+import crudFiles.SettingsService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
-import start.EntryPoint;
 import util.Fxml;
 import util.I18n;
 import util.Icons;
@@ -23,6 +24,14 @@ import java.io.IOException;
  */
 public class RootController {
 
+    @FXML
+    Menu menuTables;
+    @FXML
+    Menu menuTablesStructure;
+    @FXML
+    MenuItem uploadInExcel;
+    @FXML
+    MenuItem itemImportCsv;
 
     public RootController() {
     }
@@ -30,6 +39,11 @@ public class RootController {
     // References
     private MainController mainController;
     private TabPane tabLayout;
+
+    @FXML
+    private void initialize() {
+        setMenuItems(SettingsService.readSettings().isPresent());
+    }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -120,7 +134,6 @@ public class RootController {
             DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по подразделениям");
         }
     }
-
 
     public void showSignUnlimitedTable() {
         try {
@@ -223,4 +236,17 @@ public class RootController {
             }
         }
     }
+
+    /**
+     * Disables menu items if settings file is not present
+     * param boolean (check that file exist)
+     * @param isSettingsFileExist
+     */
+    public void setMenuItems(boolean isSettingsFileExist){
+        menuTables.setDisable(!isSettingsFileExist);
+        menuTablesStructure.setDisable(!isSettingsFileExist);
+        uploadInExcel.setDisable(!isSettingsFileExist);
+        itemImportCsv.setDisable(!isSettingsFileExist);
+    }
+
 }
