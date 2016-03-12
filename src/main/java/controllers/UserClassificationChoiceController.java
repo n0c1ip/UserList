@@ -130,8 +130,7 @@ public class UserClassificationChoiceController {
                         DialogController.showErrorDialog(BeanValidation.getViolationsText(userclassification));
                     }
                 } else {
-                    DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Пользователь " +
-                            user.getLastName() + " " + user.getFirstName() + " уже добавлен");
+                    DialogController.showErrorDialog("Пользователь " + user.getLastName() + " " + user.getFirstName() + " уже добавлен");
                 }
             }
             closeWindow();

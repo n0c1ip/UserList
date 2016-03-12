@@ -103,7 +103,7 @@ public class ClassificationController {
             mainController.getDialogController().showExistingUserInDepartmentChoiceDialog(I18n.DIALOG.getString("Title.AddUsers"), classification);
             setUserByClassification(classification);
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать классификатор");
+            DialogController.showErrorDialog("Необходимо выбрать классификатор");
         }
     }
 
@@ -117,7 +117,7 @@ public class ClassificationController {
             }
             setUserByClassification(classification);
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Необходимо выбрать пользователя");
+            DialogController.showErrorDialog("Необходимо выбрать пользователя");
         }
 
     }
@@ -142,10 +142,10 @@ public class ClassificationController {
                 ClassificationService.delete(classificationToDelete.getId());
                 classificationListView.getItems().remove(selectedIndex);
             }catch (RollbackException e){
-                DialogController.showAlertDialog(Alert.AlertType.ERROR, "Удалиение классификатора", "Нельзя удалить классификатор с пользователями");
+                DialogController.showErrorDialog("Нельзя удалить классификатор с пользователями");
             }
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
+            DialogController.showErrorDialog("Сначала выберите пользователя");
         }
     }
 

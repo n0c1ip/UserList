@@ -34,10 +34,10 @@ public class SettingsService {
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось сохранить данные в файл настроек (не найден класс)");
+            DialogController.showErrorDialog("Не удалось сохранить данные в файл настроек (не найден класс)");
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось сохранить данные в файл настроек (ошибка записи)");
+            DialogController.showErrorDialog("Не удалось сохранить данные в файл настроек (ошибка записи)");
         }
     }
 
@@ -57,10 +57,10 @@ public class SettingsService {
             // totally ok
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить данные из файла настроек (не найден класс)");
+            DialogController.showErrorDialog("Не удалось загрузить данные из файла настроек (не найден класс)");
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить данные из файла настроек (ошибка чтения)");
+            DialogController.showErrorDialog("Не удалось загрузить данные из файла настроек (ошибка чтения)");
         }
         return Optional.empty();
     }

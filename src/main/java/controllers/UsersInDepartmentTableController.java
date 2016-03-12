@@ -170,7 +170,7 @@ public class UsersInDepartmentTableController {
             tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
+            DialogController.showErrorDialog("Сначала выберите пользователя");
         }
     }
 

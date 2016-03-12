@@ -137,7 +137,7 @@ public class UsersInLocationTableController {
             UserService.delete(userToDelete.getId());
             setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран пользователь", "Сначала выберите пользователя");
+            DialogController.showErrorDialog("Сначала выберите пользователя");
         }
     }
 

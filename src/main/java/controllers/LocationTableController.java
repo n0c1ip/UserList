@@ -53,7 +53,7 @@ public class LocationTableController {
             LocationService.delete(locationToDelete.getId());
             showAllLocations();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбрана организация", "Сначала выберите организацию");
+            DialogController.showErrorDialog("Сначала выберите организацию");
         }
     }
 

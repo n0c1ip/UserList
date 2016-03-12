@@ -66,18 +66,18 @@ public class ImportCSVController {
                 ImportCSVService.loadUsersFromCSV(choiceBox.getSelectionModel().getSelectedItem(), new FileInputStream(filePathField.getText()), ';');
                 DialogController.showAlertDialog(Alert.AlertType.INFORMATION,"Импорт из CSV","Импорт завершен");
             } catch (FileNotFoundException e) {
-                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Файл не найден");
+                DialogController.showErrorDialog("Файл не найден");
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
-                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Неверная кодировка файла");
+                DialogController.showErrorDialog("Неверная кодировка файла");
             } catch (IOException e){
-                DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка импорта","Ошибка");
+                DialogController.showErrorDialog("Ошибка");
             } finally {
                 closeWindow();
             }
 
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка файла","Выбирите файл");
+            DialogController.showErrorDialog("Выбирите файл");
         }
     }
 

@@ -62,7 +62,7 @@ public class RootController {
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс пользователей по объектам");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по объектам");
         }
 
     }
@@ -79,7 +79,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс организаций");
             System.out.println(ex.getMessage());
         }
     }
@@ -96,7 +96,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс объектов");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс объектов");
             System.out.println(ex.getMessage());
         }
     }
@@ -113,7 +113,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс подразделений по организации");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс подразделений по организации");
             System.out.println(ex.getMessage());
         }
     }
@@ -131,7 +131,7 @@ public class RootController {
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), "Не удалось загрузить интерфейс пользователей по подразделениям");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по подразделениям");
         }
     }
 
@@ -147,7 +147,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс организаций");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс организаций");
             System.out.println(ex.getMessage());
         }
     }
@@ -164,7 +164,7 @@ public class RootController {
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс классификатора");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс классификатора");
             System.out.println(ex.getMessage());
         }
     }
@@ -186,7 +186,7 @@ public class RootController {
             dialog.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс импорта из CSV");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс импорта из CSV");
         }
     }
 
@@ -206,7 +206,7 @@ public class RootController {
             dialog.setScene(new Scene(settingsPane));
             dialog.show();
         } catch (IOException e){
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс настроек");
+            DialogController.showErrorDialog("Не удалось загрузить интерфейс настроек");
             e.getStackTrace();
         }
 
@@ -219,7 +219,7 @@ public class RootController {
     public void uploadInExcel() throws IOException {
         TabPane tabPane = (TabPane) mainController.getRootLayout().getCenter();
         if (tabPane.getSelectionModel().isEmpty()) {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Сначала откройте таблицу");
+            DialogController.showErrorDialog("Сначала откройте таблицу");
         } else {
 
             Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
