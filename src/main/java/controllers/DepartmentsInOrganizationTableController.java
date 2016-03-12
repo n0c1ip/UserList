@@ -76,7 +76,7 @@ public class DepartmentsInOrganizationTableController {
             DepartmentService.delete(departmentToDelete.getId());
             showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбрано подразделение", "Сначала выберите подразделение");
+            DialogController.showErrorDialog("Сначала выберите подразделение");
         }
 
     }

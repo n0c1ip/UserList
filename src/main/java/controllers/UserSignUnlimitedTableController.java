@@ -53,7 +53,7 @@ public class UserSignUnlimitedTableController {
             mainController.getDialogController().showUserSignUnlimitedEditDialog(I18n.DIALOG.getString("UserSign.Edit"), selectedUserSignUnlimited);
             showUserUnlimitedSigns();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
+            DialogController.showErrorDialog("Сначала выберите признак");
         }
     }
 
@@ -73,7 +73,7 @@ public class UserSignUnlimitedTableController {
             UserSignUnlimitedService.delete(userSignUnlimitedToDelete.getId());
             showUserUnlimitedSigns();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбран признак", "Сначала выберите признак");
+            DialogController.showErrorDialog("Сначала выберите признак");
         }
 
     }

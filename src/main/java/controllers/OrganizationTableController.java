@@ -65,7 +65,7 @@ public class OrganizationTableController {
             OrganizationService.delete(organizationToDelete.getId());
             showAllOrganizations();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Не выбрана организация", "Сначала выберите организацию");
+            DialogController.showErrorDialog("Сначала выберите организацию");
         }
 
     }

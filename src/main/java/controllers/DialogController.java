@@ -54,7 +54,7 @@ public class DialogController {
             return dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс выбора способа добавления пользователя");
         }
         return dialog;
     }
@@ -102,7 +102,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс выбора способа добавления пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс выбора способа добавления пользователя");
         }
         return dialog;
     }
@@ -133,7 +133,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования пользователя");
         }
         return dialog;
     }
@@ -157,7 +157,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования признака");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования признака");
         }
         return dialog;
     }
@@ -180,7 +180,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования классификатора");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования классификатора");
         }
         return dialog;
     }
@@ -204,7 +204,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс признаков пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс признаков пользователя");
         }
         return dialog;
     }
@@ -230,7 +230,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс признаков пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс признаков пользователя");
         }
         return dialog;
     }
@@ -255,7 +255,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования организации");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования организации");
         }
         return dialog;
     }
@@ -281,7 +281,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования пользователя");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования пользователя");
         }
         return dialog;
     }
@@ -306,14 +306,14 @@ public class DialogController {
             return dialog;
         } catch (IOException e){
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс редактирования объектов");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования объектов");
         }
         return dialog;
     }
 
 
     public static void showErrorDialog(String contentText){
-        getAlertDialog(Alert.AlertType.ERROR, "Ошибка", contentText).showAndWait();
+        getAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), contentText).showAndWait();
     }
     public static void showAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText){
         getAlertDialog(alertType, dialogTitle, contentText).showAndWait();
@@ -338,7 +338,7 @@ public class DialogController {
             dialog.setScene(new Scene(login));
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить интерфейс логина");
+            showErrorDialog("Не удалось загрузить интерфейс логина");
         }
         return dialog;
     }

@@ -50,7 +50,7 @@ public class MainController{
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), I18n.ERROR.getString("ErrorRootLayoutLoader"));
+            DialogController.showErrorDialog(I18n.ERROR.getString("ErrorRootLayoutLoader"));
         }
     }
 
@@ -64,7 +64,7 @@ public class MainController{
             rootLayout.setCenter(tabPane);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), I18n.ERROR.getString("ErrorTabPaneLoader"));
+            DialogController.showErrorDialog(I18n.ERROR.getString("ErrorTabPaneLoader"));
         }
     }
 

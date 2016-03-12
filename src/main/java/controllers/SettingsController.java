@@ -132,7 +132,7 @@ public class SettingsController {
             EntityManagerFactory.initialize();
             closeWindow();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
+            DialogController.showErrorDialog("Соединение не установлено");
         }
     }
 
@@ -140,7 +140,7 @@ public class SettingsController {
         if (SettingsService.isSettingsValid(fieldsToSettings())) {
             DialogController.showAlertDialog(Alert.AlertType.INFORMATION, "Проверка соединения", "Соединение успешно установлено!");
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Проверка соединения", "Соединение не установлено");
+            DialogController.showErrorDialog("Соединение не установлено");
         }
     }
 
