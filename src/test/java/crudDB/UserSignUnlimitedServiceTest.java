@@ -1,14 +1,25 @@
 package crudDB;
 
 import objects.*;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class UserSignUnlimitedServiceTest {
+
+    private static Organization organization;
+
+    @BeforeClass
+    public static void createOrganization() {
+        Organization org = new Organization("TestOrgQueryProvider");
+        organization = OrganizationService.add(org);
+    }
+
+    @AfterClass
+    public static void deleteOrganization() {
+        OrganizationService.delete(organization.getId());
+    }
 
     /**
      * Creates/deletes users for test purposes only
@@ -18,12 +29,17 @@ public class UserSignUnlimitedServiceTest {
         public static User createTestUser(String firstName) {
             Location location = new Location("LocationToTest");
             Location addedLocation = LocationService.add(location);
-            Department department = new Department("DepartmentToTest");
+            Department department = new Department("DepartmentToTest", organization);
             Department addedDepartment = DepartmentService.add(department);
             User user = new User();
             user.setFirstName(firstName);
             user.setLocation(addedLocation);
             user.setDepartment(addedDepartment);
+            user.setLastName("vasian");
+            user.setPosition("megaleader");
+            user.setMail("mail@mail.mail");
+            user.setLogin("login");
+            user.setPassword("topsecret");
             return UserService.add(user);
         }
 
@@ -34,11 +50,30 @@ public class UserSignUnlimitedServiceTest {
         }
     }
 
+    /**
+     * Creates/deletes user signs for test purposes only
+     */
+    @Ignore
+    private static class UserSignUnlimitedManager {
+        public static UserSignUnlimited createUserSignUnlimited(String value) {
+            UserSignUnlimited userSignUnlimited = new UserSignUnlimited(value);
+            SignUnlimited signUnlimited = SignUnlimitedService.add(new SignUnlimited("SignUnlimitedToTestByUser"));
+            userSignUnlimited.setSignUnlimited(signUnlimited);
+            User user = TestUsersManager.createTestUser("UserToAddByUser");
+            userSignUnlimited.setUser(user);
+            return UserSignUnlimitedService.add(userSignUnlimited);
+        }
+
+        public static void deleteUserSignUnlimited(UserSignUnlimited userSignUnlimited) {
+            UserSignUnlimitedService.delete(userSignUnlimited.getId());
+            SignUnlimitedService.delete(userSignUnlimited.getSignUnlimited().getId());
+            TestUsersManager.deleteTestUser(userSignUnlimited.getUser());
+        }
+    }
+
     @Test
     public void ShouldAddUserSignUnlimited() {
-        UserSignUnlimited userSignUnlimited = new UserSignUnlimited("UserSignUnlimitedToAdd");
-
-        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedService.add(userSignUnlimited);
+        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedManager.createUserSignUnlimited("UserSignUnlimitedToAdd");
         UserSignUnlimited foundUserSignUnlimited = UserSignUnlimitedService.get(addedUserSignUnlimited.getId());
 
         try {
@@ -46,29 +81,27 @@ public class UserSignUnlimitedServiceTest {
             Assert.assertNotNull(foundUserSignUnlimited);
             Assert.assertEquals(addedUserSignUnlimited.getId(), foundUserSignUnlimited.getId());
         } finally {
-            UserSignUnlimitedService.delete(addedUserSignUnlimited.getId());
+            UserSignUnlimitedManager.deleteUserSignUnlimited(addedUserSignUnlimited);
         }
     }
 
     @Test
     public void ShouldDeleteUserSignUnlimited() {
-        UserSignUnlimited userSignUnlimited = new UserSignUnlimited("UserSignUnlimitedToDelete");
+        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedManager.createUserSignUnlimited("UserSignUnlimitedToDelete");
 
-        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedService.add(userSignUnlimited);
         long addedUserSignUnlimitedId = addedUserSignUnlimited.getId();
-        UserSignUnlimitedService.delete(addedUserSignUnlimitedId);
+        UserSignUnlimitedManager.deleteUserSignUnlimited(addedUserSignUnlimited);
 
         Assert.assertNull(UserSignUnlimitedService.get(addedUserSignUnlimitedId));
+
     }
 
     @Test
     public void ShouldUpdateUserSignUnlimited() {
         String oldValue = "UserSignUnlimitedToUpdate";
         String newValue = "updatedUserSignUnlimited";
-        UserSignUnlimited userSignUnlimited = new UserSignUnlimited();
 
-        userSignUnlimited.setValue(oldValue);
-        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedService.add(userSignUnlimited);
+        UserSignUnlimited addedUserSignUnlimited = UserSignUnlimitedManager.createUserSignUnlimited(oldValue);
 
         addedUserSignUnlimited.setValue(newValue);
         UserSignUnlimitedService.update(addedUserSignUnlimited);
@@ -77,23 +110,20 @@ public class UserSignUnlimitedServiceTest {
         try {
             Assert.assertEquals(foundUserSignUnlimited.getValue(), newValue);
         } finally {
-            UserSignUnlimitedService.delete(foundUserSignUnlimited.getId());
+            UserSignUnlimitedManager.deleteUserSignUnlimited(addedUserSignUnlimited);
         }
     }
 
 
     @Test
     public void ShouldGetAllUserSignUnlimited() {
-        int expectedUserSignUnlimitedCount = 3;
+        int expectedUserSignUnlimitedCount = 2;
         String value1 = "UserSignUnlimitedOne";
         String value2 = "UserSignUnlimitedTwo";
-        String value3 = "UserSignUnlimitedThree";
 
-        List<String> valuesList = Arrays.asList(value1, value2, value3);
-
-        UserSignUnlimited addedUserSignUnlimited1 = UserSignUnlimitedService.add(new UserSignUnlimited(value1));
-        UserSignUnlimited addedUserSignUnlimited2 = UserSignUnlimitedService.add(new UserSignUnlimited(value2));
-        UserSignUnlimited addedUserSignUnlimited3 = UserSignUnlimitedService.add(new UserSignUnlimited(value3));
+        List<String> valuesList = Arrays.asList(value1, value2);
+        UserSignUnlimited addedUserSignUnlimited1 = UserSignUnlimitedManager.createUserSignUnlimited(value1);
+        UserSignUnlimited addedUserSignUnlimited2 = UserSignUnlimitedManager.createUserSignUnlimited(value2);
 
         int UserSignUnlimitedFound = 0;
         List<UserSignUnlimited> UserSignUnlimitedList = UserSignUnlimitedService.getAll();
@@ -106,9 +136,8 @@ public class UserSignUnlimitedServiceTest {
         try {
             Assert.assertEquals(expectedUserSignUnlimitedCount, UserSignUnlimitedFound);
         } finally {
-            UserSignUnlimitedService.delete(addedUserSignUnlimited1.getId());
-            UserSignUnlimitedService.delete(addedUserSignUnlimited2.getId());
-            UserSignUnlimitedService.delete(addedUserSignUnlimited3.getId());
+            UserSignUnlimitedManager.deleteUserSignUnlimited(addedUserSignUnlimited1);
+            UserSignUnlimitedManager.deleteUserSignUnlimited(addedUserSignUnlimited2);
         }
     }
 

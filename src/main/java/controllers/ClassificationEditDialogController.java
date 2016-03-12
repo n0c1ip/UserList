@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.ClassificationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,12 +20,12 @@ public class ClassificationEditDialogController {
     }
 
     public void handleOkButton() {
-        if(nameField.getText() != null ){
+        if (BeanValidation.isCorrectData(editedClassification)) {
             editedClassification.setName(nameField.getText());
             ClassificationService.add(editedClassification);
             closeWindow();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Сохранение классификатора", "Введите название");
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedClassification));
         }
     }
 

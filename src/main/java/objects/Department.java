@@ -3,8 +3,10 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,7 @@ import java.util.Set;
 })
 public class Department extends Model{
 
+    @NotBlank(message = "Название должно быть заполнено")
     private String name;
 
     @OneToMany(mappedBy="department")
@@ -26,6 +29,7 @@ public class Department extends Model{
 
     @ManyToOne
     @JoinColumn(name="organization_id")
+    @NotNull(message = "Организация должна быть указана")
     private Organization organization;
 
     public Department() {
@@ -41,6 +45,10 @@ public class Department extends Model{
 
     public Department(String name) {
         this.name = name;
+    }
+    public Department(String name, Organization organization) {
+        this.name = name;
+        this.organization = organization;
     }
     public void setName(String name) {
         this.name = name;

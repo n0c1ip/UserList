@@ -2,6 +2,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -16,6 +17,7 @@ import java.util.Set;
 })
 public class Organization extends Model {
 
+    @NotBlank(message = "Название должно быть заполнено")
     private String name;
 
     @OneToMany(mappedBy="organization")

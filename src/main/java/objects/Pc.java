@@ -1,5 +1,7 @@
 package objects;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ import javax.persistence.*;
 })
 public class Pc extends Model{
 
+    @NotBlank(message = "Название компьютера должно быть заполнено")
     private String name;
 
     @OneToOne(mappedBy="pc")

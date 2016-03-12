@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.OrganizationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,8 +28,12 @@ public class OrganizationEditController {
     @FXML
     private void handleOkButton() {
         editedOrganization.setName(nameField.getText());
-        OrganizationService.add(editedOrganization);
-        closeWindow();
+        if (BeanValidation.isCorrectData(editedOrganization)) {
+            OrganizationService.add(editedOrganization);
+            closeWindow();
+        } else {
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedOrganization));
+        }
     }
 
     @FXML

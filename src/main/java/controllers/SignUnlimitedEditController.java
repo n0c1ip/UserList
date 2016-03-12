@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.SignUnlimitedService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,8 +27,12 @@ public class SignUnlimitedEditController {
     @FXML
     private void handleOkButton() {
         editedSignUnlimited.setName(nameField.getText());
-        SignUnlimitedService.add(editedSignUnlimited);
-        closeWindow();
+        if (BeanValidation.isCorrectData(editedSignUnlimited)) {
+            SignUnlimitedService.add(editedSignUnlimited);
+            closeWindow();
+        } else {
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedSignUnlimited));
+        }
     }
 
     @FXML

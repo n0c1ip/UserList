@@ -47,7 +47,6 @@ public class UserEditController {
     private TextField mailField;
 
     private User editedUser;
-    private boolean invalidData = false;
     private DialogController dialogController;
 
     public void setDialogController(DialogController dialogController) {
@@ -86,21 +85,23 @@ public class UserEditController {
      */
     @FXML
     private void handleOkButton() {
-        if(!invalidData && departmentBox.getSelectionModel().getSelectedItem() != null){
-            editedUser.setFirstName(firstNameField.getText());
-            editedUser.setLastName(lastNameField.getText());
-            editedUser.setMiddleName(middleNameField.getText());
-            editedUser.setLocation(locationBox.getValue());
-            editedUser.setDepartment(departmentBox.getValue());
-            editedUser.setPosition(positionField.getText());
+        editedUser.setFirstName(firstNameField.getText());
+        editedUser.setLastName(lastNameField.getText());
+        editedUser.setMiddleName(middleNameField.getText());
+        editedUser.setLocation(locationBox.getValue());
+        editedUser.setDepartment(departmentBox.getValue());
+        editedUser.setPosition(positionField.getText());
+        editedUser.setLogin(loginField.getText());
+        editedUser.setPassword(passwordField.getText());
+        editedUser.setMail(mailField.getText());
+        if (!pcField.getText().isEmpty()) {
             editedUser.setPc(PcService.add(new Pc(pcField.getText())));
-            editedUser.setLogin(loginField.getText());
-            editedUser.setPassword(passwordField.getText());
-            editedUser.setMail(mailField.getText());
+        }
+        if (BeanValidation.isCorrectData(editedUser)) {
             UserService.add(editedUser);
             closeWindow();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Редактирование пользователя", "Не получается сохранить пользователя");
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedUser));
         }
     }
 
@@ -120,7 +121,9 @@ public class UserEditController {
         firstNameField.setText(editedUser.getFirstName());
         lastNameField.setText(editedUser.getLastName());
         middleNameField.setText(editedUser.getMiddleName());
-        organizationComboBox.getSelectionModel().select(editedUser.getDepartment().getOrganization());
+        if (editedUser.getDepartment() != null) {
+            organizationComboBox.getSelectionModel().select(editedUser.getDepartment().getOrganization());
+        }
         locationBox.getSelectionModel().select(editedUser.getLocation());
         departmentBox.getSelectionModel().select(editedUser.getDepartment());
         positionField.setText(editedUser.getPosition());
@@ -143,10 +146,8 @@ public class UserEditController {
         departmentList.setAll(DepartmentService.getByOrganization(organization));
         if(departmentList.isEmpty()){
             departmentBox.setDisable(true);
-            invalidData = true;
         } else {
             departmentBox.setDisable(false);
-            invalidData = false;
         }
         departmentBox.setItems(departmentList);
     }

@@ -3,8 +3,10 @@ package objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="sign_unlimited")
@@ -15,7 +17,7 @@ import javax.persistence.*;
                 query="SELECT s FROM SignUnlimited s WHERE s.name = :name")
 })
 public class SignUnlimited extends Model{
-
+    @NotBlank(message = "Название должно быть не пустым")
     private String name;
 
     public SignUnlimited() {

@@ -3,6 +3,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 })
 
 public class Classification extends Model {
-
+    @NotBlank(message = "Название должно быть заполнено")
     private String name;
 
     public Classification() {

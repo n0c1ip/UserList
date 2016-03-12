@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.SignUnlimitedService;
 import crudDB.UserSignUnlimitedService;
 import javafx.collections.FXCollections;
@@ -36,13 +37,13 @@ public class UserSignUnlimitedEditController {
 
     @FXML
     private void handleOkButton() {
-        if(signBox.getValue() != null && valueField.getText() != null){
-            editedUserSignUnlimited.setSignUnlimited(signBox.getValue());
-            editedUserSignUnlimited.setValue(valueField.getText());
-            UserSignUnlimitedService.add(editedUserSignUnlimited);
-            closeWindow();
+        editedUserSignUnlimited.setSignUnlimited(signBox.getValue());
+        editedUserSignUnlimited.setValue(valueField.getText());
+        if (BeanValidation.isCorrectData(editedUserSignUnlimited)) {
+        UserSignUnlimitedService.add(editedUserSignUnlimited);
+        closeWindow();
         } else {
-            DialogController.showAlertDialog(Alert.AlertType.ERROR, "Сохранение признака", "Не все обязательные поля заполнены");
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedUserSignUnlimited));
         }
     }
 

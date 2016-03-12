@@ -312,12 +312,9 @@ public class DialogController {
     }
 
 
-    /**
-     * Shows modal window dialog, with OK button
-     * @param alertType type of dialog
-     * @param dialogTitle window title
-     * @param contentText text inside window
-     */
+    public static void showErrorDialog(String contentText){
+        getAlertDialog(Alert.AlertType.ERROR, "Ошибка", contentText).showAndWait();
+    }
     public static void showAlertDialog(Alert.AlertType alertType, String dialogTitle, String contentText){
         getAlertDialog(alertType, dialogTitle, contentText).showAndWait();
     }
