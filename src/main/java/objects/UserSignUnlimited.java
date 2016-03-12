@@ -2,7 +2,10 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="user_sign_unlimited")
@@ -16,14 +19,17 @@ import javax.persistence.*;
 })
 public class UserSignUnlimited extends Model{
 
+    @NotBlank(message = "Значение должно быть заполнено")
     private String value;
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @NotNull(message = "Пользователь должен быть указан")
     private User user;
 
     @ManyToOne
     @JoinColumn(name="sign_unlimited_id")
+    @NotNull(message = "Признак должен быть указан")
     private SignUnlimited signUnlimited;
 
     public UserSignUnlimited() {

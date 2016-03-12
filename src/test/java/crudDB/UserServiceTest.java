@@ -3,15 +3,29 @@ package crudDB;
 
 import objects.Department;
 import objects.Location;
+import objects.Organization;
 import objects.User;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+
 import java.util.Arrays;
 import java.util.List;
 
 
 public class UserServiceTest {
+
+
+    private static Organization organization;
+
+    @BeforeClass
+    public static void createOrganization() {
+        Organization org = new Organization("TestOrgQueryProvider");
+        organization = OrganizationService.add(org);
+    }
+
+    @AfterClass
+    public static void deleteOrganization() {
+        OrganizationService.delete(organization.getId());
+    }
 
     /**
      * Creates/deletes users for test purposes only
@@ -21,12 +35,17 @@ public class UserServiceTest {
         public static User createTestUser(String firstName) {
             Location location = new Location("LocationToTest");
             Location addedLocation = LocationService.add(location);
-            Department department = new Department("DepartmentToTest");
+            Department department = new Department("DepartmentToTest", organization);
             Department addedDepartment = DepartmentService.add(department);
             User user = new User();
             user.setFirstName(firstName);
             user.setLocation(addedLocation);
             user.setDepartment(addedDepartment);
+            user.setLastName("vasian");
+            user.setPosition("megaleader");
+            user.setMail("mail@mail.mail");
+            user.setLogin("login");
+            user.setPassword("topsecret");
             return user;
         }
 

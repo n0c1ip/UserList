@@ -4,8 +4,10 @@ import crudDB.UserClassificationService;
 import crudDB.UserSignUnlimitedService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -24,19 +26,33 @@ public class User extends Model{
 
     private static final long serialVersionUID = 1L;
 
-     private String firstName ="";
+    @NotBlank(message = "Имя должно быть заполнено")
+    private String firstName ="";
+
+    @NotBlank(message = "Фамилия должна быть заполнена")
     private String lastName ="";
+
     private String middleName = "";
+
     @ManyToOne
     @JoinColumn(name="department_id")
-    private Department department = new Department("");
+    @NotNull(message = "Подразделение должно быть указано")
+    private Department department;
+
     @ManyToOne
     @JoinColumn(name="location_id")
     private Location location = new Location("");
 
+    @NotBlank(message = "Должность должна быть заполнена")
     private String position ="";
+
+    @NotBlank(message = "Логин должен быть заполнен")
     private String login = "";
+
+    @NotBlank(message = "Пароль должен быть заполнен")
     private String password = "";
+
+    @NotBlank(message = "Почта должно быть заполнена")
     private String mail = "";
 
     @OneToOne

@@ -1,9 +1,6 @@
 package controllers;
 
-import crudDB.DepartmentService;
-import crudDB.OrganizationService;
-import crudDB.UserClassificationService;
-import crudDB.UserService;
+import crudDB.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -127,9 +124,13 @@ public class UserClassificationChoiceController {
                     UserClassification userclassification = new UserClassification();
                     userclassification.setClassification(this.classification);
                     userclassification.setUser(user);
-                    UserClassificationService.add(userclassification);
+                    if (BeanValidation.isCorrectData(userclassification)) {
+                        UserClassificationService.add(userclassification);
+                    } else {
+                        DialogController.showErrorDialog(BeanValidation.getViolationsText(userclassification));
+                    }
                 } else {
-                    DialogController.showAlertDialog(Alert.AlertType.ERROR,"Ошибка","Пользователь " +
+                    DialogController.showAlertDialog(Alert.AlertType.ERROR, "Ошибка", "Пользователь " +
                             user.getLastName() + " " + user.getFirstName() + " уже добавлен");
                 }
             }

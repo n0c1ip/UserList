@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.DepartmentService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,8 +29,12 @@ public class DepartmentEditController {
     private void handleOkButton() {
         editedDepartment.setName(nameField.getText());
         editedDepartment.setOrganization(activeOrganization);
-        DepartmentService.add(editedDepartment);
-        closeWindow();
+        if (BeanValidation.isCorrectData(editedDepartment)) {
+            DepartmentService.add(editedDepartment);
+            closeWindow();
+        } else {
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedDepartment));
+        }
     }
 
     @FXML

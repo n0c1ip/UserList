@@ -1,7 +1,10 @@
 package crudDB;
 
 import objects.Department;
+import objects.Organization;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,9 +12,23 @@ import java.util.List;
 
 public class DepartmentServiceTest {
 
+
+    private static Organization organization;
+
+    @BeforeClass
+    public static void createOrganization() {
+        Organization org = new Organization("TestOrgDepartmentService");
+        organization = OrganizationService.add(org);
+    }
+
+    @AfterClass
+    public static void deleteOrganization() {
+        OrganizationService.delete(organization.getId());
+    }
+
     @Test
     public void ShouldAddDepartment() {
-        Department department = new Department("departmentToAdd");
+        Department department = new Department("departmentToAdd", organization);
 
         Department addedDepartment = DepartmentService.add(department);
         Department foundDepartment = DepartmentService.get(addedDepartment.getId());
@@ -27,7 +44,7 @@ public class DepartmentServiceTest {
 
     @Test
     public void ShouldDeleteDepartment(){
-        Department department = new Department("departmentToDel");
+        Department department = new Department("departmentToDel", organization);
 
         Department departmentInDb = DepartmentService.add(department);
         long departmentID = departmentInDb.getId();
@@ -40,7 +57,7 @@ public class DepartmentServiceTest {
         String oldName = "oldDepartment";
         String newName = "newDepartment";
 
-        Department department = new Department(oldName);
+        Department department = new Department(oldName, organization);
         Department addedDepartment = DepartmentService.add(department);
         addedDepartment.setName(newName);
         DepartmentService.update(addedDepartment);
@@ -55,7 +72,7 @@ public class DepartmentServiceTest {
     @Test
     public void ShouldGetByNameDepartment(){
         String departmentName = "FindThisName";
-        Department department = new Department(departmentName);
+        Department department = new Department(departmentName, organization);
         department = DepartmentService.add(department);
         Department getByName = DepartmentService.getByName(departmentName);
         try{
@@ -74,9 +91,9 @@ public class DepartmentServiceTest {
 
         List<String> namesList = Arrays.asList(name1, name2, name3);
 
-        Department addedDepartment1 = DepartmentService.add(new Department(name1));
-        Department addedDepartment2 = DepartmentService.add(new Department(name2));
-        Department addedDepartment3 = DepartmentService.add(new Department(name3));
+        Department addedDepartment1 = DepartmentService.add(new Department(name1, organization));
+        Department addedDepartment2 = DepartmentService.add(new Department(name2, organization));
+        Department addedDepartment3 = DepartmentService.add(new Department(name3, organization));
 
         int departmentFound = 0;
         List<Department> departmentList = DepartmentService.getAll();

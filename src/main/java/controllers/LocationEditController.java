@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.LocationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -29,14 +30,15 @@ public class LocationEditController {
     }
 
     public void handleOkButton() {
-
         editedLocation.setName(locationNameField.getText());
         editedLocation.setCity(locationCityField.getText());
         editedLocation.setAddress(locationAddressField.getText());
-
-        LocationService.update(editedLocation);
-
-        closeWindow();
+        if (BeanValidation.isCorrectData(editedLocation)) {
+            LocationService.update(editedLocation);
+            closeWindow();
+        } else {
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedLocation));
+        }
     }
 
     public void handleCancelButton() {

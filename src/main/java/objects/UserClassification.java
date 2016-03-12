@@ -1,6 +1,7 @@
 package objects;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="user_classification")
@@ -16,10 +17,12 @@ public class UserClassification extends Model{
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @NotNull(message = "Пользователь должен быть указан")
     private User user;
 
     @ManyToOne
     @JoinColumn(name="classification_id")
+    @NotNull(message = "Классификатор должен быть указан")
     private Classification classification;
 
     public UserClassification() {
