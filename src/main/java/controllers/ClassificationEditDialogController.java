@@ -20,8 +20,8 @@ public class ClassificationEditDialogController {
     }
 
     public void handleOkButton() {
+        editedClassification.setName(nameField.getText());
         if (BeanValidation.isCorrectData(editedClassification)) {
-            editedClassification.setName(nameField.getText());
             ClassificationService.add(editedClassification);
             closeWindow();
         } else {
