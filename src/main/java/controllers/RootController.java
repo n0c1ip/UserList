@@ -67,6 +67,23 @@ public class RootController {
 
     }
 
+    public void showPcTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("pcTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            PcTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Pc Table");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу компьютеров");
+        }
+    }
+
     public void showOrganizationTable() {
          try {
             FXMLLoader loader = Fxml.getFXMLLoader("OrganizationTable.fxml");

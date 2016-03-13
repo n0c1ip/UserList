@@ -171,6 +171,13 @@ public class User extends Model{
         return pcProperty;
     }
 
+    public String getFullName(){
+        return this.lastName + " " + this.firstName  + " " + this.middleName;
+    }
+    public StringProperty getFullNameProperty(){
+        return new SimpleStringProperty(this.lastName + " " + this.firstName  + " " + this.middleName);
+    }
+
     @Override
     public String toString() {
         String userInfo = lastName + " "

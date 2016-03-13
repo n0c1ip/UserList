@@ -1,5 +1,7 @@
 package objects;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -17,6 +19,10 @@ public class Pc extends Model{
     @NotBlank(message = "Название компьютера должно быть заполнено")
     private String name;
 
+    private String ipAddress;
+
+    private String vlan;
+
     @OneToOne(mappedBy="pc")
     private User user;
 
@@ -30,10 +36,44 @@ public class Pc extends Model{
     public String getName() {
         return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+    public StringProperty getNameProperty(){
+        return new SimpleStringProperty(this.name);
+    }
+
+    public User getUser() {
+        if(this.user != null){
+            return this.user;
+        } else {
+            return new User();
+        }
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+    public StringProperty getIpAddressProperty(){
+        return new SimpleStringProperty(this.ipAddress);
+    }
+
+    public String getVlan() {
+        return vlan;
+    }
+    public void setVlan(String vlan) {
+        this.vlan = vlan;
+    }
+    public StringProperty getVlanProperty(){
+        return new SimpleStringProperty(this.vlan);
+    }
+
 
     @Override
     public String toString() {
