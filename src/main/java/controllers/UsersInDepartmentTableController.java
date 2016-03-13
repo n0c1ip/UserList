@@ -167,6 +167,7 @@ public class UsersInDepartmentTableController {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
+            showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
         }
     }
 
@@ -174,6 +175,7 @@ public class UsersInDepartmentTableController {
     private void handleNewUserButton() {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
+        showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
     }
 
     @FXML
