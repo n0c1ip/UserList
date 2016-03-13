@@ -3,22 +3,15 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import objects.Department;
-import objects.Location;
-import objects.Organization;
-import objects.User;
-import start.EntryPoint;
+import objects.*;
 import util.Fxml;
 import util.I18n;
-import objects.*;
 import util.Icons;
 
 import java.io.File;
@@ -68,11 +61,33 @@ public class DialogController {
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
-            FXMLLoader loader = Fxml.getFXMLLoader("userClassificationChoiceDialog.fxml");
+            FXMLLoader loader = Fxml.getFXMLLoader("userChoiceDialog.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
-            UserClassificationChoiceController controller = loader.getController();
+            UserChoiceController controller = loader.getController();
             controller.setClassification(classification);
+            dialog.setScene(new Scene(table));
+            return dialog;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dialog;
+    }
+
+    public void showExistingUserInDepartmentChoiceDialog(String title, Pc pc){
+        getExistingUserInDepartmentChoiceDialog(title,pc).showAndWait();
+    }
+    public Stage getExistingUserInDepartmentChoiceDialog(String title, Pc pc){
+        final Stage dialog = new Stage();
+        try {
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(mainController.getPrimaryStage());
+            FXMLLoader loader = Fxml.getFXMLLoader("userChoiceDialog.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            UserChoiceController controller = loader.getController();
+            controller.setPC(pc);
             dialog.setScene(new Scene(table));
             return dialog;
         } catch (IOException e) {
@@ -134,6 +149,31 @@ public class DialogController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             showErrorDialog("Не удалось загрузить интерфейс редактирования пользователя");
+        }
+        return dialog;
+    }
+
+    public void showPcEditDialog(String title, Pc pc) {
+        getPcEditDialog(title, pc).showAndWait();
+    }
+    public Stage getPcEditDialog(String title, Pc pc) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("pcEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane pcEdit = loader.load();
+            PcEditController controller = loader.getController();
+            controller.setDialogController(this);
+            controller.setEditedPc(pc);
+            dialog.setScene(new Scene(pcEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showErrorDialog("Не удалось загрузить интерфейс редактирования компьютера");
         }
         return dialog;
     }

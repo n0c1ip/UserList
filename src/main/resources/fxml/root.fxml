@@ -19,19 +19,24 @@
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
                       <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
-                  </items>
+                    </items>
                 </Menu>
-                <Menu fx:id="menuTablesStructure" mnemonicParsing="false" text="%MenuBar.Structure">
-                   <items>
-                       <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
-                       <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
-                       <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
-                   </items>
-                </Menu>
+            <Menu mnemonicParsing="false" text="Оборудование">
+              <items>
+                <MenuItem fx:id="pcItem" mnemonicParsing="false" text="Компьютеры" onAction="#showPcTable"/>
+              </items>
+            </Menu>
+            <Menu fx:id="menuTablesStructure" mnemonicParsing="false" text="%MenuBar.Structure">
+               <items>
+                   <MenuItem fx:id="itemLocationTable" mnemonicParsing="false" onAction="#showLocationTable" text="%MenuBar.Locations" />
+                   <MenuItem fx:id="itemOrganizationTable" mnemonicParsing="false" onAction="#showOrganizationTable" text="%MenuBar.Organizations" />
+                   <MenuItem fx:id="itemDepartmentInOrgTable" mnemonicParsing="false" onAction="#showDepartmentsInOrganizationTable" text="%MenuBar.Departments" />
+               </items>
+            </Menu>
                 <Menu fx:id="menuService" mnemonicParsing="false" text="%MenuBar.Tools">
                     <items>
-                        <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="%MenuBar.Preferences" />
-                        <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="%MenuBar.UploadInExcel" />
+                  <MenuItem fx:id="preferences" mnemonicParsing="false" onAction="#showPreferencesDialog" text="%MenuBar.Preferences" />
+                  <MenuItem fx:id="uploadInExcel" mnemonicParsing="false" onAction="#uploadInExcel" text="%MenuBar.UploadInExcel" />
                         <MenuItem fx:id="itemImportCsv" mnemonicParsing="false" onAction="#showImportFormCSV" text="%MenuBar.ImportFormCSV" />
                     </items>
                 </Menu>

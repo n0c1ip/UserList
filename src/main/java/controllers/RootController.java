@@ -12,8 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
-import start.EntryPoint;
-import util.*;
+import util.Fxml;
+import util.I18n;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,6 +65,23 @@ public class RootController {
             DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по объектам");
         }
 
+    }
+
+    public void showPcTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("pcTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            PcTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Pc Table");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу компьютеров");
+        }
     }
 
     public void showOrganizationTable() {

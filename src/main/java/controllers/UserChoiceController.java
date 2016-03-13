@@ -13,7 +13,7 @@ import util.I18n;
 
 import javax.persistence.NoResultException;
 
-public class UserClassificationChoiceController {
+public class UserChoiceController {
 
     @FXML
     private ListView<Department> departmentListView;
@@ -47,12 +47,15 @@ public class UserClassificationChoiceController {
     private TextField searchField;
 
     private Classification classification;
+    private Pc pc;
 
     @FXML
     private void initialize(){
-        tableView.getSelectionModel().setSelectionMode(
-                SelectionMode.MULTIPLE
-        );
+        if(pc == null){
+            tableView.getSelectionModel().setSelectionMode(
+                    SelectionMode.MULTIPLE
+            );
+        }
 
         //Organization ComboBox
         ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
@@ -118,21 +121,33 @@ public class UserClassificationChoiceController {
     }
 
     public void handleChoiceButton() {
-            ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
-            for (User user : users) {
-                if(!isAlreadyExistInClassification(user,classification)){
-                    UserClassification userclassification = new UserClassification();
-                    userclassification.setClassification(this.classification);
-                    userclassification.setUser(user);
-                    if (BeanValidation.isCorrectData(userclassification)) {
-                        UserClassificationService.add(userclassification);
+            if(pc != null){
+                User oldPcUser = pc.getUser();
+                if(oldPcUser != null){
+                    oldPcUser.setPc(null);
+                    UserService.update(oldPcUser);
+                }
+                User selectedUser = tableView.getSelectionModel().getSelectedItem();
+                selectedUser.setPc(pc);
+                UserService.update(selectedUser);
+            } else {
+                ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
+                for (User user : users) {
+                    if(!isAlreadyExistInClassification(user,classification)){
+                        UserClassification userclassification = new UserClassification();
+                        userclassification.setClassification(this.classification);
+                        userclassification.setUser(user);
+                        if (BeanValidation.isCorrectData(userclassification)) {
+                            UserClassificationService.add(userclassification);
+                        } else {
+                            DialogController.showErrorDialog(BeanValidation.getViolationsText(userclassification));
+                        }
                     } else {
-                        DialogController.showErrorDialog(BeanValidation.getViolationsText(userclassification));
+                        DialogController.showErrorDialog("Пользователь " + user.getLastName() + " " + user.getFirstName() + " уже добавлен");
                     }
-                } else {
-                    DialogController.showErrorDialog("Пользователь " + user.getLastName() + " " + user.getFirstName() + " уже добавлен");
                 }
             }
+
             closeWindow();
     }
 
@@ -152,5 +167,9 @@ public class UserClassificationChoiceController {
     private void closeWindow(){
         Stage thisWindow = (Stage) tableView.getScene().getWindow();
         thisWindow.close();
+    }
+
+    public void setPC(Pc pc) {
+        this.pc = pc;
     }
 }
