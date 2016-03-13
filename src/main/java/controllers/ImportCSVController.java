@@ -6,11 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import objects.Organization;
+import util.ActiveUser;
+import util.Permission;
 
 import java.io.*;
 
@@ -23,6 +26,8 @@ public class ImportCSVController {
 
     private MainController mainController;
     @FXML
+    private Button choiceLoad;
+    @FXML
     private ChoiceBox<Organization> choiceBox;
     @FXML
     private TextField filePathField;
@@ -34,6 +39,10 @@ public class ImportCSVController {
      */
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+        } else {
+            choiceLoad.setDisable(true);
+        }
         ObservableList<Organization> organizations = FXCollections.observableArrayList();
         organizations.addAll(OrganizationService.getAll());
         choiceBox.setItems(organizations.sorted());

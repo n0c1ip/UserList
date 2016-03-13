@@ -10,11 +10,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Location;
 import objects.User;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 
 public class UsersInLocationTableController {
 
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     //Table
     @FXML
     private ListView<Location> locationListView;
@@ -53,6 +61,25 @@ public class UsersInLocationTableController {
 
     @FXML
     private void initialize() {
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            //TableView context menu & double click
+            initiateUserContextMenu();
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
+                    userContextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    userContextMenu.show(tableView, event.getScreenX(),event.getScreenY());
+                }
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditPersonButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
         locationListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> setUsersByLocationTable(newValue));
 
@@ -67,20 +94,6 @@ public class UsersInLocationTableController {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
-
-        //TableView context menu & double click
-        initiateUserContextMenu();
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
-                userContextMenu.hide();
-            }
-            if (event.isSecondaryButtonDown()) {
-                userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
-            }
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPersonButton();
-            }
-        });
     }
 
     public void setMainController(MainController mainController) {

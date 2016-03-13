@@ -8,11 +8,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Department;
 import objects.Organization;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 public class DepartmentsInOrganizationTableController {
 
     private MainController mainController;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     @FXML
     private ListView<Organization> organizationListView;
     @FXML
@@ -22,22 +30,26 @@ public class DepartmentsInOrganizationTableController {
 
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditDepartmentButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
         ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
         organizationsList.setAll(OrganizationService.getAll());
         organizationListView.setItems(organizationsList.sorted());
         organizationListView.getSelectionModel().selectFirst();
         showDepartmentByOrganizationSelect(organizationListView.getSelectionModel().getSelectedItem());
         organizationListView.getSelectionModel().selectedItemProperty().addListener(
-                (observable1, oldValue, newValue ) -> showDepartmentByOrganizationSelect(newValue));
+                (observable1, oldValue, newValue) -> showDepartmentByOrganizationSelect(newValue));
 
         departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditDepartmentButton();
-            }
-        });
-
     }
 
     private void showDepartmentByOrganizationSelect(Organization organization){

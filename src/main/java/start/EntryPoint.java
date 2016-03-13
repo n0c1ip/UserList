@@ -6,8 +6,11 @@ import crudFiles.SettingsService;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import objects.Settings;
+import util.ActiveUser;
 import util.I18n;
 import util.Icons;
+import util.Permission;
+
 import java.util.Locale;
 import java.util.Optional;
 
@@ -30,6 +33,14 @@ public class EntryPoint extends Application {
         mainController.setPrimaryStage(primaryStage);
         mainController.setMainWindowTitle(I18n.ROOT.getString("Program.Name"));
         mainController.show();
+
+        if (optionalSettings.isPresent()) {
+            if (SettingsService.isUserReadOnly(optionalSettings.get())) {
+                ActiveUser.setPermissions(Permission.READ);
+            } else {
+                ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
+            }
+        }
     }
 
     @Override
