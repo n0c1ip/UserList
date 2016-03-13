@@ -1,5 +1,6 @@
 package controllers;
 
+import crudFiles.SettingsService;
 import crudFiles.UploadInExcelService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,20 +18,31 @@ import util.*;
 import java.io.File;
 import java.io.IOException;
 
-
-
 /**
  * Controller contains menu bar, handles menu bar items actions.
  */
 public class RootController {
 
-    public RootController() {
+    @FXML
+    Menu menuTables;
+    @FXML
+    Menu menuTablesStructure;
+    @FXML
+    MenuItem uploadInExcel;
+    @FXML
+    MenuItem itemImportCsv;
 
+    public RootController() {
     }
 
     // References
     private MainController mainController;
     private TabPane tabLayout;
+
+    @FXML
+    private void initialize() {
+        setMenuItems(SettingsService.readSettings().isPresent());
+    }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -224,4 +236,17 @@ public class RootController {
             }
         }
     }
+
+    /**
+     * Disables menu items if settings file is not present
+     * param boolean (check that file exist)
+     * @param isSettingsFileExist
+     */
+    public void setMenuItems(boolean isSettingsFileExist){
+        menuTables.setDisable(!isSettingsFileExist);
+        menuTablesStructure.setDisable(!isSettingsFileExist);
+        uploadInExcel.setDisable(!isSettingsFileExist);
+        itemImportCsv.setDisable(!isSettingsFileExist);
+    }
+
 }

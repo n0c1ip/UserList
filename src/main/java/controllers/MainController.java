@@ -1,6 +1,5 @@
 package controllers;
 
-import crudDB.EntityManagerFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,7 +22,6 @@ public class MainController{
     private BorderPane rootLayout;
 
     public void show() {
-        EntityManagerFactory.initialize();
         initDialogController();
         initRootLayout();
         initTabLayout();

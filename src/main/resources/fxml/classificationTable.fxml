@@ -23,7 +23,7 @@
                                         <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.LastName" />
                                         <TableColumn fx:id="firstNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.FirstName" />
                                         <TableColumn fx:id="middleNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.MiddleName" />
-                                        <TableColumn id="departmentColumn" fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Department" />
+                                        <TableColumn fx:id="departmentColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Department" />
                                         <TableColumn fx:id="positionColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Position" />
                                         <TableColumn fx:id="pcColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Pc" />
                                         <TableColumn fx:id="loginColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Login" />
