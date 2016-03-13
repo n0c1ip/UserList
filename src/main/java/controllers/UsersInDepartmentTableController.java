@@ -12,10 +12,18 @@ import javafx.scene.control.*;
 import objects.Department;
 import objects.Organization;
 import objects.User;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 public class UsersInDepartmentTableController {
 
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     private MainController mainController;
     @FXML
     private ListView<Department> departmentListView;
@@ -53,6 +61,26 @@ public class UsersInDepartmentTableController {
 
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            //TableView context menu & double click
+            initiateUserContextMenu();
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
+                    userContextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditPersonButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
+
         //Organization ComboBox
         ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
         organizationsList.setAll(OrganizationService.getAll());
@@ -77,20 +105,6 @@ public class UsersInDepartmentTableController {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
-
-        //TableView context menu & double click
-        initiateUserContextMenu();
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && userContextMenu.isShowing()){
-                userContextMenu.hide();
-            }
-            if (event.isSecondaryButtonDown()) {
-                userContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
-            }
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPersonButton();
-            }
-        });
     }
 
     private void showUserByDepartments(Department department) {
@@ -153,6 +167,7 @@ public class UsersInDepartmentTableController {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
+            showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
         }
     }
 
@@ -160,6 +175,7 @@ public class UsersInDepartmentTableController {
     private void handleNewUserButton() {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
+        showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
     }
 
     @FXML

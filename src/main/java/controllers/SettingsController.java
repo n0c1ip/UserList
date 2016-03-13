@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import objects.Settings;
+import util.ActiveUser;
+import util.Permission;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -133,6 +135,11 @@ public class SettingsController {
             closeWindow();
         } else {
             DialogController.showErrorDialog("Соединение не установлено");
+        }
+        if (SettingsService.isUserReadOnly(fieldsToSettings())) {
+            ActiveUser.setPermissions(Permission.READ);
+        } else {
+            ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
         }
     }
 

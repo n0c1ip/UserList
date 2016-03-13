@@ -5,14 +5,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.User;
 import objects.UserSignUnlimited;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 public class UserSignUnlimitedTableController {
 
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     private MainController mainController;
     @FXML
     private TableView<UserSignUnlimited> tableView;
@@ -24,16 +33,21 @@ public class UserSignUnlimitedTableController {
 
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditUserSignUnlimitedButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
         showUserUnlimitedSigns();
 
         signUnlimitedNameColumn.setCellValueFactory(cellData -> cellData.getValue().getSignUnlimited().getNameProperty());
         userSignUnlimitedValueColumn.setCellValueFactory(cellData -> cellData.getValue().getValueProperty());
-
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditUserSignUnlimitedButton();
-            }
-        });
     }
 
     public void showUserUnlimitedSigns(){

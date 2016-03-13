@@ -5,14 +5,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Organization;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 public class OrganizationTableController {
 
     private MainController mainController;
+
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     @FXML
     private TableView<Organization> tableView;
     @FXML
@@ -20,15 +30,21 @@ public class OrganizationTableController {
 
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditOrganizationButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
+
         showAllOrganizations();
 
         organizationNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditOrganizationButton();
-            }
-        });
     }
 
     private void showAllOrganizations(){

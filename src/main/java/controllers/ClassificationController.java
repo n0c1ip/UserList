@@ -10,12 +10,18 @@ import javafx.scene.control.*;
 import objects.Classification;
 import objects.User;
 import objects.UserClassification;
+import util.ActiveUser;
 import util.I18n;
+import util.Permission;
 
 import javax.persistence.RollbackException;
 
 public class ClassificationController {
 
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button removeButton;
     @FXML
     private ListView<Classification> classificationListView;
     @FXML
@@ -48,6 +54,24 @@ public class ClassificationController {
 
     @FXML
     private void initialize() {
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            //TableView context menu & double click
+            initiateClassificationContextMenu();
+            classificationListView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && classificationContextMenu.isShowing()){
+                    classificationContextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    classificationContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditClassification();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
         tableView.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );
@@ -66,21 +90,6 @@ public class ClassificationController {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
-
-        //TableView context menu & double click
-        initiateClassificationContextMenu();
-
-        classificationListView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && classificationContextMenu.isShowing()){
-                classificationContextMenu.hide();
-            }
-            if (event.isSecondaryButtonDown()) {
-                classificationContextMenu.show(tableView,event.getScreenX(),event.getScreenY());
-            }
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditClassification();
-            }
-        });
     }
 
     private void showAllClassifications(){

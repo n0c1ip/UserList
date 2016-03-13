@@ -2,7 +2,10 @@ package crudFiles;
 
 
 import controllers.DialogController;
+import crudDB.EntityManagerFactory;
+import crudDB.LocationService;
 import javafx.scene.control.Alert;
+import objects.Location;
 import objects.Settings;
 
 import java.io.*;
@@ -71,6 +74,19 @@ public class SettingsService {
         } catch (SQLException e) {
             return false;
         }
+    }
+
+    //TODO find not insane solution
+    public static boolean isUserReadOnly(Settings settings) {
+        try {
+            Location location = new Location("isUserReadonly");
+            Location addedLocation = LocationService.add(location);
+            long addedLocationId = addedLocation.getId();
+            LocationService.delete(addedLocationId);
+        } catch (Exception e) {
+            return true;
+        }
+        return false;
     }
 
 }

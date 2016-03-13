@@ -12,9 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
-import util.Fxml;
-import util.I18n;
-import util.Icons;
+import start.EntryPoint;
+import util.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -151,6 +150,7 @@ public class RootController {
             DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по подразделениям");
         }
     }
+
 
     public void showSignUnlimitedTable() {
         try {
