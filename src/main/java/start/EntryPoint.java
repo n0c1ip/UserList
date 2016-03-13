@@ -42,6 +42,7 @@ public class EntryPoint extends Application {
                 ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
             }
         }
+
     }
 
     @Override

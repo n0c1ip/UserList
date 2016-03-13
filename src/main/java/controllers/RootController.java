@@ -12,8 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.User;
-import start.EntryPoint;
-import util.*;
+import util.Fxml;
+import util.I18n;
+import util.Icons;
 
 import java.io.File;
 import java.io.IOException;

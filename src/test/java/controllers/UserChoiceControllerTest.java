@@ -11,14 +11,14 @@ import util.I18n;
 
 import java.io.IOException;
 
-public class UserClassificationChoiceControllerTest extends GuiTest{
+public class UserChoiceControllerTest extends GuiTest{
 
     @Override
     protected Parent getRootNode() {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userClassificationChoiceDialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(EntryPoint.class.getResource("/fxml/userChoiceDialog.fxml"));
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 

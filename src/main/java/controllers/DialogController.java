@@ -61,11 +61,33 @@ public class DialogController {
             dialog.setTitle(title);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(mainController.getPrimaryStage());
-            FXMLLoader loader = Fxml.getFXMLLoader("userClassificationChoiceDialog.fxml");
+            FXMLLoader loader = Fxml.getFXMLLoader("userChoiceDialog.fxml");
             loader.setResources(I18n.TABLE.getResourceBundle());
             SplitPane table = loader.load();
-            UserClassificationChoiceController controller = loader.getController();
+            UserChoiceController controller = loader.getController();
             controller.setClassification(classification);
+            dialog.setScene(new Scene(table));
+            return dialog;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dialog;
+    }
+
+    public void showExistingUserInDepartmentChoiceDialog(String title, Pc pc){
+        getExistingUserInDepartmentChoiceDialog(title,pc).showAndWait();
+    }
+    public Stage getExistingUserInDepartmentChoiceDialog(String title, Pc pc){
+        final Stage dialog = new Stage();
+        try {
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(mainController.getPrimaryStage());
+            FXMLLoader loader = Fxml.getFXMLLoader("userChoiceDialog.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            UserChoiceController controller = loader.getController();
+            controller.setPC(pc);
             dialog.setScene(new Scene(table));
             return dialog;
         } catch (IOException e) {

@@ -19,10 +19,7 @@
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
                       <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
-                  </items>
-                </Menu>
-                      <MenuItem fx:id="itemClassificationTable" mnemonicParsing="false" onAction="#showClassificationTable" text="%MenuBar.Classification" />
-                  </items>
+                    </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="Оборудование">
               <items>

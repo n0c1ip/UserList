@@ -44,11 +44,7 @@ public class Pc extends Model{
     }
 
     public User getUser() {
-        if(this.user != null){
-            return this.user;
-        } else {
-            return new User();
-        }
+        return this.user;
     }
     public void setUser(User user) {
         this.user = user;
