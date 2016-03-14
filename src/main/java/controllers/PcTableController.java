@@ -7,14 +7,23 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import objects.Pc;
 import objects.User;
+import util.ActiveUser;
+import util.Permission;
 
 public class PcTableController {
 
     private MainController mainController;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button removeButton;
     @FXML
     private TableView<Pc> tableView;
     @FXML
@@ -30,6 +39,17 @@ public class PcTableController {
 
     @FXML
     private void initialize(){
+        if (ActiveUser.hasPermission(Permission.WRITE)) {
+            tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    handleEditPcButton();
+                }
+            });
+        } else {
+            addButton.setDisable(true);
+            changeButton.setDisable(true);
+            removeButton.setDisable(true);
+        }
 
         showAllPc();
 
@@ -49,12 +69,6 @@ public class PcTableController {
                 return new SimpleStringProperty("Static");
             }
 
-        });
-
-        tableView.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                handleEditPcButton();
-            }
         });
     }
 
