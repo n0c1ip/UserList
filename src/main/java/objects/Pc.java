@@ -23,6 +23,8 @@ public class Pc extends Model{
 
     private String vlan;
 
+    private boolean dhcp;
+
     @OneToOne(mappedBy="pc")
     private User user;
 
@@ -70,6 +72,12 @@ public class Pc extends Model{
         return new SimpleStringProperty(this.vlan);
     }
 
+    public boolean isDhcp() {
+        return dhcp;
+    }
+    public void setDhcp(boolean dhcp) {
+        this.dhcp = dhcp;
+    }
 
     @Override
     public String toString() {

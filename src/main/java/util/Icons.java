@@ -10,7 +10,7 @@ public class Icons {
 
     private static Image createImageObject(String imageFile) {
         String folder = "icons";
-        return new Image(folder + File.separator + imageFile);
+        return new Image(folder + "/" + imageFile);
     }
 
     public static Image getApplicationIcon() {

@@ -1,8 +1,11 @@
 package controllers;
 
 import crudDB.PcService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Pc;
@@ -19,6 +22,8 @@ public class PcEditController {
     @FXML
     private TextField userField;
     @FXML
+    private ComboBox<String> ipAddressType;
+    @FXML
     private Button okButton;
     @FXML
     private Button cancelButton;
@@ -28,7 +33,13 @@ public class PcEditController {
 
     @FXML
     private void initialize() {
+        ObservableList<String> addressTypes =
+                FXCollections.observableArrayList(
+                        "DHCP",
+                        "Static"
+                );
 
+        ipAddressType.setItems(addressTypes);
     }
 
     public void handleSelectButton() {
@@ -37,13 +48,17 @@ public class PcEditController {
         } else {
             DialogController.showErrorDialog("Необходимо выбрать классификатор");
         }
-
     }
 
     public void handleOkButton(){
         editedPc.setName(pcNameField.getText());
         editedPc.setIpAddress(ipAddressField.getText());
         editedPc.setVlan(vlanField.getText());
+        if(ipAddressType.getSelectionModel().getSelectedItem().equals("DHCP")){
+            editedPc.setDhcp(true);
+        } else {
+            editedPc.setDhcp(false);
+        }
         PcService.add(editedPc);
         closeWindow();
     }
@@ -65,6 +80,11 @@ public class PcEditController {
         pcNameField.setText(editedPc.getName());
         ipAddressField.setText(editedPc.getIpAddress());
         vlanField.setText(editedPc.getVlan());
+        if(editedPc.isDhcp()){
+            ipAddressType.getSelectionModel().select("DHCP");
+        } else {
+            ipAddressType.getSelectionModel().select("Static");
+        }
         if(editedPc.getUser() != null){
             userField.setText(editedPc.getUser().getFullName());
         }

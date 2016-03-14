@@ -21,7 +21,7 @@
                       <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Оборудование">
+            <Menu fx:id="itemEquipment" mnemonicParsing="false" text="Оборудование">
               <items>
                 <MenuItem fx:id="pcItem" mnemonicParsing="false" text="Компьютеры" onAction="#showPcTable"/>
               </items>

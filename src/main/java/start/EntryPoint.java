@@ -4,6 +4,7 @@ import controllers.MainController;
 import crudDB.EntityManagerFactory;
 import crudFiles.SettingsService;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import objects.Settings;
 import util.ActiveUser;
@@ -42,7 +43,6 @@ public class EntryPoint extends Application {
                 ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
             }
         }
-
     }
 
     @Override
