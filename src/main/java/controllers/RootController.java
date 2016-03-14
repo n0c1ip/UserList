@@ -29,9 +29,12 @@ public class RootController {
     @FXML
     Menu menuTablesStructure;
     @FXML
+    Menu itemEquipment;
+    @FXML
     MenuItem uploadInExcel;
     @FXML
     MenuItem itemImportCsv;
+
 
     public RootController() {
     }
@@ -75,7 +78,7 @@ public class RootController {
             PcTableController controller = loader.getController();
             controller.setMainController(mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Pc Table");
+            Tab tab = new Tab("Компьютеры");
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -151,7 +154,6 @@ public class RootController {
             DialogController.showErrorDialog("Не удалось загрузить интерфейс пользователей по подразделениям");
         }
     }
-
 
     public void showSignUnlimitedTable() {
         try {
@@ -265,6 +267,7 @@ public class RootController {
         menuTablesStructure.setDisable(!isSettingsFileExist);
         uploadInExcel.setDisable(!isSettingsFileExist);
         itemImportCsv.setDisable(!isSettingsFileExist);
+        itemEquipment.setDisable(!isSettingsFileExist);
     }
 
 }

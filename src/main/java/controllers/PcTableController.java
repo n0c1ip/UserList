@@ -3,6 +3,7 @@ package controllers;
 import crudDB.PcService;
 import crudDB.UserService;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,9 +25,12 @@ public class PcTableController {
     private TableColumn<Pc, String> pcIpAddress;
     @FXML
     private TableColumn<Pc, String> pcVlan;
+    @FXML
+    private TableColumn<Pc, String> pcIpAddressType;
 
     @FXML
     private void initialize(){
+
         showAllPc();
 
         pcNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -37,6 +41,14 @@ public class PcTableController {
                 return cellData.getValue().getUser().getFullNameProperty();
             }
             return new SimpleStringProperty("");
+        });
+        pcIpAddressType.setCellValueFactory(cellData ->{
+            if(cellData.getValue().isDhcp()){
+                return new SimpleStringProperty("DHCP");
+            }else {
+                return new SimpleStringProperty("Static");
+            }
+
         });
 
         tableView.setOnMousePressed(event -> {
@@ -74,8 +86,9 @@ public class PcTableController {
             }
             PcService.delete(selectedPc.getId());
             showAllPc();
+        } else {
+            DialogController.showErrorDialog("Не выбран пользователь");
         }
-        //TODO message when not selected
     }
 
     public void setMainController(MainController mainController) {
