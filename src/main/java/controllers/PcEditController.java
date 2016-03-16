@@ -1,6 +1,7 @@
 package controllers;
 
 import crudDB.PcService;
+import crudDB.VlanService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Pc;
+import objects.Vlan;
 import util.I18n;
 
 public class PcEditController {
@@ -18,7 +20,7 @@ public class PcEditController {
     @FXML
     private TextField ipAddressField;
     @FXML
-    private TextField vlanField;
+    private ComboBox<Vlan> vlanComboBox;
     @FXML
     private TextField userField;
     @FXML
@@ -40,20 +42,24 @@ public class PcEditController {
                 );
 
         ipAddressType.setItems(addressTypes);
+
+        ObservableList<Vlan> vlanList = FXCollections.observableArrayList(VlanService.getAll());
+        vlanComboBox.setItems(vlanList);
+
     }
 
     public void handleSelectButton() {
         if(editedPc != null){
             dialogController.showExistingUserInDepartmentChoiceDialog(I18n.DIALOG.getString("Title.AddUsers"), editedPc);
         } else {
-            DialogController.showErrorDialog("Необходимо выбрать классификатор");
+            DialogController.showErrorDialog("Необходимо выбрать компьютер");
         }
     }
 
     public void handleOkButton(){
         editedPc.setName(pcNameField.getText());
         editedPc.setIpAddress(ipAddressField.getText());
-        editedPc.setVlan(vlanField.getText());
+        editedPc.setVlan(vlanComboBox.getValue());
         if(ipAddressType.getSelectionModel().getSelectedItem().equals("DHCP")){
             editedPc.setDhcp(true);
         } else {
@@ -75,11 +81,12 @@ public class PcEditController {
     public void setDialogController(DialogController dialogController) {
         this.dialogController = dialogController;
     }
+
     public void setEditedPc(Pc editedPc) {
         this.editedPc = editedPc;
         pcNameField.setText(editedPc.getName());
         ipAddressField.setText(editedPc.getIpAddress());
-        vlanField.setText(editedPc.getVlan());
+        vlanComboBox.getSelectionModel().select(editedPc.getVlan());
         if(editedPc.isDhcp()){
             ipAddressType.getSelectionModel().select("DHCP");
         } else {

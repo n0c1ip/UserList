@@ -34,6 +34,9 @@ public class RootController {
     MenuItem uploadInExcel;
     @FXML
     MenuItem itemImportCsv;
+    @FXML
+    Menu menuNetwork;
+
 
 
     public RootController() {
@@ -155,6 +158,40 @@ public class RootController {
         }
     }
 
+    public void showNetworkTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("networkTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            NetworkTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Сети");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу сетей");
+        }
+    }
+
+    public void showVlanTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("vlanTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            VlanTableController controller = loader.getController();
+            controller.setMainController(this.mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("VLANs");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу VLAN");
+        }
+    }
+
     public void showSignUnlimitedTable() {
         try {
             FXMLLoader loader = Fxml.getFXMLLoader("SignUnlimitedTable.fxml");
@@ -268,6 +305,7 @@ public class RootController {
         uploadInExcel.setDisable(!isSettingsFileExist);
         itemImportCsv.setDisable(!isSettingsFileExist);
         itemEquipment.setDisable(!isSettingsFileExist);
+        menuNetwork.setDisable(!isSettingsFileExist);
     }
 
 }
