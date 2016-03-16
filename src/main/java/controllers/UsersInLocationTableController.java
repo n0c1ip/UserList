@@ -24,6 +24,8 @@ import java.util.concurrent.CountDownLatch;
 public class UsersInLocationTableController {
 
     @FXML
+    private Button filterButton;
+    @FXML
     private Button addButton;
     @FXML
     private Button changeButton;
@@ -82,12 +84,13 @@ public class UsersInLocationTableController {
                 }
             });
         } else {
+            filterButton.setDisable(true);
             addButton.setDisable(true);
             changeButton.setDisable(true);
             removeButton.setDisable(true);
         }
         locationListView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> setUsersByLocationTable(newValue));
+                (observable, oldValue, newValue) -> setUsersByLocationTable(newValue, searchField.getText()));
 
         showAllLocations();
 
@@ -112,7 +115,7 @@ public class UsersInLocationTableController {
         locationListView.setItems(locationList);
     }
 
-    public void setUsersByLocationTable(Location location) {
+    public void setUsersByLocationTable(Location location, String searchValue) {
         Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
 
         AsyncJavaFX.executeInNewThread(() -> {
@@ -124,17 +127,15 @@ public class UsersInLocationTableController {
             //Wrap FilteredList in SortedList
             SortedList<User> sortedData = new SortedList<>(filteredData);
 
-           /* searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(user -> {
-                    // If filter text is empty, display all users.
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-                    //filter text
-                    String lowerCaseFilter = newValue.toLowerCase();
-                    return user.toString().toLowerCase().contains(lowerCaseFilter);
-                });
-            }); */
+            filteredData.setPredicate(user -> {
+                // If filter text is empty, display all users.
+                if (searchValue == null || searchValue.isEmpty()) {
+                    return true;
+                }
+                //filter text
+                String lowerCaseFilter = searchValue.toLowerCase();
+                return user.toString().toLowerCase().contains(lowerCaseFilter);
+            });
 
             //Bind the SortedList comparator to the TableView comparator.
             sortedData.comparatorProperty().bind(tableView.comparatorProperty());
@@ -148,11 +149,15 @@ public class UsersInLocationTableController {
         loadingAlert.showAndWait();
     }
 
+    @FXML
+    public void handleFilterButton() {
+        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
+    }
 
     @FXML
     private void handleNewUserButton() {
         mainController.getDialogController().showNewUserMethodChoiceDialog(locationListView.getSelectionModel().getSelectedItem());
-        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
     }
 
     @FXML
@@ -162,7 +167,7 @@ public class UsersInLocationTableController {
             User userToDelete = tableView.getSelectionModel().getSelectedItem();
             tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
-            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
         } else {
             DialogController.showErrorDialog("Сначала выберите пользователя");
         }
@@ -173,7 +178,7 @@ public class UsersInLocationTableController {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.TABLE.getString("ContextMenu.EditUser"), selectedUser);
-            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
         }
     }
 

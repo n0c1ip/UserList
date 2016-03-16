@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Department;
@@ -92,7 +93,7 @@ public class UsersInDepartmentTableController {
 
         //Departments ListView
         departmentListView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showUserByDepartments(newValue));
+                (observable, oldValue, newValue) -> showUserByDepartments(newValue, searchField.getText()));
 
         //User table
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
@@ -107,7 +108,7 @@ public class UsersInDepartmentTableController {
         mailColumn.setCellValueFactory(cellData -> cellData.getValue().getMailProperty());
     }
 
-    private void showUserByDepartments(Department department) {
+    private void showUserByDepartments(Department department, String searchValue) {
 
         if(department != null){
             Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
@@ -120,17 +121,15 @@ public class UsersInDepartmentTableController {
                 //Wrap FilteredList in SortedList
                 SortedList<User> sortedData = new SortedList<>(filteredData);
 
-            /*    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredData.setPredicate(user -> {
-                        // If filter text is empty, display all users.
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-                        //filter text
-                        String lowerCaseFilter = newValue.toLowerCase();
-                        return user.toString().toLowerCase().contains(lowerCaseFilter);
-                    });
-                }); */
+                filteredData.setPredicate(user -> {
+                    // If filter text is empty, display all users.
+                    if (searchValue == null || searchValue.isEmpty()) {
+                        return true;
+                    }
+                    //filter text
+                    String lowerCaseFilter = searchValue.toLowerCase();
+                    return user.toString().toLowerCase().contains(lowerCaseFilter);
+                });
 
                 //Bind the SortedList comparator to the TableView comparator.
                 sortedData.comparatorProperty().bind(tableView.comparatorProperty());
@@ -170,11 +169,16 @@ public class UsersInDepartmentTableController {
     }
 
     @FXML
+    public void handleFilterButton() {
+        showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem(), searchField.getText());
+    }
+
+    @FXML
     private void handleEditPersonButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.EditUser"), selectedUser);
-            showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
+            showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem(), searchField.getText());
         }
     }
 
@@ -182,7 +186,7 @@ public class UsersInDepartmentTableController {
     private void handleNewUserButton() {
         User user = new User();
         mainController.getDialogController().showUserEditDialog(I18n.DIALOG.getString("Title.AddUser"), user);
-        showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem());
+        showUserByDepartments(departmentListView.getSelectionModel().getSelectedItem(), searchField.getText());
     }
 
     @FXML
@@ -200,5 +204,6 @@ public class UsersInDepartmentTableController {
     private void showUserSignUnlimited(User user){
         mainController.getDialogController().showUserSignUnlimitedTableDialog("Signs",user);
     }
+
 
 }
