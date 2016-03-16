@@ -2,10 +2,13 @@ package controllers;
 
 import crudDB.LocationService;
 import crudDB.UserService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Location;
@@ -14,9 +17,14 @@ import util.ActiveUser;
 import util.I18n;
 import util.Permission;
 
+import javax.persistence.EntityManager;
+import java.util.concurrent.CountDownLatch;
+
 
 public class UsersInLocationTableController {
 
+    @FXML
+    private Button filterButton;
     @FXML
     private Button addButton;
     @FXML
@@ -76,12 +84,13 @@ public class UsersInLocationTableController {
                 }
             });
         } else {
+            filterButton.setDisable(true);
             addButton.setDisable(true);
             changeButton.setDisable(true);
             removeButton.setDisable(true);
         }
         locationListView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> setUsersByLocationTable(newValue));
+                (observable, oldValue, newValue) -> setUsersByLocationTable(newValue, searchField.getText()));
 
         showAllLocations();
 
@@ -106,39 +115,49 @@ public class UsersInLocationTableController {
         locationListView.setItems(locationList);
     }
 
-    public void setUsersByLocationTable(Location location) {
-        ObservableList<User> userList = FXCollections.observableArrayList();
-        userList.addAll(UserService.getUsersByLocation(location));
+    public void setUsersByLocationTable(Location location, String searchValue) {
+        Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
 
-        //Wrap observableList in FilteredList
-        FilteredList<User> filteredData = new FilteredList<>(userList, p -> true);
-        //Wrap FilteredList in SortedList
-        SortedList<User> sortedData = new SortedList<>(filteredData);
+        AsyncJavaFX.executeInNewThread(() -> {
+            ObservableList<User> userList = FXCollections.observableArrayList();
+            userList.addAll(UserService.getUsersByLocation(location));
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            //Wrap observableList in FilteredList
+            FilteredList<User> filteredData = new FilteredList<>(userList, p -> true);
+            //Wrap FilteredList in SortedList
+            SortedList<User> sortedData = new SortedList<>(filteredData);
+
             filteredData.setPredicate(user -> {
                 // If filter text is empty, display all users.
-                if (newValue == null || newValue.isEmpty()) {
+                if (searchValue == null || searchValue.isEmpty()) {
                     return true;
                 }
                 //filter text
-                String lowerCaseFilter = newValue.toLowerCase();
+                String lowerCaseFilter = searchValue.toLowerCase();
                 return user.toString().toLowerCase().contains(lowerCaseFilter);
             });
+
+            //Bind the SortedList comparator to the TableView comparator.
+            sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+            tableView.setItems(sortedData);
+            usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                    + String.valueOf(tableView.getItems().size()));
+
+            loadingAlert.close();
         });
+        loadingAlert.showAndWait();
+    }
 
-        //Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-
-        tableView.setItems(sortedData);
-        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
-                +String.valueOf(tableView.getItems().size()));
+    @FXML
+    public void handleFilterButton() {
+        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
     }
 
     @FXML
     private void handleNewUserButton() {
         mainController.getDialogController().showNewUserMethodChoiceDialog(locationListView.getSelectionModel().getSelectedItem());
-        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+        setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
     }
 
     @FXML
@@ -148,7 +167,7 @@ public class UsersInLocationTableController {
             User userToDelete = tableView.getSelectionModel().getSelectedItem();
             tableView.getItems().remove(selectedIndex);
             UserService.delete(userToDelete.getId());
-            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
         } else {
             DialogController.showErrorDialog("Сначала выберите пользователя");
         }
@@ -159,7 +178,7 @@ public class UsersInLocationTableController {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             mainController.getDialogController().showUserEditDialog(I18n.TABLE.getString("ContextMenu.EditUser"), selectedUser);
-            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem());
+            setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
         }
     }
 
