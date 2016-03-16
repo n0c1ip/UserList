@@ -108,33 +108,40 @@ public class UsersInDepartmentTableController {
     }
 
     private void showUserByDepartments(Department department) {
+
         if(department != null){
-            ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
-            userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
+            Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
+            AsyncJavaFX.executeInNewThread(() -> {
+                ObservableList<User> userByDepartmentsList = FXCollections.observableArrayList();
+                userByDepartmentsList.setAll(UserService.getUsersByDepartment(department));
 
-            //Wrap observableList in FilteredList
-            FilteredList<User> filteredData = new FilteredList<>(userByDepartmentsList, p -> true);
-            //Wrap FilteredList in SortedList
-            SortedList<User> sortedData = new SortedList<>(filteredData);
+                //Wrap observableList in FilteredList
+                FilteredList<User> filteredData = new FilteredList<>(userByDepartmentsList, p -> true);
+                //Wrap FilteredList in SortedList
+                SortedList<User> sortedData = new SortedList<>(filteredData);
 
-            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(user -> {
-                    // If filter text is empty, display all users.
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-                    //filter text
-                    String lowerCaseFilter = newValue.toLowerCase();
-                    return user.toString().toLowerCase().contains(lowerCaseFilter);
-                });
+            /*    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filteredData.setPredicate(user -> {
+                        // If filter text is empty, display all users.
+                        if (newValue == null || newValue.isEmpty()) {
+                            return true;
+                        }
+                        //filter text
+                        String lowerCaseFilter = newValue.toLowerCase();
+                        return user.toString().toLowerCase().contains(lowerCaseFilter);
+                    });
+                }); */
+
+                //Bind the SortedList comparator to the TableView comparator.
+                sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+                tableView.setItems(sortedData);
+                usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                        + String.valueOf(tableView.getItems().size()));
+
+                loadingAlert.close();
             });
-
-            //Bind the SortedList comparator to the TableView comparator.
-            sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-
-            tableView.setItems(sortedData);
-            usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
-                                         +String.valueOf(tableView.getItems().size()));
+            loadingAlert.showAndWait();
         }
     }
 

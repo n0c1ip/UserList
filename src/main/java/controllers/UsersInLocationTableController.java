@@ -2,10 +2,13 @@ package controllers;
 
 import crudDB.LocationService;
 import crudDB.UserService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Location;
@@ -13,6 +16,9 @@ import objects.User;
 import util.ActiveUser;
 import util.I18n;
 import util.Permission;
+
+import javax.persistence.EntityManager;
+import java.util.concurrent.CountDownLatch;
 
 
 public class UsersInLocationTableController {
@@ -107,33 +113,41 @@ public class UsersInLocationTableController {
     }
 
     public void setUsersByLocationTable(Location location) {
-        ObservableList<User> userList = FXCollections.observableArrayList();
-        userList.addAll(UserService.getUsersByLocation(location));
+        Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
 
-        //Wrap observableList in FilteredList
-        FilteredList<User> filteredData = new FilteredList<>(userList, p -> true);
-        //Wrap FilteredList in SortedList
-        SortedList<User> sortedData = new SortedList<>(filteredData);
+        AsyncJavaFX.executeInNewThread(() -> {
+            ObservableList<User> userList = FXCollections.observableArrayList();
+            userList.addAll(UserService.getUsersByLocation(location));
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(user -> {
-                // If filter text is empty, display all users.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                //filter text
-                String lowerCaseFilter = newValue.toLowerCase();
-                return user.toString().toLowerCase().contains(lowerCaseFilter);
-            });
+            //Wrap observableList in FilteredList
+            FilteredList<User> filteredData = new FilteredList<>(userList, p -> true);
+            //Wrap FilteredList in SortedList
+            SortedList<User> sortedData = new SortedList<>(filteredData);
+
+           /* searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(user -> {
+                    // If filter text is empty, display all users.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    //filter text
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    return user.toString().toLowerCase().contains(lowerCaseFilter);
+                });
+            }); */
+
+            //Bind the SortedList comparator to the TableView comparator.
+            sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+            tableView.setItems(sortedData);
+            usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
+                    + String.valueOf(tableView.getItems().size()));
+
+            loadingAlert.close();
         });
-
-        //Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-
-        tableView.setItems(sortedData);
-        usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
-                +String.valueOf(tableView.getItems().size()));
+        loadingAlert.showAndWait();
     }
+
 
     @FXML
     private void handleNewUserButton() {
