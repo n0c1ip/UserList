@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="organizationTableTotal" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PcTableController">
+<SplitPane fx:id="itemNetworkSplitPane" prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VlanTableController">
     <items>
         <AnchorPane prefHeight="610.0" prefWidth="463.0">
             <children>
@@ -15,11 +15,9 @@
                      <children>
                          <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
-                                 <TableColumn fx:id="pcNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя PC" />
-                                 <TableColumn fx:id="pcIpAddressType" minWidth="-1.0" prefWidth="-1.0" text="Тип адреса" />
-                                 <TableColumn fx:id="pcIpAddress" minWidth="-1.0" prefWidth="-1.0" text="IP адрес" />
-                                 <TableColumn fx:id="pcVlan" minWidth="-1.0" prefWidth="-1.0" text="VLAN" />
-                                 <TableColumn fx:id="pcUserName" minWidth="-1.0" prefWidth="-1.0" text="Пользователь" />
+                              <TableColumn fx:id="vlanNumberColumn" prefWidth="75.0" text="Vlan number" />
+                                 <TableColumn fx:id="networkColumn" minWidth="-1.0" prefWidth="-1.0" text="Network" />
+                              <TableColumn fx:id="descriptionColumn" minWidth="-1.0" prefWidth="-1.0" text="Description" />
                              </columns>
                              <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -31,17 +29,17 @@
                      <children>
                             <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" onAction="#hadnleNewPcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
+                                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleNewVlanButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="changeButton" onAction="#handleEditPcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.edit">
+                                    <Button fx:id="changeButton" mnemonicParsing="false" onAction="#handleEditVlanButton" prefHeight="25.0" prefWidth="97.0" text="%Button.edit">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="removeButton" onAction="#handleRemovePcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
+                                    <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleDeleteVlanButton" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>

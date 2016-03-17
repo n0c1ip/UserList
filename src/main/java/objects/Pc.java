@@ -21,7 +21,9 @@ public class Pc extends Model{
 
     private String ipAddress;
 
-    private String vlan;
+    @OneToOne
+    @JoinColumn(name = "vlan_id")
+    private Vlan vlan;
 
     private boolean dhcp;
 
@@ -62,14 +64,14 @@ public class Pc extends Model{
         return new SimpleStringProperty(this.ipAddress);
     }
 
-    public String getVlan() {
+    public Vlan getVlan() {
         return vlan;
     }
-    public void setVlan(String vlan) {
+    public void setVlan(Vlan vlan) {
         this.vlan = vlan;
     }
     public StringProperty getVlanProperty(){
-        return new SimpleStringProperty(this.vlan);
+        return new SimpleStringProperty(this.vlan.getNumber());
     }
 
     public boolean isDhcp() {

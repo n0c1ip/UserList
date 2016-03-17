@@ -122,11 +122,56 @@ public class DialogController {
         return dialog;
     }
 
-    /**
-     * Dialog shows when called adding or editing User
-     * @param title Dialog title, depends (add\edit)
-     * @param user editing User
-     */
+    public void showNetworkEditDialog(String title, Network network) {
+        getNetworkEditDialog(title,network).showAndWait();
+    }
+    public Stage getNetworkEditDialog(String title, Network network){
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("networkEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane networkEdit = loader.load();
+            NetworkEditController controller = loader.getController();
+            controller.setEditedNetwork(network);
+            dialog.setScene(new Scene(networkEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            showErrorDialog("Не удалось загрузить интерфейс редактирования сети");
+        }
+        return dialog;
+    }
+
+    public void showVlanEditDialog(String title, Vlan vlan) {
+        getVlanEditDialog(title,vlan).showAndWait();
+    }
+    private Stage getVlanEditDialog(String title, Vlan vlan) {
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("vlanEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane vlanEdit = loader.load();
+            VlanEditController controller = loader.getController();
+            controller.setEditedVlan(vlan);
+            dialog.setScene(new Scene(vlanEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            showErrorDialog("Не удалось загрузить интерфейс редактирования VLAN");
+        }
+        return dialog;
+    }
+
     public void showUserEditDialog(String title, User user) {
         getUserEditDialog(title, user).showAndWait();
     }
@@ -351,7 +396,6 @@ public class DialogController {
         return dialog;
     }
 
-
     public static void showErrorDialog(String contentText){
         getAlertDialog(Alert.AlertType.ERROR, I18n.ERROR.getString("Error"), contentText).showAndWait();
     }
@@ -400,4 +444,7 @@ public class DialogController {
         fileChooser.getExtensionFilters().add(extFilter);
         return fileChooser.showSaveDialog(primaryStage);
     }
+
+
+
 }

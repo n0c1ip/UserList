@@ -18,12 +18,18 @@
                       <MenuItem fx:id="itemUsersByLocationTable" mnemonicParsing="false" onAction="#showUsersByLocationTable" text="%MenuBar.UsersByLocations" />
                       <MenuItem fx:id="itemDepartmentTable" mnemonicParsing="false" onAction="#showDepartmentTable" text="%MenuBar.UsersByDepartments" />
                       <MenuItem fx:id="itemSignUnlimitedTable" mnemonicParsing="false" onAction="#showSignUnlimitedTable" text="%MenuBar.SignUnlimited" />
-                      <MenuItem fx:id="itemClassificationTable" onAction="#showClassificationTable" mnemonicParsing="false" text="%MenuBar.Classification" />
+                      <MenuItem fx:id="itemClassificationTable" mnemonicParsing="false" onAction="#showClassificationTable" text="%MenuBar.Classification" />
                     </items>
                 </Menu>
             <Menu fx:id="itemEquipment" mnemonicParsing="false" text="Оборудование">
               <items>
-                <MenuItem fx:id="pcItem" mnemonicParsing="false" text="Компьютеры" onAction="#showPcTable"/>
+                <MenuItem fx:id="pcItem" mnemonicParsing="false" onAction="#showPcTable" text="Компьютеры" />
+              </items>
+            </Menu>
+            <Menu fx:id="menuNetwork" mnemonicParsing="false" text="Сеть">
+              <items>
+                <MenuItem fx:id="itemNetworks" onAction="#showNetworkTable" mnemonicParsing="false" text="Сети" />
+                  <MenuItem fx:id="itemVlans" onAction="#showVlanTable" mnemonicParsing="false" text="VLAN" />
               </items>
             </Menu>
             <Menu fx:id="menuTablesStructure" mnemonicParsing="false" text="%MenuBar.Structure">
