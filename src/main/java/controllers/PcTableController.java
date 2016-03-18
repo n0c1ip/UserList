@@ -1,17 +1,18 @@
 package controllers;
 
+import crudDB.ExtendedRevisionService;
 import crudDB.PcService;
 import crudDB.UserService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import objects.ExtendedRevisionEntity;
 import objects.Pc;
 import objects.User;
 import util.ActiveUser;
+import util.I18n;
 import util.Permission;
 
 public class PcTableController {
@@ -36,10 +37,19 @@ public class PcTableController {
     @FXML
     private TableColumn<Pc, String> pcIpAddressType;
 
+    private ContextMenu contextMenu;
+
     @FXML
     private void initialize(){
+        initiateContextMenu();
         if (ActiveUser.hasPermission(Permission.WRITE)) {
             tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    contextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     handleEditPcButton();
                 }
@@ -68,6 +78,19 @@ public class PcTableController {
                 return new SimpleStringProperty("Static");
             }
 
+        });
+    }
+
+
+    private void initiateContextMenu(){
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
+        contextMenu = new ContextMenu(lastEdit);
+        lastEdit.setOnAction(event -> {
+            Pc selectedPc = tableView.getSelectionModel().getSelectedItem();
+            if (selectedPc != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(Pc.class, selectedPc);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
         });
     }
 

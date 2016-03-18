@@ -1,14 +1,15 @@
 package controllers;
 
+import crudDB.ExtendedRevisionService;
 import crudDB.VlanService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import objects.ExtendedRevisionEntity;
 import objects.Vlan;
 import util.ActiveUser;
+import util.I18n;
 import util.Permission;
 
 public class VlanTableController {
@@ -30,11 +31,20 @@ public class VlanTableController {
     @FXML
     private TableColumn<Vlan, String> descriptionColumn;
 
+    private ContextMenu contextMenu;
+
 
     @FXML
     private void initialize(){
+        initiateContextMenu();
         if (ActiveUser.hasPermission(Permission.WRITE)) {
             tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    contextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     handleEditVlanButton();
                 }
@@ -50,6 +60,19 @@ public class VlanTableController {
         networkColumn.setCellValueFactory(cellData -> cellData.getValue().getNetworkProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
     }
+
+    private void initiateContextMenu(){
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
+        contextMenu = new ContextMenu(lastEdit);
+        lastEdit.setOnAction(event -> {
+            Vlan selectedVlan = tableView.getSelectionModel().getSelectedItem();
+            if (selectedVlan != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(Vlan.class, selectedVlan);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
+    }
+
 
     public void handleNewVlanButton() {
         Vlan newVlan = new Vlan();

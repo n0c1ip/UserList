@@ -2,6 +2,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import java.util.Set;
         @NamedQuery(name="Location.getByName",
                 query="SELECT l FROM Location l WHERE l.name = :name")
 })
+@Audited
 public class Location extends Model {
 
     @NotBlank(message = "Название должно быть заполнено")

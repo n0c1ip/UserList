@@ -1,14 +1,15 @@
 package controllers;
 
+import crudDB.ExtendedRevisionService;
 import crudDB.NetworkService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import objects.ExtendedRevisionEntity;
 import objects.Network;
 import util.ActiveUser;
+import util.I18n;
 import util.Permission;
 
 public class NetworkTableController {
@@ -28,11 +29,19 @@ public class NetworkTableController {
     @FXML
     private TableColumn<Network, String> descriptionColumn;
 
+    private ContextMenu contextMenu;
 
     @FXML
     private void initialize(){
+        initiateContextMenu();
         if (ActiveUser.hasPermission(Permission.WRITE)) {
             tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    contextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     handleEditNetworkButton();
                 }
@@ -46,6 +55,19 @@ public class NetworkTableController {
 
         networkColumn.setCellValueFactory(cellData -> cellData.getValue().getNetworkProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
+    }
+
+
+    private void initiateContextMenu(){
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
+        contextMenu = new ContextMenu(lastEdit);
+        lastEdit.setOnAction(event -> {
+            Network selectedNetwork = tableView.getSelectionModel().getSelectedItem();
+            if (selectedNetwork != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(Network.class, selectedNetwork);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
     }
 
     public void handleNewNetworkButton() {

@@ -3,6 +3,7 @@ package objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name="SignUnlimited.getByName",
                 query="SELECT s FROM SignUnlimited s WHERE s.name = :name")
 })
+@Audited
 public class SignUnlimited extends Model{
     @NotBlank(message = "Название должно быть не пустым")
     private String name;
