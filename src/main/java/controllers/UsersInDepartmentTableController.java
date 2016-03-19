@@ -84,9 +84,7 @@ public class UsersInDepartmentTableController {
         }
 
         //Organization ComboBox
-        ObservableList<Organization> organizationsList = FXCollections.observableArrayList();
-        organizationsList.setAll(OrganizationService.getAll());
-        organizationComboBox.setItems(organizationsList.sorted());
+        organizationComboBox.setItems(FXCollections.observableArrayList(OrganizationService.getAll()));
         organizationComboBox.getSelectionModel().selectFirst();
         showDepartmentByOrganizationSelect(organizationComboBox.getValue());
         organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
@@ -203,7 +201,7 @@ public class UsersInDepartmentTableController {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             User userToDelete = tableView.getSelectionModel().getSelectedItem();
-            tableView.getItems().remove(selectedIndex);
+            tableView.getItems().remove(selectedIndex,selectedIndex);
             UserService.delete(userToDelete.getId());
         } else {
             DialogController.showErrorDialog("Сначала выберите пользователя");

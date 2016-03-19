@@ -16,9 +16,6 @@ import util.ActiveUser;
 import util.I18n;
 import util.Permission;
 
-import javax.persistence.EntityManager;
-import java.util.concurrent.CountDownLatch;
-
 
 public class UsersInLocationTableController {
 
@@ -109,9 +106,7 @@ public class UsersInLocationTableController {
     }
 
     private void showAllLocations(){
-        ObservableList<Location> locationList = FXCollections.observableArrayList();
-        locationList.setAll(LocationService.getAll());
-        locationListView.setItems(locationList);
+        locationListView.setItems(FXCollections.observableArrayList(LocationService.getAll()));
     }
 
     public void setUsersByLocationTable(Location location, String searchValue) {
@@ -164,7 +159,7 @@ public class UsersInLocationTableController {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             User userToDelete = tableView.getSelectionModel().getSelectedItem();
-            tableView.getItems().remove(selectedIndex);
+            tableView.getItems().remove(selectedIndex,selectedIndex);
             UserService.delete(userToDelete.getId());
             setUsersByLocationTable(locationListView.getSelectionModel().getSelectedItem(), searchField.getText());
         } else {

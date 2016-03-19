@@ -46,8 +46,6 @@ public class ClassificationController {
     private TableColumn<User, String> passwordColumn;
     @FXML
     private TableColumn<User, String> mailColumn;
-    @FXML
-    private TextField searchField;
 
     @FXML
     private Label usersCount;
@@ -95,15 +93,11 @@ public class ClassificationController {
     }
 
     private void showAllClassifications(){
-        ObservableList<Classification> classifications = FXCollections.observableArrayList();
-        classifications.setAll(ClassificationService.getAll());
-        classificationListView.setItems(classifications);
+        classificationListView.setItems(FXCollections.observableArrayList(ClassificationService.getAll()));
     }
 
     public void setUserByClassification(Classification classification) {
-        ObservableList<User> userList = FXCollections.observableArrayList();
-        userList.setAll(UserService.getUsersByClassification(classification));
-        tableView.setItems(userList);
+        tableView.setItems(FXCollections.observableArrayList(UserService.getUsersByClassification(classification)));
         usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
                 +String.valueOf(tableView.getItems().size()));
     }
