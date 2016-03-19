@@ -4,7 +4,6 @@ import crudDB.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -38,7 +37,7 @@ public class UserEditController {
     @FXML
     private TextField positionField;
     @FXML
-    private TextField pcField;
+    private ComboBox<Pc> pcComboBox;
     @FXML
     private TextField loginField;
     @FXML
@@ -59,25 +58,15 @@ public class UserEditController {
      */
     @FXML
     private void initialize() {
-        //Load organizationComboBox
-        ObservableList<Organization> organizationList = FXCollections.observableArrayList();
-        organizationList.addAll(OrganizationService.getAll());
-        organizationComboBox.setItems(organizationList.sorted());
-
-        //Load departments to ComboBox
-        ObservableList<Department> departmentsList = FXCollections.observableArrayList();
-        departmentsList.addAll(DepartmentService.getAll());
-        departmentBox.setItems(departmentsList.sorted());
-
-        //Load locations to ComboBox
-        ObservableList<Location> locationsList = FXCollections.observableArrayList();
-        locationsList.addAll(LocationService.getAll());
-        locationBox.setItems(locationsList);
+        //Set ComboBoxes
+        organizationComboBox.setItems(FXCollections.observableArrayList(OrganizationService.getAll()));
+        departmentBox.setItems(FXCollections.observableArrayList(DepartmentService.getAll()));
+        locationBox.setItems(FXCollections.observableArrayList(LocationService.getAll()));
+        pcComboBox.setItems(FXCollections.observableArrayList(PcService.getAll()).sorted());
 
         //Change Departments in departmentsComboBox when Organization changes
         organizationComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable1, oldValue, newValue ) -> setDepartmentBoxByOrganization(newValue));
-
     }
 
     /**
@@ -94,8 +83,13 @@ public class UserEditController {
         editedUser.setLogin(loginField.getText());
         editedUser.setPassword(passwordField.getText());
         editedUser.setMail(mailField.getText());
-        if (!pcField.getText().isEmpty()) {
-            editedUser.setPc(PcService.add(new Pc(pcField.getText())));
+        if (pcComboBox.getValue() != null) {
+            if(pcComboBox.getValue().getUser() != null){
+                User oldUser = pcComboBox.getValue().getUser();
+                oldUser.setPc(null);
+                UserService.update(oldUser);
+            }
+            editedUser.setPc(pcComboBox.getValue());
         }
         if (BeanValidation.isCorrectData(editedUser)) {
             UserService.add(editedUser);
@@ -128,7 +122,7 @@ public class UserEditController {
         departmentBox.getSelectionModel().select(editedUser.getDepartment());
         positionField.setText(editedUser.getPosition());
         if(editedUser.getPc() != null){
-            pcField.setText(editedUser.getPc().getName());
+            pcComboBox.getSelectionModel().select(editedUser.getPc());
         }
         loginField.setText(editedUser.getLogin());
         passwordField.setText(editedUser.getPassword());

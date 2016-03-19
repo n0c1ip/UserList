@@ -5,7 +5,6 @@ import crudDB.PcService;
 import crudDB.UserService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
@@ -95,9 +94,7 @@ public class PcTableController {
     }
 
     private void showAllPc(){
-        ObservableList<Pc> pcList = FXCollections.observableArrayList();
-        pcList.setAll(PcService.getAll());
-        tableView.setItems(pcList);
+        tableView.setItems(FXCollections.observableArrayList(PcService.getAll()));
     }
 
     @FXML
