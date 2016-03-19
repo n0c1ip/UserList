@@ -1,12 +1,14 @@
 package controllers;
 
 import crudDB.DepartmentService;
+import crudDB.ExtendedRevisionService;
 import crudDB.OrganizationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Department;
+import objects.ExtendedRevisionEntity;
 import objects.Organization;
 import util.ActiveUser;
 import util.I18n;
@@ -28,10 +30,19 @@ public class DepartmentsInOrganizationTableController {
     @FXML
     private TableColumn<Department, String> departmentNameColumn;
 
+    private ContextMenu contextMenu;
+
     @FXML
     private void initialize(){
+        initiateContextMenu();
         if (ActiveUser.hasPermission(Permission.WRITE)) {
             tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    contextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     handleEditDepartmentButton();
                 }
@@ -51,6 +62,19 @@ public class DepartmentsInOrganizationTableController {
 
         departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     }
+
+    private void initiateContextMenu(){
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
+        contextMenu = new ContextMenu(lastEdit);
+        lastEdit.setOnAction(event -> {
+            Department selectedDepartment = tableView.getSelectionModel().getSelectedItem();
+            if (selectedDepartment != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(Department.class, selectedDepartment);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
+    }
+
 
     private void showDepartmentByOrganizationSelect(Organization organization){
         ObservableList<Department> departmentList = FXCollections.observableArrayList();

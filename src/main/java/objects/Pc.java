@@ -2,6 +2,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
         @NamedQuery(name="Pc.getByName",
                 query="SELECT p FROM Pc p WHERE p.name = :name")
 })
+@Audited
 public class Pc extends Model{
 
     @NotBlank(message = "Название компьютера должно быть заполнено")

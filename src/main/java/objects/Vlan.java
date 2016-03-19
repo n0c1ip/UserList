@@ -3,6 +3,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name="vlan")
 @NamedQuery(name="Vlan.getAll",   query="SELECT v FROM Vlan v")
+@Audited
 public class Vlan extends Model {
 
     @Pattern(regexp = "[1-4096]*", message = "Введите чилсло от 1 до 4096")

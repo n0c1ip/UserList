@@ -1,6 +1,7 @@
 package controllers;
 
 import crudDB.ClassificationService;
+import crudDB.ExtendedRevisionService;
 import crudDB.UserClassificationService;
 import crudDB.UserService;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.Classification;
+import objects.ExtendedRevisionEntity;
 import objects.User;
 import objects.UserClassification;
 import util.ActiveUser;
@@ -162,12 +164,20 @@ public class ClassificationController {
         MenuItem addClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.AddClassification"));
         MenuItem editClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.EditClassification"));
         MenuItem removeClassification = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveClassification"));
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
 
-        classificationContextMenu = new ContextMenu(addClassification,editClassification,removeClassification);
+        classificationContextMenu = new ContextMenu(addClassification,editClassification,removeClassification,lastEdit);
 
         addClassification.setOnAction(event -> handelNewClassification());
         editClassification.setOnAction(event -> handleEditClassification());
         removeClassification.setOnAction(event -> handleRemoveClassification());
+        lastEdit.setOnAction(event -> {
+            Classification selectedClassification = classificationListView.getSelectionModel().getSelectedItem();
+            if (selectedClassification != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(Classification.class, selectedClassification);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
     }
 
     public void setMainController(MainController mainController) {

@@ -1,16 +1,15 @@
 package controllers;
 
+import crudDB.ExtendedRevisionService;
 import crudDB.LocationService;
 import crudDB.UserService;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import objects.ExtendedRevisionEntity;
 import objects.Location;
 import objects.User;
 import util.ActiveUser;
@@ -191,13 +190,21 @@ public class UsersInLocationTableController {
         MenuItem editUser = new MenuItem(I18n.TABLE.getString("ContextMenu.EditUser"));
         MenuItem removeUser = new MenuItem(I18n.TABLE.getString("ContextMenu.RemoveUser"));
         MenuItem showUnlimitedSigns = new MenuItem(I18n.TABLE.getString("ContextMenu.UserSign"));
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
 
-        userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns);
+        userContextMenu = new ContextMenu(addUser,editUser,removeUser,showUnlimitedSigns,lastEdit);
 
         addUser.setOnAction(event -> handleNewUserButton());
         editUser.setOnAction(event -> handleEditPersonButton());
         removeUser.setOnAction(event -> handleDeletePerson());
         showUnlimitedSigns.setOnAction(event -> showUserSignUnlimited(tableView.getSelectionModel().getSelectedItem()));
+        lastEdit.setOnAction(event -> {
+            User selectedUser = tableView.getSelectionModel().getSelectedItem();
+            if (selectedUser != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(User.class, selectedUser);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
     }
 
 }

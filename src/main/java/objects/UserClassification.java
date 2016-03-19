@@ -1,5 +1,7 @@
 package objects;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name="UserClassification.getByUserAndClassification",
         query="SELECT u FROM UserClassification u WHERE u.user = :user AND u.classification = :classification")
 })
+@Audited
 public class UserClassification extends Model{
 
     @ManyToOne

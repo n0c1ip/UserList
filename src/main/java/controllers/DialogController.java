@@ -16,6 +16,8 @@ import util.Icons;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -123,7 +125,7 @@ public class DialogController {
     }
 
     public void showNetworkEditDialog(String title, Network network) {
-        getNetworkEditDialog(title,network).showAndWait();
+        getNetworkEditDialog(title, network).showAndWait();
     }
     public Stage getNetworkEditDialog(String title, Network network){
         final Stage dialog = new Stage();
@@ -148,7 +150,7 @@ public class DialogController {
     }
 
     public void showVlanEditDialog(String title, Vlan vlan) {
-        getVlanEditDialog(title,vlan).showAndWait();
+        getVlanEditDialog(title, vlan).showAndWait();
     }
     private Stage getVlanEditDialog(String title, Vlan vlan) {
         final Stage dialog = new Stage();
@@ -372,7 +374,7 @@ public class DialogController {
     }
 
     public void showLocationEditDialog(String title, Location location){
-        getLocationEditDialog(title,location).showAndWait();
+        getLocationEditDialog(title, location).showAndWait();
     }
     public Stage getLocationEditDialog(String title, Location location) {
         final Stage dialog = new Stage();
@@ -407,6 +409,20 @@ public class DialogController {
         alert.setTitle(dialogTitle);
         alert.setHeaderText(null);
         alert.setContentText(contentText);
+        return alert;
+    }
+
+    public static void showLastEditDialog(String userName, Date editDate){
+        getLastEditDialog(userName, editDate).showAndWait();
+    }
+    public static Alert getLastEditDialog(String userName, Date editDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy' 'HH:mm:ss");
+        String formattedDate = simpleDateFormat.format(editDate);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(I18n.DIALOG.getString("Dialog.LastEditHeader"));
+        alert.setHeaderText(null);
+        alert.setContentText(I18n.DIALOG.getString("Dialog.LastEditUser") + ": " + userName + "\n" +
+                        I18n.DIALOG.getString("Dialog.LastEditDate") + ": " + formattedDate);
         return alert;
     }
 

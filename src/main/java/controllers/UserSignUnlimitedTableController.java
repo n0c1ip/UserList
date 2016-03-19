@@ -1,13 +1,12 @@
 package controllers;
 
+import crudDB.ExtendedRevisionService;
 import crudDB.UserSignUnlimitedService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import objects.ExtendedRevisionEntity;
 import objects.User;
 import objects.UserSignUnlimited;
 import util.ActiveUser;
@@ -29,12 +28,22 @@ public class UserSignUnlimitedTableController {
     private TableColumn<UserSignUnlimited, String> signUnlimitedNameColumn;
     @FXML
     private TableColumn<UserSignUnlimited, String> userSignUnlimitedValueColumn;
+
     private User user;
+    private ContextMenu contextMenu;
 
     @FXML
     private void initialize(){
+
+        initiateContextMenu();
         if (ActiveUser.hasPermission(Permission.WRITE)) {
             tableView.setOnMousePressed(event -> {
+                if (event.isPrimaryButtonDown() && contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+                if (event.isSecondaryButtonDown()) {
+                    contextMenu.show(tableView,event.getScreenX(),event.getScreenY());
+                }
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     handleEditUserSignUnlimitedButton();
                 }
@@ -48,6 +57,19 @@ public class UserSignUnlimitedTableController {
 
         signUnlimitedNameColumn.setCellValueFactory(cellData -> cellData.getValue().getSignUnlimited().getNameProperty());
         userSignUnlimitedValueColumn.setCellValueFactory(cellData -> cellData.getValue().getValueProperty());
+    }
+
+
+    private void initiateContextMenu(){
+        MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
+        contextMenu = new ContextMenu(lastEdit);
+        lastEdit.setOnAction(event -> {
+            UserSignUnlimited selectedUserSignUnlimited = tableView.getSelectionModel().getSelectedItem();
+            if (selectedUserSignUnlimited != null) {
+                ExtendedRevisionEntity revisionEntity = ExtendedRevisionService.getLastRevisionEntity(UserSignUnlimited.class, selectedUserSignUnlimited);
+                DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
     }
 
     public void showUserUnlimitedSigns(){

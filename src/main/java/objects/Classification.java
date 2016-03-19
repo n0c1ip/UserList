@@ -3,6 +3,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
         @NamedQuery(name="Classification.getByName",
                 query="SELECT c FROM Classification c WHERE c.name = :name")
 })
-
+@Audited
 public class Classification extends Model {
     @NotBlank(message = "Название должно быть заполнено")
     private String name;

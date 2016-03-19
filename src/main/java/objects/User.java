@@ -4,6 +4,7 @@ import crudDB.UserClassificationService;
 import crudDB.UserSignUnlimitedService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,6 +24,7 @@ import java.util.List;
         @NamedQuery(name="User.getUsersByClassification",
                 query="SELECT u FROM UserClassification uc JOIN uc.user u WHERE uc.classification = :classification")
 })
+@Audited
 public class User extends Model{
 
     private static final long serialVersionUID = 1L;

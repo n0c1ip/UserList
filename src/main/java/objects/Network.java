@@ -2,6 +2,7 @@ package objects;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="network")
 @NamedQuery(name="Network.getAll",   query="SELECT n FROM Network n")
+@Audited
 public class Network extends Model{
 
     private String network;
