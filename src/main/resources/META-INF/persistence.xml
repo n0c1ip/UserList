@@ -14,7 +14,6 @@
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="root"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.connection.autocommit" value = "true" />
         </properties>
     </persistence-unit>
 </persistence>

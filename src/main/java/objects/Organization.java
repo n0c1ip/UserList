@@ -22,7 +22,7 @@ public class Organization extends Model {
     @NotBlank(message = "Название должно быть заполнено")
     private String name;
 
-    @OneToMany(mappedBy="organization")
+    @OneToMany(mappedBy="organization", fetch = FetchType.LAZY)
     private Set<Department> departmentSet;
 
     public Organization() {
