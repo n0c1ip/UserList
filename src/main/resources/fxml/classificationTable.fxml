@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -40,7 +41,6 @@
                             <children>
                                 <HBox alignment="CENTER_RIGHT" layoutX="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="369.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                              <TextField fx:id="searchField" prefHeight="25.0" prefWidth="177.0" promptText="%TextField.Filter" />
                                         <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddUserToClassificationButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
                                             <opaqueInsets>
                                                 <Insets />
