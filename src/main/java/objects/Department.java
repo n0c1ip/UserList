@@ -26,7 +26,7 @@ public class Department extends Model{
     @NotBlank(message = "Название должно быть заполнено")
     private String name;
 
-    @OneToMany(mappedBy="department")
+    @OneToMany(mappedBy="department", fetch = FetchType.LAZY)
     private Set<User> userSet;
 
     @ManyToOne

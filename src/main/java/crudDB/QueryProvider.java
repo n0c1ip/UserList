@@ -15,14 +15,14 @@ public class QueryProvider {
         manager.getTransaction().begin();
         T returnValue = callable.call(manager);
         manager.getTransaction().commit();
-        manager.close();
+//        manager.close();
         return returnValue;
     }
 
     static <T> T doQueryCasual(Query<T> callable){
         EntityManager manager = EntityManagerFactory.createEntityManager();
         T returnValue = callable.call(manager);
-        manager.close();
+//        manager.close();
         return returnValue;
     }
 

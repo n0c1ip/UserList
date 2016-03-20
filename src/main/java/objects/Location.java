@@ -30,7 +30,7 @@ public class Location extends Model {
 
     private String address;
 
-    @OneToMany(mappedBy="location")
+    @OneToMany(mappedBy="location", fetch = FetchType.LAZY)
     private Set<User> userSet;
 
     public Location() {

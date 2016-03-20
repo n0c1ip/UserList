@@ -37,12 +37,12 @@ public class User extends Model{
 
     private String middleName = "";
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="department_id")
     @NotNull(message = "Подразделение должно быть указано")
     private Department department;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="location_id")
     private Location location = new Location("");
 
@@ -59,7 +59,7 @@ public class User extends Model{
     @Email(message = "Эл. почта не соответсвует формату")
     private String mail = "";
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="pc_id")
     private Pc pc;
 

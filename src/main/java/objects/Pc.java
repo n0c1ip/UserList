@@ -23,13 +23,13 @@ public class Pc extends Model{
 
     private String ipAddress;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vlan_id")
     private Vlan vlan;
 
     private boolean dhcp;
 
-    @OneToOne(mappedBy="pc")
+    @OneToOne(mappedBy="pc", fetch = FetchType.LAZY)
     private User user;
 
     public Pc() {
