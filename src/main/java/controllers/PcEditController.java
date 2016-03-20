@@ -46,6 +46,19 @@ public class PcEditController {
         ObservableList<Vlan> vlanList = FXCollections.observableArrayList(VlanService.getAll());
         vlanComboBox.setItems(vlanList);
 
+        ipAddressType.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue ) -> changedIpAddressType(newValue));
+
+    }
+
+    private void changedIpAddressType(String newValue) {
+        if(newValue.equals("DHCP")){
+            ipAddressField.setDisable(true);
+            ipAddressField.clear();
+        } else {
+            ipAddressField.setDisable(false);
+            ipAddressField.setText(editedPc.getIpAddress());
+        }
     }
 
     public void handleSelectButton() {
@@ -58,12 +71,13 @@ public class PcEditController {
 
     public void handleOkButton(){
         editedPc.setName(pcNameField.getText());
-        editedPc.setIpAddress(ipAddressField.getText());
         editedPc.setVlan(vlanComboBox.getValue());
         if(ipAddressType.getSelectionModel().getSelectedItem().equals("DHCP")){
             editedPc.setDhcp(true);
+            editedPc.setIpAddress("");
         } else {
             editedPc.setDhcp(false);
+            editedPc.setIpAddress(ipAddressField.getText());
         }
         PcService.add(editedPc);
         closeWindow();

@@ -73,7 +73,11 @@ public class Pc extends Model{
         this.vlan = vlan;
     }
     public StringProperty getVlanProperty(){
-        return new SimpleStringProperty(this.vlan.getNumber());
+        if(this.vlan != null){
+            return new SimpleStringProperty(this.vlan.getNumber());
+        } else {
+            return new SimpleStringProperty("");
+        }
     }
 
     public boolean isDhcp() {
