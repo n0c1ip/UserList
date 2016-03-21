@@ -26,6 +26,9 @@ public class Classification extends Model {
 
     public Classification() {
     }
+    public Classification(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }
