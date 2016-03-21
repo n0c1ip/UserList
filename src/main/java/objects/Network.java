@@ -21,6 +21,10 @@ public class Network extends Model{
     public Network() {
     }
 
+    public Network(String network) {
+        this.network = network;
+    }
+
     public String getNetwork() {
         return network;
     }
