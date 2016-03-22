@@ -185,21 +185,11 @@ public class User extends Model{
         String userInfo = lastName + " "
                 + firstName + " "
                 + middleName + " "
-        /*        + department + " "
-                + pc + " " */
+                + department + " "
+            /*    + pc + " " */
                 + login + " "
                 + password + " "
                 + mail + " ";
-
-    /*    List<UserSignUnlimited> signs = UserSignUnlimitedService.getByUser(this);
-        for (UserSignUnlimited sign : signs) {
-            userInfo += sign.getValue() + " ";
-        }
-
-        List<UserClassification> classifications = UserClassificationService.getByUser(this);
-        for (UserClassification classification : classifications) {
-            userInfo += classification.getClassification().getName() + " ";
-        } */
 
         return userInfo.replaceAll("\\s{2,}", " ");
     }
