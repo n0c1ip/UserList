@@ -38,7 +38,7 @@ public class UserEditControllerTest extends GuiTest {
         click("#locationBox").push(KeyCode.ESCAPE);
         click("#departmentBox").push(KeyCode.ESCAPE);
         click("#positionField").type("d");
-        click("#pcField").type("e");
+        click("#pcComboBox").push(KeyCode.ESCAPE);
         click("#loginField").type("f");
         click("#passwordField").type("g");
         click("#mailField").type("h");
