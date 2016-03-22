@@ -15,11 +15,11 @@
                      <children>
                          <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
-                                 <TableColumn fx:id="pcNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя PC" />
-                                 <TableColumn fx:id="pcIpAddressType" minWidth="-1.0" prefWidth="-1.0" text="Тип адреса" />
-                                 <TableColumn fx:id="pcIpAddress" minWidth="-1.0" prefWidth="-1.0" text="IP адрес" />
-                                 <TableColumn fx:id="pcVlan" minWidth="-1.0" prefWidth="-1.0" text="VLAN" />
-                                 <TableColumn fx:id="pcUserName" minWidth="-1.0" prefWidth="-1.0" text="Пользователь" />
+                                 <TableColumn fx:id="pcNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.PcName" />
+                                 <TableColumn fx:id="pcIpAddressType" minWidth="-1.0" prefWidth="-1.0" text="%Column.IpType" />
+                                 <TableColumn fx:id="pcIpAddress" minWidth="-1.0" prefWidth="-1.0" text="%Column.IpAddress" />
+                                 <TableColumn fx:id="pcVlan" minWidth="-1.0" prefWidth="-1.0" text="%Column.VLAN" />
+                                 <TableColumn fx:id="pcUserName" minWidth="-1.0" prefWidth="-1.0" text="%Column.User" />
                              </columns>
                              <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -31,17 +31,17 @@
                      <children>
                             <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="599.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
-                                    <Button fx:id="addButton" onAction="#hadnleNewPcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
+                                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#hadnleNewPcButton" prefHeight="25.0" prefWidth="97.0" text="%Button.add">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="changeButton" onAction="#handleEditPcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.edit">
+                                    <Button fx:id="changeButton" mnemonicParsing="false" onAction="#handleEditPcButton" prefHeight="25.0" prefWidth="97.0" text="%Button.edit">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="removeButton" onAction="#handleRemovePcButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
+                                    <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemovePcButton" prefHeight="25.0" prefWidth="97.0" text="%Button.remove">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>

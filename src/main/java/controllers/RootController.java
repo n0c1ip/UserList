@@ -81,7 +81,7 @@ public class RootController {
             PcTableController controller = loader.getController();
             controller.setMainController(mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Компьютеры");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Computers"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -98,7 +98,7 @@ public class RootController {
             PhysicalServerTableController controller = loader.getController();
             controller.setMainController(mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Серверы");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Servers"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
@@ -183,7 +183,7 @@ public class RootController {
             NetworkTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Сети");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Networks"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {

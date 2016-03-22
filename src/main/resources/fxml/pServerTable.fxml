@@ -15,13 +15,13 @@
                      <children>
                          <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columns>
-                                 <TableColumn fx:id="serverNameColumn" minWidth="-1.0" prefWidth="-1.0" text="Имя сервера" />
-                                 <TableColumn fx:id="serverModelColumn" minWidth="-1.0" prefWidth="101.0" text="Модель" />
-                                 <TableColumn fx:id="serverTypeColumn" minWidth="-1.0" prefWidth="140.0" text="Тип" />
-                                 <TableColumn fx:id="serverIpAddressColumn" minWidth="-1.0" prefWidth="-1.0" text="IP адрес" />
-                                 <TableColumn fx:id="serverRamColumn" minWidth="-1.0" prefWidth="-1.0" text="RAM" />
-                              <TableColumn fx:id="serverOsColumn" prefWidth="75.0" text="OS" />
-                              <TableColumn fx:id="serverDescriptionColumn" prefWidth="75.0" text="Описание" />
+                                 <TableColumn fx:id="serverNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.ServerName" />
+                                 <TableColumn fx:id="serverModelColumn" minWidth="-1.0" prefWidth="101.0" text="%Column.ServerModel" />
+                                 <TableColumn fx:id="serverTypeColumn" minWidth="-1.0" prefWidth="140.0" text="%Column.Type" />
+                                 <TableColumn fx:id="serverIpAddressColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.IpAddress" />
+                                 <TableColumn fx:id="serverRamColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Ram" />
+                              <TableColumn fx:id="serverOsColumn" prefWidth="75.0" text="%Column.Os" />
+                              <TableColumn fx:id="serverDescriptionColumn" prefWidth="75.0" text="%Column.Description" />
                              </columns>
                              <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

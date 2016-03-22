@@ -21,15 +21,15 @@
                       <MenuItem fx:id="itemClassificationTable" mnemonicParsing="false" onAction="#showClassificationTable" text="%MenuBar.Classification" />
                     </items>
                 </Menu>
-            <Menu fx:id="itemEquipment" mnemonicParsing="false" text="Оборудование">
+            <Menu fx:id="itemEquipment" mnemonicParsing="false" text="%MenuBar.Equipment">
               <items>
-                <MenuItem fx:id="pcItem" mnemonicParsing="false" onAction="#showPcTable" text="Компьютеры" />
-                  <MenuItem mnemonicParsing="false" onAction="#showPhysicalServerTable" text="Серверы" />
+                <MenuItem fx:id="pcItem" mnemonicParsing="false" onAction="#showPcTable" text="%MenuBar.Computers" />
+                  <MenuItem mnemonicParsing="false" onAction="#showPhysicalServerTable" text="%MenuBar.Servers" />
               </items>
             </Menu>
-            <Menu fx:id="menuNetwork" mnemonicParsing="false" text="Сеть">
+            <Menu fx:id="menuNetwork" mnemonicParsing="false" text="%MenuBar.Network">
               <items>
-                <MenuItem fx:id="itemNetworks" mnemonicParsing="false" onAction="#showNetworkTable" text="Сети" />
+                <MenuItem fx:id="itemNetworks" mnemonicParsing="false" onAction="#showNetworkTable" text="%MenuBar.Networks" />
                   <MenuItem fx:id="itemVlans" mnemonicParsing="false" onAction="#showVlanTable" text="VLAN" />
               </items>
             </Menu>
