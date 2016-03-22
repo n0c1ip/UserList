@@ -92,6 +92,7 @@ public class NetworkTableController {
         if (selectedNetwork != null) {
             mainController.getDialogController().showNetworkEditDialog("Редактирование подсети", selectedNetwork);
         }
+        showAllNetworks();
     }
 
     public void setMainController(MainController mainController) {

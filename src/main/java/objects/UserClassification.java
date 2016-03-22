@@ -30,6 +30,10 @@ public class UserClassification extends Model{
 
     public UserClassification() {
     }
+    public UserClassification(User user, Classification classification) {
+        this.user = user;
+        this.classification = classification;
+    }
 
     public User getUser() {
         return user;

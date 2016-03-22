@@ -96,6 +96,7 @@ public class VlanTableController {
         if (selectedVlan != null) {
             mainController.getDialogController().showVlanEditDialog("Редактирование VLAN", selectedVlan);
         }
+        showAllVlans();
     }
 
     public void setMainController(MainController mainController) {
