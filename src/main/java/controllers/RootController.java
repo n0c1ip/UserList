@@ -90,6 +90,23 @@ public class RootController {
         }
     }
 
+    public void showPhysicalServerTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("pServerTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            PhysicalServerTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab("Серверы");
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу серверов");
+        }
+    }
+
     public void showOrganizationTable() {
          try {
             FXMLLoader loader = Fxml.getFXMLLoader("OrganizationTable.fxml");
