@@ -70,10 +70,10 @@ public class PcTableController {
             }
             return new SimpleStringProperty("");
         });
-        pcIpAddressType.setCellValueFactory(cellData ->{
-            if(cellData.getValue().isDhcp()){
+        pcIpAddressType.setCellValueFactory(cellData -> {
+            if (cellData.getValue().isDhcp()) {
                 return new SimpleStringProperty("DHCP");
-            }else {
+            } else {
                 return new SimpleStringProperty("Static");
             }
 
@@ -94,18 +94,25 @@ public class PcTableController {
     }
 
     private void showAllPc(){
-        tableView.setItems(FXCollections.observableArrayList(PcService.getAll()));
+        Alert loadingAlert = DialogController.getAlertDialog(Alert.AlertType.INFORMATION, "", "Загрузка...");
+        AsyncJavaFX.executeInNewThread(() -> {
+            tableView.setItems(FXCollections.observableArrayList(PcService.getAll()));
+            loadingAlert.close();
+        });
+        loadingAlert.showAndWait();
     }
 
     @FXML
     private void hadnleNewPcButton(){
         mainController.getDialogController().showPcEditDialog("Создание компьютера", new Pc());
+        showAllPc();
     }
 
     @FXML
     private void handleEditPcButton(){
         Pc selectedPc = tableView.getSelectionModel().getSelectedItem();
         mainController.getDialogController().showPcEditDialog("Редактирование компьютера", selectedPc);
+        showAllPc();
     }
 
     @FXML
