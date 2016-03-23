@@ -19,7 +19,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Label prefHeight="33.0" prefWidth="99.0" text="Description" GridPane.rowIndex="1">
+             <Label prefHeight="33.0" prefWidth="99.0" text="%Column.Description" GridPane.rowIndex="1">
                  <padding>
                      <Insets left="20.0" />
                  </padding>
@@ -28,7 +28,7 @@
                      <Font name="System Bold" size="12.0" />
                  </font>
              </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="Network">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Column.Network">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />

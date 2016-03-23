@@ -81,12 +81,29 @@ public class RootController {
             PcTableController controller = loader.getController();
             controller.setMainController(mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Компьютеры");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Computers"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             DialogController.showErrorDialog("Не удалось загрузить таблицу компьютеров");
+        }
+    }
+
+    public void showPhysicalServerTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("pServerTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            PhysicalServerTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Servers"));
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу серверов");
         }
     }
 
@@ -166,7 +183,7 @@ public class RootController {
             NetworkTableController controller = loader.getController();
             controller.setMainController(this.mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
-            Tab tab = new Tab("Сети");
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Networks"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {
