@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
-import start.EntryPoint;
 import util.Fxml;
 import util.I18n;
 
@@ -73,6 +72,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
 
     @Test
     public void shouldOpenUserEditDialog() throws Exception {
+        find("#addButton").setDisable(false);
         click("#addButton");
         AnchorPane userEdit = find("#paneUserEdit");
         Assert.assertTrue(userEdit.getScene().getWindow().isShowing());
