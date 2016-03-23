@@ -244,7 +244,7 @@ public class DialogController {
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            showErrorDialog("Не удалось загрузить интерфейс редактирования компьютера");
+            showErrorDialog("Не удалось загрузить интерфейс редактирования сервера");
         }
         return dialog;
     }
