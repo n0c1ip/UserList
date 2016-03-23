@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class UploadInExcelService {
 
+    private UploadInExcelService() {
+    }
+
     public static void uploadInExcel(ObservableList<TableColumn> columns,
                                      ObservableList<User> userList,
                                      File file) throws IOException {

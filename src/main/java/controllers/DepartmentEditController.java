@@ -14,16 +14,10 @@ public class DepartmentEditController {
     @FXML
     private Button okButton;
     @FXML
-    private Button cancelButton;
-    @FXML
     private TextField nameField;
 
     private Department editedDepartment;
     private Organization activeOrganization;
-
-    @FXML
-    private void initialize() {
-    }
 
     @FXML
     private void handleOkButton() {

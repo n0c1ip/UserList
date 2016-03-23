@@ -28,8 +28,6 @@ public class PhysicalServerEditController {
     private TextArea serverDescriptionField;
     @FXML
     private Button okButton;
-    @FXML
-    private Button cancelButton;
 
     private PhysicalServer editedServer;
 

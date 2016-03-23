@@ -14,15 +14,9 @@ public class SignUnlimitedEditController {
     @FXML
     private Button okButton;
     @FXML
-    private Button cancelButton;
-    @FXML
     private TextField nameField;
 
     private SignUnlimited editedSignUnlimited;
-
-    @FXML
-    private void initialize() {
-    }
 
     @FXML
     private void handleOkButton() {

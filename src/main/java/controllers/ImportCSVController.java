@@ -39,10 +39,10 @@ public class ImportCSVController {
      */
     @FXML
     private void initialize(){
-        if (ActiveUser.hasPermission(Permission.WRITE)) {
-        } else {
+        if (!ActiveUser.hasPermission(Permission.WRITE)) {
             choiceLoad.setDisable(true);
         }
+
         ObservableList<Organization> organizations = FXCollections.observableArrayList();
         organizations.addAll(OrganizationService.getAll());
         choiceBox.setItems(organizations.sorted());

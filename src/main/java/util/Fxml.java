@@ -3,7 +3,7 @@ package util;
 import javafx.fxml.FXMLLoader;
 import start.EntryPoint;
 
-public class Fxml {
+public final class Fxml {
 
     private Fxml(){}
 

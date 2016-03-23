@@ -2,7 +2,7 @@ package crudDB;
 
 import javax.persistence.EntityManager;
 
-public class QueryProvider {
+public final class QueryProvider {
 
     private QueryProvider() {}
 

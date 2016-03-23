@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class EntityManagerFactory {
+public final class EntityManagerFactory {
 
     private EntityManagerFactory() {}
 

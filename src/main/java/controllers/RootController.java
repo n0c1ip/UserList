@@ -25,17 +25,17 @@ import java.io.IOException;
 public class RootController {
 
     @FXML
-    Menu menuTables;
+    private Menu menuTables;
     @FXML
-    Menu menuTablesStructure;
+    private Menu menuTablesStructure;
     @FXML
-    Menu itemEquipment;
+    private Menu itemEquipment;
     @FXML
-    MenuItem uploadInExcel;
+    private MenuItem uploadInExcel;
     @FXML
-    MenuItem itemImportCsv;
+    private MenuItem itemImportCsv;
     @FXML
-    Menu menuNetwork;
+    private Menu menuNetwork;
 
 
 

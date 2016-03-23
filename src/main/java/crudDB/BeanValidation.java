@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class BeanValidation {
 
+    private BeanValidation() {
+    }
+
     private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     public static <T> boolean isCorrectData (T data){

@@ -9,6 +9,9 @@ import java.util.concurrent.CountDownLatch;
 
 public class AsyncJavaFX {
 
+    private AsyncJavaFX() {
+    }
+
     public interface JavaFXActions {
         void execute();
     }

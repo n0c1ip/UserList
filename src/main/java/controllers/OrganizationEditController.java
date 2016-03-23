@@ -22,10 +22,6 @@ public class OrganizationEditController {
     private Organization editedOrganization;
 
     @FXML
-    private void initialize() {
-    }
-
-    @FXML
     private void handleOkButton() {
         editedOrganization.setName(nameField.getText());
         if (BeanValidation.isCorrectData(editedOrganization)) {

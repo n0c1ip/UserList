@@ -6,6 +6,9 @@ import java.util.EnumSet;
 
 public class ActiveUser {
 
+    private ActiveUser() {
+    }
+
     private static EnumSet<Permission> permissions = null;
 
     public static void setPermissions(Permission... permissions) {

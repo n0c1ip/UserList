@@ -2,9 +2,7 @@ package crudFiles;
 
 
 import controllers.DialogController;
-import crudDB.EntityManagerFactory;
 import crudDB.LocationService;
-import javafx.scene.control.Alert;
 import objects.Location;
 import objects.Settings;
 
@@ -14,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class SettingsService {
+public final class SettingsService {
 
     private SettingsService() {}
 
