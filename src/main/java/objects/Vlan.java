@@ -28,6 +28,10 @@ public class Vlan extends Model {
     public Vlan() {
     }
 
+    public Vlan(String number) {
+        this.number = number;
+    }
+
     public String getNumber() {
         return number;
     }
