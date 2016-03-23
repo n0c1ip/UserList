@@ -225,6 +225,32 @@ public class DialogController {
         return dialog;
     }
 
+    public void showPServerEditDialog(String title, PhysicalServer physicalServer) {
+        getPServerEditDialog(title,physicalServer).showAndWait();
+    }
+    public Stage getPServerEditDialog(String title,PhysicalServer physicalServer){
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("pServerEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane pServerEdit = loader.load();
+            PhysicalServerEditController controller = loader.getController();
+            controller.setEditedServer(physicalServer);
+            dialog.setScene(new Scene(pServerEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showErrorDialog("Не удалось загрузить интерфейс редактирования компьютера");
+        }
+        return dialog;
+    }
+
+
+
     public void showSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
         getSignUnlimitedEditDialog(title, signUnlimited).showAndWait();
     }
@@ -460,7 +486,6 @@ public class DialogController {
         fileChooser.getExtensionFilters().add(extFilter);
         return fileChooser.showSaveDialog(primaryStage);
     }
-
 
 
 }
