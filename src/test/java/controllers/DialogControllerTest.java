@@ -62,14 +62,6 @@ public class DialogControllerTest extends GuiTest {
     }
 
     @Test
-    public void loginDialogShouldBeCorrect() {
-        Assert.assertNotNull(loginDialog);
-        Assert.assertNotNull(loginDialog.getOwner());
-        Assert.assertEquals(GuiTest.stage, loginDialog.getOwner());
-        Assert.assertNotNull(loginDialog.getScene().getRoot());
-    }
-
-    @Test
     public void userChoiceDialogShouldBeCorrect() {
         Assert.assertNotNull(userChoiceDialog);
         Assert.assertEquals(userChoiceDialogTitleText, userChoiceDialog.getTitle());
