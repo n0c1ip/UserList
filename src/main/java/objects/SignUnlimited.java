@@ -1,7 +1,6 @@
 package objects;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;

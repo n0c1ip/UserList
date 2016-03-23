@@ -6,14 +6,22 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.ActiveUser;
 import util.Fxml;
 import util.I18n;
+import util.Permission;
 
 import java.io.IOException;
 
 public class SignUnlimitedTableControllerTest extends GuiTest {
+
+    @BeforeClass
+    public static void givePrivileges() {
+        ActiveUser.setPermissions(Permission.WRITE);
+    }
 
     @Override
     protected Parent getRootNode() {

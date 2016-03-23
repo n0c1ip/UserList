@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceTest {
 
 
-    private static Organization organization;
+    private static Organization organization = null;
 
     @BeforeClass
     public static void createOrganization() {

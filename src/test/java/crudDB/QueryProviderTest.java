@@ -12,7 +12,7 @@ import static crudDB.QueryProvider.doQueryInTransaction;
 
 public class QueryProviderTest {
 
-    private static Organization organization;
+    private static Organization organization = null;
 
     @BeforeClass
     public static void createOrganization() {

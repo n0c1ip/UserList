@@ -2,12 +2,11 @@ package util;
 
 import javafx.scene.image.Image;
 
-import java.io.File;
-
 public class Icons {
 
     private Icons() {}
 
+    @SuppressWarnings("HardcodedFileSeparator")
     private static Image createImageObject(String imageFile) {
         String folder = "icons";
         return new Image(folder + "/" + imageFile);

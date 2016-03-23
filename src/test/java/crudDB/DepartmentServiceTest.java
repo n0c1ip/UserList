@@ -13,7 +13,7 @@ import java.util.List;
 public class DepartmentServiceTest {
 
 
-    private static Organization organization;
+    private static Organization organization = null;
 
     @BeforeClass
     public static void createOrganization() {

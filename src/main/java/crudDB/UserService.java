@@ -59,7 +59,6 @@ public class UserService {
         return doQueryCasual(manager -> {
             TypedQuery<User> namedQuery = manager.createNamedQuery("User.getUsersByClassification", User.class);
             namedQuery.setParameter("classification",classification);
-            List<User> user = namedQuery.getResultList();
             return namedQuery.getResultList();
         });
     }

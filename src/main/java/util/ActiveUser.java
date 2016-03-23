@@ -13,7 +13,7 @@ public class ActiveUser {
     }
 
     public static boolean hasPermission(Permission permission) {
-        return permissions == null ? false : permissions.contains(permission);
+        return permissions != null && permissions.contains(permission);
     }
 
 }

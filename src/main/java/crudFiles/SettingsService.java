@@ -2,9 +2,7 @@ package crudFiles;
 
 
 import controllers.DialogController;
-import crudDB.EntityManagerFactory;
 import crudDB.LocationService;
-import javafx.scene.control.Alert;
 import objects.Location;
 import objects.Settings;
 
