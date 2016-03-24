@@ -4,10 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "physical_server")
@@ -24,7 +22,13 @@ public class PhysicalServer extends Server{
     private TYPE type;
     private boolean isVirtualHost;
 
+    @OneToMany(mappedBy="pServer", fetch = FetchType.LAZY)
+    private Set<VirtualServer> virtualServers;
+
     public enum TYPE {RACK, TOWER}
+
+    public PhysicalServer() {
+    }
 
     public String getModel() {
         return model;
