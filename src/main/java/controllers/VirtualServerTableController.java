@@ -2,16 +2,18 @@ package controllers;
 
 import crudDB.ExtendedRevisionService;
 import crudDB.PhysicalServerService;
+import crudDB.VirtualServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
 import objects.PhysicalServer;
+import objects.VirtualServer;
 import util.ActiveUser;
 import util.I18n;
 import util.Permission;
 
-public class PhysicalServerTableController {
+public class VirtualServerTableController {
 
     private MainController mainController;
     @FXML
@@ -21,21 +23,21 @@ public class PhysicalServerTableController {
     @FXML
     private Button removeButton;
     @FXML
-    private TableView<PhysicalServer> tableView;
+    private TableView<VirtualServer> tableView;
     @FXML
-    private TableColumn<PhysicalServer, String> serverNameColumn;
+    private TableColumn<VirtualServer, String> serverNameColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverModelColumn;
+    private TableColumn<VirtualServer, String> vmHostColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverTypeColumn;
+    private TableColumn<VirtualServer, String> serverDescriptionColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverIpAddressColumn;
+    private TableColumn<VirtualServer, String> serverOsColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverRamColumn;
+    private TableColumn<VirtualServer, String> serverHddColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverOsColumn;
+    private TableColumn<VirtualServer, String> serverIpAddressColumn;
     @FXML
-    private TableColumn<PhysicalServer, String> serverDescriptionColumn;
+    private TableColumn<VirtualServer, String> serverRamColumn;
 
 
     private ContextMenu contextMenu;
@@ -64,29 +66,29 @@ public class PhysicalServerTableController {
         showAllServers();
 
         serverNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        serverModelColumn.setCellValueFactory(cellData -> cellData.getValue().getModelProperty());
-        serverTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
+        vmHostColumn.setCellValueFactory(cellData -> cellData.getValue().getPhysicalServerProperty());
+        serverDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
+        serverOsColumn.setCellValueFactory(cellData -> cellData.getValue().getOsProperty());
+        serverHddColumn.setCellValueFactory(cellData -> cellData.getValue().getHddProperty());
         serverIpAddressColumn.setCellValueFactory(cellData -> cellData.getValue().getIpAddressProperty());
         serverRamColumn.setCellValueFactory(cellData -> cellData.getValue().getRamProperty());
-        serverOsColumn.setCellValueFactory(cellData -> cellData.getValue().getOsProperty());
-        serverDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
     }
 
     private void initiateContextMenu(){
         MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
         contextMenu = new ContextMenu(lastEdit);
         lastEdit.setOnAction(event -> {
-            PhysicalServer selectedServer = tableView.getSelectionModel().getSelectedItem();
+            VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
             if (selectedServer != null) {
                 ExtendedRevisionEntity revisionEntity =
-                        ExtendedRevisionService.getLastRevisionEntity(PhysicalServer.class, selectedServer);
+                        ExtendedRevisionService.getLastRevisionEntity(VirtualServer.class, selectedServer);
                 DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
             }
         });
     }
 
     private void showAllServers(){
-        tableView.setItems(FXCollections.observableArrayList(PhysicalServerService.getAll()));
+        tableView.setItems(FXCollections.observableArrayList(VirtualServerService.getAll()));
     }
 
     @FXML
@@ -96,15 +98,15 @@ public class PhysicalServerTableController {
 
     @FXML
     private void handleEditPcButton(){
-        PhysicalServer selectedServer = tableView.getSelectionModel().getSelectedItem();
-        mainController.getDialogController().showPServerEditDialog("Редактирование сервера", selectedServer);
+        VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
+//        mainController.getDialogController().showPServerEditDialog("Редактирование сервера", selectedServer);
     }
 
     @FXML
     private void handleRemovePcButton(){
-        PhysicalServer selectedServer = tableView.getSelectionModel().getSelectedItem();
+        VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
         if(selectedServer != null){
-            PhysicalServerService.delete(selectedServer.getId());
+            VirtualServerService.delete(selectedServer.getId());
             showAllServers();
         } else {
             DialogController.showErrorDialog("Не выбран сервер");

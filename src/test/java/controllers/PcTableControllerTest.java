@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import util.Fxml;
@@ -13,7 +12,10 @@ import util.I18n;
 
 import java.io.IOException;
 
-public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
+
+public class PcTableControllerTest extends GuiTest {
 
     @Override
     protected Parent getRootNode() {
@@ -21,42 +23,48 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = Fxml.getFXMLLoader("byOrganizationDepartmentsTable.fxml");
+        FXMLLoader loader = Fxml.getFXMLLoader("pcTable.fxml");
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
-
         try {
             table = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DepartmentsInOrganizationTableController controller = loader.getController();
+        PcTableController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }
 
     @Test
-    public void shouldHaveAllElements() throws Exception {
-        Assert.assertNotNull(find("#organizationListView"));
-        Assert.assertNotNull(find("#tableView"));
-        Assert.assertNotNull(find("#departmentNameColumn"));
-
-        Assert.assertNotNull(find("#addButton"));
-        Assert.assertNotNull(find("#changeButton"));
-        Assert.assertNotNull(find("#removeButton"));
+    public void shouldSortColumn() throws Exception {
+        click("#pcNameColumn");
+        click("#pcIpAddressType");
+        click("#pcIpAddress");
+        click("#pcVlan");
+        click("#pcUserName");
     }
 
     @Test
-    public void shouldSortTable() throws Exception {
-        click("#departmentNameColumn");
+    public void shouldHaveManagementButtons() throws Exception {
+        assertNotNull(find("#addButton"));
+        assertNotNull(find("#changeButton"));
+        assertNotNull(find("#removeButton"));
     }
 
     @Test
-    public void shouldOpenDepartmentEditDialog() throws Exception {
+    public void shouldHaveTableView() throws Exception {
+        assertNotNull(find("#tableView"));
+    }
+
+    @Test
+    public void shouldOpenPcEditDialog() throws Exception {
         find("#addButton").setDisable(false);
         click("#addButton");
-        AnchorPane departmentEdit = find("#paneDepartmentEdit");
-        Assert.assertTrue(departmentEdit .getScene().getWindow().isShowing());
+        AnchorPane userEdit = find("#panePcEdit");
+        assertTrue(userEdit.getScene().getWindow().isShowing());
         type(KeyCode.ESCAPE);
     }
+
+
 }

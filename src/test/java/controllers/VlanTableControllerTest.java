@@ -3,8 +3,6 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
@@ -13,7 +11,9 @@ import util.I18n;
 
 import java.io.IOException;
 
-public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
+import static junit.framework.TestCase.assertNotNull;
+
+public class VlanTableControllerTest extends GuiTest{
 
     @Override
     protected Parent getRootNode() {
@@ -21,7 +21,7 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();
-        FXMLLoader loader = Fxml.getFXMLLoader("byOrganizationDepartmentsTable.fxml");
+        FXMLLoader loader = Fxml.getFXMLLoader("vlanTable.fxml");
         loader.setResources(I18n.TABLE.getResourceBundle());
         SplitPane table = new SplitPane();
 
@@ -30,17 +30,18 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DepartmentsInOrganizationTableController controller = loader.getController();
+        VlanTableController controller = loader.getController();
         controller.setMainController(mainController);
         return table;
     }
 
     @Test
-    public void shouldHaveAllElements() throws Exception {
-        Assert.assertNotNull(find("#organizationListView"));
-        Assert.assertNotNull(find("#tableView"));
-        Assert.assertNotNull(find("#departmentNameColumn"));
+    public void shouldHaveVlanTable() throws Exception {
+        assertNotNull(find("#tableView"));
+    }
 
+    @Test
+    public void shouldHaveManagementButtons() throws Exception {
         Assert.assertNotNull(find("#addButton"));
         Assert.assertNotNull(find("#changeButton"));
         Assert.assertNotNull(find("#removeButton"));
@@ -48,15 +49,10 @@ public class DepartmentsInOrganizationTableControllerTest extends GuiTest {
 
     @Test
     public void shouldSortTable() throws Exception {
-        click("#departmentNameColumn");
+        click("#vlanNumberColumn");
+        click("#networkColumn");
+        click("#descriptionColumn");
     }
 
-    @Test
-    public void shouldOpenDepartmentEditDialog() throws Exception {
-        find("#addButton").setDisable(false);
-        click("#addButton");
-        AnchorPane departmentEdit = find("#paneDepartmentEdit");
-        Assert.assertTrue(departmentEdit .getScene().getWindow().isShowing());
-        type(KeyCode.ESCAPE);
-    }
+
 }

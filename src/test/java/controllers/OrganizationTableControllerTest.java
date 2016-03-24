@@ -54,6 +54,7 @@ public class OrganizationTableControllerTest extends GuiTest {
 
     @Test
     public void shouldOpenUserEditDialog() throws Exception {
+        find("#addButton").setDisable(false);
         click("#addButton");
         AnchorPane userEdit = find("#paneOrganizationEdit");
         Assert.assertTrue(userEdit.getScene().getWindow().isShowing());

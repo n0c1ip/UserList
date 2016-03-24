@@ -3,12 +3,17 @@ package controllers;
 import crudDB.PhysicalServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.PhysicalServer;
+import util.Fxml;
+import util.I18n;
+
+import java.io.IOException;
 
 public class PhysicalServerEditController {
 
@@ -25,11 +30,13 @@ public class PhysicalServerEditController {
     @FXML
     private TextField serverOsField;
     @FXML
-    private TextArea serverDescriptionField;
+    private TextField serverDescriptionField;
     @FXML
     private Button okButton;
     @FXML
-    private Button cancelButton;
+    private CheckBox vmHostCheckBox;
+    @FXML
+    private Button vmButton;
 
     private PhysicalServer editedServer;
 
@@ -47,6 +54,7 @@ public class PhysicalServerEditController {
         editedServer.setRam(serverRamField.getText());
         editedServer.setOs(serverOsField.getText());
         editedServer.setDescription(serverDescriptionField.getText());
+        editedServer.setVirtualHost(vmHostCheckBox.isSelected());
         PhysicalServerService.add(editedServer);
         closeWindow();
     }
@@ -70,7 +78,8 @@ public class PhysicalServerEditController {
         serverRamField.setText(pServer.getRam());
         serverOsField.setText(pServer.getOs());
         serverDescriptionField.setText(pServer.getDescription());
+        vmHostCheckBox.setSelected(pServer.isVirtualHost());
+        vmButton.setDisable(!pServer.isVirtualHost());
     }
-
 
 }

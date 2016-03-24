@@ -11,8 +11,6 @@ public class UserMethodChoiceController {
 
     @FXML
     private Button newUserButton;
-    @FXML
-    private Button existingUserButton;
 
     private Location location;
     private DialogController dialogController;

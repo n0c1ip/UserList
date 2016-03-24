@@ -12,6 +12,9 @@ import java.util.List;
 
 public class ExtendedRevisionService {
 
+    private ExtendedRevisionService() {
+    }
+
     public static <T extends Model> T getLastRevision(Class<T> explicitClass, T t) {
         EntityManager entityManager = EntityManagerFactory.createEntityManager();
         AuditReader reader = AuditReaderFactory.get(entityManager);

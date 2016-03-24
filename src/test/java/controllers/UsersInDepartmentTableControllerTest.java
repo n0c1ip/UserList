@@ -75,6 +75,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
 
     @Test
     public void shouldOpenUserEditDialog() throws Exception {
+        find("#addButton").setDisable(false);
         click("#addButton");
         AnchorPane userEdit = find("#paneUserEdit");
         Assert.assertTrue(userEdit.getScene().getWindow().isShowing());

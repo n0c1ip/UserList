@@ -25,6 +25,7 @@
               <items>
                 <MenuItem fx:id="pcItem" mnemonicParsing="false" onAction="#showPcTable" text="%MenuBar.Computers" />
                   <MenuItem mnemonicParsing="false" onAction="#showPhysicalServerTable" text="%MenuBar.Servers" />
+                  <MenuItem mnemonicParsing="false" onAction="#showVirtualServerTable" text="%MenuBar.VirtualServers" />
               </items>
             </Menu>
             <Menu fx:id="menuNetwork" mnemonicParsing="false" text="%MenuBar.Network">

@@ -19,8 +19,6 @@ public class UserSignUnlimitedEditController {
     @FXML
     private Button okButton;
     @FXML
-    private Button cancelButton;
-    @FXML
     private ComboBox<SignUnlimited> signBox;
     @FXML
     private TextField valueField;

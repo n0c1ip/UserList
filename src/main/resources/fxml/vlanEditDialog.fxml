@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="paneLocationEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" prefWidth="379.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VlanEditController">
+<AnchorPane fx:id="paneVlanEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" prefWidth="379.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VlanEditController">
    <children>
       <GridPane fx:id="gridPane" layoutX="1.0" layoutY="33.0" prefHeight="83.0" prefWidth="351.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
         <columnConstraints>
@@ -20,7 +20,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Label prefHeight="33.0" prefWidth="99.0" text="%Column.Description" GridPane.rowIndex="2">
+             <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Description" GridPane.rowIndex="2">
                  <padding>
                      <Insets left="20.0" />
                  </padding>
@@ -29,7 +29,7 @@
                      <Font name="System Bold" size="12.0" />
                  </font>
              </Label>
-            <Label prefHeight="33.0" prefWidth="99.0" text="%Column.Network" GridPane.rowIndex="1">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.Network" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />
@@ -40,7 +40,7 @@
             </Label>
             <TextArea fx:id="descriptionArea" prefHeight="68.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="vlanNumberField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" />
-            <Label prefHeight="33.0" prefWidth="99.0" text="%Column.VlanNumber">
+            <Label prefHeight="33.0" prefWidth="99.0" text="%Label.VlanNumber">
                <font>
                   <Font name="System Bold" size="12.0" />
                   <Font name="System Bold" size="12.0" />

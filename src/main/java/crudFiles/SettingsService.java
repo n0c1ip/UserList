@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class SettingsService {
+public final class SettingsService {
 
     private SettingsService() {}
 

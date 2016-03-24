@@ -10,7 +10,7 @@ import objects.*;
 import javax.persistence.NoResultException;
 import java.io.*;
 
-public class ImportCSVService {
+public final class ImportCSVService {
 
     private ImportCSVService() {}
 

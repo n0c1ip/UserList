@@ -62,6 +62,7 @@ public class SignUnlimitedTableControllerTest extends GuiTest {
 
     @Test
     public void shouldOpenUserEditDialog() throws Exception {
+        find("#addButton").setDisable(false);
         click("#addButton");
         AnchorPane userEdit = find("#paneSignUnlimitedEdit");
         Assert.assertTrue(userEdit.getScene().getWindow().isShowing());

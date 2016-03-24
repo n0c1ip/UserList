@@ -14,6 +14,11 @@ public abstract class Server extends Model{
     private String ipAddress;
     private String description;
 
+    private String backupType;
+    private String backupTime;
+    private String backupDestination;
+    private String backupPath;
+
     public String getName() {
         return name;
     }
@@ -64,5 +69,44 @@ public abstract class Server extends Model{
         return new SimpleStringProperty(this.description);
     }
 
+    public String getBackupType() {
+        return backupType;
+    }
+    public void setBackupType(String backupType) {
+        this.backupType = backupType;
+    }
+    public StringProperty getBackupTypeProperty(){
+        return new SimpleStringProperty(this.backupType);
+    }
+
+    public String getBackupTime() {
+        return backupTime;
+    }
+    public void setBackupTime(String backupTime) {
+        this.backupTime = backupTime;
+    }
+    public StringProperty getBackupTimeProperty(){
+        return new SimpleStringProperty(this.backupTime);
+    }
+
+    public String getBackupDestination() {
+        return backupDestination;
+    }
+    public void setBackupDestination(String backup_destination) {
+        this.backupDestination = backup_destination;
+    }
+    public StringProperty getBackupDestionationProperty(){
+        return new SimpleStringProperty(this.backupDestination);
+    }
+
+    public String getBackupPath() {
+        return backupPath;
+    }
+    public void setBackupPath(String backup_path) {
+        this.backupPath = backup_path;
+    }
+    public StringProperty getBackupPathProperty(){
+        return new SimpleStringProperty(this.backupPath);
+    }
 
 }
