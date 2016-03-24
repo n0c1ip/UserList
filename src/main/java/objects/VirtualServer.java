@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "virtual_server")
@@ -22,6 +23,7 @@ public class VirtualServer extends Server{
     private String scsiTarget;
     private String scsiHdd;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private PhysicalServer pServer;
 
