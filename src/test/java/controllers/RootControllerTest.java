@@ -23,7 +23,7 @@ public class RootControllerTest extends GuiTest {
 
     @BeforeClass
     public static void givePrivileges() {
-        ActiveUser.setPermissions(Permission.WRITE);
+        ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
     }
 
     @Override
