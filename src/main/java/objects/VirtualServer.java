@@ -67,4 +67,14 @@ public class VirtualServer extends Server{
     public StringProperty getScsiHddProperty(){
         return new SimpleStringProperty(this.scsiHdd);
     }
+
+    public PhysicalServer getpServer() {
+        return pServer;
+    }
+    public void setpServer(PhysicalServer pServer) {
+        this.pServer = pServer;
+    }
+    public StringProperty getPhysicalServerProperty(){
+        return new SimpleStringProperty(this.pServer.toString());
+    }
 }

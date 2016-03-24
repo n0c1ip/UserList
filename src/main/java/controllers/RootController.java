@@ -37,8 +37,6 @@ public class RootController {
     @FXML
     private Menu menuNetwork;
 
-
-
     public RootController() {
     }
 
@@ -99,6 +97,23 @@ public class RootController {
             controller.setMainController(mainController);
             tabLayout = (TabPane) mainController.getRootLayout().getCenter();
             Tab tab = new Tab(I18n.ROOT.getString("MenuBar.Servers"));
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу серверов");
+        }
+    }
+
+    public void showVirtualServerTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("vServerTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            VirtualServerTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.VirtualServers"));
             tab.setContent(table);
             tabLayout.getTabs().add(tab);
         } catch (IOException ex) {

@@ -58,4 +58,9 @@ public class PhysicalServer extends Server{
     public void setVirtualHost(boolean virtualHost) {
         isVirtualHost = virtualHost;
     }
+
+    @Override
+    public String toString() {
+        return super.getName();
+    }
 }
