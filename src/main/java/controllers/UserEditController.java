@@ -44,6 +44,8 @@ public class UserEditController {
     private TextField passwordField;
     @FXML
     private TextField mailField;
+    @FXML
+    private Button pcButton;
 
     private User editedUser;
     private DialogController dialogController;
@@ -144,6 +146,13 @@ public class UserEditController {
             departmentBox.setDisable(false);
         }
         departmentBox.setItems(departmentList);
+    }
+
+    @FXML
+    private void handleShowPcButton(){
+        if(pcComboBox.getValue() != null){
+           dialogController.showPcEditDialog("Редактирование компьютера", pcComboBox.getValue());
+        }
     }
 
     private void closeWindow(){

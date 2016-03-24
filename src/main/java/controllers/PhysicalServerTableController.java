@@ -107,7 +107,7 @@ public class PhysicalServerTableController {
             PhysicalServerService.delete(selectedServer.getId());
             showAllServers();
         } else {
-            DialogController.showErrorDialog("Не выбран пользователь");
+            DialogController.showErrorDialog("Не выбран сервер");
         }
     }
 
