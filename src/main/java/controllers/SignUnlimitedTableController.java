@@ -1,6 +1,5 @@
 package controllers;
 
-import crudDB.EntityManagerFactory;
 import crudDB.ExtendedRevisionService;
 import crudDB.SignUnlimitedService;
 import javafx.collections.FXCollections;
@@ -8,17 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
-import objects.Pc;
 import objects.SignUnlimited;
-import org.hibernate.envers.AuditReader;
-import org.hibernate.envers.AuditReaderFactory;
-import org.hibernate.envers.query.AuditQuery;
 import util.ActiveUser;
 import util.I18n;
 import util.Permission;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class SignUnlimitedTableController {
 

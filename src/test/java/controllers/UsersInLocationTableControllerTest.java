@@ -3,13 +3,9 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
-import start.EntryPoint;
 import util.Fxml;
 import util.I18n;
 

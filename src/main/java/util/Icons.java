@@ -6,6 +6,7 @@ public class Icons {
 
     private Icons() {}
 
+    @SuppressWarnings("HardcodedFileSeparator")
     private static Image createImageObject(String imageFile) {
         String folder = "icons";
         return new Image(folder + "/" + imageFile);

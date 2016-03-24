@@ -9,11 +9,11 @@ import java.util.List;
 
 public class UserClassificationServiceTest {
 
-    private static Organization organization;
-    private static Location location;
-    private static Department department;
-    private static User user;
-    private static Classification classification;
+    private static Organization organization = null;
+    private static Location location = null;
+    private static Department department = null;
+    private static User user = null;
+    private static Classification classification = null;
 
     @BeforeClass
     public static void createTestClassification() {

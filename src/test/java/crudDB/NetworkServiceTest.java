@@ -1,6 +1,5 @@
 package crudDB;
 
-import objects.Location;
 import objects.Network;
 import org.junit.Assert;
 import org.junit.Test;

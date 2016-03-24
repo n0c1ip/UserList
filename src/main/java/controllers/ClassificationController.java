@@ -96,7 +96,7 @@ public class ClassificationController {
         classificationListView.setItems(FXCollections.observableArrayList(ClassificationService.getAll()));
     }
 
-    public void setUserByClassification(Classification classification) {
+    private void setUserByClassification(Classification classification) {
         tableView.setItems(FXCollections.observableArrayList(UserService.getUsersByClassification(classification)));
         usersCount.setText(I18n.TABLE.getString("Label.UserCount") + ": "
                 +String.valueOf(tableView.getItems().size()));

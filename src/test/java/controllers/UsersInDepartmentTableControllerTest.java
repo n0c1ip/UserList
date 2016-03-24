@@ -8,8 +8,10 @@ import javafx.scene.layout.AnchorPane;
 import org.junit.Assert;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.ActiveUser;
 import util.Fxml;
 import util.I18n;
+import util.Permission;
 
 import java.io.IOException;
 
@@ -18,6 +20,7 @@ public class UsersInDepartmentTableControllerTest extends GuiTest {
     @Override
     protected Parent getRootNode() {
 
+        ActiveUser.setPermissions(Permission.WRITE);
         MainController mainController = new MainController();
         mainController.setPrimaryStage(GuiTest.stage);
         mainController.initDialogController();

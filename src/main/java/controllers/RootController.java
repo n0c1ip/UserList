@@ -48,7 +48,7 @@ public class RootController {
 
     @FXML
     private void initialize() {
-        setMenuItems(SettingsService.readSettings().isPresent());
+        setMenuItems();
     }
 
     public void setMainController(MainController mainController) {
@@ -313,16 +313,15 @@ public class RootController {
 
     /**
      * Disables menu items if settings file is not present
-     * param boolean (check that file exist)
-     * @param isSettingsFileExist
      */
-    public void setMenuItems(boolean isSettingsFileExist){
-        menuTables.setDisable(!isSettingsFileExist);
-        menuTablesStructure.setDisable(!isSettingsFileExist);
-        uploadInExcel.setDisable(!isSettingsFileExist);
-        itemImportCsv.setDisable(!isSettingsFileExist);
-        itemEquipment.setDisable(!isSettingsFileExist);
-        menuNetwork.setDisable(!isSettingsFileExist);
+    public void setMenuItems(){
+        boolean settingsIsMissing = !SettingsService.readSettings().isPresent();
+        menuTables.setDisable(settingsIsMissing);
+        menuTablesStructure.setDisable(settingsIsMissing);
+        uploadInExcel.setDisable(settingsIsMissing);
+        itemImportCsv.setDisable(settingsIsMissing);
+        itemEquipment.setDisable(settingsIsMissing);
+        menuNetwork.setDisable(settingsIsMissing);
     }
 
 }

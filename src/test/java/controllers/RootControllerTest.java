@@ -5,11 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import util.ActiveUser;
 import util.Fxml;
 import util.I18n;
+import util.Permission;
 
 import java.io.IOException;
 
@@ -18,6 +20,11 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertNotNull;
 
 public class RootControllerTest extends GuiTest {
+
+    @BeforeClass
+    public static void givePrivileges() {
+        ActiveUser.setPermissions(Permission.WRITE);
+    }
 
     @Override
     protected Parent getRootNode() {
