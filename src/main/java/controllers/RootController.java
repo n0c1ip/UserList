@@ -105,6 +105,23 @@ public class RootController {
         }
     }
 
+    public void showNetworkEquipmentTable(){
+        try {
+            FXMLLoader loader = Fxml.getFXMLLoader("networkEquipmentTable.fxml");
+            loader.setResources(I18n.TABLE.getResourceBundle());
+            SplitPane table = loader.load();
+            NetworkEquipmentTableController controller = loader.getController();
+            controller.setMainController(mainController);
+            tabLayout = (TabPane) mainController.getRootLayout().getCenter();
+            Tab tab = new Tab(I18n.ROOT.getString("MenuBar.NetworkEquipment"));
+            tab.setContent(table);
+            tabLayout.getTabs().add(tab);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            DialogController.showErrorDialog("Не удалось загрузить таблицу сетевого оборудования");
+        }
+    }
+
     public void showVirtualServerTable(){
         try {
             FXMLLoader loader = Fxml.getFXMLLoader("vServerTable.fxml");
