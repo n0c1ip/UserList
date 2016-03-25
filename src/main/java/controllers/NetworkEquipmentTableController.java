@@ -2,13 +2,11 @@ package controllers;
 
 import crudDB.ExtendedRevisionService;
 import crudDB.NetworkEquipmentService;
-import crudDB.PhysicalServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
 import objects.NetworkEquipment;
-import objects.PhysicalServer;
 import util.ActiveUser;
 import util.I18n;
 import util.Permission;
@@ -89,23 +87,25 @@ public class NetworkEquipmentTableController {
 
     @FXML
     private void hadnleNewPcButton(){
-        mainController.getDialogController().showPServerEditDialog("Создание сервера", new PhysicalServer());
+        mainController.getDialogController().showNetworkEqupEditDialog("Создание оборудования", new NetworkEquipment());
+        showAllNetworkEquipment();
     }
 
     @FXML
     private void handleEditPcButton(){
         NetworkEquipment ne = tableView.getSelectionModel().getSelectedItem();
-//        mainController.getDialogController().showPServerEditDialog("Редактирование сервера", ne);
+        mainController.getDialogController().showNetworkEqupEditDialog("Редактирование оборудования", ne);
+        showAllNetworkEquipment();
     }
 
     @FXML
     private void handleRemovePcButton(){
         NetworkEquipment ne = tableView.getSelectionModel().getSelectedItem();
         if(ne != null){
-            PhysicalServerService.delete(ne.getId());
+            NetworkEquipmentService.delete(ne.getId());
             showAllNetworkEquipment();
         } else {
-            DialogController.showErrorDialog("Не выбран сервер");
+            DialogController.showErrorDialog("Не выбрано оборудование");
         }
     }
 
