@@ -41,6 +41,14 @@ public class VirtualServerService {
         });
     }
 
+    public static List<VirtualServer> getByPServer(PhysicalServer pServer) {
+        return doQueryCasual(manager -> {
+            TypedQuery<VirtualServer> namedQuery = manager.createNamedQuery("VirtualServer.getByPServer", VirtualServer.class);
+            namedQuery.setParameter("pServer", pServer);
+            return namedQuery.getResultList();
+        });
+    }
+
     public static List<VirtualServer> getAll() {
         return doQueryCasual(manager -> {
             TypedQuery<VirtualServer> namedQuery = manager.createNamedQuery("VirtualServer.getAll", VirtualServer.class);

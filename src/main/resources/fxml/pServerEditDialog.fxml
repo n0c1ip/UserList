@@ -120,6 +120,6 @@
             <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="65.0" text="%Button.Cancel" />
          </children>
       </HBox>
-      <Button fx:id="vmButton" disable="true" layoutX="23.0" layoutY="253.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="VM" />
+      <Button fx:id="vmButton" onAction="#handleVmButton" disable="true" layoutX="23.0" layoutY="253.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="VM" />
    </children>
 </AnchorPane>

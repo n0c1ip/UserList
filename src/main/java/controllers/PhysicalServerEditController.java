@@ -3,17 +3,12 @@ package controllers;
 import crudDB.PhysicalServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.PhysicalServer;
-import util.Fxml;
-import util.I18n;
-
-import java.io.IOException;
 
 public class PhysicalServerEditController {
 
@@ -39,7 +34,7 @@ public class PhysicalServerEditController {
     private Button vmButton;
 
     private PhysicalServer editedServer;
-
+    private DialogController dialogController;
 
     @FXML
     private void initialize() {
@@ -82,4 +77,12 @@ public class PhysicalServerEditController {
         vmButton.setDisable(!pServer.isVirtualHost());
     }
 
+
+    public void handleVmButton() {
+        dialogController.showVServerInHostDialog("VMs " + editedServer.getName(),editedServer);
+    }
+
+    public void setDialogController(DialogController dialogController) {
+        this.dialogController = dialogController;
+    }
 }
