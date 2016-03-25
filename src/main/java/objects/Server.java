@@ -16,7 +16,7 @@ public abstract class Server extends Model{
 
     private String backupType;
     private String backupTime;
-    private String backupDestination;
+    private String backupServer;
     private String backupPath;
 
     public String getName() {
@@ -89,14 +89,14 @@ public abstract class Server extends Model{
         return new SimpleStringProperty(this.backupTime);
     }
 
-    public String getBackupDestination() {
-        return backupDestination;
+    public String getBackupServer() {
+        return backupServer;
     }
-    public void setBackupDestination(String backup_destination) {
-        this.backupDestination = backup_destination;
+    public void setBackupServer(String backup_destination) {
+        this.backupServer = backup_destination;
     }
     public StringProperty getBackupDestionationProperty(){
-        return new SimpleStringProperty(this.backupDestination);
+        return new SimpleStringProperty(this.backupServer);
     }
 
     public String getBackupPath() {

@@ -1,13 +1,11 @@
 package controllers;
 
 import crudDB.ExtendedRevisionService;
-import crudDB.PhysicalServerService;
 import crudDB.VirtualServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
-import objects.PhysicalServer;
 import objects.VirtualServer;
 import util.ActiveUser;
 import util.I18n;
@@ -93,13 +91,13 @@ public class VirtualServerTableController {
 
     @FXML
     private void hadnleNewPcButton(){
-        mainController.getDialogController().showPServerEditDialog("Создание сервера", new PhysicalServer());
+        mainController.getDialogController().showVServerEditDialog("Создание сервера", new VirtualServer());
     }
 
     @FXML
     private void handleEditPcButton(){
         VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
-//        mainController.getDialogController().showPServerEditDialog("Редактирование сервера", selectedServer);
+        mainController.getDialogController().showVServerEditDialog("Редактирование сервера", selectedServer);
     }
 
     @FXML

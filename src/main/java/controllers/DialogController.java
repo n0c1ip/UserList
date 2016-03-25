@@ -249,7 +249,29 @@ public class DialogController {
         return dialog;
     }
 
-
+    public void showVServerEditDialog(String title, VirtualServer virtualServer) {
+        getVServerEditDialog(title,virtualServer).showAndWait();
+    }
+    public Stage getVServerEditDialog(String title,VirtualServer virtualServer){
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("vServerEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane vServerEdit = loader.load();
+            VirtualServerEditController controller = loader.getController();
+            controller.setEditedServer(virtualServer);
+            dialog.setScene(new Scene(vServerEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showErrorDialog("Не удалось загрузить интерфейс редактирования сервера");
+        }
+        return dialog;
+    }
 
     public void showSignUnlimitedEditDialog(String title, SignUnlimited signUnlimited) {
         getSignUnlimitedEditDialog(title, signUnlimited).showAndWait();
