@@ -1,11 +1,13 @@
 package controllers;
 
 import crudDB.ExtendedRevisionService;
+import crudDB.PhysicalServerService;
 import crudDB.VirtualServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import objects.ExtendedRevisionEntity;
+import objects.PhysicalServer;
 import objects.VirtualServer;
 import util.ActiveUser;
 import util.I18n;
@@ -36,6 +38,8 @@ public class VirtualServerTableController {
     private TableColumn<VirtualServer, String> serverIpAddressColumn;
     @FXML
     private TableColumn<VirtualServer, String> serverRamColumn;
+    @FXML
+    private ListView<PhysicalServer> hostsListView;
 
 
     private ContextMenu contextMenu;
@@ -61,7 +65,9 @@ public class VirtualServerTableController {
             removeButton.setDisable(true);
         }
 
-        showAllServers();
+        hostsListView.setItems(FXCollections.observableArrayList(PhysicalServerService.getAll()));
+        hostsListView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> setVmByHost(newValue));
 
         serverNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         vmHostColumn.setCellValueFactory(cellData -> cellData.getValue().getPhysicalServerProperty());
@@ -85,19 +91,22 @@ public class VirtualServerTableController {
         });
     }
 
-    private void showAllServers(){
-        tableView.setItems(FXCollections.observableArrayList(VirtualServerService.getAll()));
-    }
-
     @FXML
     private void hadnleNewPcButton(){
-        mainController.getDialogController().showVServerEditDialog("Создание сервера", new VirtualServer());
+        if(hostsListView.getSelectionModel().getSelectedItem() != null){
+            PhysicalServer thisServer = hostsListView.getSelectionModel().getSelectedItem();
+            VirtualServer vs = new VirtualServer();
+            vs.setpServer(thisServer);
+            mainController.getDialogController().showVServerEditDialog("Создание сервера", vs);
+            setVmByHost(thisServer);
+        }
     }
 
     @FXML
     private void handleEditPcButton(){
         VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
         mainController.getDialogController().showVServerEditDialog("Редактирование сервера", selectedServer);
+        setVmByHost(hostsListView.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -105,10 +114,16 @@ public class VirtualServerTableController {
         VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
         if(selectedServer != null){
             VirtualServerService.delete(selectedServer.getId());
-            showAllServers();
+            setVmByHost(hostsListView.getSelectionModel().getSelectedItem());
         } else {
             DialogController.showErrorDialog("Не выбран сервер");
         }
+    }
+
+    @FXML
+    private void setVmByHost(PhysicalServer physicalServer){
+        tableView.setItems(FXCollections.observableArrayList(VirtualServerService.getByPServer(physicalServer)));
+
     }
 
     public void setMainController(MainController mainController) {

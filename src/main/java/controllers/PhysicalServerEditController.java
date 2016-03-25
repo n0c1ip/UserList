@@ -30,11 +30,8 @@ public class PhysicalServerEditController {
     private Button okButton;
     @FXML
     private CheckBox vmHostCheckBox;
-    @FXML
-    private Button vmButton;
 
     private PhysicalServer editedServer;
-    private DialogController dialogController;
 
     @FXML
     private void initialize() {
@@ -74,15 +71,5 @@ public class PhysicalServerEditController {
         serverOsField.setText(pServer.getOs());
         serverDescriptionField.setText(pServer.getDescription());
         vmHostCheckBox.setSelected(pServer.isVirtualHost());
-        vmButton.setDisable(!pServer.isVirtualHost());
-    }
-
-
-    public void handleVmButton() {
-        dialogController.showVServerInHostDialog("VMs " + editedServer.getName(),editedServer);
-    }
-
-    public void setDialogController(DialogController dialogController) {
-        this.dialogController = dialogController;
     }
 }

@@ -57,7 +57,9 @@ public class DialogController {
     public void showExistingUserInDepartmentChoiceDialog(String title, Classification classification){
         getExistingUserInDepartmentChoiceDialog(title, classification).showAndWait();
     }
-    public Stage getExistingUserInDepartmentChoiceDialog(String title, Classification classification){
+
+    public Stage getExistingUserInDepartmentChoiceDialog(String title, Classification classification) {
+
         final Stage dialog = new Stage();
         try {
             dialog.setTitle(title);
@@ -239,39 +241,12 @@ public class DialogController {
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane pServerEdit = loader.load();
             PhysicalServerEditController controller = loader.getController();
-            controller.setDialogController(this);
             controller.setEditedServer(physicalServer);
             dialog.setScene(new Scene(pServerEdit));
             return  dialog;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             showErrorDialog("Не удалось загрузить интерфейс редактирования сервера");
-        }
-        return dialog;
-    }
-
-    public void showVServerInHostDialog(String title, PhysicalServer physicalServer) {
-        getPServerInHostDialog(title,physicalServer).showAndWait();
-    }
-    public Stage getPServerInHostDialog(String title,PhysicalServer physicalServer){
-        final Stage dialog = new Stage();
-        try{
-            dialog.setTitle(title);
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.initOwner(primaryStage);
-            dialog.setResizable(false);
-            FXMLLoader loader = Fxml.getFXMLLoader("vServerInHostTable.fxml");
-            loader.setResources(I18n.TABLE.getResourceBundle());
-            SplitPane vServerTable = loader.load();
-            VirtualServerInHostTableController controller = loader.getController();
-            controller.setStage(dialog);
-            controller.setPhysicalServer(physicalServer);
-            dialog.setScene(new Scene(vServerTable));
-            return  dialog;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            showErrorDialog("Не удалось загрузить интерфейс");
         }
         return dialog;
     }
