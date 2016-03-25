@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="paneUserEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VirtualServerEditController">
+   <children>
+      <GridPane fx:id="gridPane" layoutX="1.0" layoutY="33.0" prefHeight="128.0" prefWidth="350.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="129.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="221.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="30.0" prefWidth="131.0" text="%Label.Description" GridPane.rowIndex="15">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="serverNameField" prefHeight="31.0" prefWidth="222.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin></TextField>
+            <TextField fx:id="serverRamField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label prefHeight="26.0" prefWidth="134.0" text="%Label.ServerName">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="Тип бэкапа" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="serverIpAddressField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="30.0" prefWidth="131.0" text="%Label.IpAddress" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="serverHddField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label prefHeight="30.0" prefWidth="131.0" text="Сервер бэкапа" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="%Label.Os" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="backupServerField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="backupPathField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="scsiHostField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label prefHeight="30.0" prefWidth="131.0" text="Путь бэкапа" GridPane.rowIndex="10">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="serverOsField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="serverBackupTypeField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="backupTimeField" maxHeight="-Infinity" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label prefHeight="30.0" prefWidth="131.0" text="%Label.Ram" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="HDD" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="Время бэкапа" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="Хранилище ISCSI" GridPane.rowIndex="12">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="Target" GridPane.rowIndex="13">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="131.0" text="Объем HDD" GridPane.rowIndex="14">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="scsiTargetField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="scsiHddField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <TextField fx:id="serverDescriptionField" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <Separator prefWidth="200.0" GridPane.rowIndex="11" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Separator prefWidth="200.0" GridPane.rowIndex="6" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="26.0" prefWidth="134.0" text="Host VM" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <ComboBox fx:id="hostComboBox" prefHeight="25.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="270.0" prefHeight="37.0" prefWidth="157.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="30.0" prefWidth="69.0" text="%Button.ok" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="65.0" text="%Button.Cancel" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -13,7 +13,9 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name="VirtualServer.getAll",
                 query="SELECT v FROM VirtualServer v"),
         @NamedQuery(name="VirtualServer.getByName",
-                query="SELECT v FROM VirtualServer v WHERE v.name = :name")
+                query="SELECT v FROM VirtualServer v WHERE v.name = :name"),
+        @NamedQuery(name = "VirtualServer.getByPServer",
+                query = "SELECT v FROM VirtualServer v WHERE v.pServer = :pServer")
 })
 @Audited
 public class VirtualServer extends Server{
