@@ -46,7 +46,7 @@ public class RootController {
 
     @FXML
     private void initialize() {
-        setMenuItems();
+        setMenuItems(!SettingsService.readSettings().isPresent());
     }
 
     public void setMainController(MainController mainController) {
@@ -355,8 +355,7 @@ public class RootController {
     /**
      * Disables menu items if settings file is not present
      */
-    public void setMenuItems(){
-        boolean settingsIsMissing = !SettingsService.readSettings().isPresent();
+    public void setMenuItems(boolean settingsIsMissing){
         menuTables.setDisable(settingsIsMissing);
         menuTablesStructure.setDisable(settingsIsMissing);
         uploadInExcel.setDisable(settingsIsMissing);
