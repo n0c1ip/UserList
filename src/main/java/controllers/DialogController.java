@@ -151,6 +151,30 @@ public class DialogController {
         return dialog;
     }
 
+    public void showNetworkEqupEditDialog(String title, NetworkEquipment networkEquipment) {
+        getNetworkEqupEditDialog(title,networkEquipment).showAndWait();
+    }
+    public Stage getNetworkEqupEditDialog(String title,NetworkEquipment networkEquipment){
+        final Stage dialog = new Stage();
+        try{
+            dialog.setTitle(title);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setResizable(false);
+            FXMLLoader loader = Fxml.getFXMLLoader("networkEquipmentEditDialog.fxml");
+            loader.setResources(I18n.DIALOG.getResourceBundle());
+            AnchorPane pServerEdit = loader.load();
+            NetworkEquipmentEditController controller = loader.getController();
+            controller.setEditedNetworkEquipment(networkEquipment);
+            dialog.setScene(new Scene(pServerEdit));
+            return  dialog;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            showErrorDialog("Не удалось загрузить интерфейс редактирования сервера");
+        }
+        return dialog;
+    }
+
     public void showVlanEditDialog(String title, Vlan vlan) {
         getVlanEditDialog(title, vlan).showAndWait();
     }
