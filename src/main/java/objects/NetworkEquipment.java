@@ -25,6 +25,9 @@ public class NetworkEquipment extends Model{
 
     public NetworkEquipment() {
     }
+    public NetworkEquipment(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
