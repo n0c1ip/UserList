@@ -3,6 +3,7 @@ package objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Audited
 public class NetworkEquipment extends Model{
 
+    @NotBlank(message = "Название должно быть заполнено")
     private String name;
     private String model;
     private String type;

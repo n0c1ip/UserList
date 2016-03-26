@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.NetworkEquipmentService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,14 +32,18 @@ public class NetworkEquipmentEditController {
     }
 
     public void handleOkButton(){
-        ne.setName(neNameField.getText());
-        ne.setIpAddress(neIpAddressField.getText());
-        ne.setModel(neModelField.getText());
-        ne.setType(neTypeField.getText());
-        ne.setLocation(neLocationField.getText());
-        ne.setDescription(neDescriptionField.getText());
-        NetworkEquipmentService.add(ne);
-        closeWindow();
+        if (BeanValidation.isCorrectData(ne)) {
+            ne.setName(neNameField.getText());
+            ne.setIpAddress(neIpAddressField.getText());
+            ne.setModel(neModelField.getText());
+            ne.setType(neTypeField.getText());
+            ne.setLocation(neLocationField.getText());
+            ne.setDescription(neDescriptionField.getText());
+            NetworkEquipmentService.add(ne);
+            closeWindow();
+        } else {
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(ne));
+        }
     }
 
     @FXML
