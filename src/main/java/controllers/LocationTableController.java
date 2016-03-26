@@ -94,6 +94,7 @@ public class LocationTableController {
         if (selectedLocation != null) {
             mainController.getDialogController().showLocationEditDialog(I18n.DIALOG.getString("Title.EditLocation"), selectedLocation);
         }
+        showAllLocations();
     }
 
     public void setMainController(MainController mainController) {
