@@ -64,9 +64,12 @@ public class PcEditController {
     public void handleSelectButton() {
         if(editedPc != null){
             dialogController.showExistingUserInDepartmentChoiceDialog(I18n.DIALOG.getString("Title.AddUsers"), editedPc);
+            editedPc = PcService.get(editedPc.getId());
+            userField.setText(editedPc.getUser().getFullName());
         } else {
             DialogController.showErrorDialog("Необходимо выбрать компьютер");
         }
+
     }
 
     public void handleOkButton(){

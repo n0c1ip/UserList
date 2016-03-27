@@ -19,10 +19,10 @@
                                <TableView fx:id="tableView" editable="true" layoutY="-2.0" prefHeight="567.0" prefWidth="240.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                    <columns>
                                        <TableColumn fx:id="serverNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.ServerName" />
-                                    <TableColumn fx:id="vmHostColumn" prefWidth="75.0" text="VM Host" />
-                                    <TableColumn fx:id="serverDescriptionColumn" prefWidth="75.0" text="%Column.Description" />
-                                    <TableColumn fx:id="serverOsColumn" prefWidth="75.0" text="%Column.Os" />
-                                    <TableColumn fx:id="serverHddColumn" prefWidth="75.0" text="HDD" />
+                                       <TableColumn fx:id="vmHostColumn" prefWidth="75.0" text="VM Host" />
+                                       <TableColumn fx:id="serverDescriptionColumn" prefWidth="75.0" text="%Column.Description" />
+                                       <TableColumn fx:id="serverOsColumn" prefWidth="75.0" text="%Column.Os" />
+                                       <TableColumn fx:id="serverHddColumn" prefWidth="75.0" text="HDD" />
                                        <TableColumn fx:id="serverIpAddressColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.IpAddress" />
                                        <TableColumn fx:id="serverRamColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.Ram" />
                                    </columns>

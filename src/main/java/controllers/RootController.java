@@ -46,7 +46,7 @@ public class RootController {
 
     @FXML
     private void initialize() {
-        setMenuItems();
+        setMenuItems(!SettingsService.readSettings().isPresent());
     }
 
     public void setMainController(MainController mainController) {
@@ -333,12 +333,21 @@ public class RootController {
             ObservableList<TableColumn> columns = currentTable.getColumns();
             ObservableList<User> userList = currentTable.getItems();
 
-            File file = mainController.getDialogController().showFileSaveDialog("Excel files (*.xls)","*.xls");
+            boolean problemsFound = false;
+            try {
+                User user = userList.get(0);
+            } catch (Exception e) {
+                DialogController.showErrorDialog("Текущая таблица не содержит пользователей");
+                problemsFound = true;
+            }
 
-            if (file != null){
-                UploadInExcelService.uploadInExcel(columns,userList,file);
-                DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
-                        "Завершено", "Файл сохранен" + System.lineSeparator() + file.getAbsolutePath());
+            if (!problemsFound) {
+                File file = mainController.getDialogController().showFileSaveDialog("Excel files (*.xls)", "*.xls");
+                if (file != null) {
+                    UploadInExcelService.uploadInExcel(columns, userList, file);
+                    DialogController.showAlertDialog(Alert.AlertType.INFORMATION,
+                            "Завершено", "Файл сохранен" + System.lineSeparator() + file.getAbsolutePath());
+                }
             }
         }
     }
@@ -346,8 +355,7 @@ public class RootController {
     /**
      * Disables menu items if settings file is not present
      */
-    public void setMenuItems(){
-        boolean settingsIsMissing = !SettingsService.readSettings().isPresent();
+    public void setMenuItems(boolean settingsIsMissing){
         menuTables.setDisable(settingsIsMissing);
         menuTablesStructure.setDisable(settingsIsMissing);
         uploadInExcel.setDisable(settingsIsMissing);

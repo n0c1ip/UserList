@@ -21,11 +21,6 @@ import static junit.framework.TestCase.assertNotNull;
 
 public class RootControllerTest extends GuiTest {
 
-    @BeforeClass
-    public static void givePrivileges() {
-        ActiveUser.setPermissions(Permission.READ, Permission.WRITE);
-    }
-
     @Override
     protected Parent getRootNode() {
 
@@ -45,6 +40,7 @@ public class RootControllerTest extends GuiTest {
 
             RootController rootController = rootLoader.getController();
             rootController.setMainController(mainController);
+            rootController.setMenuItems(false);
 
             return rootLayout;
         } catch (IOException e) {

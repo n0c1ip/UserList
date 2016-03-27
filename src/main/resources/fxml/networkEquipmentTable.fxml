@@ -19,7 +19,7 @@
                                  <TableColumn fx:id="neModelColumn" minWidth="-1.0" prefWidth="101.0" text="%Column.NetEqModel" />
                                  <TableColumn fx:id="neTypeColumn" minWidth="-1.0" prefWidth="140.0" text="%Column.NetEqType" />
                                  <TableColumn fx:id="neIpColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.NetEqIp" />
-                              <TableColumn fx:id="neLocationColumn" prefWidth="75.0" text="%Column.NetEqLocation" />
+                                 <TableColumn fx:id="neLocationColumn" prefWidth="75.0" text="%Column.NetEqLocation" />
                                  <TableColumn fx:id="enDescriptionColumn" minWidth="-1.0" prefWidth="-1.0" text="%Column.NetEqDescription" />
                              </columns>
                              <columnResizePolicy>
