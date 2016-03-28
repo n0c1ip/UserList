@@ -13,6 +13,8 @@ import util.ActiveUser;
 import util.I18n;
 import util.Permission;
 
+import java.io.IOException;
+
 public class VirtualServerTableController {
 
     private MainController mainController;
@@ -80,13 +82,22 @@ public class VirtualServerTableController {
 
     private void initiateContextMenu(){
         MenuItem lastEdit = new MenuItem(I18n.TABLE.getString("ContextMenu.LastEdit"));
-        contextMenu = new ContextMenu(lastEdit);
+        MenuItem rdpSession = new MenuItem("RDP");
+        contextMenu = new ContextMenu(rdpSession,lastEdit);
         lastEdit.setOnAction(event -> {
             VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
             if (selectedServer != null) {
                 ExtendedRevisionEntity revisionEntity =
                         ExtendedRevisionService.getLastRevisionEntity(VirtualServer.class, selectedServer);
                 DialogController.showLastEditDialog(revisionEntity.getUserName(), revisionEntity.getRevisionDate());
+            }
+        });
+        rdpSession.setOnAction(event -> {
+            VirtualServer selectedServer = tableView.getSelectionModel().getSelectedItem();
+            try {
+                Runtime.getRuntime().exec("mstsc /v:" + selectedServer.getName());
+            } catch (IOException e) {
+                DialogController.getAlertDialog(Alert.AlertType.ERROR, "Error","Не удалось открыть сессию");
             }
         });
     }
