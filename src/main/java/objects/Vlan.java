@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @Audited
 public class Vlan extends Model {
 
-    @Pattern(regexp = "[1-4096]*", message = "Введите чилсло от 1 до 4096")
+    @Pattern(regexp = "(4096)|[1-9]\\d?", message = "Введите чилсло от 1 до 4096")
     @NotEmpty(message = "Номер VLAN не может быть пустым")
     private String number;
 
