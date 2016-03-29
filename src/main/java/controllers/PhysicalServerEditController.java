@@ -1,5 +1,6 @@
 package controllers;
 
+import crudDB.BeanValidation;
 import crudDB.PhysicalServerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -39,16 +40,21 @@ public class PhysicalServerEditController {
     }
 
     public void handleOkButton(){
-        editedServer.setName(serverNameField.getText());
-        editedServer.setModel(serverModelField.getText());
-        editedServer.setIpAddress(serverIpAddressField.getText());
-        editedServer.setType(typeComboBox.getValue());
-        editedServer.setRam(serverRamField.getText());
-        editedServer.setOs(serverOsField.getText());
-        editedServer.setDescription(serverDescriptionField.getText());
-        editedServer.setVirtualHost(vmHostCheckBox.isSelected());
-        PhysicalServerService.add(editedServer);
-        closeWindow();
+        if (BeanValidation.isCorrectData(editedServer)) {
+            editedServer.setName(serverNameField.getText());
+            editedServer.setModel(serverModelField.getText());
+            editedServer.setIpAddress(serverIpAddressField.getText());
+            editedServer.setType(typeComboBox.getValue());
+            editedServer.setRam(serverRamField.getText());
+            editedServer.setOs(serverOsField.getText());
+            editedServer.setDescription(serverDescriptionField.getText());
+            editedServer.setVirtualHost(vmHostCheckBox.isSelected());
+            PhysicalServerService.add(editedServer);
+            closeWindow();
+        }
+        else{
+            DialogController.showErrorDialog(BeanValidation.getViolationsText(editedServer));
+        }
     }
 
     @FXML

@@ -458,7 +458,7 @@ public class DialogController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
             dialog.setResizable(false);
-            FXMLLoader loader = Fxml.getFXMLLoader("locationEditDialog.fxml");
+            FXMLLoader loader = Fxml.getFXMLLoader("LocationEditDialog.fxml");
             loader.setResources(I18n.DIALOG.getResourceBundle());
             AnchorPane locationEdit = loader.load();
             LocationEditController controller = loader.getController();

@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,7 @@ import java.util.Set;
 public class PhysicalServer extends Server{
 
     private String model;
+    @NotNull(message = "Выбирите тип сервера")
     private TYPE type;
     private boolean isVirtualHost;
 
